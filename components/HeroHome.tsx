@@ -1,15 +1,17 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import type { ArticleMeta } from '@/lib/mdx'
 
 const clients = ['TotalEnergies', 'PwC', 'Sacem', 'BPI France', 'Groupama']
-const tags = ['SharePoint', 'Copilot Studio', 'Power Automate', 'PowerApps', 'M365']
+const tags = ['Microsoft 365', 'SharePoint', 'Power Automate', 'PowerApps', 'Copilot Studio']
 
 const stats = [
-  { value: '5+', label: 'ans en freelance' },
-  { value: '30+', label: 'projets livrés' },
-  { value: '100%', label: 'clients satisfaits' },
+  { value: '10+', label: 'ans en freelance' },
+  { value: '15+', label: 'clients' },
+  { value: '100%', label: 'de satisfaction' },
 ]
 
-export default function HeroHome() {
+export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta }) {
   return (
     <section
       style={{ padding: '5rem 6% 4rem', background: '#ffffff' }}
@@ -105,34 +107,6 @@ export default function HeroHome() {
             Je transforme vos processus métier en applications et automatisations Microsoft 365 qui fonctionnent vraiment. De la stratégie à la mise en production.
           </p>
 
-          {/* Clients strip */}
-          <div
-            className="animate-fadeUp animate-fadeUp-3"
-            style={{ marginBottom: '2rem' }}
-          >
-            <p style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '0.6rem' }}>
-              Clients :
-            </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-              {clients.map((c) => (
-                <span
-                  key={c}
-                  style={{
-                    fontSize: '0.8rem',
-                    fontWeight: 600,
-                    color: 'var(--c3)',
-                    background: 'var(--off)',
-                    border: '1px solid var(--border)',
-                    borderRadius: '8px',
-                    padding: '0.25rem 0.65rem',
-                  }}
-                >
-                  {c}
-                </span>
-              ))}
-            </div>
-          </div>
-
           {/* CTAs */}
           <div
             className="animate-fadeUp animate-fadeUp-4"
@@ -168,15 +142,12 @@ export default function HeroHome() {
                 width: 64,
                 height: 64,
                 borderRadius: '50%',
-                background: 'var(--grad)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
                 flexShrink: 0,
                 boxShadow: '0 4px 16px rgba(15,95,173,0.25)',
+                overflow: 'hidden',
               }}
             >
-              <span style={{ color: 'white', fontWeight: 800, fontSize: '1.25rem' }}>JB</span>
+              <Image src="/images/JBR.png" alt="Julie Bredeche" width={64} height={64} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
             </div>
             <div>
               <div style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>
@@ -210,6 +181,34 @@ export default function HeroHome() {
               </span>
             ))}
           </div>
+
+          {/* Last article */}
+          {lastArticle && (
+            <Link
+              href={`/blog/${lastArticle.slug}`}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.25rem',
+                background: 'white',
+                border: '1px solid var(--border)',
+                borderRadius: '12px',
+                padding: '0.85rem 1rem',
+                textDecoration: 'none',
+                transition: 'border-color 0.2s ease',
+              }}
+            >
+              <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--c2)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                Dernier article
+              </span>
+              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.4 }}>
+                {lastArticle.title}
+              </span>
+              <span style={{ fontSize: '0.75rem', color: 'var(--c3)', fontWeight: 600, marginTop: '0.1rem' }}>
+                Lire →
+              </span>
+            </Link>
+          )}
 
           {/* Stats */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>

@@ -7,9 +7,9 @@ import { useState } from 'react'
 const links = [
   { href: '/', label: 'Accueil' },
   { href: '/qui-suis-je', label: 'Qui suis-je ?' },
+  { href: '/blog', label: 'Blog' },
   { href: '/offres', label: 'Mes offres' },
   { href: '/portfolio', label: 'Portfolio' },
-  { href: '/blog', label: 'Blog' },
 ]
 
 export default function Nav() {
@@ -68,7 +68,7 @@ export default function Nav() {
             <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', fontFamily: 'Lora, serif' }}>
               Julie Bredeche
             </div>
-            <div style={{ fontSize: '0.72rem', color: 'var(--muted)', fontWeight: 400 }}>
+            <div style={{ fontSize: '0.72rem', color: 'var(--muted)', fontWeight: 400 }} className="hidden md:block">
               Osalyd Consulting
             </div>
           </div>
@@ -77,7 +77,7 @@ export default function Nav() {
         {/* Desktop nav */}
         <nav
           aria-label="Navigation principale"
-          style={{ display: 'flex', gap: '1.75rem', alignItems: 'center' }}
+          style={{ gap: '1.75rem', alignItems: 'center' }}
           className="hidden md:flex"
         >
           {links.map(({ href, label }) => {

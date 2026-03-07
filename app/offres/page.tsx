@@ -172,7 +172,7 @@ export default function OffresPage() {
             Décrivez-moi votre projet en quelques lignes par email ou sur LinkedIn. Je vous réponds sous 24h avec une proposition d&apos;appel de découverte (30 min, gratuit).
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="mailto:julie@osalydconsulting.com" className="btn-primary">
+            <a href="mailto:julie.bredeche@osalydconsulting.com" className="btn-primary">
               Envoyer un email
             </a>
             <a href="https://linkedin.com/in/juliebredeche" target="_blank" rel="noopener noreferrer" className="btn-outline">

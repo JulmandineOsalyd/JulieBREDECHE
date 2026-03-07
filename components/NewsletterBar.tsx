@@ -20,8 +20,8 @@ export default function NewsletterBar() {
   return (
     <section
       style={{
-        background: 'var(--off)',
-        borderTop: '1px solid var(--border)',
+        background: '#0d1f35',
+        borderTop: '1px solid rgba(255,255,255,0.08)',
         padding: '1.75rem 6%',
       }}
     >
@@ -42,18 +42,18 @@ export default function NewsletterBar() {
             ✉️
           </span>
           <div>
-            <p style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', margin: 0 }}>
-              Recevoir les nouveaux articles
+            <p style={{ fontWeight: 700, fontSize: '0.95rem', color: 'white', margin: 0 }}>
+              Recevoir mes nouveaux articles
             </p>
-            <p style={{ fontSize: '0.8rem', color: 'var(--muted)', margin: 0 }}>
-              SharePoint, Copilot Studio, Power Platform — chaque semaine.
+            <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', margin: 0 }}>
+              SharePoint, la Power Platform et Copilot Studio
             </p>
           </div>
         </div>
 
         {/* Form */}
         {submitted ? (
-          <p style={{ color: 'var(--c3)', fontWeight: 700, fontSize: '0.9rem' }}>
+          <p style={{ color: 'var(--c1)', fontWeight: 700, fontSize: '0.9rem' }}>
             Merci ! Vous allez recevoir une confirmation.
           </p>
         ) : (

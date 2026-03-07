@@ -22,7 +22,7 @@ export default function HomePage() {
 
   return (
     <>
-      <HeroHome />
+      <HeroHome lastArticle={articles[0]} />
       <BentoGrid articles={articles} />
       <OffresSection />
     </>

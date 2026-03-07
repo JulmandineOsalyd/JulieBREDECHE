@@ -59,6 +59,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
 
         {/* Bento grid */}
         <div
+          className="bento-grid-inner"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',

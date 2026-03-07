@@ -1,16 +1,17 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { ReactNode } from 'react'
 
 const offresPrincipale = {
-  title: 'Applications PowerApps, Power Automate & Agents Copilot',
+  title: 'Solutions PowerApps, Power Automate & Agents Copilot',
   description:
-    'Conception et développement d\'applications métier sur mesure, d\'automatisations intelligentes et d\'agents conversationnels — de l\'analyse des besoins à la mise en production. Découvrez',
+    'Conception et développement de solutions métier sur mesure, d\'automatisations intelligentes et d\'agents conversationnels — de l\'analyse des besoins à la mise en production. Découvrez',
   methodLink: '/offres',
   methodLinkLabel: 'ma méthode',
   bullets: [
-    'PowerApps sur mesure (20–30j) pour TPE/PME',
-    'Automatisations Power Automate : approbations, alertes, synchronisations',
-    'Agents Copilot Studio connectés à vos données SharePoint',
+    'Applications PowerApps sur mesure',
+    'Automatisations Power Automate : approbations, alertes, gestion des droits',
+    'Agents Copilot Studio connectés à votre environnement Microsoft',
     'Documentation technique et fonctionnelle incluse',
     'Forfait maintenance mensuel disponible',
   ],
@@ -20,7 +21,7 @@ const coaching = {
   title: 'Coaching Power Automate',
   description: 'Montez en compétence sur Power Automate avec un accompagnement personnalisé.',
   bullets: [
-    'Sessions 1:1 en visio ou présentiel',
+    'Sessions 1:1 en visio',
     'Cas pratiques sur vos flux existants',
     'Bonnes pratiques et anti-patterns',
     'Support entre les sessions par email',
@@ -29,12 +30,12 @@ const coaching = {
 
 const audit = {
   title: 'Audit SharePoint & Power Platform',
-  description: 'Diagnostic complet de votre environnement M365 avec recommandations actionnables.',
+  description: 'Analyse approfondie de votre environnement SharePoint pour en tirer le meilleur parti.',
   bullets: [
-    'Analyse de la gouvernance SharePoint',
-    'Revue des flux Power Automate existants',
-    'Évaluation de la sécurité et des permissions',
-    'Roadmap priorisée avec ROI estimé',
+    'Analyse de l\'architecture des sites',
+    'Évaluation des droits et des permissions',
+    'Optimisation de la gestion des métadonnées',
+    'Mise en place d\'une recherche PnP ou d\'agents Copilot',
   ],
 }
 
@@ -219,35 +220,48 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
         </div>
 
         {/* Free tool banner */}
-        <div
+        <a
+          href="https://onedrivepathchecker.com/"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             marginTop: '1.5rem',
             padding: '1.25rem 1.5rem',
-            background: 'white',
-            border: '1px solid var(--border)',
+            background: '#0d1f35',
+            border: '1px solid rgba(77,255,214,0.2)',
             borderRadius: '16px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
             gap: '1rem',
+            textDecoration: 'none',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <span style={{ fontSize: '1.5rem' }} aria-hidden="true">🛠️</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+            <Image
+              src="/images/logoOneDrivePathChecker.svg"
+              alt="OneDrive Path Checker"
+              width={40}
+              height={40}
+              style={{ flexShrink: 0 }}
+            />
             <div>
-              <span style={{ fontWeight: 700, color: 'var(--ink)', fontSize: '0.95rem' }}>
+              <div style={{ fontWeight: 700, color: 'white', fontSize: '0.95rem' }}>
                 OneDrive Path Checker
-              </span>
-              <span style={{ color: 'var(--muted)', fontSize: '0.875rem', marginLeft: '0.5rem' }}>
-                — Outil gratuit pour diagnostiquer les chemins OneDrive trop longs
-              </span>
+              </div>
+              <div style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.85rem', marginTop: '0.15rem' }}>
+                Outil de détection de chemins de fichiers trop longs pour SharePoint &amp; OneDrive
+              </div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--c1)', fontWeight: 600, marginTop: '0.25rem' }}>
+                Disponible sur le Microsoft Store · 24h d&apos;essai gratuit
+              </div>
             </div>
           </div>
-          <Link href="/outils/onedrive-path-checker" className="btn-outline">
-            Accéder à l&apos;outil →
-          </Link>
-        </div>
+          <span className="btn-primary" style={{ whiteSpace: 'nowrap', pointerEvents: 'none' }}>
+            Découvrir l&apos;outil →
+          </span>
+        </a>
       </div>
 
     </section>
