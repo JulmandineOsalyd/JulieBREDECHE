@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Power Platform Julie BREDECHE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background: #0a1628;
+            -webkit-user-select: none;
+            /* Chrome / Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* IE / Edge */
+            user-select: none;
+            /* Standard */
+        }
+
+        .saut-ligne {
+            margin-top: 0.8em;
+        }
+
+        .slider-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            left: 100%;
+            transition: left 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            left: 0;
+        }
+
+        .slide.prev {
+            left: -100%;
+        }
+
+
+        /* Dégradé sobre pour la slide d'intro */
+        .slide:nth-child(1),
+        .slide:nth-child(2) {
+            background: linear-gradient(135deg, #152a68 0%, #26D0CE 100%);
+            /* Cool Blue Intro */
+        }
+
+
+        /* Masquer les éléments de navigation sur la première slide UNIQUEMENT */
+        body.first-slide .sommaire-icon,
+        body.first-slide .page-indicator {
+            display: none;
+        }
+
+        /* Masquer prevBtn SEULEMENT sur slide 0, pas sur slide 1 */
+        body.first-slide .nav-btn#prevBtn {
+            display: none;
+        }
+
+        .slide-content {
+            flex: 1;
+            width: 100%;
+            padding: 20px 40px 40px 40px;
+            max-width: 1800px;
+            margin: 0 auto;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Switch EN-FR */
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            z-index: 50;
+        }
+
+        .language-switch button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .language-switch button.active {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+        }
+
+        .language-switch button:hover:not(.active) {
+            opacity: 0.7;
+        }
+
+
+        /* Header titre pleine largeur */
+        .project-header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            border-radius: 20px 20px 0 0;
+            padding: 25px 40px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+            /* box-shadow: 0 8px 30px rgba(0,0,0,0.4);*/
+        }
+
+        .project-title {
+            font-size: 38px;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .project-title .emoji {
+            font-size: 34px;
+            margin-right: 12px;
+            vertical-align: middle;
+        }
+
+        .meta-bar {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .meta-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .meta-label {
+            font-size: 20px;
+            color: white;
+            font-weight: 600;
+        }
+
+
+        .tech-badge {
+            background: rgba(100, 181, 246, 0.35);
+            backdrop-filter: blur(10px);
+            padding: 6px 14px;
+            border-radius: 14px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            /* Pour espacer logo et texte */
+        }
+
+        .tech-badge img {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+        }
+
+
+        .device-badge {
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.3));
+            padding: 6px 12px;
+            border-radius: 14px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+
+        }
+
+        /* Corps 2 colonnes (1:3) */
+        .project-body {
+            display: grid;
+            grid-template-columns: 1.4fr 3fr;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px);
+            border-radius: 0 0 20px 20px;
+            min-height: 75%;
+            /* box-shadow: 0 10px 40px rgba(0,0,0,0.4);*/
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        /* Colonne gauche - SANS fond bleu foncé */
+        .left-column {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-right: 2px solid rgba(255, 255, 255, 0.25);
+            min-height: 400px;
+        }
+
+        .right-column {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            color: white;
+            min-height: 400px;
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 4px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .info-section-pb {
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 4px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .section-title .emoji {
+            font-size: 18px;
+        }
+
+        .section-content {
+            font-size: 14px;
+            line-height: 1.55;
+            color: rgba(255, 255, 255, 0.95);
+            white-space: pre-line;
+        }
+
+        .section-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section-content ul li {
+            padding: 4px 0 4px 18px;
+            position: relative;
+        }
+
+        .section-content ul li::before {
+            content: "•";
+            position: absolute;
+            left: 3px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .full-width-section {
+            grid-column: 1 / -1;
+        }
+
+        /* Navigation compacte */
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            padding: 12px 25px;
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+        }
+
+        .page-indicator {
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Icône sommaire */
+        .sommaire-icon {
+            background: rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            transition: all 0.3s;
+            margin-right: 15px;
+        }
+
+        .sommaire-icon:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+
+        /* Page de couverture */
+        .cover-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            padding: 0 80px;
+            color: white;
+        }
+
+        .cover-slide h1 {
+            font-size: 72px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .cover-slide h2 {
+            font-size: 42px;
+            margin-bottom: 25px;
+            font-weight: 400;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0.95;
+        }
+
+        .cover-slide p {
+            font-size: 26px;
+            opacity: 0.95;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .cover-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: 10px;
+            margin-bottom: 25px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* Slide sommaire */
+        .sommaire-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 80px;
+            color: white;
+        }
+
+        .sommaire-slide h1 {
+            font-size: 48px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .sommaire-content {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .sommaire-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-left: 4px solid rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+        }
+
+        .sommaire-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .sommaire-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.6);
+            min-width: 40px;
+        }
+
+        .sommaire-info {
+            flex: 1;
+        }
+
+        .sommaire-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            line-height: 1.3;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .sommaire-industry {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Scrollbar pour le sommaire si plus de 10 items */
+        .sommaire-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sommaire-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sommaire-content::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .sommaire-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sommaire-slide h1 {
+                font-size: 36px;
+            }
+
+            .sommaire-item {
+                padding: 15px;
+            }
+
+            .sommaire-title {
+                font-size: 15px;
+            }
+
+            .sommaire-number {
+                font-size: 24px;
+            }
+
+            .page-indicator {
+                display: none !important;
+            }
+
+            .language-switch {
+                flex-direction: column;
+                gap: 6px;
+                padding: 10px 10px;
+                border-radius: 16px;
+            }
+
+            .sommaire-content {
+                width: 120%;
+            }
+
+        }
+
+
+        /* Scrollbar */
+        .slide::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .slide::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .slide::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .project-body {
+                grid-template-columns: 1fr;
+            }
+
+            .left-column {
+                border-right: none;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+            }
+
+            .right-column {
+                grid-template-columns: 1fr;
+                padding: 25px;
+            }
+
+            .slide-content {
+                padding: 20px 40px 40px 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .meta-bar {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .project-title {
+                font-size: 32px;
+            }
+
+            .cover-slide h1 {
+                font-size: 48px;
+            }
+
+            .cover-slide h2 {
+                font-size: 32px;
+            }
+
+            .cover-photo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+
+        /* Bouton captures d'écran */
+        .screenshots-button {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            padding: 18px;
+            border-radius: 12px;
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .screenshots-button:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15));
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .screenshots-button .emoji {
+            font-size: 24px;
+            margin-right: 8px;
+        }
+
+        .screenshots-button-text {
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Lightbox visionneuse */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            /* Important */
+            max-width: 90%;
+            max-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid white;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid white;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgb(121 116 116));
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 20px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            min-width: 200px;
+            font-size: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            line-height: 1.4;
+        }
+
+        .copyright-footer {
+            position: fixed;
+            bottom: 14px;
+            right: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 6px 10px;
+            border-radius: 8px;
+
+            z-index: 10000;
+            /* au-dessus de la watermark */
+        }
+
+        .copyright-linkedin {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .linkedin-icon {
+            width: 18px;
+            height: 18px;
+            display: block;
+            fill: currentColor;
+            /* prend la couleur du texte */
+        }
+
+        .copyright-linkedin:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-container">
+        <!-- Page de couverture -->
+        <div class="slide active">
+            <div class="cover-slide">
+                <h1>Portfolio</h1>
+                <h2>Mes réalisations avec Power Automate & PowerApps</h2>
+                <img src="https://www.osalydconsulting.com/media/website/Julie-Bredeche.png" alt="Julie BREDECHE"
+                    class="cover-photo">
+                <p>Julie BREDECHE</p>
+            </div>
+        </div>
+
+        <!-- Sommaire -->
+        <div class="slide" id="sommaireSlide">
+            <div class="sommaire-slide">
+                <h1>Sommaire</h1>
+                <div id="sommaireContent" class="sommaire-content"></div>
+            </div>
+        </div>
+
+
+        <!-- Slides projets injectées en JS -->
+    </div>
+
+    <div class="navigation">
+        <div class="sommaire-icon" id="sommaireIcon" title="Retour au sommaire">☰</div>
+        <button class="nav-btn" id="prevBtn">←</button>
+        <span class="page-indicator" id="pageIndicator">1 / 1</span>
+        <button class="nav-btn" id="nextBtn">→</button>
+    </div>
+
+
+    <script>
+        const projects = [
+            {
+                title: {
+                    fr: "Application de réservation de voyages",
+                    en: "Travel Booking Application"
+                },
+                mainTool: "PowerApps",
+                industry: {
+                    fr: "Education",
+                    en: "Education"
+                },
+                problem: {
+                    fr: "<p>Demandes de réservation de voyages des professeurs gérées <b>uniquement par mail</b> avec les gestionnaires de réservation.</p> <p class='saut-ligne'> Des <b>demandes de validation manuelles</b> qui retardaient le processus.</p><p class='saut-ligne'> De nombreux allers-retours, des <b>oublis et des erreurs de saisie</b> rendaient le processus chronophage.</p>",
+                    en: "<p>Travel booking requests from teachers were <b>handled exclusively by email</b> with the booking managers.</p> <p class='saut-ligne'><b>Manual validation requests</b> slowed down the process.</p><p class='saut-ligne'>Numerous back-and-forth exchanges, oversights, and <b>data entry errors</b> made the process time-consuming.</p>",
+                },
+                users: {
+                    fr: "<ul><li>200 professeurs répartis sur 2 campus</li><li>2 gestionnaires des réservations</li><li>Service Comptabilité</li></ul>",
+                    en: "<ul><li>200 teachers across 2 campuses</li><li>2 booking managers</li><li>Accounting department</li></ul>"
+                },
+                solution: {
+                    fr: "Une <b>application mobile</b> de saisie des demandes de réservation par les professeurs, avec un workflow de validation, et des notifications automatiques. <p class='saut-ligne'> Un <b>tableau de bord interactif</b> pour le staff qui peut gérer les réservations et le suivi comptable de manière structurée.",
+                    en: "A <b>mobile app</b> enabling teachers to submit booking requests, with an approval workflow and automated notifications. <p class='saut-ligne'>An <b>interactive dashboard</b> for staff to manage bookings and accounting follow-up in a structured way."
+                },
+                screenshots: [
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-Home.png",
+                        title: { fr: "1. Page d'accueil de l'application", en: "1. App home page" }
+                    },
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-Form1.png",
+                        title: { fr: "2. Formulaire de réservation - Etape 1", en: "2. Booking form - Step 1" }
+                    },
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-Form2.png",
+                        title: { fr: "3. Formulaire de réservation - Etape 2", en: "3. Booking form - Step 2" }
+                    },
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-Form3.png",
+                        title: { fr: "4. Formulaire de réservation - Etape 3", en: "4. Booking form - Step 3" }
+                    },
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-MobileHome.png",
+                        title: { fr: "5. Page d'accueil de l'application - Mobile", en: "5. App home page - Mobile" }
+                    },
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-MobileForm.png",
+                        title: { fr: "6. Formulaire de réservation - Mobile", en: "6. Booking form - Mobile" }
+                    },
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-BackOffice.png",
+                        title: { fr: "7.Back-office SharePoint pour le staff", en: "7. SharePoint back-office for staff" }
+                    },
+                ],
+                features: {
+                    fr: [
+                        "<b>Formulaire de réservation dynamique</b> avec règles de gestion pour fiabiliser et uniformiser la saisie",
+                        "<b>Duplication des réservations</b> récurrentes en 2 clics",
+                        "<b>Workflow de validation automatique</b> selon le statut du professeur",
+                        "<b>Notifications automatisées</b> tout au long du traitement des demandes",
+                        "<b>Tableau de bord unifié</b> avec vues dédiées pour les gestionnaires et la comptabilité"
+                    ],
+                    en: [
+                        "<b>Dynamic reservation form</b> with business rules to standardize and secure data entry",
+                        "<b>Duplication of recurring bookings</b> in just two clicks",
+                        "<b>Automatic approval workflow</b> based on the teacher’s status",
+                        "<b>Automated notifications</b> throughout the request processing",
+                        "<b>Unified dashboard</b> with dedicated views for booking managers and accounting"
+                    ],
+
+                },
+                technologies: ["PowerApps", "Power Automate", "SharePoint", "Outlook"],
+                devices: ["PC", "Mobile", "Tablette"],
+                userBenefits: {
+                    fr: [
+                        "Gain de temps significatif pour les professeurs",
+                        "95% de réduction des erreurs de saisie",
+                        "Visibilité en temps réel de l'état des demandes",
+                        "Collaboration facilitée entre les gestionnaires et la comptabilité"
+                    ],
+                    en: [
+                        "Processing time divided by 3",
+                        "70% reduction in emails between all stakeholders",
+                        "Ability to extract KPIs to optimize costs"
+                    ],
+                },
+                businessValue: {
+                    fr: [
+                        "Délai de traitement divisé par 3",
+                        "Réduction de 70 % des emails entre tous les interlocuteurs",
+                        "Possibilité d’extraire des KPI pour rationaliser les coûts"
+                    ],
+                    en: [
+                        "Standardized, end-to-end auditable process",
+                        "Processing time for managers divided by 3",
+                        "Reduced from ~10 manual emails to at most 2 automated notifications"
+                    ]
+                }
+            },
+            {
+                title: {
+                    fr: "Extraction automatique de N° de commande sur des factures PDF",
+                    en: "Automated extraction of order numbers from PDF Invoices"
+                },
+                mainTool: "Power Automate",
+                industry: {
+                    fr: "Pharmaceutique",
+                    en: "Pharmaceutical"
+                },
+                problem: {
+                    fr: "<p><b>Extraction manuelle</b> des numéros de commande sur des milliers de factures PDF pour les intégrer à un nouvel outil de facturation.</p><br><p>Processus chronophage qui engendrait <b>risques d'erreurs</b> et des retards de facturation.</p>",
+                    en: "<p><b>Manual extraction</b> of order numbers from thousands of PDF invoices to integrate into a new invoicing tool.</p><br><p>Time-consuming process causing <b>error risks</b> and billing delays.</p>"
+                },
+                users: {
+                    fr: "<ul><li>2 personnes mobilisées à temps plein</li><li>10 000 factures à traiter en retard</li><li>Un flux continu de facture PDF encore reçu de l'ancien système</li></ul>",
+                    en: "<ul><li>2 full-time employees dedicated to manual extraction</li><li>10 000 overdue invoices to process</li><li>Ongoing continuous inflow of PDF invoices still received from the legacy system</li></ul>"
+                },
+                solution: {
+                    fr: "Un flux Power Automate intégré à SharePoint qui permet une <b>lecture OCR automatisée</b> des factures PDF, et qui <b>détecte précisement leurs numéros de commande</b>.",
+                    en: "A Power Automate flow integrated with SharePoint enabling <b>automated OCR reading</b> of PDF invoices, precisely <b>detecting their order numbers</b>."
+                },
+                screenshots: [
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/LecturePDF/0.png",
+                        title: { fr: "1. Récupération du contenu du PDF", en: "1. PDF content retrieval" }
+                    },
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/LecturePDF/1.png",
+                        title: { fr: "2. Lecture OCR du PDF", en: "2. PDF OCR reading" }
+                    },
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/LecturePDF/2.png",
+                        title: { fr: "3. REGEX utilisée dans un Office Script", en: "3. REGEX used in an Office Script" }
+                    },
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/LecturePDF/3.png",
+                        title: { fr: "4. Utilisation de la REGEX dans le flux", en: "4. REGEX usage in the flow" }
+                    },
+                ],
+                features: {
+                    fr: [
+                        "Flux automatisé qui parcours les documents d'une bibliotheque SharePoint",
+                        "<b>Lecture OCR</b> du contenu des PDF via AI Builder pour <b>extraire le n° de commande</b> à l'aide d'une REGEX",
+                        "<b>Renommage automatique</b> des fichiers valides et <b>déplacement des cas non-conformes</b> vers un dossier de révision"
+                    ],
+                    en: [
+                        "Automated flow that scans documents in a SharePoint library",
+                        "<b>OCR reading</b> of PDF content via AI Builder to <b>extract order numbers</b> using REGEX",
+                        "<b>Automatic renaming</b> of valid files and <b>moving non-compliant cases</b> to a review folder"
+                    ],
+
+                },
+                technologies: ["Power Automate", "AI Builder", "SharePoint"],
+                devices: ["PC"],
+                userBenefits: {
+                    fr: [
+                        "90 % du temps alloué aux tâches manuelles éliminé",
+                        "Intégration simplifiée dans le nouvel outil de facturation sans ressaisie",
+                        "Simplicité d'utilisation : un clic pour traiter des milliers de factures"
+                    ],
+                    en: [
+                        "90% of time spent on manual tasks eliminated",
+                        "Simplified integration into the new invoicing tool without re-entry",
+                        "User-friendly: one click to process thousands of invoices"
+                    ],
+
+                },
+                businessValue: {
+                    fr: [
+                        "ROI rapide : reduction des coûts de 80 % sur le traitement",
+                        "Conformite renforcée : traçabilite en cas d'audits réglementaires",
+                        "Scalabilité : flux réutilisable pour d'autres documents"
+                    ],
+                    en: [
+                        "Quick ROI: 80% cost reduction on processing",
+                        "Enhanced compliance: traceability for regulatory audits",
+                        "Scalability: reusable flow for other documents"
+                    ]
+                }
+            },
+            {
+                title: {
+                    fr: "Classement automatisé des contrats vers une Contrathèque",
+                    en: "Automated classification of contracts into a Contract library"
+                },
+
+                mainTool: "Power Automate",
+
+                industry: {
+                    fr: "Achats",
+                    en: "Procurement"
+                },
+
+                users: {
+                    fr: "<ul><li>Service Achats (10 personnes)</li><li>Environ 50 contrats finalisés par mois à classer</li><li>De nombreux documents de travail mélangés aux contrats signés</li></ul>",
+                    en: "<ul><li>Procurement department (10 people)</li><li>About 50 finalized contracts per month to classify</li><li>Lots of working documents mixed with signed contracts</li></ul>"
+                },
+
+                problem: {
+                    fr: "<p>Les contrats finalisés se retrouvaient dispersés parmi des documents de travail.</p><p class=\"saut-ligne\">Résultat : une <b>recherche manuelle</b> longue et aléatoire dans de nombreux dossiers avant de trouver le dernier contrat en vigueur, ou l'historique des contrats liés à un fournisseur.</p>",
+                    en: "<p>Finalized contracts were spread out among working documents. As a result, it took a long and random <b>manual searching process</b> through numerous files to find the latest valid contract, or the contract history for a given supplier.</p>"
+                },
+
+                solution: {
+
+                    fr: "<p>Un flux Power Automate qui ouvre un <b>formulaire de saisie des métadonnées</b> (fournisseur, montant, échéance, etc.), puis déplace le contrat vers une bibliothèque SharePoint dédiée.</p><p class=\"saut-ligne\">Un <b>moteur de recherche avec filtres avancés</b> pour retrouver instantanément les contrats grâce aux métadonnées renseignées.</p>",
+                    en: "<p>A Power Automate flow that opens a <b>metadata entry form</b> (vendor, amount, expiry date, etc.), then moves the contract to a dedicated SharePoint library.</p><p class=\"saut-ligne\">An <b>advanced filtering search engine</b> to instantly retrieve contracts using the entered metadata.</p>"
+                },
+
+                screenshots: [
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/Contratheque/Contratheque-BoutonEnvoi.png",
+                        title: { fr: "1. Bouton d'envoi vers la contrathèque", en: "1. Send to contract library button" }
+                    },
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/Contratheque/Contratheque-Form.png",
+                        title: { fr: "2. Formulaire de saisie des métadonnées", en: "2. Metadata entry form" }
+                    },
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/Contratheque/Contratheque-Classement.png",
+                        title: { fr: "3. Document déplacé dans la contrathèque", en: "3. Document moved to the contract library" }
+                    },
+                    {
+                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/Contratheque/Contratheque-Recherche.png",
+                        title: { fr: "4. Moteur de recherche avancé", en: "4. Advanced search engine" }
+                    },
+                ],
+
+                features: {
+                    fr: [
+                        "<b>Déclenchement manuel</b> par bouton : ouverture du formulaire pour saisir les métadonnées",
+                        "<b>Formulaire</b> de saisie des métadonnées obligatoires (ex. fournisseur, type de contrat, date de fin, etc.)",
+                        "<b>Déplacement automatisé</b> du document vers la Contrathèque avec mise à jour des métadonnées",
+                        "<b>Alertes Teams</b> automatiques lorsqu’un contrat arrive à échéance",
+                        "<b>Mise à jour du statut</b> du contrat une fois la date de fin du contrat dépassée"
+                    ],
+                    en: [
+                        "<b>Manual trigger</b> via button: opens the form to enter metadata",
+                        "<b>Form</b> for entering mandatory metadata (e.g. vendor, contract type, end date, etc.)",
+                        "<b>Automated move</b> of the document to the Contract Library with metadata update",
+                        "<b>Automatic Teams alerts</b> when a contract is approaching its expiry date",
+                        "<b>Status update</b> of the contract once the contract end date has passed"
+                    ],
+
+                },
+
+                technologies: ["SharePoint", "Power Automate", "Forms", "Teams"],
+
+                devices: ["PC"],
+
+                userBenefits: {
+                    fr: [
+                        "<b>Classement guidé</b> en quelques clics grâce à un formulaire structuré.",
+                        "Temps de recherche <b>divisé par 3</b> grâce au moteur de recherche et aux filtres avancés",
+                        "<b>Alertes</b> proactives dans Teams pour anticiper les renouvellement de contrats"
+                    ],
+                    en: [
+                        "<b>Guided classification</b> in a few clicks thanks to a structured form.",
+                        "Search time <b>divided by 3</b> thanks to the search engine and advanced filters",
+                        "Proactive Teams <b>alerts</b>  to anticipate contract renewals"
+                    ],
+
+                },
+
+                businessValue: {
+                    fr: [
+                        "<b>Réduction des risques contractuels</b> grâce aux alertes automatiques",
+                        "<b>Gouvernance documentaire</b> renforcée et auditable",
+                        "<b>Gain de productivité</b> immédiat : moins de temps perdu à chercher, plus de temps à négocier"
+
+                    ],
+                    en: [
+                        "<b>Reduced contractual risk</b> thanks to automated alerts",
+                        "<b>Strengthened document governance</b> ready for audits",
+                        "<b>Immediate productivity gain</b>: less time searching, more time negotiating"
+                    ],
+
+
+                }
+            }
+
+
+        ];
+
+        // Objet de traductions
+        const translations = {
+            fr: {
+                sommaire: 'Sommaire',
+                retourSommaire: 'Retour au sommaire',
+                voirCaptures: 'Voir les visuels',
+                problematique: 'Problématique métier',
+                utilisateurs: 'Contexte et utilisateurs',
+                solution: 'Solution mise en place',
+                fonctionnalites: 'Fonctionnalités clés',
+                benefices: 'Bénéfices utilisateurs',
+                valeurBusiness: 'Valeur business (ROI)',
+                devices: {
+                    "PC": "PC",
+                    "Mobile": "Mobile",
+                    "Tablette": "Tablette"
+                }
+            },
+            en: {
+                sommaire: 'Summary',
+                retourSommaire: 'Back to summary',
+                voirCaptures: 'View screenshots',
+                problematique: 'Business Problem',
+                utilisateurs: 'Context and users',
+                solution: 'Solution',
+                fonctionnalites: 'Key Features',
+                benefices: 'User Benefits',
+                valeurBusiness: 'Business Value (ROI)',
+                devices: {
+                    "PC": "Desktop",
+                    "Mobile": "Mobile",
+                    "Tablette": "Tablet"
+                }
+            }
+        };
+
+        let currentSlide = 0;
+        const sliderContainer = document.querySelector('.slider-container');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageIndicator = document.getElementById('pageIndicator');
+
+        // Map des logos pour chaque technologie
+        const techLogos = {
+            "PowerApps": "https://www.osalydconsulting.com/media/files/PowerApps.svg",
+            "Power Automate": "https://www.osalydconsulting.com/media/files/PowerAutomate.svg",
+            "SharePoint": "https://www.osalydconsulting.com/media/files/SharePoint2025.png",
+            "Teams": "https://www.osalydconsulting.com/media/files/Teams2025.png",
+            "Forms": "https://www.osalydconsulting.com/media/files/Forms.png",
+            "OneDrive": "https://www.osalydconsulting.com/media/files/OneDrive2025.png",
+            "Outlook": "https://www.osalydconsulting.com/media/files/Outlook2025.png",
+            "Copilot Studio": "https://www.osalydconsulting.com/media/files/CopilotStudi.svg",
+            "DocuSign": "https://www.osalydconsulting.com/media/files/DocuSign.svg",
+            "Plumsail": "https://www.osalydconsulting.com/media/files/Plumsail.png",
+            "AI Builder": "https://www.osalydconsulting.com/media/files/AIBuilder.svg",
+            "Dataverse": "https://www.osalydconsulting.com/media/files/Dataverse.svg",
+            "Power BI": "https://www.osalydconsulting.com/media/files/PowerBI.svg"
+        };
+
+        // Helpers i18n (minimal)
+        function getLocalized(value, lang) {
+            if (value && typeof value === 'object' && !Array.isArray(value) && value[lang] !== undefined) {
+                return value[lang];
+            }
+            return value;
+        }
+
+        function renderList(items) {
+            const safeItems = Array.isArray(items) ? items : [];
+            return `<ul>${safeItems.map(i => `<li>${i}</li>`).join('')}</ul>`;
+        }
+
+        // Génération des slides
+        projects.forEach(project => {
+            const slideColor = "linear-gradient(135deg, #152a68 0%, #26D0CE 100%)";
+
+            const mainLogoUrl = techLogos[project.mainTool];
+            const mainLogoHtml = mainLogoUrl
+                ? `<img src="${mainLogoUrl}" alt="${project.mainTool}" style="height: 1em; vertical-align: middle; margin-right: 15px; margin-bottom: 5px;">`
+                : '';
+
+            const techBadges = project.technologies
+                .map(t => {
+                    const logo = techLogos[t] || '';
+                    const imgTag = logo ? `<img src="${logo}" alt="${t}">` : '';
+                    return `<span class="tech-badge">${imgTag}${t}</span>`;
+                }).join('');
+
+            const deviceBadges = project.devices
+                .map(d => `<span class="device-badge" data-device="${d}">${d}</span>`).join('');
+
+            const projectIndex = projects.indexOf(project);
+
+            const screenshotsButton = project.screenshots && project.screenshots.length > 0
+                ? `<div class="screenshots-button" onclick="openLightbox(${projectIndex})">
+            <span class="emoji">📸</span>
+            <span class="screenshots-button-text" data-key="voirCaptures" data-count="${project.screenshots.length}">Voir les captures (${project.screenshots.length})</span>
+                </div>`
+                : '';
+
+            const featuresListHtml = renderList(getLocalized(project.features, 'fr'));
+            const userBenefitsListHtml = renderList(getLocalized(project.userBenefits, 'fr'));
+            const businessValueListHtml = renderList(getLocalized(project.businessValue, 'fr'));
+
+            const html = `
+            <div class="slide" style="background: ${slideColor};">
+                <div class="slide-content">
+                    <div class="project-header">
+                        <h1 class="project-title">${mainLogoHtml}<span class="translatable-title" data-project-index="${projectIndex}">${getLocalized(project.title, 'fr')}</span></h1>
+                        <div class="meta-bar">
+                            <div class="meta-section">
+                                <span class="meta-label">🏢 <span class="translatable-industry" data-project-index="${projectIndex}">${getLocalized(project.industry, 'fr')}</span></span>
+                            </div>
+                            <div class="meta-section">
+                                ${deviceBadges}
+                            </div>
+                            <div class="meta-section">
+                                ${techBadges}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="left-column">
+                            <div>${screenshotsButton}</div>
+                            <div class="info-section-pb">
+                                <div class="section-title" data-key="problematique">
+                                    <span class="emoji">🎯</span><span class="label-text">Problématique métier</span>
+                                </div>
+                                <div class="section-content translatable-field" data-project-index="${projectIndex}" data-field="problem">${getLocalized(project.problem, 'fr')}</div>
+                            </div>
+                            <div class="info-section-pb">
+                                <div class="section-title" data-key="utilisateurs">
+                                    <span class="emoji">🧑🏻‍💻</span><span class="label-text">Contexte et utilisateurs</span>
+                                </div>
+                                <div class="section-content translatable-field" data-project-index="${projectIndex}" data-field="users">${getLocalized(project.users, 'fr')}</div>
+                            </div>
+                        </div>
+                        <div class="right-column">
+                            <div class="info-section full-width-section">
+                                <div class="section-title" data-key="solution">
+                                    <span class="emoji">💡</span><span class="label-text">Solution mise en place</span>
+                                </div>
+                                <div class="section-content translatable-field" data-project-index="${projectIndex}" data-field="solution">${getLocalized(project.solution, 'fr')}</div>
+                            </div>
+                            <div class="info-section full-width-section">
+                                <div class="section-title" data-key="fonctionnalites">
+                                    <span class="emoji">⭐</span><span class="label-text">Fonctionnalités clés</span>
+                                </div>
+                                <div class="section-content translatable-field" data-project-index="${projectIndex}" data-field="features">${featuresListHtml}</div>
+                            </div>
+                            <div class="info-section">
+                                <div class="section-title" data-key="benefices">
+                                    <span class="emoji">⚡</span><span class="label-text">Bénéfices utilisateurs</span>
+                                </div>
+                                <div class="section-content translatable-field" data-project-index="${projectIndex}" data-field="userBenefits">${userBenefitsListHtml}</div>
+                            </div>
+                            <div class="info-section">
+                                <div class="section-title" data-key="valeurBusiness">
+                                    <span class="emoji">📈</span><span class="label-text">Valeur business (ROI)</span>
+                                </div>
+                                <div class="section-content translatable-field" data-project-index="${projectIndex}" data-field="businessValue">${businessValueListHtml}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Lightbox pour les captures d'écran -->
+            <div class="lightbox" id="lightbox">
+                <button class="lightbox-close" onclick="closeLightbox()">×</button>
+                <button class="lightbox-nav lightbox-prev" onclick="prevScreenshot()">←</button>
+                <div class="lightbox-content">
+                    <img class="lightbox-image" id="lightboxImage" src="" alt="Capture d'écran">
+                </div>
+                <button class="lightbox-nav lightbox-next" onclick="nextScreenshot()">→</button>
+                <div class="lightbox-counter" id="lightboxCounter"></div>
+            </div>
+            <!-- Language Switch -->
+    <div class="language-switch">
+        <button class="lang-btn active" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+    </div>`
+                ;
+
+            sliderContainer.insertAdjacentHTML('beforeend', html);
+        });
+
+        // Génération sommaire
+        const sommaireContent = document.getElementById('sommaireContent');
+
+        projects.forEach((project, index) => {
+            const sommaireItem = document.createElement('div');
+            sommaireItem.className = 'sommaire-item';
+            sommaireItem.onclick = () => goToSlide(index + 2);
+
+            // Récupération du logo
+            const mainLogoUrl = techLogos[project.mainTool];
+
+            // On affiche l'image si elle existe, sinon le numéro par sécurité
+            const leftContent = mainLogoUrl
+                ? `<img src="${mainLogoUrl}" alt="${project.mainTool}" style="width: 32px; height: 32px; object-fit: contain;">`
+                : (index + 1);
+
+            sommaireItem.innerHTML = `
+            <div class="sommaire-number" style="display: flex; align-items: center; justify-content: center;">
+                ${leftContent}
+            </div>
+            <div class="sommaire-info">
+                <div class="sommaire-title translatable-sommaire-title" data-project-index="${index}">${getLocalized(project.title, 'fr')}</div>
+                <div class="sommaire-industry translatable-sommaire-industry" data-project-index="${index}">${getLocalized(project.industry, 'fr')}</div>
+            </div>
+        `;
+            sommaireItem.dataset.index = index;
+
+            sommaireContent.appendChild(sommaireItem);
+        });
+
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function slideFromHash() {
+            const h = (location.hash || "").replace("#", "").toLowerCase();
+
+            if (!h || h === "cover") return 0;
+            if (h === "sommaire" || h === "summary") return 1;
+
+            // format #p1, #p2, ...
+            const m = h.match(/^p(\d+)$/);
+            if (m) {
+                const projectNumber = parseInt(m[1], 10); // 1-based
+                // tes slides projets commencent à l'index 2
+                return 1 + projectNumber; // p1 -> 2, p2 -> 3, etc.
+            }
+
+            return 0;
+        }
+
+        function setHashForSlide(index) {
+            if (index === 0) location.hash = "cover";
+            else if (index === 1) location.hash = "sommaire";
+            else location.hash = `p${index - 1}`; // slide 2 -> p1
+        }
+
+
+        // Icône sommaire - clic pour retourner à la slide 1
+        const sommaireIcon = document.getElementById('sommaireIcon');
+        sommaireIcon.addEventListener('click', () => goToSlide(1));
+
+        function goToSlide(index) {
+            // Retirer active/prev de TOUTES les slides
+            slides.forEach(slide => {
+                slide.classList.remove('active', 'prev');
+            });
+
+            currentSlide = index;
+
+            // Activer la nouvelle slide
+            slides[currentSlide].classList.add('active');
+
+            updateNavigation();
+            setHashForSlide(index);
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) goToSlide(currentSlide - 1);
+        }
+
+        function updateNavigation() {
+            // Slide 0 (intro) : masquer dots, compteur et bouton prev
+            if (currentSlide === 0) {
+                document.body.classList.add('first-slide');
+                pageIndicator.textContent = '';
+                prevBtn.disabled = true;
+                nextBtn.disabled = false;
+            }
+            // Slide 1 (sommaire) : masquer dots et compteur, mais MONTRER bouton prev
+            else if (currentSlide === 1) {
+                document.body.classList.add('first-slide');
+                document.getElementById('prevBtn').style.display = 'flex';
+                pageIndicator.textContent = '';
+                prevBtn.disabled = false;
+                nextBtn.disabled = false;
+            }
+            // Slides projets : tout afficher
+            else {
+                document.body.classList.remove('first-slide');
+                pageIndicator.textContent = `${currentSlide - 1} / ${totalSlides - 2}`;
+                prevBtn.disabled = false;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+            }
+        }
+
+        // Event listeners pour les boutons
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Navigation clavier
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+
+        // Swipe tactile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        sliderContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        sliderContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextSlide();
+            if (touchEndX - touchStartX > 50) prevSlide();
+        });
+
+        // Fonctions Lightbox
+        let currentProject = null;
+        let currentScreenshotIndex = 0;
+
+        function openLightbox(projectIndex) {
+            currentProject = projects[projectIndex];
+            currentScreenshotIndex = 0;
+            showScreenshot();
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function showScreenshot() {
+            if (!currentProject || !currentProject.screenshots) return;
+
+            const img = document.getElementById('lightboxImage');
+            const counter = document.getElementById('lightboxCounter');
+
+            const screenshot = currentProject.screenshots[currentScreenshotIndex];
+
+            if (typeof screenshot === 'string') {
+                img.src = screenshot;
+                counter.innerHTML = `<strong>${currentScreenshotIndex + 1} / ${currentProject.screenshots.length}</strong>`;
+            } else {
+                img.src = screenshot.url;
+                const title = (screenshot.title && typeof screenshot.title === 'object')
+                    ? screenshot.title[currentLanguage]
+                    : screenshot.title;
+                counter.innerHTML = `<span>${title || ''}</span>`;
+            }
+        }
+
+        function nextScreenshot() {
+            if (!currentProject) return;
+            currentScreenshotIndex = (currentScreenshotIndex + 1) % currentProject.screenshots.length;
+            showScreenshot();
+        }
+
+        function prevScreenshot() {
+            if (!currentProject) return;
+            currentScreenshotIndex = (currentScreenshotIndex - 1 + currentProject.screenshots.length) % currentProject.screenshots.length;
+            showScreenshot();
+        }
+
+        // Fermer avec Echap
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevScreenshot();
+                if (e.key === 'ArrowRight') nextScreenshot();
+            }
+        });
+
+        // Fermer en cliquant sur le fond
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+
+        // Language Switch Logic
+        let currentLanguage = 'fr';
+        const langButtons = document.querySelectorAll('.lang-btn');
+
+        function updateLanguage(lang) {
+            currentLanguage = lang;
+
+            // Mettre à jour tous les labels avec data-key
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.dataset.key;
+
+                if (!translations[lang] || !translations[lang][key]) return;
+
+                // Cas spécifique : bouton captures avec compteur
+                if (key === 'voirCaptures' && element.classList.contains('screenshots-button-text')) {
+                    const count = element.dataset.count || '';
+                    element.textContent = `${translations[lang][key]} (${count})`;
+                    return;
+                }
+
+                // Cas standard : section-title avec <span class="label-text">
+                const labelText = element.querySelector('.label-text');
+                if (labelText) {
+                    labelText.textContent = translations[lang][key];
+                } else {
+                    // fallback : si l'élément porte data-key directement
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Mettre à jour les titres des projets dans les slides
+            document.querySelectorAll('.translatable-title').forEach(element => {
+                const index = parseInt(element.dataset.projectIndex);
+                element.textContent = getLocalized(projects[index].title, lang);
+            });
+
+            // Mettre à jour les industries dans les slides
+            document.querySelectorAll('.translatable-industry').forEach(element => {
+                const index = parseInt(element.dataset.projectIndex);
+                element.textContent = getLocalized(projects[index].industry, lang);
+            });
+
+            // Mettre à jour les devices (PC / Mobile / Tablette)
+            document.querySelectorAll('.device-badge').forEach(el => {
+                const key = el.dataset.device || el.textContent.trim();
+                el.dataset.device = key; // sécurise si jamais absent
+                const translated = translations[lang]?.devices?.[key];
+                if (translated) el.textContent = translated;
+            });
+
+            // Mettre à jour le contenu dynamique des projets (problem/users/solution + listes)
+            document.querySelectorAll('.translatable-field').forEach(element => {
+                const index = parseInt(element.dataset.projectIndex);
+                const field = element.dataset.field;
+
+                const value = projects[index][field];
+                const localized = getLocalized(value, lang);
+
+                // Listes
+                if (field === 'features' || field === 'userBenefits' || field === 'businessValue') {
+                    element.innerHTML = renderList(localized);
+                } else {
+                    // HTML autorisé (problem/users/solution)
+                    element.innerHTML = localized;
+                }
+            });
+
+            // Mettre à jour les titres du sommaire
+            document.querySelectorAll('.translatable-sommaire-title').forEach(element => {
+                const index = parseInt(element.dataset.projectIndex);
+                element.textContent = getLocalized(projects[index].title, lang);
+            });
+
+            // Mettre à jour les industries du sommaire
+            document.querySelectorAll('.translatable-sommaire-industry').forEach(element => {
+                const index = parseInt(element.dataset.projectIndex);
+                element.textContent = getLocalized(projects[index].industry, lang);
+            });
+
+            // Mettre à jour le titre du sommaire (h1 "Sommaire")
+            const sommaireTitles = document.querySelectorAll('.sommaire-slide h1');
+            sommaireTitles.forEach(title => {
+                title.textContent = translations[lang]['sommaire'];
+            });
+
+            // Mettre à jour le bouton du sommaire
+            const sommaireIcon = document.getElementById('sommaireIcon');
+            if (sommaireIcon) {
+                sommaireIcon.title = translations[lang]['retourSommaire'];
+            }
+
+            // Si la lightbox est ouverte, rafraîchir le titre (capture)
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox && lightbox.classList.contains('active')) {
+                showScreenshot();
+            }
+        }
+
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const lang = e.target.dataset.lang;
+
+                // Retirer active de tous les boutons
+                langButtons.forEach(b => b.classList.remove('active'));
+                // Ajouter active au bouton cliqué
+                e.target.classList.add('active');
+
+                // Mettre à jour la langue
+                updateLanguage(lang);
+            });
+        });
+
+        // Init
+        updateNavigation();
+
+        // Initialiser la langue APRÈS que tout soit dans le DOM
+        updateLanguage('fr');
+
+        // Ouvrir la bonne slide si un hash est présent dans l’URL
+        goToSlide(slideFromHash());
+
+        // Suivre les changements de hash (collage de lien, navigation navigateur)
+        window.addEventListener("hashchange", () => {
+            goToSlide(slideFromHash());
+        });
+
+        // Blocage sélection / copie
+
+        (() => {
+            "use strict";
+
+
+            const CFG = {
+                // Autoriser sélection/copie dans certains éléments (email, liens contact, etc.)
+                allowSelectSelector: ".allow-select, input, textarea",
+
+                // Dissuasion watermark (très faible opacité)
+                watermark: {
+                    enabled: true,
+                    // Mets ton nom / ta marque / ton site
+                    text: "Osalyd Consulting",
+                    opacity: 0.02,          // 0.02 à 0.06 selon ton goût
+                    fontSize: 28,            // px
+                    rotationDeg: -22,        // angle
+                    gapX: 260,               // espacement horizontal
+                    gapY: 180,               // espacement vertical
+                    zIndex: 9999
+                },
+
+                // Bloquages
+                block: {
+                    contextMenu: true,
+                    selection: true,
+                    clipboardEvents: true,   // copy/cut/paste
+                    hotkeys: true            // Ctrl/Cmd + C/A/U/X/S/P
+                }
+            };
+
+            /** --------------------------
+             *  Helpers
+             *  -------------------------- */
+            const isAllowedTarget = (target) => {
+                if (!target || !(target instanceof Element)) return false;
+                return !!target.closest(CFG.allowSelectSelector);
+            };
+
+            const injectStyle = () => {
+                const css = `
+      /* blocage sélection global (sauf zones autorisées) */
+      body[data-nocopy="1"] * {
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+      }
+      body[data-nocopy="1"] ${CFG.allowSelectSelector},
+      body[data-nocopy="1"] ${CFG.allowSelectSelector} * {
+        -webkit-user-select: text !important;
+        -moz-user-select: text !important;
+        -ms-user-select: text !important;
+        user-select: text !important;
+      }
+
+      /* watermark overlay */
+      .wm-overlay {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: ${CFG.watermark.zIndex};
+        opacity: ${CFG.watermark.opacity};
+        mix-blend-mode: normal;
+      }
+    `.trim();
+
+                const style = document.createElement("style");
+                style.setAttribute("data-nocopy-style", "1");
+                style.appendChild(document.createTextNode(css));
+                document.head.appendChild(style);
+            };
+
+            const createWatermark = () => {
+                if (!CFG.watermark.enabled) return;
+
+                // Canvas watermark (répétée) -> image de fond
+                const canvas = document.createElement("canvas");
+                const ctx = canvas.getContext("2d");
+
+                // Taille du motif (canvas)
+                canvas.width = CFG.watermark.gapX;
+                canvas.height = CFG.watermark.gapY;
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                ctx.rotate((CFG.watermark.rotationDeg * Math.PI) / 180);
+                ctx.font = `${CFG.watermark.fontSize}px sans-serif`;
+                ctx.fillStyle = "rgba(0,0,0,1)"; // l'opacité est gérée par le div overlay
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText(CFG.watermark.text, 0, 0);
+
+                const overlay = document.createElement("div");
+                overlay.className = "wm-overlay";
+                overlay.setAttribute("aria-hidden", "true");
+                overlay.style.backgroundImage = `url("${canvas.toDataURL("image/png")}")`;
+                overlay.style.backgroundRepeat = "repeat";
+                overlay.style.backgroundPosition = "0 0";
+
+                document.body.appendChild(overlay);
+            };
+
+            const installGuards = () => {
+                document.body.setAttribute("data-nocopy", "1");
+
+                // Clic droit
+                if (CFG.block.contextMenu) {
+                    document.addEventListener(
+                        "contextmenu",
+                        (e) => {
+                            if (isAllowedTarget(e.target)) return;
+                            e.preventDefault();
+                        },
+                        { capture: true }
+                    );
+                }
+
+                // Sélection (drag / double click / etc.)
+                if (CFG.block.selection) {
+                    // Empêche la sélection au démarrage
+                    document.addEventListener(
+                        "selectstart",
+                        (e) => {
+                            if (isAllowedTarget(e.target)) return;
+                            e.preventDefault();
+                        },
+                        { capture: true }
+                    );
+                }
+
+                // Clipboard events
+                if (CFG.block.clipboardEvents) {
+                    ["copy", "cut", "paste"].forEach((evt) => {
+                        document.addEventListener(
+                            evt,
+                            (e) => {
+                                if (isAllowedTarget(e.target)) return;
+                                e.preventDefault();
+                            },
+                            { capture: true }
+                        );
+                    });
+                }
+
+                // Raccourcis clavier (Ctrl/Cmd + ...)
+                if (CFG.block.hotkeys) {
+                    document.addEventListener(
+                        "keydown",
+                        (e) => {
+                            if (isAllowedTarget(e.target)) return;
+
+                            const key = (e.key || "").toLowerCase();
+                            const ctrlOrCmd = e.ctrlKey || e.metaKey;
+
+                            // Tu peux ajuster la liste si besoin
+                            const blocked = ["c", "a", "u", "x", "s", "p"]; // copy, select all, view source, cut, save, print
+
+                            if (ctrlOrCmd && blocked.includes(key)) {
+                                e.preventDefault();
+                            }
+                        },
+                        { capture: true }
+                    );
+                }
+            };
+
+            /** --------------------------
+             *  Boot
+             *  -------------------------- */
+            const boot = () => {
+                injectStyle();
+                installGuards();
+                createWatermark();
+            };
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", boot, { once: true });
+            } else {
+                boot();
+            }
+        })();
+
+
+    </script>
+
+    <div class="copyright-footer allow-select">
+        <span>© 2025 Osalyd Consulting</span>
+
+        <a class="copyright-linkedin" href="https://www.linkedin.com/in/juliebredeche" target="_blank"
+            rel="noopener noreferrer" aria-label="LinkedIn Osalyd Consulting" title="LinkedIn">
+            <img class="linkedin-icon" aria-hidden="true" focusable="false"
+                src="https://www.osalydconsulting.com/media/files/Linkedin-White.png">
+        </a>
+    </div>
+
+
+</body>
+
+</html>
