@@ -46,7 +46,7 @@ export default function Nav() {
         <Link
           href="/"
           style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', textDecoration: 'none' }}
-          aria-label="Julie Bredeche — Accueil"
+          aria-label="Julie BREDECHE — Accueil"
         >
           <div
             style={{
@@ -66,7 +66,7 @@ export default function Nav() {
           </div>
           <div style={{ lineHeight: 1.2 }}>
             <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', fontFamily: 'Lora, serif' }}>
-              Julie Bredeche
+              Julie BREDECHE
             </div>
             <div style={{ fontSize: '0.72rem', color: 'var(--muted)', fontWeight: 400 }} className="hidden md:block">
               Osalyd Consulting

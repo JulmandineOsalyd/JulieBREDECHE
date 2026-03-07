@@ -5,7 +5,7 @@ import type { ReactNode } from 'react'
 const offresPrincipale = {
   title: 'Solutions PowerApps, Power Automate & Agents Copilot',
   description:
-    'Conception et développement de solutions métier sur mesure, d\'automatisations intelligentes et d\'agents conversationnels — de l\'analyse des besoins à la mise en production. Découvrez',
+    'Conception et développement de solutions métier sur mesure, d\'automatisations intelligentes et d\'agents conversationnels — de l\'analyse des besoins à la mise en production.',
   methodLink: '/offres',
   methodLinkLabel: 'ma méthode',
   bullets: [
@@ -80,115 +80,20 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
             </h2>
           </div>
           <Link href="/offres" className="btn-ghost">
-            Discutons de votre projet →
+            Détail des offres →
           </Link>
         </div>
 
-        {/* Grid */}
+        {/* Grid — 3 colonnes */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '1.25rem',
+            alignItems: 'stretch',
           }}
           className="offres-grid"
         >
-          {/* Offre principale — span 2 */}
-          <div
-            className="card offre-featured"
-            style={{
-              gridColumn: 'span 2',
-              padding: '2rem',
-              background: 'white',
-              border: '1.5px solid var(--border)',
-              position: 'relative',
-              overflow: 'hidden',
-            }}
-          >
-            {/* Featured badge */}
-            <span
-              style={{
-                position: 'absolute',
-                top: '1.25rem',
-                right: '1.25rem',
-                background: 'var(--grad)',
-                color: 'white',
-                fontSize: '0.72rem',
-                fontWeight: 700,
-                padding: '0.25rem 0.75rem',
-                borderRadius: '99px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.04em',
-              }}
-            >
-              Offre principale
-            </span>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'start' }} className="offre-inner">
-              {/* Left */}
-              <div>
-                <div
-                  style={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: '12px',
-                    background: 'linear-gradient(135deg, rgba(77,255,214,0.15) 0%, rgba(24,176,232,0.15) 100%)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} aria-hidden="true">
-                    <rect x="2" y="3" width="20" height="14" rx="2" />
-                    <path d="M8 21h8M12 17v4" />
-                  </svg>
-                </div>
-                <h3 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.25rem', color: 'var(--ink)', marginBottom: '0.75rem', lineHeight: 1.35 }}>
-                  {offresPrincipale.title}
-                </h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '1.25rem' }}>
-                  {offresPrincipale.description}{' '}
-                  <Link href={offresPrincipale.methodLink} style={{ color: 'var(--c3)', textDecoration: 'underline', textUnderlineOffset: '3px', fontWeight: 600 }}>
-                    {offresPrincipale.methodLinkLabel}
-                  </Link>
-                  .
-                </p>
-                <Link href="/offres" className="btn-primary">
-                  Parlons de votre projet
-                </Link>
-              </div>
-
-              {/* Right — bullet points */}
-              <div>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-                  {offresPrincipale.bullets.map((bullet) => (
-                    <li key={bullet} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem' }}>
-                      <span
-                        style={{
-                          width: 18,
-                          height: 18,
-                          borderRadius: '50%',
-                          background: 'var(--grad)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0,
-                          marginTop: '2px',
-                        }}
-                      >
-                        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                          <path d="M2 6l3 3 5-5" stroke="white" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </span>
-                      <span style={{ fontSize: '0.875rem', color: 'var(--ink)', lineHeight: 1.55 }}>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
           {/* Coaching */}
           <OffreCard
             icon={
@@ -202,6 +107,21 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
             title={coaching.title}
             description={coaching.description}
             bullets={coaching.bullets}
+          />
+
+          {/* Offre principale — featured, au milieu */}
+          <OffreCard
+            icon={
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={1.8} aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <path d="M8 21h8M12 17v4" />
+              </svg>
+            }
+            badge="Offre principale"
+            title={offresPrincipale.title}
+            description={offresPrincipale.description}
+            bullets={offresPrincipale.bullets}
+            featured
           />
 
           {/* Audit */}
@@ -250,7 +170,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
               <div style={{ fontWeight: 700, color: 'white', fontSize: '0.95rem' }}>
                 OneDrive Path Checker
               </div>
-              <div style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.85rem', marginTop: '0.15rem' }}>
+              <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.85rem', marginTop: '0.15rem' }}>
                 Outil de détection de chemins de fichiers trop longs pour SharePoint &amp; OneDrive
               </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--c1)', fontWeight: 600, marginTop: '0.25rem' }}>
@@ -274,22 +194,40 @@ function OffreCard({
   title,
   description,
   bullets,
+  featured = false,
 }: {
   icon: ReactNode
   badge: string
   title: string
   description: string
   bullets: string[]
+  featured?: boolean
 }) {
+  const ink = featured ? 'white' : 'var(--ink)'
+  const muted = featured ? 'rgba(255,255,255,0.7)' : 'var(--muted)'
+
   return (
-    <div className="card" style={{ padding: '1.75rem', background: 'white' }}>
+    <div
+      className="card"
+      style={{
+        padding: '1.75rem',
+        background: featured ? '#0d1f35' : 'white',
+        border: featured ? '1.5px solid rgba(96,198,255,0.3)' : '1.5px solid var(--border)',
+        boxShadow: featured ? '0 8px 32px rgba(15,95,173,0.22)' : undefined,
+        transform: featured ? 'translateY(-8px)' : undefined,
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1rem' }}>
         <div
           style={{
             width: 44,
             height: 44,
             borderRadius: '12px',
-            background: 'linear-gradient(135deg, rgba(77,255,214,0.15) 0%, rgba(24,176,232,0.15) 100%)',
+            background: featured
+              ? 'rgba(96,198,255,0.15)'
+              : 'linear-gradient(135deg, rgba(96,198,255,0.15) 0%, rgba(24,176,232,0.15) 100%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -299,13 +237,13 @@ function OffreCard({
         </div>
         <span
           style={{
-            background: 'var(--off)',
-            border: '1px solid var(--border)',
+            background: featured ? 'var(--grad)' : 'var(--off)',
+            border: featured ? 'none' : '1px solid var(--border)',
             borderRadius: '99px',
             fontSize: '0.72rem',
             fontWeight: 700,
             padding: '0.2rem 0.65rem',
-            color: 'var(--c3)',
+            color: featured ? 'white' : 'var(--c3)',
             textTransform: 'uppercase',
             letterSpacing: '0.04em',
           }}
@@ -314,24 +252,48 @@ function OffreCard({
         </span>
       </div>
 
-      <h3 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)', marginBottom: '0.6rem', lineHeight: 1.4 }}>
+      <h3 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.15rem', color: ink, marginBottom: '0.6rem', lineHeight: 1.4 }}>
         {title}
       </h3>
-      <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, marginBottom: '1rem' }}>
+      <p style={{ fontSize: '0.875rem', color: muted, lineHeight: 1.65, marginBottom: '1rem' }}>
         {description}
       </p>
 
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.25rem' }}>
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.55rem', marginBottom: '1.5rem', flex: 1 }}>
         {bullets.map((b) => (
-          <li key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--ink)' }}>
-            <span style={{ color: 'var(--c2)', fontWeight: 700, flexShrink: 0 }}>·</span>
+          <li key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.85rem', color: ink }}>
+            {featured ? (
+              <span
+                style={{
+                  width: 16,
+                  height: 16,
+                  borderRadius: '50%',
+                  background: 'var(--grad)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  marginTop: '2px',
+                }}
+              >
+                <svg width="9" height="9" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            ) : (
+              <span style={{ color: 'var(--c2)', fontWeight: 700, flexShrink: 0 }}>·</span>
+            )}
             {b}
           </li>
         ))}
       </ul>
 
-      <Link href="/offres" className="btn-outline" style={{ width: '100%', justifyContent: 'center' }}>
-        En savoir plus
+      <Link
+        href="/offres"
+        className={featured ? 'btn-primary' : 'btn-outline'}
+        style={{ width: '100%', justifyContent: 'center' }}
+      >
+        {featured ? 'Parlons de votre projet' : 'En savoir plus'}
       </Link>
     </div>
   )

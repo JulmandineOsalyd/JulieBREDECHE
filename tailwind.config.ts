@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        c1: '#4dffd6',
+        c1: '#60c6ff',
         c2: '#18b0e8',
         c3: '#0f5fad',
         ink: '#071828',
@@ -22,7 +22,7 @@ const config: Config = {
         sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'brand-grad': 'linear-gradient(135deg, #4dffd6 0%, #18b0e8 45%, #0f5fad 100%)',
+        'brand-grad': 'linear-gradient(135deg, #60c6ff 0%, #18b0e8 45%, #0f5fad 100%)',
       },
       borderRadius: {
         '2xl': '16px',

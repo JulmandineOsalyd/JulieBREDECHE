@@ -20,7 +20,7 @@ export default function NewsletterBar() {
   return (
     <section
       style={{
-        background: '#0d1f35',
+        background: 'var(--grad)',
         borderTop: '1px solid rgba(255,255,255,0.08)',
         padding: '1.75rem 6%',
       }}
@@ -42,19 +42,19 @@ export default function NewsletterBar() {
             ✉️
           </span>
           <div>
-            <p style={{ fontWeight: 700, fontSize: '0.95rem', color: 'white', margin: 0 }}>
-              Recevoir mes nouveaux articles
+            <p style={{ fontWeight: 700, fontSize: '1rem', color: 'white', margin: 0 }}>
+              Recevoir mes prochains articles
             </p>
-            <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', margin: 0 }}>
-              SharePoint, la Power Platform et Copilot Studio
+            <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,1)', margin: 0 }}>
+              sur SharePoint, la Power Platform et Copilot Studio
             </p>
           </div>
         </div>
 
         {/* Form */}
         {submitted ? (
-          <p style={{ color: 'var(--c1)', fontWeight: 700, fontSize: '0.9rem' }}>
-            Merci ! Vous allez recevoir une confirmation.
+          <p style={{ color: 'rgba(255,255,255,1)', fontWeight: 700, fontSize: '0.9rem' }}>
+            Merci ! Vous allez recevoir une confirmation par mail.
           </p>
         ) : (
           <form
@@ -81,7 +81,7 @@ export default function NewsletterBar() {
                 transition: 'border-color 0.2s ease',
               }}
             />
-            <button type="submit" className="btn-primary" style={{ whiteSpace: 'nowrap' }}>
+            <button type="submit" className="btn-primary" style={{ whiteSpace: 'nowrap', background: 'var(--c2)' }}>
               S&apos;abonner
             </button>
           </form>

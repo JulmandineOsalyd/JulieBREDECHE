@@ -87,22 +87,38 @@ export default function OneDrivePathCheckerPage() {
           {/* Placeholder — à remplacer par l'outil réel */}
           <div
             style={{
-              border: '2px dashed var(--border)',
               borderRadius: '20px',
               padding: '4rem 2rem',
               textAlign: 'center',
-              background: 'var(--off)',
+              background: 'linear-gradient(135deg, #60c6ff 0%, #18b0e8 45%, #0f5fad 100%)',
+              boxShadow: '0 8px 32px rgba(15, 95, 173, 0.25)',
             }}
           >
             <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }} aria-hidden="true">🚧</span>
-            <h3 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.25rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>
+            <h3 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.25rem', color: 'white', marginBottom: '0.75rem' }}>
               Outil en cours d&apos;intégration
             </h3>
-            <p style={{ color: 'var(--muted)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: '500px', margin: '0 auto 1.5rem' }}>
+            <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: '500px', margin: '0 auto 1.5rem' }}>
               L&apos;outil OneDrive Path Checker sera intégré ici directement. En attendant, vous pouvez télécharger le script PowerShell sur GitHub ou contacter Julie pour une démo.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/offres" className="btn-primary">
+              <Link
+                href="/offres"
+                style={{
+                  background: 'white',
+                  color: 'var(--c3)',
+                  borderRadius: '10px',
+                  padding: '0.65rem 1.4rem',
+                  fontWeight: 600,
+                  fontSize: '0.95rem',
+                  boxShadow: '0 4px 18px rgba(0,0,0,0.12)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  textDecoration: 'none',
+                  transition: 'opacity 0.2s ease, transform 0.2s ease',
+                }}
+              >
                 Besoin d&apos;aide pour OneDrive ?
               </Link>
             </div>

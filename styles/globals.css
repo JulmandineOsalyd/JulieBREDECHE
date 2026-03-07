@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --c1: #4dffd6;
+  --c1: #60c6ff;
   --c2: #18b0e8;
   --c3: #0f5fad;
-  --grad: linear-gradient(135deg, #4dffd6 0%, #18b0e8 45%, #0f5fad 100%);
+  --grad: linear-gradient(135deg, #60c6ff 0%, #18b0e8 45%, #0f5fad 100%);
   --ink: #071828;
   --muted: #4a6080;
   --border: #cce4f5;
@@ -303,8 +303,11 @@ h1, h2, h3 {
 }
 
 /* Offres grids */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .offres-grid { grid-template-columns: 1fr !important; }
+  .offres-grid .card { transform: none !important; }
+}
+@media (max-width: 768px) {
   .offre-inner { grid-template-columns: 1fr !important; }
   .offre-grid { grid-template-columns: 1fr !important; }
   .method-grid { grid-template-columns: 1fr !important; }

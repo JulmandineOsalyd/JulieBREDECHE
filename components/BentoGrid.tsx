@@ -38,7 +38,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
                 marginBottom: '0.4rem',
               }}
             >
-              Ressources & articles
+              Ressources
             </p>
             <h2
               style={{
@@ -53,7 +53,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
             </h2>
           </div>
           <Link href="/blog" className="btn-ghost">
-            Tout voir →
+            Tous les articles →
           </Link>
         </div>
 

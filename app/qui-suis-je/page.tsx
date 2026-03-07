@@ -7,18 +7,12 @@ export const metadata: Metadata = {
     'Consultante Microsoft 365 indépendante depuis 5 ans. Spécialiste SharePoint, Power Platform et Copilot Studio. Découvrez mon parcours et mes valeurs.',
   openGraph: {
     title: 'Qui suis-je ? — Julie Bredeche',
-    description: 'Consultante Microsoft 365 indépendante depuis 5 ans.',
+    description: 'Consultante Microsoft 365 indépendante depuis 6 ans.',
     url: 'https://juliebredeche.pro/qui-suis-je',
     type: 'profile',
   },
 }
 
-const competences = [
-  { cat: 'SharePoint & M365', items: ['SharePoint Online', 'SharePoint Framework (SPFx)', 'Microsoft Teams', 'OneDrive', 'Microsoft Viva'] },
-  { cat: 'Power Platform', items: ['PowerApps (Canvas & Model-driven)', 'Power Automate', 'Power BI', 'Power Pages', 'Dataverse'] },
-  { cat: 'Copilot & IA', items: ['Copilot Studio', 'Azure AI Services', 'Copilot M365', 'Prompt engineering', 'RAG / bases de connaissances'] },
-  { cat: 'Méthodes & Outils', items: ['Agile / Scrum', 'Git & DevOps Azure', 'TypeScript / JavaScript', 'PnP Framework', 'Microsoft Graph API'] },
-]
 
 const valeurs = [
   { icon: '🎯', title: 'Pragmatisme', text: 'Je livre des solutions qui fonctionnent dans votre contexte réel, pas des prototypes qui s\'arrêtent à la démo.' },
@@ -44,14 +38,12 @@ export default function QuiSuisJePage() {
               </em>
             </h1>
             <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
-              Bonjour, je suis Julie Bredeche, consultante freelance spécialisée dans l&apos;écosystème Microsoft 365. Depuis 2019, j&apos;accompagne des entreprises de toutes tailles — de la TPE au grand compte coté — pour tirer le meilleur parti de SharePoint, de la Power Platform et des solutions d&apos;intelligence artificielle de Microsoft.
-            </p>
-            <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '2rem' }}>
-              Mon entreprise s&apos;appelle Osalyd Consulting, mais c&apos;est avant tout une aventure personnelle : celle d&apos;une consultante qui croit que la technologie doit servir les humains, pas l&apos;inverse.
-            </p>
+            Spécialiste SharePoint et Power Platform depuis plus de 10 ans, j’accompagne les directions métiers dans la <b>modernisation de leurs outils collaboratifs</b>, l’<b>automatisation de processus</b> et la <b>structuration efficace des contenus,</b> en m’appuyant sur les solutions Microsoft 365.            </p>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <Link href="/offres" className="btn-primary">Voir mes offres</Link>
-              <Link href="/portfolio" className="btn-outline">Voir le portfolio</Link>
+              <Link href="/portfolio" className="btn-primary">Voir mon portfolio</Link>
+              <Link href="https://linkedin.com/in/juliebredeche" target="_blank" rel="noopener noreferrer" className="btn-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+              Voir mon profil LinkedIn</Link>
             </div>
           </div>
 
@@ -118,29 +110,7 @@ export default function QuiSuisJePage() {
         </div>
       </section>
 
-      {/* Compétences */}
-      <section style={{ padding: '4rem 6%', background: 'var(--off)' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
-            Compétences techniques
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.25rem' }} className="comp-grid">
-            {competences.map(({ cat, items }) => (
-              <div key={cat} className="card" style={{ padding: '1.5rem', background: 'white' }}>
-                <h3 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '0.95rem', color: 'var(--c3)', marginBottom: '0.75rem' }}>{cat}</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                  {items.map((item) => (
-                    <li key={item} style={{ fontSize: '0.85rem', color: 'var(--ink)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--grad)', display: 'inline-block', flexShrink: 0 }} aria-hidden="true" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* CTA */}
       <section style={{ padding: '4rem 6%', background: '#ffffff', textAlign: 'center' }}>
