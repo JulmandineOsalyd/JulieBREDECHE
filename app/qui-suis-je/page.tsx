@@ -19,28 +19,33 @@ const approche = [
     icon: '💡',
     title: 'Mon approche',
     items: [
-      'Compréhension des enjeux métiers et cadrage des besoins',
-      'Conception de solutions sur-mesure, évolutives et orientées usage',
-      'Intégration fluide dans l\'écosystème IT existant',
-      'Accompagnement à l\'adoption des nouveaux usages',
+      'Compréhension des enjeux métiers',
+      'Cadrage des besoins',
+      'Conception de solutions sur-mesure et évolutives',
+      'Intégration dans l\'écosystème IT existant',
+      'Accompagnement à l\'adoption',
     ],
   },
   {
     icon: '🔍',
     title: 'Ma valeur ajoutée',
     items: [
-      'Un discours accessible, centré sur vos problématiques concrètes',
-      'Une capacité à faire le lien entre les utilisateurs et les équipes IT',
-      'Une forte exigence sur la qualité, la fiabilité et la maintenabilité des solutions livrées',
+      'Vision technico-fonctionnelle',
+      'Discours accessible pour les métiers',
+      'Capacité d’arbitrage entre besoins, contraintes et priorités',
+      'Rigueur et sens du détail',
+      'Documentation claire et maintenable',
     ],
   },
   {
     icon: '🏢',
     title: 'Périmètre d\'intervention',
     items: [
-      'Directions métiers (RH, Qualité, Communication, etc.)',
-      'Directions des systèmes d\'information (DSI)',
-      'Mise en œuvre de solutions respectueuses de la gouvernance et des règles déjà en place',
+      'Accompagnement au changement et adoption',
+      'Architecture de solutions',
+      'Conception et développement de solutions sur-mesure',
+      'Gouvernance et bonnes pratiques',
+      'Accompagnement au changement',
     ],
   },
 ]
@@ -56,9 +61,9 @@ export default function QuiSuisJePage() {
               À propos
             </p>
             <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.5rem' }}>
-              Consultante Microsoft 365{' '}
+              Consultante {' '}
               <em style={{ fontStyle: 'italic', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                indépendante
+                Microsoft 365
               </em>
             </h1>
             <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>

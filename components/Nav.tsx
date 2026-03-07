@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
@@ -53,16 +54,11 @@ export default function Nav() {
               width: 40,
               height: 40,
               borderRadius: '50%',
-              background: 'var(--grad)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              overflow: 'hidden',
               flexShrink: 0,
             }}
           >
-            <span style={{ color: 'white', fontWeight: 800, fontSize: '0.95rem', letterSpacing: '-0.01em' }}>
-              JB
-            </span>
+            <Image src="/images/JBR.png" alt="Julie Bredeche" width={40} height={40} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
           </div>
           <div style={{ lineHeight: 1.2 }}>
             <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', fontFamily: 'var(--font-lora), Georgia, serif' }}>

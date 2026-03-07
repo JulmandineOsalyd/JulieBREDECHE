@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getArticleBySlug, getAllArticlesMeta, getRelatedArticles } from '@/lib/mdx'
 import { formatDate } from '@/lib/utils'
@@ -9,6 +10,7 @@ import ReadingTime from '@/components/ReadingTime'
 import ArticleCard from '@/components/ArticleCard'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import remarkGfm from 'remark-gfm'
 
 interface Props {
   params: { slug: string }
@@ -79,8 +81,8 @@ export default function ArticlePage({ params }: Props) {
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--grad)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span style={{ color: 'white', fontWeight: 800, fontSize: '0.72rem' }}>JB</span>
+                  <div style={{ width: 32, height: 32, borderRadius: '50%', overflow: 'hidden', flexShrink: 0 }}>
+                    <Image src="/images/JBR.png" alt="Julie Bredeche" width={32} height={32} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
                   </div>
                   <span style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--ink)' }}>Julie Bredeche</span>
                 </div>
@@ -100,27 +102,13 @@ export default function ArticlePage({ params }: Props) {
                 source={article.content}
                 options={{
                   mdxOptions: {
+                    remarkPlugins: [remarkGfm],
                     rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
                   },
                 }}
               />
             </div>
 
-            {/* Article footer */}
-            <div style={{ marginTop: '3rem', padding: '1.5rem', background: 'var(--off)', borderRadius: '16px', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'var(--grad)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <span style={{ color: 'white', fontWeight: 800 }}>JB</span>
-              </div>
-              <div>
-                <p style={{ fontWeight: 700, color: 'var(--ink)', margin: 0, fontSize: '0.9rem' }}>Julie Bredeche</p>
-                <p style={{ color: 'var(--muted)', margin: 0, fontSize: '0.8rem', lineHeight: 1.5 }}>
-                  Consultante Microsoft 365 indépendante · SharePoint, Power Platform, Copilot Studio
-                </p>
-              </div>
-              <a href="https://linkedin.com/in/juliebredeche" target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ marginLeft: 'auto', whiteSpace: 'nowrap', flexShrink: 0 }} aria-label="Suivre Julie Bredeche sur LinkedIn">
-                Suivre
-              </a>
-            </div>
           </article>
 
           {/* Sidebar */}
@@ -128,8 +116,8 @@ export default function ArticlePage({ params }: Props) {
             {/* Author card */}
             <div className="card" style={{ padding: '1.25rem', marginBottom: '1.25rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--grad)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <span style={{ color: 'white', fontWeight: 800, fontSize: '0.85rem' }}>JB</span>
+                <div style={{ width: 40, height: 40, borderRadius: '50%', overflow: 'hidden', flexShrink: 0 }}>
+                  <Image src="/images/JBR.png" alt="Julie Bredeche" width={40} height={40} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
                 </div>
                 <div>
                   <p style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--ink)', margin: 0 }}>Julie Bredeche</p>
@@ -144,16 +132,16 @@ export default function ArticlePage({ params }: Props) {
               </Link>
             </div>
 
-            {/* Newsletter sidebar */}
-            <div style={{ background: 'linear-gradient(160deg, rgba(77,255,214,0.08) 0%, rgba(24,176,232,0.08) 100%)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.25rem', marginBottom: '1.25rem' }}>
+            {/* Offres card */}
+            <div style={{ background: 'linear-gradient(160deg, #f0f8ff 0%, #e6f4fd 100%)', border: '1.5px solid var(--border)', borderRadius: '16px', padding: '1.25rem' }}>
               <p style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>
-                Ne manquez aucun article
+                Un projet Microsoft 365 ?
               </p>
               <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginBottom: '0.75rem', lineHeight: 1.5 }}>
-                Chaque semaine, les meilleurs articles Microsoft 365 dans votre boîte mail.
+                SharePoint, Power Platform, Copilot Studio — je vous accompagne de l&apos;analyse à la mise en production.
               </p>
-              <Link href="#newsletter" className="btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '0.85rem' }}>
-                S&apos;abonner
+              <Link href="/offres" className="btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '0.85rem' }}>
+                Voir mes offres →
               </Link>
             </div>
           </aside>
