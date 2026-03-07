@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import type { ReactNode } from 'react'
 
 const offresPrincipale = {
   title: 'Applications PowerApps, Power Automate & Agents Copilot',
@@ -93,7 +94,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
         >
           {/* Offre principale — span 2 */}
           <div
-            className="card"
+            className="card offre-featured"
             style={{
               gridColumn: 'span 2',
               padding: '2rem',
@@ -249,13 +250,6 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
         </div>
       </div>
 
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .offres-grid { grid-template-columns: 1fr !important; }
-          .offre-inner { grid-template-columns: 1fr !important; }
-          [style*="grid-column: span 2"] { grid-column: span 1 !important; }
-        }
-      `}</style>
     </section>
   )
 }
@@ -267,7 +261,7 @@ function OffreCard({
   description,
   bullets,
 }: {
-  icon: React.ReactNode
+  icon: ReactNode
   badge: string
   title: string
   description: string

@@ -228,15 +228,6 @@ export default function BentoGrid({ articles }: BentoGridProps) {
         </div>
       </div>
 
-      <style jsx>{`
-        .bento-featured:hover { background: #0e2035 !important; }
-        .bento-card:hover { background: var(--off) !important; }
-        @media (max-width: 768px) {
-          .bento-grid-inner {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   )
 }

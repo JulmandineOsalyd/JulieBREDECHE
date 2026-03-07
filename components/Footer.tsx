@@ -170,15 +170,6 @@ export default function Footer() {
         </span>
       </div>
 
-      <style jsx>{`
-        .footer-link:hover { color: var(--c2) !important; }
-        @media (max-width: 768px) {
-          .footer-grid {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-          }
-        }
-      `}</style>
     </footer>
   )
 }

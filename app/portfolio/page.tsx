@@ -146,14 +146,6 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <style jsx>{`
-        @media (max-width: 900px) {
-          .portfolio-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 600px) {
-          .portfolio-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </>
   )
 }

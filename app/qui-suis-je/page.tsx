@@ -153,17 +153,6 @@ export default function QuiSuisJePage() {
         <Link href="/offres" className="btn-primary">Voir mes offres →</Link>
       </section>
 
-      <style jsx>{`
-        @media (max-width: 900px) {
-          .qs-hero-grid { grid-template-columns: 1fr !important; }
-          .valeurs-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .comp-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 600px) {
-          .valeurs-grid { grid-template-columns: 1fr !important; }
-          .comp-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </>
   )
 }

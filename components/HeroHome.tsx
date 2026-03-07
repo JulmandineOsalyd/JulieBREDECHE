@@ -279,13 +279,6 @@ export default function HeroHome() {
         </div>
       </div>
 
-      <style jsx>{`
-        @media (max-width: 900px) {
-          .hero-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   )
 }

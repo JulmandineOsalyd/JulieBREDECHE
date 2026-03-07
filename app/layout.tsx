@@ -1,4 +1,5 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
+import type { ReactNode } from 'react'
 import { Lora, Plus_Jakarta_Sans } from 'next/font/google'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
@@ -46,11 +47,11 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export const viewport: Viewport = {
+  themeColor: '#0f5fad',
+}
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr" className={`${lora.variable} ${plusJakartaSans.variable}`}>
       <body>

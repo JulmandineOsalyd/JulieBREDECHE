@@ -1,71 +1,40 @@
-'use client'
+import type { Metadata } from 'next'
+import { getAllArticlesMeta } from '@/lib/mdx'
+import BlogList from './BlogList'
 
-import { useState } from 'react'
-import type { ArticleMeta } from '@/lib/mdx'
-import ArticleCard from '@/components/ArticleCard'
-
-const categories = ['Tous', 'SharePoint', 'Power Automate', 'Copilot Studio', 'PowerApps']
-
-interface BlogPageClientProps {
-  articles: ArticleMeta[]
+export const metadata: Metadata = {
+  title: 'Blog — Julie Bredeche',
+  description:
+    'Articles sur SharePoint, Power Automate, Copilot Studio et PowerApps. Conseils pratiques pour tirer le meilleur parti de Microsoft 365.',
+  openGraph: {
+    title: 'Blog — Julie Bredeche',
+    description: 'Articles SharePoint, Power Platform et Copilot Studio.',
+    url: 'https://juliebredeche.pro/blog',
+    type: 'website',
+  },
 }
 
-function BlogPageClient({ articles }: BlogPageClientProps) {
-  const [active, setActive] = useState('Tous')
-
-  const filtered = active === 'Tous'
-    ? articles
-    : articles.filter((a) => a.category === active)
+export default function BlogPage() {
+  const articles = getAllArticlesMeta()
 
   return (
-    <>
-      {/* Filters */}
-      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActive(cat)}
-            style={{
-              padding: '0.45rem 1.1rem',
-              borderRadius: '99px',
-              border: active === cat ? 'none' : '1.5px solid var(--border)',
-              background: active === cat ? 'var(--grad)' : 'white',
-              color: active === cat ? 'white' : 'var(--ink)',
-              fontWeight: 600,
-              fontSize: '0.85rem',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-            }}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {filtered.length === 0 ? (
-        <p style={{ color: 'var(--muted)', textAlign: 'center', padding: '3rem 0' }}>
-          Aucun article dans cette catégorie pour l&apos;instant.
-        </p>
-      ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }} className="blog-grid">
-          {filtered.map((article) => (
-            <ArticleCard key={article.slug} article={article} />
-          ))}
+    <section style={{ padding: '5rem 6%', background: '#ffffff' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        {/* Header */}
+        <div style={{ marginBottom: '3rem' }}>
+          <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.6rem' }}>
+            Ressources
+          </p>
+          <h1 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1rem' }}>
+            Blog
+          </h1>
+          <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.7, maxWidth: '600px' }}>
+            Tutoriels, retours d&apos;expérience et analyses sur SharePoint, Power Platform et Copilot Studio. Pour les équipes Microsoft 365 qui veulent aller plus loin.
+          </p>
         </div>
-      )}
 
-      <style jsx>{`
-        @media (max-width: 900px) {
-          .blog-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 600px) {
-          .blog-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
-    </>
+        <BlogList articles={articles} />
+      </div>
+    </section>
   )
 }
-
-// Re-export as a server + client hybrid
-export { BlogPageClient }
-export default BlogPageClient
