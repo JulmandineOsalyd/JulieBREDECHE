@@ -1,0 +1,121 @@
+---
+title: "Power Automate + AI Builder : des centaines d'heures gagnées grâce à la lecture automatique de PDF"
+date: "2025-11-24"
+category: "Power Automate"
+excerpt: "Comment extraire automatiquement un numéro de commande dans des milliers de PDF de factures grâce à Power Automate, AI Builder et une regex ? Le tutoriel complet avec le code Office Script."
+readingTime: 6
+slug: "tuto-extraire-une-information-specifique-dun-pdf"
+tags: ["Power Automate", "AI Builder", "Office Script", "Automatisation"]
+featured: false
+---
+
+Extraire manuellement des informations dans des centaines de PDF de factures, c'est long, fastidieux et source d'erreurs. Grâce à **Power Automate + AI Builder**, ce traitement peut être entièrement automatisé.
+
+Voici comment j'ai mis en place cette solution pour un client : extraction du numéro de commande dans des milliers de PDF, intégration automatique dans leur système de suivi de facturation.
+
+---
+
+## Le besoin initial
+
+Le client devait récupérer des numéros de commande au format `ABC123456A` dans des PDF de factures pour les intégrer dans leur nouveau système.
+
+Ce format bien défini — **3 lettres, 6 chiffres, 1 lettre** — est idéal pour une extraction par expression régulière (regex).
+
+---
+
+## Les prérequis
+
+Avant de démarrer, vérifiez que vous disposez de :
+
+- Une bibliothèque SharePoint ou un dossier OneDrive contenant les PDF
+- Une licence Power Automate standard avec des crédits AI Builder / Copilot
+- Un format de numéro de commande clairement identifiable
+- Un fichier Excel configuré pour l'exécution de la regex via Office Script
+
+---
+
+## Les étapes du flux Power Automate
+
+### Étape 1 : Récupérer le contenu du PDF
+
+Utilisez l'action **« Obtenir le contenu du fichier en utilisant le chemin »** et configurez l'adresse du site SharePoint et le chemin du fichier.
+
+![Récupération du contenu PDF dans Power Automate](/images/blog/2025-11-24-13_33_34-ChatGPT-Site-Web-Osalyd.png)
+
+---
+
+### Étape 2 : Extraire le texte du PDF
+
+Appliquez l'action **« Reconnaître le texte dans une image ou un document »** d'AI Builder.
+
+Cette étape retourne le texte brut du PDF. Elle fonctionne aussi sur les **documents scannés** grâce à l'OCR intégré.
+
+![Extraction du texte avec AI Builder](/images/blog/2025-11-24-13_34_22-ChatGPT-Site-Web-Osalyd.png)
+
+---
+
+### Étape 3 : Créer l'Office Script
+
+Créez un Office Script dans Excel avec le code suivant. Il prend 3 paramètres : la chaîne de texte, le pattern regex et les flags.
+
+```typescript
+function main(
+    workbook: ExcelScript.Workbook,
+    inputString: string,
+    pattern: string,
+    flags: string
+): Array<string> {
+    let regExp = new RegExp(pattern, flags);
+    let matches: Array<string> = inputString.match(regExp);
+
+    if (matches) {
+        return matches;
+    } else {
+        return [];
+    }
+}
+```
+
+---
+
+### Étape 4 : Exécuter le script dans Power Automate
+
+Appelez le script en lui passant :
+- Le texte extrait du PDF à l'étape 2
+- Le pattern regex : `[A-Z]{3}\d{6}[A-Z]$`
+- Les flags souhaités (ex. : `g` pour global)
+
+![Exécution du script dans Power Automate](/images/blog/2025-11-26-14_42_37-Site-Web-Osalyd-Structure-article-Power-Automate.png)
+
+Le script retourne le numéro de commande trouvé, ou une liste vide si aucune correspondance.
+
+---
+
+### Étape 5 : Utiliser le numéro extrait
+
+Une fois le numéro récupéré, les possibilités sont nombreuses :
+
+- Enregistrer dans une colonne SharePoint
+- Mettre à jour une table Dataverse
+- Ajouter dans un fichier Excel
+- Envoyer un email de contrôle
+- Alimenter un CRM ou un helpdesk
+
+![Utilisation du numéro de commande extrait](/images/blog/2025-11-24-13_43_47-ChatGPT-Site-Web-Osalyd.png)
+
+---
+
+## Bonnes pratiques et points de vigilance
+
+- Les **PDF scannés** nécessitent l'OCR via AI Builder — prévoyez les crédits correspondants
+- Vérifiez l'**unicité** du numéro de commande par document
+- Gérez le cas **« aucune correspondance trouvée »** pour éviter les erreurs silencieuses
+- Maintenez un **journal d'erreurs** dans une liste dédiée pour les traitements en échec
+
+---
+
+## Conclusion
+
+Ce flux élimine la revue manuelle de milliers de documents. L'extraction est rapide, fiable et facilement adaptable si le format du numéro évolue ou si de nouveaux champs doivent être extraits.
+
+Le même principe s'applique à n'importe quelle donnée structurée : références produit, numéros de TVA, codes clients…

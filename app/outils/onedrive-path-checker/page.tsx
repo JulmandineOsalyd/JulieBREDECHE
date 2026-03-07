@@ -103,7 +103,7 @@ export default function OneDrivePathCheckerPage() {
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
-                href="/offres"
+                href="/services"
                 style={{
                   background: 'white',
                   color: 'var(--c3)',
@@ -178,7 +178,7 @@ export default function OneDrivePathCheckerPage() {
         <p style={{ color: 'var(--muted)', fontSize: '1rem', marginBottom: '1.5rem' }}>
           Je vous accompagne de l&apos;audit à la mise en production.
         </p>
-        <Link href="/offres" className="btn-primary">Voir mes offres →</Link>
+        <Link href="/services" className="btn-primary">Voir mes offres →</Link>
       </section>
 
     </>

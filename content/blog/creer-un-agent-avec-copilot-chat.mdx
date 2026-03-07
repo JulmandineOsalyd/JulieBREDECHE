@@ -1,0 +1,125 @@
+---
+title: "[Copilot de A à Z] - Créez votre agent d'onboarding RH en 5 minutes avec Copilot Chat"
+date: "2026-01-03"
+category: "Copilot Studio"
+excerpt: "Un agent RH capable de répondre aux questions des nouveaux arrivants en langage naturel — sans les faire chercher dans l'intranet. Tutoriel pas à pas pour créer votre premier agent déclaratif dans Copilot Chat."
+readingTime: 6
+slug: "creer-un-agent-avec-copilot-chat"
+tags: ["Copilot Studio", "Microsoft 365", "Agents", "Onboarding"]
+featured: false
+---
+
+Dans de nombreuses organisations, les informations d'onboarding sont éparpillées sur l'intranet SharePoint sans navigation claire. Plutôt que de forcer les nouveaux collaborateurs à fouiller dans les documents, une meilleure approche existe : un **agent dédié** qui répond à leurs questions en langage naturel.
+
+Voici comment créer ce type d'agent directement depuis Copilot Chat — en quelques minutes, sans code.
+
+---
+
+## Étape 1 : Créer un nouvel agent
+
+Depuis Microsoft 365 Copilot, sélectionnez **« Nouvel agent »**.
+
+![Création d'un nouvel agent dans Copilot Chat](/images/blog/Capture-decran-2026-01-03-a-18.27.31.png)
+
+Deux modes de conception s'offrent à vous :
+- L'onglet **« Décrire »** : décrivez l'agent en langage naturel et Copilot configure les paramètres pour vous
+- L'onglet **« Configurer »** : saisissez manuellement chaque paramètre
+
+> **Recommandation :** utilisez l'onglet **Configurer** pour plus de précision et de contrôle sur le comportement de l'agent.
+
+![Onglets Décrire et Configurer](/images/blog/Agent-Decrire-Configurer.png)
+
+---
+
+## Étape 2 : Renseigner les détails et les instructions
+
+![Champs Nom et Détails de l'agent](/images/blog/Agent-Nom-Details-2.png)
+
+**Nom** *(30 caractères max)*
+
+Choisissez un nom descriptif et unique, facile à identifier pour vos utilisateurs.
+
+**Description** *(1 000 caractères max)*
+
+Une description brève et précise de ce que fait l'agent.
+
+**Instructions** *(8 000 caractères max)*
+
+C'est **l'étape la plus importante**. Les instructions définissent :
+- L'objectif de l'agent
+- Le ton attendu
+- Le périmètre des réponses
+- Les comportements à éviter
+
+Plus les instructions sont précises, plus l'agent sera fiable et pertinent.
+
+![Instructions de l'agent](/images/blog/Agent-Instructions-2.png)
+
+---
+
+## Étape 3 : Sélectionner les sources de connaissances
+
+L'agent s'appuiera sur les sources que vous lui indiquez pour répondre aux questions.
+
+![Intranet SharePoint comme source de connaissances](/images/blog/Intranet-SharePoint-2.png)
+
+Activez l'option **« Utiliser uniquement les sources spécifiées »** pour que l'agent ne réponde qu'à partir de vos contenus — pas depuis Internet ou d'autres sources.
+
+![Sélection des sources de connaissances](/images/blog/Agent-Sources-3.png)
+
+Vous pouvez ajouter des fichiers directement ou référencer des sites SharePoint.
+
+![Chargement de fichiers comme source](/images/blog/Agent-Charger-fichiers-2.png)
+
+> ⚠️ **Attention à la gestion des droits**
+>
+> Lorsque vous **chargez directement un fichier** comme source de connaissances, toute personne ayant accès à l'agent peut exploiter le contenu de ce fichier via les réponses de l'agent, **indépendamment des permissions SharePoint**.
+>
+> **Préférez référencer des fichiers SharePoint** : les droits existants sont alors respectés automatiquement.
+
+---
+
+## Étape 4 : [Optionnel] Ajouter des prompts suggérés
+
+Vous pouvez proposer des questions types qui s'affichent à l'ouverture de l'agent. Utile pour guider les utilisateurs et montrer les capacités de l'agent dès le premier contact.
+
+![Prompts suggérés pour l'agent](/images/blog/Agent-Prompts-suggeres-5.png)
+
+---
+
+## Étape 5 : Tester l'agent
+
+La section de prévisualisation permet de tester l'agent en temps réel avant publication.
+
+![Test d'un prompt dans l'agent](/images/blog/Agent-Test-Prompt-1-3.png)
+
+Vérifiez la qualité des réponses, les sources citées, et la cohérence avec vos instructions.
+
+![Résultat du test](/images/blog/Agent-Test-Prompt-Resultat.png)
+
+---
+
+## Étape 6 : Finaliser et partager l'agent
+
+Une fois satisfait des tests, cliquez sur **« Créer »**. L'agent reste **privé par défaut**, accessible uniquement via un lien de partage.
+
+![Options de partage de l'agent](/images/blog/Agent-options-de-partage.png)
+
+> **Pour une diffusion à l'échelle de l'organisation**, la publication via Copilot Studio est nécessaire. Les agents déclaratifs créés dans Copilot Chat sont limités au partage par lien.
+
+---
+
+## Points à retenir
+
+- Les licences Copilot sont nécessaires pour accéder aux ressources cloud de votre tenant
+- Vérifiez la qualité et les permissions des sources de connaissances avant publication
+- Privilégiez les sources stockées dans le cloud (SharePoint) aux fichiers chargés directement
+- Le partage d'un agent déclaratif est limité à un lien ; pour une diffusion large, passez par des agents avancés via Copilot Studio
+
+---
+
+## Conclusion
+
+Créer un premier agent déclaratif dans Copilot Chat ne prend que quelques minutes. L'essentiel du travail réside dans la rédaction des **instructions**, le choix des **sources de connaissances** fiables, et les **tests** avant déploiement.
+
+**Dans le prochain épisode : peut-on créer des agents sans licence Copilot ? La réponse vous surprendra peut-être.**

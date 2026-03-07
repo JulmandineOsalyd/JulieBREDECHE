@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Mes offres — Julie Bredeche',
     description: 'Applications PowerApps, Power Automate, agents Copilot Studio, coaching et audit M365.',
-    url: 'https://juliebredeche.pro/offres',
+    url: 'https://juliebredeche.pro/services',
     type: 'website',
   },
 }

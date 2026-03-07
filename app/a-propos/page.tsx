@@ -3,13 +3,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
-  title: 'Qui suis-je ? — Julie Bredeche',
+  title: 'Qui suis-je ? — Julie BREDECHE',
   description:
     'Consultante Microsoft 365 indépendante depuis 5 ans. Spécialiste SharePoint, Power Platform et Copilot Studio. Découvrez mon parcours et mes valeurs.',
   openGraph: {
-    title: 'Qui suis-je ? — Julie Bredeche',
+    title: 'Qui suis-je ? — Julie BREDECHE',
     description: 'Consultante Microsoft 365 indépendante depuis 6 ans.',
-    url: 'https://juliebredeche.pro/qui-suis-je',
+    url: 'https://juliebredeche.pro/a-propos',
     type: 'profile',
   },
 }
@@ -62,9 +62,9 @@ export default function QuiSuisJePage() {
             </p>
             <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.5rem' }}>
               Consultante {' '}
-              <em style={{ fontStyle: 'italic', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              <span style={{ background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Microsoft 365
-              </em>
+              </span  >
             </h1>
             <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
               Spécialiste SharePoint et Power Platform depuis plus de 10 ans, j&apos;accompagne les directions métiers dans la <b>modernisation de leurs outils collaboratifs</b>, l&apos;<b>automatisation de processus</b> et la <b>structuration efficace des contenus,</b> en m&apos;appuyant sur les solutions Microsoft 365.
@@ -83,14 +83,14 @@ export default function QuiSuisJePage() {
             <div style={{ width: 100, height: 100, borderRadius: '50%', overflow: 'hidden', margin: '0 auto 1.25rem', boxShadow: '0 8px 24px rgba(15,95,173,0.25)' }}>
               <Image
                 src="/images/JBR.png"
-                alt="Julie Bredeche"
+                alt="Julie BREDECHE"
                 width={100}
                 height={100}
                 style={{ objectFit: 'cover', width: '100%', height: '100%' }}
               />
             </div>
             <div style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.2rem', color: 'var(--ink)', marginBottom: '1.5rem' }}>
-              Julie Bredeche
+              Julie BREDECHE
             </div>
 
             {/* Certification */}
@@ -100,7 +100,7 @@ export default function QuiSuisJePage() {
               rel="noopener noreferrer"
               style={{ display: 'block', textDecoration: 'none' }}
             >
-              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
+              <div style={{ paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
                 <Image
                   src="/images/MSCertif.png"
                   alt="Microsoft Certified: Power Platform Solution Architect Expert"
@@ -109,7 +109,7 @@ export default function QuiSuisJePage() {
                   style={{ objectFit: 'contain' }}
                 />
                 <span style={{ fontSize: '0.78rem', color: 'var(--c3)', fontWeight: 600, lineHeight: 1.4, textAlign: 'center' }}>
-                  Power Platform Solution Architect Expert
+                   ⭐️   Certifiée Microsoft : Power Platform Solution Architect Expert
                 </span>
               </div>
             </a>
@@ -170,7 +170,7 @@ export default function QuiSuisJePage() {
         <p style={{ color: 'var(--muted)', fontSize: '1rem', marginBottom: '1.75rem' }}>
           Discutons de vos besoins et voyons comment je peux vous aider.
         </p>
-        <Link href="/offres" className="btn-primary">Voir mes offres →</Link>
+        <Link href="/services" className="btn-primary">Voir mes offres →</Link>
       </section>
     </>
   )

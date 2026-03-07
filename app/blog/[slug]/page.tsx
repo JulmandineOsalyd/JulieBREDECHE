@@ -127,7 +127,7 @@ export default function ArticlePage({ params }: Props) {
               <p style={{ fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '0.75rem' }}>
                 Spécialiste SharePoint, Power Platform et Copilot Studio depuis 2016.
               </p>
-              <Link href="/qui-suis-je" className="btn-outline" style={{ width: '100%', justifyContent: 'center', fontSize: '0.8rem' }}>
+              <Link href="/a-propos" className="btn-outline" style={{ width: '100%', justifyContent: 'center', fontSize: '0.8rem' }}>
                 En savoir plus
               </Link>
             </div>
@@ -140,7 +140,7 @@ export default function ArticlePage({ params }: Props) {
               <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginBottom: '0.75rem', lineHeight: 1.5 }}>
                 SharePoint, Power Platform, Copilot Studio — je vous accompagne de l&apos;analyse à la mise en production.
               </p>
-              <Link href="/offres" className="btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '0.85rem' }}>
+              <Link href="/services" className="btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '0.85rem' }}>
                 Voir mes offres →
               </Link>
             </div>

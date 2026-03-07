@@ -2,10 +2,10 @@ import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 const offresPrincipale = {
-  title: 'Solutions Power Platform',
+  title: 'Architecture Power Platform',
   description:
     'Conception et développement de solutions métier sur mesure avec Microsoft 365 : de l\'analyse des besoins à la mise en production.',
-  methodLink: '/offres',
+  methodLink: '/services',
   methodLinkLabel: 'ma méthode',
   bullets: [
     'Applications PowerApps sur mesure',
@@ -28,7 +28,7 @@ const coaching = {
 }
 
 const audit = {
-  title: 'Audit SharePoint & Power Platform',
+  title: 'Audit SharePoint',
   description: 'Analyse approfondie de votre environnement SharePoint pour en tirer le meilleur parti.',
   bullets: [
     'Analyse de l\'architecture des sites',
@@ -40,7 +40,7 @@ const audit = {
 
 export default function OffresSection({ compact = false }: { compact?: boolean }) {
   return (
-    <section id="offres" className="section" style={{ background: 'var(--off)' }}>
+    <section id="services" className="section" style={{ background: 'var(--off)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Header */}
         <div
@@ -64,7 +64,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
                 marginBottom: '0.4rem',
               }}
             >
-              Ce que je propose
+              Services
             </p>
             <h2
               style={{
@@ -75,11 +75,11 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
                 margin: 0,
               }}
             >
-              Mes offres
+              Mes offres de service
             </h2>
           </div>
-          <Link href="/offres" className="btn-ghost">
-            Détail des offres →
+          <Link href="/services" className="btn-ghost">
+            Détail des services →
           </Link>
         </div>
 
@@ -143,8 +143,9 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
           className="card"
           style={{ marginTop: '1.5rem', padding: '1.75rem', background: 'var(--font-jarkarta)', border: '1.5px solid var(--border)' }}
         >
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1rem' }}>
-            <div style={{ width: 44, height: 44, borderRadius: '12px', background: 'linear-gradient(135deg, rgba(96,198,255,0.15) 0%, rgba(24,176,232,0.15) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {/* Icon + Title */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.6rem' }}>
+            <div style={{ width: 44, height: 44, borderRadius: '12px', background: 'linear-gradient(135deg, rgba(96,198,255,0.15) 0%, rgba(24,176,232,0.15) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M4 3v18h17v-3H7V3z" />
                 <line x1="7" y1="7" x2="10" y2="7" />
@@ -155,19 +156,21 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
                 <line x1="19" y1="18" x2="19" y2="15" />
               </svg>
             </div>
+            <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.4, margin: 0 }}>
+              Outil : Détecteur de chemins trop longs pour OneDrive &amp; SharePoint
+            </h3>
+          </div>
+
+          {/* Description */}
+          <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, marginBottom: '1rem' }}>
+            Auditez vos chemins de fichiers avant migration SharePoint et évitez les erreurs de synchronisation OneDrive.
+          </p>
+
+          {/* Badge + Button */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
             <span style={{ background: 'var(--c3)', border: '1px solid var(--border)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', color: 'var(--off)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               Disponible sur le Microsoft Store
             </span>
-          </div>
-
-          <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.4, marginBottom: 0 }}>
-            Détecteur de chemins trop longs pour OneDrive &amp; SharePoint
-          </h3>
-
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '0rem' }}>
-            <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, margin: 0 }}>
-              Auditez vos chemins de fichiers avant migration SharePoint et évitez les erreurs de synchronisation OneDrive.
-            </p>
             <Link
               href="https://onedrivepathchecker.com/"
               target="_blank"
@@ -192,7 +195,7 @@ function OffreCard({
   description,
   bullets,
   featured = false,
-  href = '/offres',
+  href = '/services',
   cta,
   external = false,
 }: {
@@ -297,7 +300,7 @@ function OffreCard({
         style={{ width: '100%', justifyContent: 'center' }}
         {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
-        {cta ?? (featured ? 'Parlons de votre projet' : 'En savoir plus')}
+        {cta ?? (featured ? 'En savoir plus' : 'En savoir plus')}
       </Link>
     </div>
   )

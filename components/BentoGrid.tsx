@@ -38,7 +38,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
                 marginBottom: '0.4rem',
               }}
             >
-              Ressources
+              Blog
             </p>
             <h2
               style={{

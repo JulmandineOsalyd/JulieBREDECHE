@@ -80,25 +80,25 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
               width:'97%',
             }}
           >
-            Je vous aide à tirer le meilleur parti de{' '}
-            <em style={{ fontStyle: 'italic', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            Tirez le meilleur parti de{' '}
+            <span style={{  background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               SharePoint
-            </em>
-            , la{' '}
-            <em style={{ fontStyle: 'italic', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              Power Platform
-            </em>{' '}
-            et{' '}
-            <em style={{ fontStyle: 'italic', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            </span>
+            , la {' '}
+            <span style={{background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              Power Platform {' '}
+            </span>
+             et{' '}
+            <span style={{background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               Copilot Studio
-            </em>
+            </span  >
           </h1>
 
           {/* Description */}
           <p
             className="animate-fadeUp animate-fadeUp-3"
             style={{
-              fontSize: '1.05rem',
+              fontSize: '1.15rem',
               color: 'var(--muted)',
               lineHeight: 1.7,
               maxWidth: '680px',
@@ -117,7 +117,7 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
             style={{ display: 'flex', alignItems: 'center', gap: '1.55rem', flexWrap: 'wrap', marginBottom: '2.55rem',}}
           >
             <Link href="/#offres" className="btn-primary">
-              Voir mes offres →
+              Voir mes services →
             </Link>
             <Link href="/#ressources" className="btn-ghost">
               Lire mes articles ↓
