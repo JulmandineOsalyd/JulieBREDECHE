@@ -18,7 +18,7 @@ const config: Config = {
         off: '#f0f8ff',
       },
       fontFamily: {
-        serif: ['Lora', 'Georgia', 'serif'],
+        serif: ['var(--font-lora)', 'Georgia', 'serif'],
         sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {

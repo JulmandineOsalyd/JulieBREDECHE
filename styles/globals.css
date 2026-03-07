@@ -115,7 +115,7 @@ body {
 
 /* Serif headings */
 h1, h2, h3 {
-  font-family: var(--font-lora), 'Lora', Georgia, serif;
+  font-family: var(--font-lora), Georgia, serif;
 }
 
 /* Animations */
