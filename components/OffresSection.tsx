@@ -1,17 +1,16 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import type { ReactNode } from 'react'
 
 const offresPrincipale = {
-  title: 'Solutions PowerApps, Power Automate & Agents Copilot',
+  title: 'Solutions Power Platform',
   description:
-    'Conception et développement de solutions métier sur mesure, d\'automatisations intelligentes et d\'agents conversationnels — de l\'analyse des besoins à la mise en production.',
+    'Conception et développement de solutions métier sur mesure avec Microsoft 365 : de l\'analyse des besoins à la mise en production.',
   methodLink: '/offres',
   methodLinkLabel: 'ma méthode',
   bullets: [
     'Applications PowerApps sur mesure',
-    'Automatisations Power Automate : approbations, alertes, gestion des droits',
-    'Agents Copilot Studio connectés à votre environnement Microsoft',
+    'Automatisations Power Automate',
+    'Agents Copilot Studio',
     'Documentation technique et fonctionnelle incluse',
     'Forfait maintenance mensuel disponible',
   ],
@@ -41,7 +40,7 @@ const audit = {
 
 export default function OffresSection({ compact = false }: { compact?: boolean }) {
   return (
-    <section className="section" style={{ background: 'var(--off)' }}>
+    <section id="offres" className="section" style={{ background: 'var(--off)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Header */}
         <div
@@ -139,49 +138,47 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
           />
         </div>
 
-        {/* Free tool banner */}
-        <a
-          href="https://onedrivepathchecker.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            marginTop: '1.5rem',
-            padding: '1.25rem 1.5rem',
-            background: '#0d1f35',
-            border: '1px solid rgba(77,255,214,0.2)',
-            borderRadius: '16px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '1rem',
-            textDecoration: 'none',
-          }}
+        {/* OneDrive Path Checker card */}
+        <div
+          className="card"
+          style={{ marginTop: '1.5rem', padding: '1.75rem', background: 'white', border: '1.5px solid var(--font-jarkarta)' }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-            <Image
-              src="/images/logoOneDrivePathChecker.svg"
-              alt="OneDrive Path Checker"
-              width={40}
-              height={40}
-              style={{ flexShrink: 0 }}
-            />
-            <div>
-              <div style={{ fontWeight: 700, color: 'white', fontSize: '0.95rem' }}>
-                OneDrive Path Checker
-              </div>
-              <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.85rem', marginTop: '0.15rem' }}>
-                Outil de détection de chemins de fichiers trop longs pour SharePoint &amp; OneDrive
-              </div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--c1)', fontWeight: 600, marginTop: '0.25rem' }}>
-                Disponible sur le Microsoft Store · 24h d&apos;essai gratuit
-              </div>
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1rem' }}>
+            <div style={{ width: 44, height: 44, borderRadius: '12px', background: 'linear-gradient(135deg, rgba(96,198,255,0.15) 0%, rgba(24,176,232,0.15) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M4 3v18h17v-3H7V3z" />
+                <line x1="7" y1="7" x2="10" y2="7" />
+                <line x1="7" y1="11" x2="10" y2="11" />
+                <line x1="7" y1="15" x2="10" y2="15" />
+                <line x1="11" y1="18" x2="11" y2="15" />
+                <line x1="15" y1="18" x2="15" y2="15" />
+                <line x1="19" y1="18" x2="19" y2="15" />
+              </svg>
             </div>
+            <span style={{ background: 'var(--off)', border: '1px solid var(--border)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', color: 'var(--c3)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              Disponible sur le Microsoft Store
+            </span>
           </div>
-          <span className="btn-primary" style={{ whiteSpace: 'nowrap', pointerEvents: 'none' }}>
-            Découvrir l&apos;outil →
-          </span>
-        </a>
+
+          <h3 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.4 }}>
+            Détecteur de chemins trop longs pour OneDrive &amp; SharePoint
+          </h3>
+
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '1rem' }}>
+            <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, margin: 0 }}>
+              Auditez vos chemins de fichiers avant migration SharePoint et évitez les erreurs de synchronisation OneDrive.
+            </p>
+            <Link
+              href="https://onedrivepathchecker.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline"
+              style={{ whiteSpace: 'nowrap', flexShrink: 0, fontSize: '0.8rem', padding: '0.45rem 1rem' }}
+            >
+              Découvrir l&apos;outil →
+            </Link>
+          </div>
+        </div>
       </div>
 
     </section>
@@ -195,6 +192,9 @@ function OffreCard({
   description,
   bullets,
   featured = false,
+  href = '/offres',
+  cta,
+  external = false,
 }: {
   icon: ReactNode
   badge: string
@@ -202,6 +202,9 @@ function OffreCard({
   description: string
   bullets: string[]
   featured?: boolean
+  href?: string
+  cta?: string
+  external?: boolean
 }) {
   const ink = featured ? 'white' : 'var(--ink)'
   const muted = featured ? 'rgba(255,255,255,0.7)' : 'var(--muted)'
@@ -289,11 +292,12 @@ function OffreCard({
       </ul>
 
       <Link
-        href="/offres"
+        href={href}
         className={featured ? 'btn-primary' : 'btn-outline'}
         style={{ width: '100%', justifyContent: 'center' }}
+        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
-        {featured ? 'Parlons de votre projet' : 'En savoir plus'}
+        {cta ?? (featured ? 'Parlons de votre projet' : 'En savoir plus')}
       </Link>
     </div>
   )

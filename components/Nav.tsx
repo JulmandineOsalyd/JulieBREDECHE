@@ -65,7 +65,7 @@ export default function Nav() {
             </span>
           </div>
           <div style={{ lineHeight: 1.2 }}>
-            <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', fontFamily: 'Lora, serif' }}>
+            <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', fontFamily: 'var(--font-lora), Georgia, serif' }}>
               Julie BREDECHE
             </div>
             <div style={{ fontSize: '0.72rem', color: 'var(--muted)', fontWeight: 400 }} className="hidden md:block">

@@ -70,7 +70,7 @@ export default function PortfolioPage() {
           <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.75rem' }}>
             Projets réalisés
           </p>
-          <h1 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.25rem' }}>
+          <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.25rem' }}>
             Portfolio
           </h1>
           <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75 }}>
@@ -118,7 +118,7 @@ export default function PortfolioPage() {
                 ))}
               </div>
 
-              <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink)', lineHeight: 1.4, marginBottom: '0.35rem' }}>
+              <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink)', lineHeight: 1.4, marginBottom: '0.35rem' }}>
                 {p.title}
               </h2>
               <p style={{ fontSize: '0.78rem', color: 'var(--c3)', fontWeight: 600, marginBottom: '0.75rem' }}>

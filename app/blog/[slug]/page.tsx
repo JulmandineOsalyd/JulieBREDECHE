@@ -71,7 +71,7 @@ export default function ArticlePage({ params }: Props) {
               <span style={{ display: 'inline-block', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.75rem' }}>
                 {article.category}
               </span>
-              <h1 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: 'clamp(1.75rem, 3.5vw, 2.4rem)', color: 'var(--ink)', lineHeight: 1.25, marginBottom: '1rem' }}>
+              <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.75rem, 3.5vw, 2.4rem)', color: 'var(--ink)', lineHeight: 1.25, marginBottom: '1rem' }}>
                 {article.title}
               </h1>
               <p style={{ fontSize: '1.1rem', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '1.25rem' }}>
@@ -146,7 +146,7 @@ export default function ArticlePage({ params }: Props) {
 
             {/* Newsletter sidebar */}
             <div style={{ background: 'linear-gradient(160deg, rgba(77,255,214,0.08) 0%, rgba(24,176,232,0.08) 100%)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.25rem', marginBottom: '1.25rem' }}>
-              <p style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>
+              <p style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>
                 Ne manquez aucun article
               </p>
               <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginBottom: '0.75rem', lineHeight: 1.5 }}>
@@ -162,7 +162,7 @@ export default function ArticlePage({ params }: Props) {
         {/* Related articles */}
         {related.length > 0 && (
           <div style={{ maxWidth: '1200px', margin: '4rem auto 0' }}>
-            <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', marginBottom: '1.5rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', marginBottom: '1.5rem' }}>
               Articles similaires
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }} className="related-grid">

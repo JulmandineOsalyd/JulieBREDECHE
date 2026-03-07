@@ -70,7 +70,7 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
           <h1
             className="animate-fadeUp animate-fadeUp-2"
             style={{
-              fontFamily: 'Lora, serif',
+              fontFamily: 'var(--font-lora), Georgia, serif',
               fontWeight: 700,
               fontSize: 'clamp(1.5rem, 3.5vw, 2.8rem)',
               color: 'var(--ink)',
@@ -116,10 +116,10 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
             className="animate-fadeUp animate-fadeUp-4"
             style={{ display: 'flex', alignItems: 'center', gap: '1.55rem', flexWrap: 'wrap', marginBottom: '2.55rem',}}
           >
-            <Link href="/offres" className="btn-primary">
+            <Link href="/#offres" className="btn-primary">
               Voir mes offres →
             </Link>
-            <Link href="/blog" className="btn-ghost">
+            <Link href="/#ressources" className="btn-ghost">
               Lire mes articles ↓
             </Link>
           </div>
@@ -158,7 +158,7 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
               </div>
             </div>
             <div>
-              <div style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>
+              <div style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>
                 Julie BREDECHE
               </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--muted)', lineHeight: 1.45 }}>
@@ -184,7 +184,7 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
               >
                 <div
                   style={{
-                    fontFamily: 'Lora, serif',
+                    fontFamily: 'var(--font-lora), Georgia, serif',
                     fontWeight: 700,
                     fontSize: '1.3rem',
                     background: 'var(--grad)',

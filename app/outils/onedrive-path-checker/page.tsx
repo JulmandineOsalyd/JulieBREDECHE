@@ -47,7 +47,7 @@ export default function OneDrivePathCheckerPage() {
               Outil gratuit
             </span>
           </div>
-          <h1 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.25rem' }}>
+          <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.25rem' }}>
             OneDrive Path Checker
           </h1>
           <p style={{ fontSize: '1.1rem', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '640px', margin: '0 auto 2rem' }}>
@@ -70,7 +70,7 @@ export default function OneDrivePathCheckerPage() {
           {features.map(({ icon, title, text }) => (
             <div key={title} className="card" style={{ padding: '1.25rem', background: 'white', textAlign: 'center' }}>
               <span style={{ fontSize: '1.75rem', display: 'block', marginBottom: '0.6rem' }} aria-hidden="true">{icon}</span>
-              <h3 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', marginBottom: '0.4rem' }}>{title}</h3>
+              <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', marginBottom: '0.4rem' }}>{title}</h3>
               <p style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.6, margin: 0 }}>{text}</p>
             </div>
           ))}
@@ -80,7 +80,7 @@ export default function OneDrivePathCheckerPage() {
       {/* Tool embed placeholder */}
       <section id="outil" style={{ padding: '4rem 6%', background: '#ffffff' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
+          <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
             L&apos;outil
           </h2>
 
@@ -95,7 +95,7 @@ export default function OneDrivePathCheckerPage() {
             }}
           >
             <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }} aria-hidden="true">🚧</span>
-            <h3 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.25rem', color: 'white', marginBottom: '0.75rem' }}>
+            <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.25rem', color: 'white', marginBottom: '0.75rem' }}>
               Outil en cours d&apos;intégration
             </h3>
             <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: '500px', margin: '0 auto 1.5rem' }}>
@@ -129,7 +129,7 @@ export default function OneDrivePathCheckerPage() {
       {/* How it works */}
       <section style={{ padding: '4rem 6%', background: 'var(--off)' }}>
         <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
+          <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
             Comment utiliser l&apos;outil
           </h2>
           <ol style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -144,7 +144,7 @@ export default function OneDrivePathCheckerPage() {
                   {n}
                 </span>
                 <div>
-                  <h3 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1rem', color: 'var(--ink)', marginBottom: '0.3rem' }}>{title}</h3>
+                  <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1rem', color: 'var(--ink)', marginBottom: '0.3rem' }}>{title}</h3>
                   <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, margin: 0 }}>{text}</p>
                 </div>
               </li>
@@ -156,13 +156,13 @@ export default function OneDrivePathCheckerPage() {
       {/* FAQ */}
       <section style={{ padding: '4rem 6%', background: '#ffffff' }}>
         <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
+          <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
             Questions fréquentes
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             {faqItems.map(({ q, a }) => (
               <div key={q} className="card" style={{ padding: '1.5rem' }}>
-                <h3 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1rem', color: 'var(--ink)', marginBottom: '0.65rem' }}>{q}</h3>
+                <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1rem', color: 'var(--ink)', marginBottom: '0.65rem' }}>{q}</h3>
                 <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.7, margin: 0 }}>{a}</p>
               </div>
             ))}
@@ -172,7 +172,7 @@ export default function OneDrivePathCheckerPage() {
 
       {/* CTA */}
       <section style={{ padding: '4rem 6%', background: 'var(--off)', textAlign: 'center' }}>
-        <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.5rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>
+        <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.5rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>
           Vous planifiez une migration OneDrive ?
         </h2>
         <p style={{ color: 'var(--muted)', fontSize: '1rem', marginBottom: '1.5rem' }}>

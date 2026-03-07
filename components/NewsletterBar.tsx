@@ -38,9 +38,13 @@ export default function NewsletterBar() {
       >
         {/* Left label */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <span style={{ fontSize: '1.25rem' }} aria-hidden="true">
-            ✉️
-          </span>
+          <div style={{ width: 44, height: 44, borderRadius: '12px', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }} aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={1.8} aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="M2 8l8.5 5.5a2 2 0 002 0L21 8" />
+              <path d="M12 12v4M10 16h4" />
+            </svg>
+          </div>
           <div>
             <p style={{ fontWeight: 700, fontSize: '1rem', color: 'white', margin: 0 }}>
               Recevoir mes prochains articles

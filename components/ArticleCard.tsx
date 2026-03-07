@@ -35,7 +35,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
 
         <h3
           style={{
-            fontFamily: 'Lora, serif',
+            fontFamily: 'var(--font-lora), Georgia, serif',
             fontWeight: 700,
             fontSize: '1.05rem',
             color: 'var(--ink)',

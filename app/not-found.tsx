@@ -6,7 +6,7 @@ export default function NotFound() {
       <div style={{ maxWidth: '540px', margin: '0 auto' }}>
         <div
           style={{
-            fontFamily: 'Lora, serif',
+            fontFamily: 'var(--font-lora), Georgia, serif',
             fontWeight: 800,
             fontSize: '6rem',
             lineHeight: 1,
@@ -19,7 +19,7 @@ export default function NotFound() {
         >
           404
         </div>
-        <h1 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '1rem' }}>
+        <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '1rem' }}>
           Page introuvable
         </h1>
         <p style={{ color: 'var(--muted)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem' }}>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Qui suis-je ? — Julie Bredeche',
@@ -13,12 +14,35 @@ export const metadata: Metadata = {
   },
 }
 
-
-const valeurs = [
-  { icon: '🎯', title: 'Pragmatisme', text: 'Je livre des solutions qui fonctionnent dans votre contexte réel, pas des prototypes qui s\'arrêtent à la démo.' },
-  { icon: '📚', title: 'Transmission', text: 'Chaque projet inclut de la documentation et du transfert de compétences pour que vos équipes restent autonomes.' },
-  { icon: '🔍', title: 'Rigueur', text: 'Analyse des besoins approfondie, architecture pensée pour durer, tests exhaustifs avant toute mise en production.' },
-  { icon: '🤝', title: 'Transparence', text: 'Avancement hebdomadaire, estimation honnête des délais, et alertes proactives dès qu\'un risque est identifié.' },
+const approche = [
+  {
+    icon: '💡',
+    title: 'Mon approche',
+    items: [
+      'Compréhension des enjeux métiers et cadrage des besoins',
+      'Conception de solutions sur-mesure, évolutives et orientées usage',
+      'Intégration fluide dans l\'écosystème IT existant',
+      'Accompagnement à l\'adoption des nouveaux usages',
+    ],
+  },
+  {
+    icon: '🔍',
+    title: 'Ma valeur ajoutée',
+    items: [
+      'Un discours accessible, centré sur vos problématiques concrètes',
+      'Une capacité à faire le lien entre les utilisateurs et les équipes IT',
+      'Une forte exigence sur la qualité, la fiabilité et la maintenabilité des solutions livrées',
+    ],
+  },
+  {
+    icon: '🏢',
+    title: 'Périmètre d\'intervention',
+    items: [
+      'Directions métiers (RH, Qualité, Communication, etc.)',
+      'Directions des systèmes d\'information (DSI)',
+      'Mise en œuvre de solutions respectueuses de la gouvernance et des règles déjà en place',
+    ],
+  },
 ]
 
 export default function QuiSuisJePage() {
@@ -31,42 +55,58 @@ export default function QuiSuisJePage() {
             <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.75rem' }}>
               À propos
             </p>
-            <h1 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.5rem' }}>
+            <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.5rem' }}>
               Consultante Microsoft 365{' '}
               <em style={{ fontStyle: 'italic', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 indépendante
               </em>
             </h1>
             <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
-            Spécialiste SharePoint et Power Platform depuis plus de 10 ans, j’accompagne les directions métiers dans la <b>modernisation de leurs outils collaboratifs</b>, l’<b>automatisation de processus</b> et la <b>structuration efficace des contenus,</b> en m’appuyant sur les solutions Microsoft 365.            </p>
+              Spécialiste SharePoint et Power Platform depuis plus de 10 ans, j&apos;accompagne les directions métiers dans la <b>modernisation de leurs outils collaboratifs</b>, l&apos;<b>automatisation de processus</b> et la <b>structuration efficace des contenus,</b> en m&apos;appuyant sur les solutions Microsoft 365.
+            </p>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <Link href="/portfolio" className="btn-primary">Voir mon portfolio</Link>
               <Link href="https://linkedin.com/in/juliebredeche" target="_blank" rel="noopener noreferrer" className="btn-outline">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
-              Voir mon profil LinkedIn</Link>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+                Voir mon profil LinkedIn
+              </Link>
             </div>
           </div>
 
           {/* Avatar card */}
           <div style={{ background: 'linear-gradient(160deg, #f0f8ff 0%, #e6f4fd 100%)', borderRadius: '20px', border: '1px solid var(--border)', padding: '2rem', textAlign: 'center' }}>
-            <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'var(--grad)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', boxShadow: '0 8px 24px rgba(15,95,173,0.25)' }}>
-              <span style={{ color: 'white', fontWeight: 800, fontSize: '2rem' }}>JB</span>
+            <div style={{ width: 100, height: 100, borderRadius: '50%', overflow: 'hidden', margin: '0 auto 1.25rem', boxShadow: '0 8px 24px rgba(15,95,173,0.25)' }}>
+              <Image
+                src="/images/JBR.png"
+                alt="Julie Bredeche"
+                width={100}
+                height={100}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
             </div>
-            <div style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.2rem', color: 'var(--ink)', marginBottom: '0.25rem' }}>Julie Bredeche</div>
-            <div style={{ color: 'var(--muted)', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Consultante Microsoft 365</div>
-            <div style={{ color: 'var(--c3)', fontWeight: 600, fontSize: '0.8rem', marginBottom: '1.25rem' }}>Osalyd Consulting</div>
-
-            <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.25rem', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.5rem', textAlign: 'center' }}>
-              {[{ v: '5+', l: 'ans' }, { v: '30+', l: 'projets' }, { v: '100%', l: 'satisfaits' }].map(({ v, l }) => (
-                <div key={l}>
-                  <div style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.4rem', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{v}</div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>{l}</div>
-                </div>
-              ))}
+            <div style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.2rem', color: 'var(--ink)', marginBottom: '1.5rem' }}>
+              Julie Bredeche
             </div>
 
-            <a href="https://linkedin.com/in/juliebredeche" target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ marginTop: '1.25rem', width: '100%', justifyContent: 'center' }} aria-label="Profil LinkedIn Julie Bredeche">
-              Voir sur LinkedIn
+            {/* Certification */}
+            <a
+              href="https://learn.microsoft.com/en-us/users/juliebredeche-7611/credentials/c3637ace7f120052"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'block', textDecoration: 'none' }}
+            >
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
+                <Image
+                  src="/images/MSCertif.png"
+                  alt="Microsoft Certified: Power Platform Solution Architect Expert"
+                  width={120}
+                  height={120}
+                  style={{ objectFit: 'contain' }}
+                />
+                <span style={{ fontSize: '0.78rem', color: 'var(--c3)', fontWeight: 600, lineHeight: 1.4, textAlign: 'center' }}>
+                  Power Platform Solution Architect Expert
+                </span>
+              </div>
             </a>
           </div>
         </div>
@@ -75,7 +115,7 @@ export default function QuiSuisJePage() {
       {/* Biographie */}
       <section style={{ padding: '3rem 6%', background: 'var(--off)' }}>
         <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '1.5rem' }}>
+          <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '1.5rem' }}>
             Mon parcours
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', color: 'var(--muted)', lineHeight: 1.75, fontSize: '1rem' }}>
@@ -92,29 +132,34 @@ export default function QuiSuisJePage() {
         </div>
       </section>
 
-      {/* Valeurs */}
+      {/* Mon Approche */}
       <section style={{ padding: '4rem 6%', background: '#ffffff' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
-            Mes valeurs
+          <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
+            Mon Approche
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.25rem' }} className="valeurs-grid">
-            {valeurs.map(({ icon, title, text }) => (
-              <div key={title} className="card" style={{ padding: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }} className="valeurs-grid">
+            {approche.map(({ icon, title, items }) => (
+              <div key={title} className="card" style={{ padding: '1.75rem' }}>
                 <span style={{ fontSize: '2rem', display: 'block', marginBottom: '0.75rem' }} aria-hidden="true">{icon}</span>
-                <h3 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>{title}</h3>
-                <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, margin: 0 }}>{text}</p>
+                <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>{title}</h3>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {items.map((item) => (
+                    <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.55 }}>
+                      <span style={{ color: 'var(--c2)', fontWeight: 700, flexShrink: 0 }}>·</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-
-
       {/* CTA */}
       <section style={{ padding: '4rem 6%', background: '#ffffff', textAlign: 'center' }}>
-        <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '1rem' }}>
+        <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '1rem' }}>
           Vous avez un projet Microsoft 365 ?
         </h2>
         <p style={{ color: 'var(--muted)', fontSize: '1rem', marginBottom: '1.75rem' }}>
@@ -122,7 +167,6 @@ export default function QuiSuisJePage() {
         </p>
         <Link href="/offres" className="btn-primary">Voir mes offres →</Link>
       </section>
-
     </>
   )
 }

@@ -31,7 +31,7 @@ export default function OffresPage() {
           <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.75rem' }}>
             Ce que je propose
           </p>
-          <h1 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.25rem' }}>
+          <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.25rem' }}>
             Des solutions Microsoft 365{' '}
             <em style={{ fontStyle: 'italic', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               qui livrent
@@ -51,7 +51,7 @@ export default function OffresPage() {
               <span style={{ display: 'inline-block', background: 'var(--grad)', color: 'white', fontSize: '0.72rem', fontWeight: 700, padding: '0.25rem 0.75rem', borderRadius: '99px', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '1rem' }}>
                 Offre principale
               </span>
-              <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.6rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '1rem' }}>
+              <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.6rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '1rem' }}>
                 Applications PowerApps, Power Automate & Agents Copilot
               </h2>
               <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
@@ -96,7 +96,7 @@ export default function OffresPage() {
             <span style={{ display: 'inline-block', background: 'var(--off)', border: '1px solid var(--border)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', color: 'var(--c3)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '1rem' }}>
               Coaching
             </span>
-            <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '0.75rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '0.75rem' }}>
               Coaching Power Automate
             </h2>
             <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '1.25rem' }}>
@@ -119,7 +119,7 @@ export default function OffresPage() {
             <span style={{ display: 'inline-block', background: 'var(--off)', border: '1px solid var(--border)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', color: 'var(--c3)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '1rem' }}>
               Audit & Conseil
             </span>
-            <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '0.75rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '0.75rem' }}>
               Audit SharePoint & Power Platform
             </h2>
             <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '1.25rem' }}>
@@ -146,15 +146,15 @@ export default function OffresPage() {
             <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.5rem' }}>
               Comment je travaille
             </p>
-            <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: 'clamp(1.6rem, 3vw, 2rem)', color: 'var(--ink)', margin: 0 }}>
+            <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.6rem, 3vw, 2rem)', color: 'var(--ink)', margin: 0 }}>
               Ma méthode en 6 étapes
             </h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }} className="method-grid">
             {methodSteps.map(({ n, title, text }) => (
               <div key={n} className="card" style={{ padding: '1.5rem', background: 'white', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: '1rem', right: '1rem', fontFamily: 'Lora, serif', fontWeight: 800, fontSize: '2.5rem', color: 'rgba(24,176,232,0.1)', lineHeight: 1 }}>{n}</div>
-                <div style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink)', marginBottom: '0.6rem' }}>{title}</div>
+                <div style={{ position: 'absolute', top: '1rem', right: '1rem', fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 800, fontSize: '2.5rem', color: 'rgba(24,176,232,0.1)', lineHeight: 1 }}>{n}</div>
+                <div style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink)', marginBottom: '0.6rem' }}>{title}</div>
                 <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, margin: 0 }}>{text}</p>
               </div>
             ))}
@@ -165,7 +165,7 @@ export default function OffresPage() {
       {/* CTA contact */}
       <section id="contact" style={{ padding: '5rem 6%', background: '#ffffff', textAlign: 'center' }}>
         <div style={{ maxWidth: '560px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'Lora, serif', fontWeight: 700, fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: 'var(--ink)', marginBottom: '1rem' }}>
+          <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: 'var(--ink)', marginBottom: '1rem' }}>
             Prêt(e) à démarrer ?
           </h2>
           <p style={{ color: 'var(--muted)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem' }}>

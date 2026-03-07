@@ -14,7 +14,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
   if (!featured) return null
 
   return (
-    <section className="section" style={{ background: '#ffffff' }}>
+    <section id="ressources" className="section" style={{ background: '#ffffff' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Section header */}
         <div
@@ -42,7 +42,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
             </p>
             <h2
               style={{
-                fontFamily: 'Lora, serif',
+                fontFamily: 'var(--font-lora), Georgia, serif',
                 fontWeight: 700,
                 fontSize: 'clamp(1.6rem, 3vw, 2.2rem)',
                 color: 'var(--ink)',
@@ -120,7 +120,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
               </span>
               <h3
                 style={{
-                  fontFamily: 'Lora, serif',
+                  fontFamily: 'var(--font-lora), Georgia, serif',
                   fontWeight: 700,
                   fontSize: '1.4rem',
                   color: 'white',
@@ -206,7 +206,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
                 </span>
                 <h3
                   style={{
-                    fontFamily: 'Lora, serif',
+                    fontFamily: 'var(--font-lora), Georgia, serif',
                     fontWeight: 700,
                     fontSize: '0.975rem',
                     color: 'var(--ink)',
