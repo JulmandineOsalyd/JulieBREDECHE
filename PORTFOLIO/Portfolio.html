@@ -1,1816 +1,1018 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Power Platform Julie BREDECHE</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            background: #0a1628;
-            -webkit-user-select: none;
-            /* Chrome / Safari */
-            -moz-user-select: none;
-            /* Firefox */
-            -ms-user-select: none;
-            /* IE / Edge */
-            user-select: none;
-            /* Standard */
-        }
-
-        .saut-ligne {
-            margin-top: 0.8em;
-        }
-
-        .slider-container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slide {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
-            left: 100%;
-            transition: left 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            overflow-y: auto;
-        }
-
-        .slide.active {
-            left: 0;
-        }
-
-        .slide.prev {
-            left: -100%;
-        }
-
-
-        /* Dégradé sobre pour la slide d'intro */
-        .slide:nth-child(1),
-        .slide:nth-child(2) {
-            background: linear-gradient(135deg, #152a68 0%, #26D0CE 100%);
-            /* Cool Blue Intro */
-        }
-
-
-        /* Masquer les éléments de navigation sur la première slide UNIQUEMENT */
-        body.first-slide .sommaire-icon,
-        body.first-slide .page-indicator {
-            display: none;
-        }
-
-        /* Masquer prevBtn SEULEMENT sur slide 0, pas sur slide 1 */
-        body.first-slide .nav-btn#prevBtn {
-            display: none;
-        }
-
-        .slide-content {
-            flex: 1;
-            width: 100%;
-            padding: 20px 40px 40px 40px;
-            max-width: 1800px;
-            margin: 0 auto;
-            animation: slideIn 0.8s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Switch EN-FR */
-        .language-switch {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(20px);
-            padding: 8px 12px;
-            border-radius: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            z-index: 50;
-        }
-
-        .language-switch button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 4px 10px;
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-
-        .language-switch button.active {
-            background: rgba(255, 255, 255, 0.25);
-            color: white;
-        }
-
-        .language-switch button:hover:not(.active) {
-            opacity: 0.7;
-        }
-
-
-        /* Header titre pleine largeur */
-        .project-header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(25px);
-            border-radius: 20px 20px 0 0;
-            padding: 25px 40px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-            /* box-shadow: 0 8px 30px rgba(0,0,0,0.4);*/
-        }
-
-        .project-title {
-            font-size: 38px;
-            color: white;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
-            line-height: 1.2;
-            font-weight: 700;
-        }
-
-        .project-title .emoji {
-            font-size: 34px;
-            margin-right: 12px;
-            vertical-align: middle;
-        }
-
-        .meta-bar {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .meta-section {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .meta-label {
-            font-size: 20px;
-            color: white;
-            font-weight: 600;
-        }
-
-
-        .tech-badge {
-            background: rgba(100, 181, 246, 0.35);
-            backdrop-filter: blur(10px);
-            padding: 6px 14px;
-            border-radius: 14px;
-            font-size: 12px;
-            font-weight: 600;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            /* Pour espacer logo et texte */
-        }
-
-        .tech-badge img {
-            width: 16px;
-            height: 16px;
-            object-fit: contain;
-        }
-
-
-        .device-badge {
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.3));
-            padding: 6px 12px;
-            border-radius: 14px;
-            font-size: 12px;
-            font-weight: 600;
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-
-        }
-
-        /* Corps 2 colonnes (1:3) */
-        .project-body {
-            display: grid;
-            grid-template-columns: 1.4fr 3fr;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(25px);
-            border-radius: 0 0 20px 20px;
-            min-height: 75%;
-            /* box-shadow: 0 10px 40px rgba(0,0,0,0.4);*/
-            margin-top: 0;
-            overflow: hidden;
-        }
-
-        /* Colonne gauche - SANS fond bleu foncé */
-        .left-column {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            border-right: 2px solid rgba(255, 255, 255, 0.25);
-            min-height: 400px;
-        }
-
-        .right-column {
-            padding: 30px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            color: white;
-            min-height: 400px;
-        }
-
-        .info-section {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 18px;
-            border-radius: 12px;
-            border-left: 4px solid rgba(255, 255, 255, 0.6);
-        }
-
-        .info-section-pb {
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
-            padding: 18px;
-            border-radius: 12px;
-            border-left: 4px solid rgba(255, 255, 255, 0.6);
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: white;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
-        }
-
-        .section-title .emoji {
-            font-size: 18px;
-        }
-
-        .section-content {
-            font-size: 14px;
-            line-height: 1.55;
-            color: rgba(255, 255, 255, 0.95);
-            white-space: pre-line;
-        }
-
-        .section-content ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .section-content ul li {
-            padding: 4px 0 4px 18px;
-            position: relative;
-        }
-
-        .section-content ul li::before {
-            content: "•";
-            position: absolute;
-            left: 3px;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .full-width-section {
-            grid-column: 1 / -1;
-        }
-
-        /* Navigation compacte */
-        .navigation {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(20px);
-            padding: 12px 25px;
-            border-radius: 25px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            z-index: 100;
-        }
-
-        .nav-btn {
-            background: rgba(255, 255, 255, 0.25);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .nav-btn:hover:not(:disabled) {
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(1.05);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.2;
-            cursor: not-allowed;
-        }
-
-        .page-indicator {
-            color: white;
-            font-weight: 600;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        /* Icône sommaire */
-        .sommaire-icon {
-            background: rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 24px;
-            display: flex;
-            justify-content: center;
-            transition: all 0.3s;
-            margin-right: 15px;
-        }
-
-        .sommaire-icon:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(1.1);
-        }
-
-
-        /* Page de couverture */
-        .cover-slide {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            width: 100%;
-            height: 100%;
-            padding: 0 80px;
-            color: white;
-        }
-
-        .cover-slide h1 {
-            font-size: 72px;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .cover-slide h2 {
-            font-size: 42px;
-            margin-bottom: 25px;
-            font-weight: 400;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-            opacity: 0.95;
-        }
-
-        .cover-slide p {
-            font-size: 26px;
-            opacity: 0.95;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .cover-photo {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-top: 10px;
-            margin-bottom: 25px;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-
-
-        /* Slide sommaire */
-        .sommaire-slide {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 80px;
-            color: white;
-        }
-
-        .sommaire-slide h1 {
-            font-size: 48px;
-            margin-top: 20px;
-            margin-bottom: 40px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .sommaire-content {
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            max-height: 70vh;
-            overflow-y: auto;
-        }
-
-        .sommaire-item {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border-left: 4px solid rgba(255, 255, 255, 0.6);
-            border-radius: 12px;
-            padding: 18px 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-
-        }
-
-        .sommaire-item:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .sommaire-number {
-            font-size: 28px;
-            font-weight: bold;
-            color: rgba(255, 255, 255, 0.6);
-            min-width: 40px;
-        }
-
-        .sommaire-info {
-            flex: 1;
-        }
-
-        .sommaire-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            line-height: 1.3;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
-        }
-
-        .sommaire-industry {
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        /* Scrollbar pour le sommaire si plus de 10 items */
-        .sommaire-content::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sommaire-content::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .sommaire-content::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 6px;
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .sommaire-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sommaire-slide h1 {
-                font-size: 36px;
-            }
-
-            .sommaire-item {
-                padding: 15px;
-            }
-
-            .sommaire-title {
-                font-size: 15px;
-            }
-
-            .sommaire-number {
-                font-size: 24px;
-            }
-
-            .page-indicator {
-                display: none !important;
-            }
-
-            .language-switch {
-                flex-direction: column;
-                gap: 6px;
-                padding: 10px 10px;
-                border-radius: 16px;
-            }
-
-            .sommaire-content {
-                width: 120%;
-            }
-
-        }
-
-
-        /* Scrollbar */
-        .slide::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .slide::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .slide::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 6px;
-        }
-
-        /* Responsive */
-        @media (max-width: 1400px) {
-            .project-body {
-                grid-template-columns: 1fr;
-            }
-
-            .left-column {
-                border-right: none;
-                border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-            }
-
-            .right-column {
-                grid-template-columns: 1fr;
-                padding: 25px;
-            }
-
-            .slide-content {
-                padding: 20px 40px 40px 40px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .meta-bar {
-                flex-direction: column;
-                gap: 15px;
-                align-items: flex-start;
-            }
-
-            .project-title {
-                font-size: 32px;
-            }
-
-            .cover-slide h1 {
-                font-size: 48px;
-            }
-
-            .cover-slide h2 {
-                font-size: 32px;
-            }
-
-            .cover-photo {
-                width: 120px;
-                height: 120px;
-            }
-        }
-
-
-        /* Bouton captures d'écran */
-        .screenshots-button {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-            padding: 18px;
-            border-radius: 12px;
-            border: 2px dashed rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .screenshots-button:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15));
-            border-color: rgba(255, 255, 255, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .screenshots-button .emoji {
-            font-size: 24px;
-            margin-right: 8px;
-        }
-
-        .screenshots-button-text {
-            color: white;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        /* Lightbox visionneuse */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.92);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            position: relative;
-            /* Important */
-            max-width: 90%;
-            max-height: 85vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox-image {
-            max-width: 100%;
-            max-height: 85vh;
-            object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 2px solid white;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .lightbox-close:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 2px solid white;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .lightbox-nav:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .lightbox-prev {
-            left: 20px;
-        }
-
-        .lightbox-next {
-            right: 20px;
-        }
-
-        .lightbox-counter {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgb(121 116 116));
-            backdrop-filter: blur(10px);
-            padding: 12px 24px;
-            border-radius: 20px;
-            color: white;
-            font-weight: 600;
-            text-align: center;
-            min-width: 200px;
-            font-size: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            line-height: 1.4;
-        }
-
-        .copyright-footer {
-            position: fixed;
-            bottom: 14px;
-            right: 18px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.8);
-            padding: 6px 10px;
-            border-radius: 8px;
-
-            z-index: 10000;
-            /* au-dessus de la watermark */
-        }
-
-        .copyright-linkedin {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 26px;
-            height: 26px;
-            border-radius: 6px;
-            text-decoration: none;
-        }
-
-        .linkedin-icon {
-            width: 18px;
-            height: 18px;
-            display: block;
-            fill: currentColor;
-            /* prend la couleur du texte */
-        }
-
-        .copyright-linkedin:hover {
-            opacity: 0.8;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Power Platform · Julie Bredeche</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    /* ─── Tokens ─────────────────────────────────────────────────── */
+    :root {
+      --c1:#4dffd6; --c2:#18b0e8; --c3:#0f5fad;
+      --grad:linear-gradient(135deg,#4dffd6 0%,#18b0e8 45%,#0f5fad 100%);
+      --dark-grad:linear-gradient(135deg,#051525 0%,#082240 50%,#0a3060 100%);
+      --soft-grad:linear-gradient(135deg,rgba(77,255,214,.1) 0%,rgba(24,176,232,.1) 45%,rgba(15,95,173,.1) 100%);
+      --ink:#071828; --muted:#4a6080; --border:#cce4f5; --off:#f0f8ff;
+      --serif:'Lora',Georgia,serif;
+      --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+      --nav-h:60px; --bar-h:52px;
+    }
+
+    /* ─── Base ───────────────────────────────────────────────────── */
+    html { font-size:16px; }
+    body {
+      font-family:var(--sans);
+      display:flex; flex-direction:column; height:100vh; overflow:hidden;
+      background:#fff; color:var(--ink);
+      -webkit-font-smoothing:antialiased;
+      user-select:none; -webkit-user-select:none;
+    }
+
+    /* ─── Gradient text helper ───────────────────────────────────── */
+    .gt {
+      background:var(--grad);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────────────── */
+    .nav {
+      height:var(--nav-h); flex-shrink:0;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 4%;
+      background:rgba(255,255,255,.95);
+      backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--border);
+      box-shadow:0 1px 12px rgba(0,90,158,.06);
+      position:relative; z-index:50;
+      animation:slideDown .4s ease both;
+    }
+    .nav-brand { display:flex; align-items:center; gap:.6rem; text-decoration:none; }
+    .nav-avatar {
+      width:34px; height:34px; border-radius:50%;
+      background:var(--grad);
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0;
+    }
+    .nav-avatar span { color:#fff; font-family:var(--serif); font-weight:700; font-size:.85rem; }
+    .nav-name { font-weight:700; font-size:.9rem; color:var(--ink); display:block; line-height:1.2; }
+    .nav-sub  { font-size:.6rem; color:var(--muted); display:block; }
+    .nav-links { display:flex; gap:1.75rem; align-items:center; }
+    .nav-link {
+      font-size:.8rem; font-weight:500; color:var(--muted);
+      text-decoration:none; position:relative; padding-bottom:2px;
+      transition:color .2s;
+    }
+    .nav-link::after {
+      content:''; position:absolute; bottom:0; left:0; width:100%; height:2px;
+      background:var(--grad); transform:scaleX(0); transform-origin:left;
+      transition:transform .25s ease;
+    }
+    .nav-link:hover { color:var(--c2); }
+    .nav-link:hover::after, .nav-link.active::after { transform:scaleX(1); }
+    .nav-link.active { color:var(--c3); font-weight:600; }
+    .nav-cta {
+      background:var(--grad); color:#fff;
+      font-size:.78rem; font-weight:700;
+      padding:8px 18px; border-radius:8px; border:none; cursor:pointer;
+      box-shadow:0 4px 14px rgba(0,90,158,.25);
+      text-decoration:none;
+      transition:opacity .2s, transform .2s;
+    }
+    .nav-cta:hover { opacity:.9; transform:translateY(-1px); }
+
+    /* ─── Slider wrapper ─────────────────────────────────────────── */
+    .slider-wrap { flex:1; overflow:hidden; position:relative; }
+    .slider-track {
+      display:flex; height:100%;
+      transition:transform .55s cubic-bezier(.65,0,.35,1);
+      will-change:transform;
+    }
+    .slide {
+      min-width:100%; height:100%;
+      overflow-y:auto; overflow-x:hidden;
+      flex-shrink:0;
+    }
+    .slide::-webkit-scrollbar { width:4px; }
+    .slide::-webkit-scrollbar-track { background:transparent; }
+    .slide::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+
+    /* ─── SLIDE 0 — Cover ────────────────────────────────────────── */
+    .slide-cover {
+      background:var(--dark-grad);
+      position:relative; overflow:hidden;
+    }
+    .slide-cover::before {
+      content:''; position:absolute; pointer-events:none;
+      width:420px; height:420px; border-radius:50%;
+      top:-100px; right:-80px;
+      background:radial-gradient(circle,rgba(77,255,214,.14) 0%,transparent 70%);
+    }
+    .slide-cover::after {
+      content:''; position:absolute; pointer-events:none;
+      width:300px; height:300px; border-radius:50%;
+      bottom:-80px; left:8%;
+      background:radial-gradient(circle,rgba(24,176,232,.1) 0%,transparent 70%);
+    }
+    .cover-inner {
+      position:relative; z-index:1;
+      max-width:960px; margin:0 auto;
+      padding:3.5rem 6% 3rem;
+    }
+    .cover-inner > * { animation:fadeUp .5s ease both; }
+    .cover-inner > *:nth-child(1) { animation-delay:0s; }
+    .cover-inner > *:nth-child(2) { animation-delay:.08s; }
+    .cover-inner > *:nth-child(3) { animation-delay:.15s; }
+    .cover-inner > *:nth-child(4) { animation-delay:.22s; }
+    .cover-inner > *:nth-child(5) { animation-delay:.30s; }
+    .cover-inner > *:nth-child(6) { animation-delay:.38s; }
+
+    .cover-eyebrow {
+      display:flex; align-items:center; gap:.5rem;
+      font-size:.68rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:.12em; color:var(--c1); margin-bottom:1.1rem;
+    }
+    .cover-eyebrow::before {
+      content:''; display:inline-block;
+      width:18px; height:2px; background:var(--c1); flex-shrink:0;
+    }
+    .cover-h1 {
+      font-family:var(--serif); font-weight:700;
+      font-size:clamp(2rem,4vw,3.2rem);
+      line-height:1.1; letter-spacing:-.03em;
+      color:#fff; margin-bottom:1rem;
+    }
+    .cover-h1 em { font-style:italic; }
+    .cover-sub {
+      font-size:.95rem; color:rgba(255,255,255,.5);
+      max-width:520px; line-height:1.65; margin-bottom:2rem;
+    }
+    .cover-stats {
+      display:flex; gap:2.5rem; margin-bottom:2.5rem; flex-wrap:wrap;
+    }
+    .cover-stat-val {
+      font-family:var(--serif); font-size:1.7rem; line-height:1;
+      display:block; margin-bottom:3px;
+    }
+    .cover-stat-label {
+      font-size:.67rem; color:rgba(255,255,255,.38); display:block;
+    }
+    .cover-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:.85rem;
+      margin-bottom:2rem;
+    }
+    .cover-card {
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:14px; padding:1.25rem 1.4rem;
+      display:flex; gap:.9rem; cursor:pointer;
+      transition:background .2s, border-color .2s, transform .2s;
+    }
+    .cover-card:hover {
+      background:rgba(255,255,255,.1);
+      border-color:rgba(77,255,214,.3);
+      transform:translateY(-2px);
+    }
+    .cover-card-num {
+      font-family:var(--serif); font-size:1.6rem; line-height:1; flex-shrink:0;
+    }
+    .cover-card-title {
+      font-size:.82rem; font-weight:600; color:#fff;
+      line-height:1.35; margin-bottom:.3rem;
+    }
+    .cover-card-sector { font-size:.65rem; color:rgba(255,255,255,.4); margin-bottom:.5rem; }
+    .cover-pills { display:flex; flex-wrap:wrap; gap:.3rem; }
+    .cover-pill {
+      font-size:.58rem; font-weight:700; letter-spacing:.04em;
+      padding:2px 7px; border-radius:100px;
+      background:rgba(77,255,214,.12); border:1px solid rgba(77,255,214,.2);
+      color:var(--c1);
+    }
+    .cover-cta {
+      display:inline-flex; align-items:center; gap:.4rem;
+      background:var(--grad); color:#fff;
+      font-size:.85rem; font-weight:700;
+      padding:12px 26px; border-radius:10px; border:none; cursor:pointer;
+      box-shadow:0 6px 20px rgba(0,90,158,.3);
+      transition:opacity .2s, transform .2s;
+    }
+    .cover-cta:hover { opacity:.9; transform:translateY(-2px); }
+
+    /* ─── SLIDE PROJECT ──────────────────────────────────────────── */
+    .slide-project { display:flex; flex-direction:column; }
+
+    /* Header */
+    .proj-header {
+      background:var(--dark-grad);
+      padding:1.75rem 5%; position:relative; overflow:hidden; flex-shrink:0;
+    }
+    .proj-header::after {
+      content:''; position:absolute; pointer-events:none;
+      width:200px; height:200px; border-radius:50%;
+      top:-60px; right:-60px;
+      background:radial-gradient(circle,rgba(24,176,232,.2) 0%,transparent 70%);
+    }
+    .proj-header-inner {
+      position:relative; z-index:1;
+      display:flex; justify-content:space-between;
+      align-items:flex-start; gap:2rem;
+    }
+    .proj-number {
+      font-size:.65rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:.12em; margin-bottom:.55rem;
+    }
+    .proj-title {
+      font-family:var(--serif); font-weight:700;
+      font-size:clamp(1.2rem,2.2vw,1.75rem);
+      line-height:1.15; letter-spacing:-.02em;
+      color:#fff; margin-bottom:.85rem;
+    }
+    .meta-bar { display:flex; flex-wrap:wrap; gap:.45rem; }
+    .badge-sector {
+      font-size:.67rem; font-weight:600; padding:3px 10px; border-radius:100px;
+      background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15);
+      color:rgba(255,255,255,.7);
+    }
+    .badge-device {
+      font-size:.65rem; font-weight:600; padding:3px 9px; border-radius:100px;
+      border:1px solid rgba(255,255,255,.15); color:rgba(255,255,255,.5);
+    }
+    .badge-tech {
+      font-size:.65rem; font-weight:700; padding:3px 9px; border-radius:100px;
+      background:rgba(77,255,214,.12); border:1px solid rgba(77,255,214,.25);
+      color:var(--c1);
+      display:inline-flex; align-items:center; gap:4px;
+    }
+    .badge-tech img { width:13px; height:13px; object-fit:contain; }
+    .visuals-btn {
+      background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2);
+      color:#fff; font-size:.75rem; font-weight:700;
+      padding:9px 18px; border-radius:9px; cursor:pointer;
+      white-space:nowrap; flex-shrink:0;
+      transition:background .2s;
+    }
+    .visuals-btn:hover { background:rgba(255,255,255,.18); }
+
+    /* Body */
+    .proj-body {
+      flex:1; background:#fff;
+      display:grid; grid-template-columns:1fr 1.65fr; gap:1.25rem;
+      padding:1.5rem 5%;
+    }
+    .col-left, .col-right {
+      display:flex; flex-direction:column; gap:1rem;
+    }
+    .col-right-sub { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+    /* Cards */
+    .card {
+      background:#fff;
+      border:1px solid var(--border); border-radius:12px;
+      padding:1rem 1.2rem;
+      box-shadow:0 1px 6px rgba(0,90,158,.04);
+    }
+    .card.accent  { border-left:3px solid var(--c2); }
+    .card.tinted  { background:var(--soft-grad); border-color:rgba(24,176,232,.2); }
+
+    .ic-title {
+      font-size:.67rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:.08em; color:var(--muted);
+      margin-bottom:.6rem; display:flex; align-items:center; gap:.35rem;
+    }
+    .ic-title.grad { color:transparent; background:var(--grad);
+      -webkit-background-clip:text; background-clip:text; }
+
+    .card p { font-size:.8rem; color:var(--muted); line-height:1.6; margin-bottom:.4rem; }
+    .card p:last-child { margin-bottom:0; }
+
+    /* Lists */
+    .il { list-style:none; padding:0; margin:0; }
+    .il li {
+      font-size:.78rem; color:var(--muted);
+      padding:.28rem 0; border-bottom:1px solid rgba(204,228,245,.4);
+      display:flex; align-items:flex-start; gap:.45rem; line-height:1.5;
+    }
+    .il li:last-child { border-bottom:none; }
+    .il li::before {
+      content:'→'; font-size:.65rem; font-weight:700; flex-shrink:0;
+      margin-top:.1rem;
+      background:var(--grad);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .il.check li::before { content:'✓'; }
+
+    /* ROI grid */
+    .roi-grid { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; margin-top:.5rem; }
+    .roi-card {
+      background:rgba(255,255,255,.7); border:1px solid rgba(24,176,232,.2);
+      border-radius:10px; padding:.7rem .85rem; text-align:center;
+    }
+    .roi-val {
+      font-family:var(--serif); font-size:1.3rem; line-height:1; display:block;
+      margin-bottom:.25rem;
+    }
+    .roi-label { font-size:.62rem; color:var(--muted); line-height:1.3; display:block; }
+
+    /* ─── BOTTOM BAR ─────────────────────────────────────────────── */
+    .bottom-bar {
+      height:var(--bar-h); flex-shrink:0;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 4%; gap:1.5rem;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+      border-top:1px solid var(--border);
+    }
+    /* Lang switch */
+    .lang-switch { display:flex; gap:.3rem; }
+    .lang-btn {
+      font-size:.72rem; font-weight:700; padding:4px 10px; border-radius:6px;
+      cursor:pointer; transition:all .2s;
+    }
+    .lang-btn.off {
+      border:1.5px solid var(--border); background:#fff; color:var(--muted);
+    }
+    .lang-btn.on {
+      background:var(--grad); color:#fff; border:none;
+    }
+    /* Dots */
+    .bar-center { display:flex; align-items:center; gap:.75rem; }
+    .dots { display:flex; gap:.45rem; align-items:center; }
+    .dot {
+      width:8px; height:8px; border-radius:50%;
+      background:var(--border); transition:all .25s;
+      cursor:pointer;
+    }
+    .dot.on {
+      background:var(--grad); transform:scale(1.3);
+      box-shadow:0 0 0 3px rgba(24,176,232,.2);
+    }
+    .bar-count { font-size:.78rem; color:var(--muted); white-space:nowrap; }
+    .bar-count strong { color:var(--ink); }
+    /* Nav btns */
+    .bar-nav { display:flex; gap:.5rem; align-items:center; }
+    .nav-btn-outline {
+      height:34px; border:1.5px solid var(--border); border-radius:8px;
+      padding:0 16px; font-size:.78rem; font-weight:700; color:var(--muted);
+      background:#fff; cursor:pointer; white-space:nowrap;
+      transition:border-color .2s, color .2s;
+    }
+    .nav-btn-outline:hover:not(:disabled) { border-color:var(--c2); color:var(--c2); }
+    .nav-btn-outline:disabled { opacity:.35; cursor:not-allowed; }
+    .nav-btn-primary {
+      height:34px; border:none; border-radius:8px;
+      padding:0 16px; font-size:.78rem; font-weight:700; color:#fff;
+      background:var(--grad); cursor:pointer; white-space:nowrap;
+      box-shadow:0 3px 10px rgba(0,90,158,.2);
+      transition:opacity .2s;
+    }
+    .nav-btn-primary:hover { opacity:.9; }
+
+    /* ─── LIGHTBOX ───────────────────────────────────────────────── */
+    .lightbox {
+      display:none; position:fixed; inset:0;
+      background:rgba(0,0,0,.85); z-index:9999;
+      justify-content:center; align-items:center;
+    }
+    .lightbox.open { display:flex; }
+    .lb-content {
+      position:relative; max-width:90vw; max-height:85vh;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .lb-img {
+      max-width:100%; max-height:85vh;
+      object-fit:contain; border-radius:8px;
+      box-shadow:0 20px 60px rgba(0,0,0,.8);
+    }
+    .lb-close {
+      position:fixed; top:20px; right:20px;
+      width:50px; height:50px; border-radius:50%;
+      background:rgba(255,255,255,.15); border:2px solid #fff; color:#fff;
+      font-size:24px; cursor:pointer; display:flex;
+      align-items:center; justify-content:center;
+      transition:background .2s, transform .2s;
+    }
+    .lb-close:hover { background:rgba(255,255,255,.3); transform:scale(1.1); }
+    .lb-nav {
+      position:fixed; top:50%; transform:translateY(-50%);
+      width:50px; height:50px; border-radius:50%;
+      background:rgba(255,255,255,.15); border:2px solid #fff; color:#fff;
+      font-size:22px; cursor:pointer; display:flex;
+      align-items:center; justify-content:center;
+      transition:background .2s;
+    }
+    .lb-nav:hover { background:rgba(255,255,255,.3); }
+    .lb-prev { left:20px; }
+    .lb-next { right:20px; }
+    .lb-counter {
+      position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+      background:rgba(0,0,0,.75); color:#fff; font-weight:600;
+      padding:10px 22px; border-radius:20px; font-size:.9rem;
+      text-align:center; min-width:180px; line-height:1.5;
+    }
+
+    /* ─── Animations ─────────────────────────────────────────────── */
+    @keyframes slideDown {
+      from { opacity:0; transform:translateY(-100%); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(16px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .anim-in {
+      animation:fadeUp .4s ease both;
+    }
+    .anim-in-2 { animation-delay:.12s; opacity:0; }
+    .anim-in-2.anim-in { opacity:1; }
+
+    /* ─── Scrollbar ──────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width:4px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+
+    /* ─── Responsive ─────────────────────────────────────────────── */
+    @media (max-width:1100px) {
+      .proj-body { grid-template-columns:1fr; }
+      .col-right-sub { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:900px) {
+      .cover-grid { grid-template-columns:1fr; }
+      .nav-links { display:none; }
+    }
+    @media (max-width:700px) {
+      .col-right-sub { grid-template-columns:1fr; }
+      .proj-header-inner { flex-direction:column; }
+      .cover-stats { gap:1.5rem; }
+      .bar-count { display:none; }
+    }
+    @media (max-width:500px) {
+      .cover-inner { padding:2rem 5%; }
+      .proj-body { padding:1rem 4%; }
+      .proj-header { padding:1.25rem 4%; }
+    }
+  </style>
 </head>
-
 <body>
-    <div class="slider-container">
-        <!-- Page de couverture -->
-        <div class="slide active">
-            <div class="cover-slide">
-                <h1>Portfolio</h1>
-                <h2>Mes réalisations avec Power Automate & PowerApps</h2>
-                <img src="https://www.osalydconsulting.com/media/website/Julie-Bredeche.png" alt="Julie BREDECHE"
-                    class="cover-photo">
-                <p>Julie BREDECHE</p>
+
+  <!-- ── NAV ─────────────────────────────────────────────────────── -->
+  <nav class="nav">
+    <a href="#" class="nav-brand" onclick="goTo(0);return false;">
+      <div class="nav-avatar"><span>JB</span></div>
+      <div>
+        <span class="nav-name">Julie Bredeche</span>
+        <span class="nav-sub">Osalyd Consulting</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#" class="nav-link active" onclick="goTo(0);return false;" data-i18n="navPortfolio">Portfolio</a>
+      <a href="#" class="nav-link" onclick="goTo(1);return false;" data-i18n="navProjet1">Projet 1</a>
+      <a href="#" class="nav-link" onclick="goTo(2);return false;" data-i18n="navProjet2">Projet 2</a>
+      <a href="#" class="nav-link" onclick="goTo(3);return false;" data-i18n="navProjet3">Projet 3</a>
+    </div>
+    <a href="https://linkedin.com/in/juliebredeche" target="_blank" rel="noopener" class="nav-cta" data-i18n="navCta">Me contacter</a>
+  </nav>
+
+  <!-- ── SLIDER ───────────────────────────────────────────────────── -->
+  <div class="slider-wrap">
+    <div class="slider-track" id="track">
+
+      <!-- ── SLIDE 0 : Cover + Sommaire ──────────────────────────── -->
+      <div class="slide slide-cover">
+        <div class="cover-inner">
+          <div class="cover-eyebrow" data-i18n="coverEyebrow">
+            Power Platform · SharePoint · Copilot Studio
+          </div>
+          <h1 class="cover-h1">
+            <span data-i18n="coverH1a">Mes </span><em class="gt" data-i18n="coverH1em">réalisations</em><br>
+            <span data-i18n="coverH1b"> Power Platform</span>
+          </h1>
+          <p class="cover-sub" data-i18n="coverSub">
+            Applications sur mesure, automatisations intelligentes et agents conversationnels déployés chez des clients réels.
+          </p>
+          <div class="cover-stats">
+            <div>
+              <span class="cover-stat-val gt">3</span>
+              <span class="cover-stat-label" data-i18n="statProjects">Projets présentés</span>
             </div>
+            <div>
+              <span class="cover-stat-val gt">30+</span>
+              <span class="cover-stat-label" data-i18n="statTotal">Réalisations au total</span>
+            </div>
+            <div>
+              <span class="cover-stat-val gt">5+</span>
+              <span class="cover-stat-label" data-i18n="statSectors">Secteurs couverts</span>
+            </div>
+          </div>
+          <!-- Summary grid — generated by JS -->
+          <div class="cover-grid" id="coverGrid"></div>
+          <button class="cover-cta" onclick="goTo(1)" data-i18n="coverCta">Voir les projets →</button>
         </div>
+      </div>
 
-        <!-- Sommaire -->
-        <div class="slide" id="sommaireSlide">
-            <div class="sommaire-slide">
-                <h1>Sommaire</h1>
-                <div id="sommaireContent" class="sommaire-content"></div>
+      <!-- Project slides injected by JS -->
+
+    </div><!-- /track -->
+  </div><!-- /slider-wrap -->
+
+  <!-- ── BOTTOM BAR ───────────────────────────────────────────────── -->
+  <div class="bottom-bar">
+    <!-- Lang switch -->
+    <div class="lang-switch">
+      <button class="lang-btn on"  data-lang="fr" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn off" data-lang="en" onclick="setLang('en')">EN</button>
+    </div>
+    <!-- Dots + counter -->
+    <div class="bar-center">
+      <div class="dots" id="dots"></div>
+      <span class="bar-count" id="barCount"></span>
+    </div>
+    <!-- Nav buttons -->
+    <div class="bar-nav">
+      <button class="nav-btn-outline" id="btnPrev" onclick="goTo(cur-1)" data-i18n="btnPrev">← Précédent</button>
+      <button class="nav-btn-primary" id="btnNext" onclick="nextOrBack()"  data-i18n="btnNext">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- ── LIGHTBOX ──────────────────────────────────────────────────── -->
+  <div class="lightbox" id="lightbox" onclick="lbClickOutside(event)">
+    <button class="lb-close" onclick="closeLb()" aria-label="Fermer">✕</button>
+    <button class="lb-nav lb-prev" onclick="lbStep(-1)" aria-label="Précédent">←</button>
+    <div class="lb-content">
+      <img class="lb-img" id="lbImg" src="" alt="">
+    </div>
+    <button class="lb-nav lb-next" onclick="lbStep(1)" aria-label="Suivant">→</button>
+    <div class="lb-counter" id="lbCounter"></div>
+  </div>
+
+  <script>
+  /* ================================================================
+     DATA
+  ================================================================ */
+  const TECH_LOGOS = {
+    "PowerApps":     "https://www.osalydconsulting.com/media/files/PowerApps.svg",
+    "Power Automate":"https://www.osalydconsulting.com/media/files/PowerAutomate.svg",
+    "SharePoint":    "https://www.osalydconsulting.com/media/files/SharePoint2025.png",
+    "Teams":         "https://www.osalydconsulting.com/media/files/Teams2025.png",
+    "Forms":         "https://www.osalydconsulting.com/media/files/Forms.png",
+    "Outlook":       "https://www.osalydconsulting.com/media/files/Outlook2025.png",
+    "AI Builder":    "https://www.osalydconsulting.com/media/files/AIBuilder.svg",
+  };
+
+  const PROJECTS = [
+    {
+      title:   { fr:"Application de réservation de voyages", en:"Travel Booking Application" },
+      sector:  { fr:"Éducation", en:"Education" },
+      mainTool:"PowerApps",
+      devices: { fr:["PC","Mobile","Tablette"], en:["Desktop","Mobile","Tablet"] },
+      techs:   ["PowerApps","Power Automate","SharePoint","Outlook"],
+      screenshots:[
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-Home.png",        title:{fr:"1. Page d'accueil de l'application",    en:"1. App home page"} },
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-Form1.png",       title:{fr:"2. Formulaire de réservation – Étape 1", en:"2. Booking form – Step 1"} },
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-Form2.png",       title:{fr:"3. Formulaire de réservation – Étape 2", en:"3. Booking form – Step 2"} },
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-Form3.png",       title:{fr:"4. Formulaire de réservation – Étape 3", en:"4. Booking form – Step 3"} },
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-MobileHome.png",  title:{fr:"5. Page d'accueil – Mobile",             en:"5. App home page – Mobile"} },
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-MobileForm.png",  title:{fr:"6. Formulaire – Mobile",                 en:"6. Booking form – Mobile"} },
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-BackOffice.png",  title:{fr:"7. Back-office SharePoint pour le staff", en:"7. SharePoint back-office for staff"} },
+      ],
+      problem:  { fr:"<p>Demandes de réservation gérées <b>uniquement par mail</b> avec les gestionnaires.</p><p style='margin-top:.5rem'>Des <b>validations manuelles</b> retardaient le processus. Nombreux allers-retours, oublis et <b>erreurs de saisie</b>.</p>",
+                  en:"<p>Booking requests handled <b>exclusively by email</b> with managers.</p><p style='margin-top:.5rem'><b>Manual validations</b> slowed the process. Numerous back-and-forth exchanges and <b>data entry errors</b>.</p>" },
+      users:    { fr:"<ul class='il'><li>200 professeurs sur 2 campus</li><li>2 gestionnaires des réservations</li><li>Service Comptabilité</li></ul>",
+                  en:"<ul class='il'><li>200 teachers across 2 campuses</li><li>2 booking managers</li><li>Accounting department</li></ul>" },
+      solution: { fr:"Une <b>application mobile</b> de saisie des demandes avec workflow de validation et notifications automatiques.<br><br>Un <b>tableau de bord interactif</b> pour le staff avec suivi comptable structuré.",
+                  en:"A <b>mobile app</b> for submitting requests with an approval workflow and automated notifications.<br><br>An <b>interactive dashboard</b> for staff with structured accounting follow-up." },
+      features: { fr:["<b>Formulaire dynamique</b> avec règles métier pour fiabiliser la saisie","<b>Duplication des réservations</b> récurrentes en 2 clics","<b>Workflow de validation automatique</b> selon le statut du professeur","<b>Notifications automatisées</b> tout au long du traitement","<b>Tableau de bord unifié</b> avec vues dédiées"],
+                  en:["<b>Dynamic form</b> with business rules to secure data entry","<b>Recurring bookings duplication</b> in two clicks","<b>Automatic approval workflow</b> based on teacher status","<b>Automated notifications</b> throughout processing","<b>Unified dashboard</b> with dedicated views"] },
+      benefits: { fr:["Gain de temps significatif pour les professeurs","95 % de réduction des erreurs de saisie","Visibilité en temps réel de l'état des demandes","Collaboration facilitée gestionnaires / comptabilité"],
+                  en:["Significant time saving for teachers","95% reduction in data entry errors","Real-time visibility on request status","Smoother collaboration between managers and accounting"] },
+      roi:      { fr:[{val:"÷3", label:"Délai de traitement"},{val:"−70%", label:"Emails échangés"},{val:"KPIs", label:"Rationalisation coûts"}],
+                  en:[{val:"÷3", label:"Processing time"},{val:"−70%", label:"Emails exchanged"},{val:"KPIs", label:"Cost rationalization"}] },
+    },
+    {
+      title:   { fr:"Extraction automatique de N° de commande sur des factures PDF", en:"Automated extraction of order numbers from PDF invoices" },
+      sector:  { fr:"Pharmaceutique", en:"Pharmaceutical" },
+      mainTool:"Power Automate",
+      devices: { fr:["PC"], en:["Desktop"] },
+      techs:   ["Power Automate","AI Builder","SharePoint"],
+      screenshots:[
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/LecturePDF/0.png", title:{fr:"1. Récupération du contenu du PDF",        en:"1. PDF content retrieval"} },
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/LecturePDF/1.png", title:{fr:"2. Lecture OCR du PDF",                    en:"2. PDF OCR reading"} },
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/LecturePDF/2.png", title:{fr:"3. REGEX utilisée dans un Office Script",  en:"3. REGEX used in an Office Script"} },
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/LecturePDF/3.png", title:{fr:"4. Utilisation de la REGEX dans le flux",  en:"4. REGEX usage in the flow"} },
+      ],
+      problem:  { fr:"<p><b>Extraction manuelle</b> des numéros de commande sur des milliers de factures PDF pour les intégrer à un nouvel outil de facturation.</p><p style='margin-top:.5rem'>Processus chronophage engendrant <b>risques d'erreurs</b> et retards de facturation.</p>",
+                  en:"<p><b>Manual extraction</b> of order numbers from thousands of PDF invoices for integration into a new billing tool.</p><p style='margin-top:.5rem'>Time-consuming process causing <b>error risks</b> and billing delays.</p>" },
+      users:    { fr:"<ul class='il'><li>2 personnes mobilisées à temps plein</li><li>10 000 factures en retard à traiter</li><li>Flux continu de PDF reçu de l'ancien système</li></ul>",
+                  en:"<ul class='il'><li>2 full-time employees dedicated to manual extraction</li><li>10,000 overdue invoices to process</li><li>Ongoing inflow of PDFs from the legacy system</li></ul>" },
+      solution: { fr:"Un flux Power Automate intégré à SharePoint pour une <b>lecture OCR automatisée</b> des factures PDF, détectant précisément leurs <b>numéros de commande</b> via une REGEX.",
+                  en:"A Power Automate flow integrated with SharePoint enabling <b>automated OCR reading</b> of PDF invoices, precisely detecting <b>order numbers</b> via REGEX." },
+      features: { fr:["Flux automatisé parcourant les documents d'une bibliothèque SharePoint","<b>Lecture OCR</b> via AI Builder pour extraire le n° de commande","<b>Renommage automatique</b> des fichiers valides","<b>Déplacement</b> des cas non conformes vers un dossier de révision"],
+                  en:["Automated flow scanning documents in a SharePoint library","<b>OCR reading</b> via AI Builder to extract order numbers","<b>Automatic renaming</b> of valid files","<b>Moving non-compliant cases</b> to a review folder"] },
+      benefits: { fr:["90 % du temps manuel éliminé","Intégration simplifiée sans ressaisie","Un clic pour traiter des milliers de factures"],
+                  en:["90% of manual time eliminated","Simplified integration without re-entry","One click to process thousands of invoices"] },
+      roi:      { fr:[{val:"−80%", label:"Coûts de traitement"},{val:"✓", label:"Traçabilité audits"},{val:"♻", label:"Flux réutilisable"}],
+                  en:[{val:"−80%", label:"Processing costs"},{val:"✓", label:"Audit traceability"},{val:"♻", label:"Reusable flow"}] },
+    },
+    {
+      title:   { fr:"Classement automatisé des contrats vers une Contrathèque", en:"Automated classification of contracts into a Contract Library" },
+      sector:  { fr:"Achats", en:"Procurement" },
+      mainTool:"Power Automate",
+      devices: { fr:["PC"], en:["Desktop"] },
+      techs:   ["SharePoint","Power Automate","Forms","Teams"],
+      screenshots:[
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/Contratheque/Contratheque-BoutonEnvoi.png",  title:{fr:"1. Bouton d'envoi vers la contrathèque",      en:"1. Send to contract library button"} },
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/Contratheque/Contratheque-Form.png",         title:{fr:"2. Formulaire de saisie des métadonnées",     en:"2. Metadata entry form"} },
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/Contratheque/Contratheque-Classement.png",   title:{fr:"3. Document déplacé dans la contrathèque",    en:"3. Document moved to the contract library"} },
+        { url:"https://www.osalydconsulting.com/media/files/ImagesBook/Contratheque/Contratheque-Recherche.png",    title:{fr:"4. Moteur de recherche avancé",               en:"4. Advanced search engine"} },
+      ],
+      problem:  { fr:"<p>Les contrats finalisés se retrouvaient <b>dispersés parmi des documents de travail</b>.</p><p style='margin-top:.5rem'>Résultat : une recherche <b>longue et aléatoire</b> pour trouver le dernier contrat en vigueur ou l'historique fournisseur.</p>",
+                  en:"<p>Finalized contracts were <b>scattered among working documents</b>.</p><p style='margin-top:.5rem'>Result: a <b>long, random search</b> through numerous folders to find the latest valid contract or supplier history.</p>" },
+      users:    { fr:"<ul class='il'><li>Service Achats (10 personnes)</li><li>~50 contrats finalisés par mois à classer</li><li>Documents de travail mélangés aux contrats signés</li></ul>",
+                  en:"<ul class='il'><li>Procurement department (10 people)</li><li>~50 finalized contracts/month to classify</li><li>Working documents mixed with signed contracts</li></ul>" },
+      solution: { fr:"Un flux Power Automate ouvrant un <b>formulaire de saisie des métadonnées</b> (fournisseur, montant, échéance…) puis déplaçant le contrat vers une bibliothèque SharePoint dédiée avec un <b>moteur de recherche avancé</b>.",
+                  en:"A Power Automate flow opening a <b>metadata entry form</b> (vendor, amount, expiry…) then moving the contract to a dedicated SharePoint library with an <b>advanced search engine</b>." },
+      features: { fr:["<b>Déclenchement manuel</b> par bouton : formulaire de saisie des métadonnées","<b>Déplacement automatisé</b> vers la Contrathèque avec mise à jour des métadonnées","<b>Alertes Teams</b> automatiques à l'approche de l'échéance","<b>Mise à jour du statut</b> du contrat après sa date de fin"],
+                  en:["<b>Manual trigger</b> via button: metadata entry form","<b>Automated move</b> to the Contract Library with metadata update","<b>Automatic Teams alerts</b> near expiry date","<b>Contract status update</b> once end date is passed"] },
+      benefits: { fr:["Classement guidé en quelques clics","Temps de recherche divisé par 3","Alertes proactives Teams pour anticiper les renouvellements"],
+                  en:["Guided classification in a few clicks","Search time divided by 3","Proactive Teams alerts to anticipate renewals"] },
+      roi:      { fr:[{val:"÷3", label:"Temps de recherche"},{val:"✓", label:"Gouvernance renforcée"},{val:"0", label:"Contrats oubliés"}],
+                  en:[{val:"÷3", label:"Search time"},{val:"✓", label:"Strengthened governance"},{val:"0", label:"Forgotten contracts"}] },
+    },
+  ];
+
+  const T = {
+    fr:{
+      navPortfolio:"Portfolio", navCta:"Me contacter",
+      navProjet1:"Projet 1", navProjet2:"Projet 2", navProjet3:"Projet 3",
+      coverEyebrow:"Power Platform · SharePoint · Copilot Studio",
+      coverH1a:"Mes ", coverH1em:"réalisations", coverH1b:" Power Platform",
+      coverSub:"Applications sur mesure, automatisations intelligentes et agents conversationnels déployés chez des clients réels.",
+      statProjects:"Projets présentés", statTotal:"Réalisations au total", statSectors:"Secteurs couverts",
+      coverCta:"Voir les projets →",
+      btnPrev:"← Précédent", btnNext:"Suivant →", btnBack:"← Sommaire",
+      labelProblem:"Problématique métier", labelUsers:"Contexte et utilisateurs",
+      labelSolution:"Solution mise en place", labelFeatures:"Fonctionnalités clés",
+      labelBenefits:"Bénéfices utilisateurs", labelROI:"Valeur business (ROI)",
+      btnVisuals:"📸 Voir les visuels",
+      slideOf:"Slide", of:"/"
+    },
+    en:{
+      navPortfolio:"Portfolio", navCta:"Contact me",
+      navProjet1:"Project 1", navProjet2:"Project 2", navProjet3:"Project 3",
+      coverEyebrow:"Power Platform · SharePoint · Copilot Studio",
+      coverH1a:"My ", coverH1em:"projects", coverH1b:" in Power Platform",
+      coverSub:"Custom applications, intelligent automations and conversational agents delivered to real clients.",
+      statProjects:"Projects shown", statTotal:"Total deliveries", statSectors:"Sectors covered",
+      coverCta:"View projects →",
+      btnPrev:"← Previous", btnNext:"Next →", btnBack:"← Summary",
+      labelProblem:"Business Problem", labelUsers:"Context & Users",
+      labelSolution:"Solution Implemented", labelFeatures:"Key Features",
+      labelBenefits:"User Benefits", labelROI:"Business Value (ROI)",
+      btnVisuals:"📸 View screenshots",
+      slideOf:"Slide", of:"/"
+    }
+  };
+
+  /* ================================================================
+     STATE
+  ================================================================ */
+  const TOTAL = 4; // slide 0 cover + 3 projects
+  let cur  = 0;
+  let lang = 'fr';
+
+  /* ================================================================
+     BUILD UI
+  ================================================================ */
+  function buildCoverGrid() {
+    const grid = document.getElementById('coverGrid');
+    PROJECTS.forEach((p, i) => {
+      const pills = p.techs.slice(0,3).map(t=>`<span class="cover-pill">${t}</span>`).join('');
+      const card  = document.createElement('div');
+      card.className = 'cover-card';
+      card.onclick = () => goTo(i+1);
+      card.innerHTML = `
+        <div class="cover-card-num gt">${String(i+1).padStart(2,'0')}</div>
+        <div>
+          <div class="cover-card-title">${p.title[lang]}</div>
+          <div class="cover-card-sector">${p.sector[lang]}</div>
+          <div class="cover-pills">${pills}</div>
+        </div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  function buildProjectSlides() {
+    const track = document.getElementById('track');
+    PROJECTS.forEach((p, i) => {
+      const techBadges = p.techs.map(t => {
+        const logo = TECH_LOGOS[t] ? `<img src="${TECH_LOGOS[t]}" alt="${t}">` : '';
+        return `<span class="badge-tech">${logo}${t}</span>`;
+      }).join('');
+      const devBadges = p.devices[lang].map(d=>`<span class="badge-device">${d}</span>`).join('');
+
+      const slide = document.createElement('div');
+      slide.className = 'slide slide-project';
+      slide.dataset.pindex = i;
+      slide.innerHTML = `
+        <div class="proj-header">
+          <div class="proj-header-inner anim-in">
+            <div>
+              <div class="proj-number gt" data-field="number">Projet 0${i+1} / 03</div>
+              <h2 class="proj-title" data-field="title">${p.title[lang]}</h2>
+              <div class="meta-bar">
+                <span class="badge-sector" data-field="sector">${p.sector[lang]}</span>
+                <span class="badge-device-wrap">${devBadges}</span>
+                ${techBadges}
+              </div>
             </div>
+            <button class="visuals-btn" onclick="openLb(${i})" data-field="visuals">
+              📸 Voir les visuels (${p.screenshots.length})
+            </button>
+          </div>
         </div>
-
-
-        <!-- Slides projets injectées en JS -->
-    </div>
-
-    <div class="navigation">
-        <div class="sommaire-icon" id="sommaireIcon" title="Retour au sommaire">☰</div>
-        <button class="nav-btn" id="prevBtn">←</button>
-        <span class="page-indicator" id="pageIndicator">1 / 1</span>
-        <button class="nav-btn" id="nextBtn">→</button>
-    </div>
-
-
-    <script>
-        const projects = [
-            {
-                title: {
-                    fr: "Application de réservation de voyages",
-                    en: "Travel Booking Application"
-                },
-                mainTool: "PowerApps",
-                industry: {
-                    fr: "Education",
-                    en: "Education"
-                },
-                problem: {
-                    fr: "<p>Demandes de réservation de voyages des professeurs gérées <b>uniquement par mail</b> avec les gestionnaires de réservation.</p> <p class='saut-ligne'> Des <b>demandes de validation manuelles</b> qui retardaient le processus.</p><p class='saut-ligne'> De nombreux allers-retours, des <b>oublis et des erreurs de saisie</b> rendaient le processus chronophage.</p>",
-                    en: "<p>Travel booking requests from teachers were <b>handled exclusively by email</b> with the booking managers.</p> <p class='saut-ligne'><b>Manual validation requests</b> slowed down the process.</p><p class='saut-ligne'>Numerous back-and-forth exchanges, oversights, and <b>data entry errors</b> made the process time-consuming.</p>",
-                },
-                users: {
-                    fr: "<ul><li>200 professeurs répartis sur 2 campus</li><li>2 gestionnaires des réservations</li><li>Service Comptabilité</li></ul>",
-                    en: "<ul><li>200 teachers across 2 campuses</li><li>2 booking managers</li><li>Accounting department</li></ul>"
-                },
-                solution: {
-                    fr: "Une <b>application mobile</b> de saisie des demandes de réservation par les professeurs, avec un workflow de validation, et des notifications automatiques. <p class='saut-ligne'> Un <b>tableau de bord interactif</b> pour le staff qui peut gérer les réservations et le suivi comptable de manière structurée.",
-                    en: "A <b>mobile app</b> enabling teachers to submit booking requests, with an approval workflow and automated notifications. <p class='saut-ligne'>An <b>interactive dashboard</b> for staff to manage bookings and accounting follow-up in a structured way."
-                },
-                screenshots: [
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-Home.png",
-                        title: { fr: "1. Page d'accueil de l'application", en: "1. App home page" }
-                    },
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-Form1.png",
-                        title: { fr: "2. Formulaire de réservation - Etape 1", en: "2. Booking form - Step 1" }
-                    },
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-Form2.png",
-                        title: { fr: "3. Formulaire de réservation - Etape 2", en: "3. Booking form - Step 2" }
-                    },
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-Form3.png",
-                        title: { fr: "4. Formulaire de réservation - Etape 3", en: "4. Booking form - Step 3" }
-                    },
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-MobileHome.png",
-                        title: { fr: "5. Page d'accueil de l'application - Mobile", en: "5. App home page - Mobile" }
-                    },
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-MobileForm.png",
-                        title: { fr: "6. Formulaire de réservation - Mobile", en: "6. Booking form - Mobile" }
-                    },
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/MyBooking/MyBooking-BackOffice.png",
-                        title: { fr: "7.Back-office SharePoint pour le staff", en: "7. SharePoint back-office for staff" }
-                    },
-                ],
-                features: {
-                    fr: [
-                        "<b>Formulaire de réservation dynamique</b> avec règles de gestion pour fiabiliser et uniformiser la saisie",
-                        "<b>Duplication des réservations</b> récurrentes en 2 clics",
-                        "<b>Workflow de validation automatique</b> selon le statut du professeur",
-                        "<b>Notifications automatisées</b> tout au long du traitement des demandes",
-                        "<b>Tableau de bord unifié</b> avec vues dédiées pour les gestionnaires et la comptabilité"
-                    ],
-                    en: [
-                        "<b>Dynamic reservation form</b> with business rules to standardize and secure data entry",
-                        "<b>Duplication of recurring bookings</b> in just two clicks",
-                        "<b>Automatic approval workflow</b> based on the teacher’s status",
-                        "<b>Automated notifications</b> throughout the request processing",
-                        "<b>Unified dashboard</b> with dedicated views for booking managers and accounting"
-                    ],
-
-                },
-                technologies: ["PowerApps", "Power Automate", "SharePoint", "Outlook"],
-                devices: ["PC", "Mobile", "Tablette"],
-                userBenefits: {
-                    fr: [
-                        "Gain de temps significatif pour les professeurs",
-                        "95% de réduction des erreurs de saisie",
-                        "Visibilité en temps réel de l'état des demandes",
-                        "Collaboration facilitée entre les gestionnaires et la comptabilité"
-                    ],
-                    en: [
-                        "Processing time divided by 3",
-                        "70% reduction in emails between all stakeholders",
-                        "Ability to extract KPIs to optimize costs"
-                    ],
-                },
-                businessValue: {
-                    fr: [
-                        "Délai de traitement divisé par 3",
-                        "Réduction de 70 % des emails entre tous les interlocuteurs",
-                        "Possibilité d’extraire des KPI pour rationaliser les coûts"
-                    ],
-                    en: [
-                        "Standardized, end-to-end auditable process",
-                        "Processing time for managers divided by 3",
-                        "Reduced from ~10 manual emails to at most 2 automated notifications"
-                    ]
-                }
-            },
-            {
-                title: {
-                    fr: "Extraction automatique de N° de commande sur des factures PDF",
-                    en: "Automated extraction of order numbers from PDF Invoices"
-                },
-                mainTool: "Power Automate",
-                industry: {
-                    fr: "Pharmaceutique",
-                    en: "Pharmaceutical"
-                },
-                problem: {
-                    fr: "<p><b>Extraction manuelle</b> des numéros de commande sur des milliers de factures PDF pour les intégrer à un nouvel outil de facturation.</p><br><p>Processus chronophage qui engendrait <b>risques d'erreurs</b> et des retards de facturation.</p>",
-                    en: "<p><b>Manual extraction</b> of order numbers from thousands of PDF invoices to integrate into a new invoicing tool.</p><br><p>Time-consuming process causing <b>error risks</b> and billing delays.</p>"
-                },
-                users: {
-                    fr: "<ul><li>2 personnes mobilisées à temps plein</li><li>10 000 factures à traiter en retard</li><li>Un flux continu de facture PDF encore reçu de l'ancien système</li></ul>",
-                    en: "<ul><li>2 full-time employees dedicated to manual extraction</li><li>10 000 overdue invoices to process</li><li>Ongoing continuous inflow of PDF invoices still received from the legacy system</li></ul>"
-                },
-                solution: {
-                    fr: "Un flux Power Automate intégré à SharePoint qui permet une <b>lecture OCR automatisée</b> des factures PDF, et qui <b>détecte précisement leurs numéros de commande</b>.",
-                    en: "A Power Automate flow integrated with SharePoint enabling <b>automated OCR reading</b> of PDF invoices, precisely <b>detecting their order numbers</b>."
-                },
-                screenshots: [
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/LecturePDF/0.png",
-                        title: { fr: "1. Récupération du contenu du PDF", en: "1. PDF content retrieval" }
-                    },
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/LecturePDF/1.png",
-                        title: { fr: "2. Lecture OCR du PDF", en: "2. PDF OCR reading" }
-                    },
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/LecturePDF/2.png",
-                        title: { fr: "3. REGEX utilisée dans un Office Script", en: "3. REGEX used in an Office Script" }
-                    },
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/LecturePDF/3.png",
-                        title: { fr: "4. Utilisation de la REGEX dans le flux", en: "4. REGEX usage in the flow" }
-                    },
-                ],
-                features: {
-                    fr: [
-                        "Flux automatisé qui parcours les documents d'une bibliotheque SharePoint",
-                        "<b>Lecture OCR</b> du contenu des PDF via AI Builder pour <b>extraire le n° de commande</b> à l'aide d'une REGEX",
-                        "<b>Renommage automatique</b> des fichiers valides et <b>déplacement des cas non-conformes</b> vers un dossier de révision"
-                    ],
-                    en: [
-                        "Automated flow that scans documents in a SharePoint library",
-                        "<b>OCR reading</b> of PDF content via AI Builder to <b>extract order numbers</b> using REGEX",
-                        "<b>Automatic renaming</b> of valid files and <b>moving non-compliant cases</b> to a review folder"
-                    ],
-
-                },
-                technologies: ["Power Automate", "AI Builder", "SharePoint"],
-                devices: ["PC"],
-                userBenefits: {
-                    fr: [
-                        "90 % du temps alloué aux tâches manuelles éliminé",
-                        "Intégration simplifiée dans le nouvel outil de facturation sans ressaisie",
-                        "Simplicité d'utilisation : un clic pour traiter des milliers de factures"
-                    ],
-                    en: [
-                        "90% of time spent on manual tasks eliminated",
-                        "Simplified integration into the new invoicing tool without re-entry",
-                        "User-friendly: one click to process thousands of invoices"
-                    ],
-
-                },
-                businessValue: {
-                    fr: [
-                        "ROI rapide : reduction des coûts de 80 % sur le traitement",
-                        "Conformite renforcée : traçabilite en cas d'audits réglementaires",
-                        "Scalabilité : flux réutilisable pour d'autres documents"
-                    ],
-                    en: [
-                        "Quick ROI: 80% cost reduction on processing",
-                        "Enhanced compliance: traceability for regulatory audits",
-                        "Scalability: reusable flow for other documents"
-                    ]
-                }
-            },
-            {
-                title: {
-                    fr: "Classement automatisé des contrats vers une Contrathèque",
-                    en: "Automated classification of contracts into a Contract library"
-                },
-
-                mainTool: "Power Automate",
-
-                industry: {
-                    fr: "Achats",
-                    en: "Procurement"
-                },
-
-                users: {
-                    fr: "<ul><li>Service Achats (10 personnes)</li><li>Environ 50 contrats finalisés par mois à classer</li><li>De nombreux documents de travail mélangés aux contrats signés</li></ul>",
-                    en: "<ul><li>Procurement department (10 people)</li><li>About 50 finalized contracts per month to classify</li><li>Lots of working documents mixed with signed contracts</li></ul>"
-                },
-
-                problem: {
-                    fr: "<p>Les contrats finalisés se retrouvaient dispersés parmi des documents de travail.</p><p class=\"saut-ligne\">Résultat : une <b>recherche manuelle</b> longue et aléatoire dans de nombreux dossiers avant de trouver le dernier contrat en vigueur, ou l'historique des contrats liés à un fournisseur.</p>",
-                    en: "<p>Finalized contracts were spread out among working documents. As a result, it took a long and random <b>manual searching process</b> through numerous files to find the latest valid contract, or the contract history for a given supplier.</p>"
-                },
-
-                solution: {
-
-                    fr: "<p>Un flux Power Automate qui ouvre un <b>formulaire de saisie des métadonnées</b> (fournisseur, montant, échéance, etc.), puis déplace le contrat vers une bibliothèque SharePoint dédiée.</p><p class=\"saut-ligne\">Un <b>moteur de recherche avec filtres avancés</b> pour retrouver instantanément les contrats grâce aux métadonnées renseignées.</p>",
-                    en: "<p>A Power Automate flow that opens a <b>metadata entry form</b> (vendor, amount, expiry date, etc.), then moves the contract to a dedicated SharePoint library.</p><p class=\"saut-ligne\">An <b>advanced filtering search engine</b> to instantly retrieve contracts using the entered metadata.</p>"
-                },
-
-                screenshots: [
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/Contratheque/Contratheque-BoutonEnvoi.png",
-                        title: { fr: "1. Bouton d'envoi vers la contrathèque", en: "1. Send to contract library button" }
-                    },
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/Contratheque/Contratheque-Form.png",
-                        title: { fr: "2. Formulaire de saisie des métadonnées", en: "2. Metadata entry form" }
-                    },
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/Contratheque/Contratheque-Classement.png",
-                        title: { fr: "3. Document déplacé dans la contrathèque", en: "3. Document moved to the contract library" }
-                    },
-                    {
-                        url: "https://www.osalydconsulting.com/media/files/ImagesBook/Contratheque/Contratheque-Recherche.png",
-                        title: { fr: "4. Moteur de recherche avancé", en: "4. Advanced search engine" }
-                    },
-                ],
-
-                features: {
-                    fr: [
-                        "<b>Déclenchement manuel</b> par bouton : ouverture du formulaire pour saisir les métadonnées",
-                        "<b>Formulaire</b> de saisie des métadonnées obligatoires (ex. fournisseur, type de contrat, date de fin, etc.)",
-                        "<b>Déplacement automatisé</b> du document vers la Contrathèque avec mise à jour des métadonnées",
-                        "<b>Alertes Teams</b> automatiques lorsqu’un contrat arrive à échéance",
-                        "<b>Mise à jour du statut</b> du contrat une fois la date de fin du contrat dépassée"
-                    ],
-                    en: [
-                        "<b>Manual trigger</b> via button: opens the form to enter metadata",
-                        "<b>Form</b> for entering mandatory metadata (e.g. vendor, contract type, end date, etc.)",
-                        "<b>Automated move</b> of the document to the Contract Library with metadata update",
-                        "<b>Automatic Teams alerts</b> when a contract is approaching its expiry date",
-                        "<b>Status update</b> of the contract once the contract end date has passed"
-                    ],
-
-                },
-
-                technologies: ["SharePoint", "Power Automate", "Forms", "Teams"],
-
-                devices: ["PC"],
-
-                userBenefits: {
-                    fr: [
-                        "<b>Classement guidé</b> en quelques clics grâce à un formulaire structuré.",
-                        "Temps de recherche <b>divisé par 3</b> grâce au moteur de recherche et aux filtres avancés",
-                        "<b>Alertes</b> proactives dans Teams pour anticiper les renouvellement de contrats"
-                    ],
-                    en: [
-                        "<b>Guided classification</b> in a few clicks thanks to a structured form.",
-                        "Search time <b>divided by 3</b> thanks to the search engine and advanced filters",
-                        "Proactive Teams <b>alerts</b>  to anticipate contract renewals"
-                    ],
-
-                },
-
-                businessValue: {
-                    fr: [
-                        "<b>Réduction des risques contractuels</b> grâce aux alertes automatiques",
-                        "<b>Gouvernance documentaire</b> renforcée et auditable",
-                        "<b>Gain de productivité</b> immédiat : moins de temps perdu à chercher, plus de temps à négocier"
-
-                    ],
-                    en: [
-                        "<b>Reduced contractual risk</b> thanks to automated alerts",
-                        "<b>Strengthened document governance</b> ready for audits",
-                        "<b>Immediate productivity gain</b>: less time searching, more time negotiating"
-                    ],
-
-
-                }
-            }
-
-
-        ];
-
-        // Objet de traductions
-        const translations = {
-            fr: {
-                sommaire: 'Sommaire',
-                retourSommaire: 'Retour au sommaire',
-                voirCaptures: 'Voir les visuels',
-                problematique: 'Problématique métier',
-                utilisateurs: 'Contexte et utilisateurs',
-                solution: 'Solution mise en place',
-                fonctionnalites: 'Fonctionnalités clés',
-                benefices: 'Bénéfices utilisateurs',
-                valeurBusiness: 'Valeur business (ROI)',
-                devices: {
-                    "PC": "PC",
-                    "Mobile": "Mobile",
-                    "Tablette": "Tablette"
-                }
-            },
-            en: {
-                sommaire: 'Summary',
-                retourSommaire: 'Back to summary',
-                voirCaptures: 'View screenshots',
-                problematique: 'Business Problem',
-                utilisateurs: 'Context and users',
-                solution: 'Solution',
-                fonctionnalites: 'Key Features',
-                benefices: 'User Benefits',
-                valeurBusiness: 'Business Value (ROI)',
-                devices: {
-                    "PC": "Desktop",
-                    "Mobile": "Mobile",
-                    "Tablette": "Tablet"
-                }
-            }
-        };
-
-        let currentSlide = 0;
-        const sliderContainer = document.querySelector('.slider-container');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const pageIndicator = document.getElementById('pageIndicator');
-
-        // Map des logos pour chaque technologie
-        const techLogos = {
-            "PowerApps": "https://www.osalydconsulting.com/media/files/PowerApps.svg",
-            "Power Automate": "https://www.osalydconsulting.com/media/files/PowerAutomate.svg",
-            "SharePoint": "https://www.osalydconsulting.com/media/files/SharePoint2025.png",
-            "Teams": "https://www.osalydconsulting.com/media/files/Teams2025.png",
-            "Forms": "https://www.osalydconsulting.com/media/files/Forms.png",
-            "OneDrive": "https://www.osalydconsulting.com/media/files/OneDrive2025.png",
-            "Outlook": "https://www.osalydconsulting.com/media/files/Outlook2025.png",
-            "Copilot Studio": "https://www.osalydconsulting.com/media/files/CopilotStudi.svg",
-            "DocuSign": "https://www.osalydconsulting.com/media/files/DocuSign.svg",
-            "Plumsail": "https://www.osalydconsulting.com/media/files/Plumsail.png",
-            "AI Builder": "https://www.osalydconsulting.com/media/files/AIBuilder.svg",
-            "Dataverse": "https://www.osalydconsulting.com/media/files/Dataverse.svg",
-            "Power BI": "https://www.osalydconsulting.com/media/files/PowerBI.svg"
-        };
-
-        // Helpers i18n (minimal)
-        function getLocalized(value, lang) {
-            if (value && typeof value === 'object' && !Array.isArray(value) && value[lang] !== undefined) {
-                return value[lang];
-            }
-            return value;
-        }
-
-        function renderList(items) {
-            const safeItems = Array.isArray(items) ? items : [];
-            return `<ul>${safeItems.map(i => `<li>${i}</li>`).join('')}</ul>`;
-        }
-
-        // Génération des slides
-        projects.forEach(project => {
-            const slideColor = "linear-gradient(135deg, #152a68 0%, #26D0CE 100%)";
-
-            const mainLogoUrl = techLogos[project.mainTool];
-            const mainLogoHtml = mainLogoUrl
-                ? `<img src="${mainLogoUrl}" alt="${project.mainTool}" style="height: 1em; vertical-align: middle; margin-right: 15px; margin-bottom: 5px;">`
-                : '';
-
-            const techBadges = project.technologies
-                .map(t => {
-                    const logo = techLogos[t] || '';
-                    const imgTag = logo ? `<img src="${logo}" alt="${t}">` : '';
-                    return `<span class="tech-badge">${imgTag}${t}</span>`;
-                }).join('');
-
-            const deviceBadges = project.devices
-                .map(d => `<span class="device-badge" data-device="${d}">${d}</span>`).join('');
-
-            const projectIndex = projects.indexOf(project);
-
-            const screenshotsButton = project.screenshots && project.screenshots.length > 0
-                ? `<div class="screenshots-button" onclick="openLightbox(${projectIndex})">
-            <span class="emoji">📸</span>
-            <span class="screenshots-button-text" data-key="voirCaptures" data-count="${project.screenshots.length}">Voir les captures (${project.screenshots.length})</span>
-                </div>`
-                : '';
-
-            const featuresListHtml = renderList(getLocalized(project.features, 'fr'));
-            const userBenefitsListHtml = renderList(getLocalized(project.userBenefits, 'fr'));
-            const businessValueListHtml = renderList(getLocalized(project.businessValue, 'fr'));
-
-            const html = `
-            <div class="slide" style="background: ${slideColor};">
-                <div class="slide-content">
-                    <div class="project-header">
-                        <h1 class="project-title">${mainLogoHtml}<span class="translatable-title" data-project-index="${projectIndex}">${getLocalized(project.title, 'fr')}</span></h1>
-                        <div class="meta-bar">
-                            <div class="meta-section">
-                                <span class="meta-label">🏢 <span class="translatable-industry" data-project-index="${projectIndex}">${getLocalized(project.industry, 'fr')}</span></span>
-                            </div>
-                            <div class="meta-section">
-                                ${deviceBadges}
-                            </div>
-                            <div class="meta-section">
-                                ${techBadges}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <div class="left-column">
-                            <div>${screenshotsButton}</div>
-                            <div class="info-section-pb">
-                                <div class="section-title" data-key="problematique">
-                                    <span class="emoji">🎯</span><span class="label-text">Problématique métier</span>
-                                </div>
-                                <div class="section-content translatable-field" data-project-index="${projectIndex}" data-field="problem">${getLocalized(project.problem, 'fr')}</div>
-                            </div>
-                            <div class="info-section-pb">
-                                <div class="section-title" data-key="utilisateurs">
-                                    <span class="emoji">🧑🏻‍💻</span><span class="label-text">Contexte et utilisateurs</span>
-                                </div>
-                                <div class="section-content translatable-field" data-project-index="${projectIndex}" data-field="users">${getLocalized(project.users, 'fr')}</div>
-                            </div>
-                        </div>
-                        <div class="right-column">
-                            <div class="info-section full-width-section">
-                                <div class="section-title" data-key="solution">
-                                    <span class="emoji">💡</span><span class="label-text">Solution mise en place</span>
-                                </div>
-                                <div class="section-content translatable-field" data-project-index="${projectIndex}" data-field="solution">${getLocalized(project.solution, 'fr')}</div>
-                            </div>
-                            <div class="info-section full-width-section">
-                                <div class="section-title" data-key="fonctionnalites">
-                                    <span class="emoji">⭐</span><span class="label-text">Fonctionnalités clés</span>
-                                </div>
-                                <div class="section-content translatable-field" data-project-index="${projectIndex}" data-field="features">${featuresListHtml}</div>
-                            </div>
-                            <div class="info-section">
-                                <div class="section-title" data-key="benefices">
-                                    <span class="emoji">⚡</span><span class="label-text">Bénéfices utilisateurs</span>
-                                </div>
-                                <div class="section-content translatable-field" data-project-index="${projectIndex}" data-field="userBenefits">${userBenefitsListHtml}</div>
-                            </div>
-                            <div class="info-section">
-                                <div class="section-title" data-key="valeurBusiness">
-                                    <span class="emoji">📈</span><span class="label-text">Valeur business (ROI)</span>
-                                </div>
-                                <div class="section-content translatable-field" data-project-index="${projectIndex}" data-field="businessValue">${businessValueListHtml}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="proj-body anim-in anim-in-2">
+          <div class="col-left">
+            <div class="card accent">
+              <div class="ic-title">🎯 <span data-field="labelProblem">${T[lang].labelProblem}</span></div>
+              <div data-field="problem">${p.problem[lang]}</div>
             </div>
-            <!-- Lightbox pour les captures d'écran -->
-            <div class="lightbox" id="lightbox">
-                <button class="lightbox-close" onclick="closeLightbox()">×</button>
-                <button class="lightbox-nav lightbox-prev" onclick="prevScreenshot()">←</button>
-                <div class="lightbox-content">
-                    <img class="lightbox-image" id="lightboxImage" src="" alt="Capture d'écran">
-                </div>
-                <button class="lightbox-nav lightbox-next" onclick="nextScreenshot()">→</button>
-                <div class="lightbox-counter" id="lightboxCounter"></div>
+            <div class="card">
+              <div class="ic-title">👥 <span data-field="labelUsers">${T[lang].labelUsers}</span></div>
+              <div data-field="users">${p.users[lang]}</div>
             </div>
-            <!-- Language Switch -->
-    <div class="language-switch">
-        <button class="lang-btn active" data-lang="fr">FR</button>
-        <button class="lang-btn" data-lang="en">EN</button>
-    </div>`
-                ;
-
-            sliderContainer.insertAdjacentHTML('beforeend', html);
-        });
-
-        // Génération sommaire
-        const sommaireContent = document.getElementById('sommaireContent');
-
-        projects.forEach((project, index) => {
-            const sommaireItem = document.createElement('div');
-            sommaireItem.className = 'sommaire-item';
-            sommaireItem.onclick = () => goToSlide(index + 2);
-
-            // Récupération du logo
-            const mainLogoUrl = techLogos[project.mainTool];
-
-            // On affiche l'image si elle existe, sinon le numéro par sécurité
-            const leftContent = mainLogoUrl
-                ? `<img src="${mainLogoUrl}" alt="${project.mainTool}" style="width: 32px; height: 32px; object-fit: contain;">`
-                : (index + 1);
-
-            sommaireItem.innerHTML = `
-            <div class="sommaire-number" style="display: flex; align-items: center; justify-content: center;">
-                ${leftContent}
+            <div class="card">
+              <div class="ic-title">💡 <span data-field="labelSolution">${T[lang].labelSolution}</span></div>
+              <p data-field="solution">${p.solution[lang]}</p>
             </div>
-            <div class="sommaire-info">
-                <div class="sommaire-title translatable-sommaire-title" data-project-index="${index}">${getLocalized(project.title, 'fr')}</div>
-                <div class="sommaire-industry translatable-sommaire-industry" data-project-index="${index}">${getLocalized(project.industry, 'fr')}</div>
+          </div>
+          <div class="col-right">
+            <div class="card">
+              <div class="ic-title">⭐ <span data-field="labelFeatures">${T[lang].labelFeatures}</span></div>
+              <ul class="il check" data-field="features">${renderList(p.features[lang])}</ul>
             </div>
-        `;
-            sommaireItem.dataset.index = index;
-
-            sommaireContent.appendChild(sommaireItem);
-        });
-
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-
-        function slideFromHash() {
-            const h = (location.hash || "").replace("#", "").toLowerCase();
-
-            if (!h || h === "cover") return 0;
-            if (h === "sommaire" || h === "summary") return 1;
-
-            // format #p1, #p2, ...
-            const m = h.match(/^p(\d+)$/);
-            if (m) {
-                const projectNumber = parseInt(m[1], 10); // 1-based
-                // tes slides projets commencent à l'index 2
-                return 1 + projectNumber; // p1 -> 2, p2 -> 3, etc.
-            }
-
-            return 0;
-        }
-
-        function setHashForSlide(index) {
-            if (index === 0) location.hash = "cover";
-            else if (index === 1) location.hash = "sommaire";
-            else location.hash = `p${index - 1}`; // slide 2 -> p1
-        }
-
-
-        // Icône sommaire - clic pour retourner à la slide 1
-        const sommaireIcon = document.getElementById('sommaireIcon');
-        sommaireIcon.addEventListener('click', () => goToSlide(1));
-
-        function goToSlide(index) {
-            // Retirer active/prev de TOUTES les slides
-            slides.forEach(slide => {
-                slide.classList.remove('active', 'prev');
-            });
-
-            currentSlide = index;
-
-            // Activer la nouvelle slide
-            slides[currentSlide].classList.add('active');
-
-            updateNavigation();
-            setHashForSlide(index);
-        }
-
-        function nextSlide() {
-            if (currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
-        }
-
-        function prevSlide() {
-            if (currentSlide > 0) goToSlide(currentSlide - 1);
-        }
-
-        function updateNavigation() {
-            // Slide 0 (intro) : masquer dots, compteur et bouton prev
-            if (currentSlide === 0) {
-                document.body.classList.add('first-slide');
-                pageIndicator.textContent = '';
-                prevBtn.disabled = true;
-                nextBtn.disabled = false;
-            }
-            // Slide 1 (sommaire) : masquer dots et compteur, mais MONTRER bouton prev
-            else if (currentSlide === 1) {
-                document.body.classList.add('first-slide');
-                document.getElementById('prevBtn').style.display = 'flex';
-                pageIndicator.textContent = '';
-                prevBtn.disabled = false;
-                nextBtn.disabled = false;
-            }
-            // Slides projets : tout afficher
-            else {
-                document.body.classList.remove('first-slide');
-                pageIndicator.textContent = `${currentSlide - 1} / ${totalSlides - 2}`;
-                prevBtn.disabled = false;
-                nextBtn.disabled = currentSlide === totalSlides - 1;
-            }
-        }
-
-        // Event listeners pour les boutons
-        prevBtn.addEventListener('click', prevSlide);
-        nextBtn.addEventListener('click', nextSlide);
-
-        // Navigation clavier
-        document.addEventListener('keydown', e => {
-            if (e.key === 'ArrowLeft') prevSlide();
-            if (e.key === 'ArrowRight') nextSlide();
-        });
-
-        // Swipe tactile
-        let touchStartX = 0;
-        let touchEndX = 0;
-        sliderContainer.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        sliderContainer.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) nextSlide();
-            if (touchEndX - touchStartX > 50) prevSlide();
-        });
-
-        // Fonctions Lightbox
-        let currentProject = null;
-        let currentScreenshotIndex = 0;
-
-        function openLightbox(projectIndex) {
-            currentProject = projects[projectIndex];
-            currentScreenshotIndex = 0;
-            showScreenshot();
-            document.getElementById('lightbox').classList.add('active');
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-        }
-
-        function showScreenshot() {
-            if (!currentProject || !currentProject.screenshots) return;
-
-            const img = document.getElementById('lightboxImage');
-            const counter = document.getElementById('lightboxCounter');
-
-            const screenshot = currentProject.screenshots[currentScreenshotIndex];
-
-            if (typeof screenshot === 'string') {
-                img.src = screenshot;
-                counter.innerHTML = `<strong>${currentScreenshotIndex + 1} / ${currentProject.screenshots.length}</strong>`;
-            } else {
-                img.src = screenshot.url;
-                const title = (screenshot.title && typeof screenshot.title === 'object')
-                    ? screenshot.title[currentLanguage]
-                    : screenshot.title;
-                counter.innerHTML = `<span>${title || ''}</span>`;
-            }
-        }
-
-        function nextScreenshot() {
-            if (!currentProject) return;
-            currentScreenshotIndex = (currentScreenshotIndex + 1) % currentProject.screenshots.length;
-            showScreenshot();
-        }
-
-        function prevScreenshot() {
-            if (!currentProject) return;
-            currentScreenshotIndex = (currentScreenshotIndex - 1 + currentProject.screenshots.length) % currentProject.screenshots.length;
-            showScreenshot();
-        }
-
-        // Fermer avec Echap
-        document.addEventListener('keydown', (e) => {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') prevScreenshot();
-                if (e.key === 'ArrowRight') nextScreenshot();
-            }
-        });
-
-        // Fermer en cliquant sur le fond
-        document.getElementById('lightbox').addEventListener('click', (e) => {
-            if (e.target.id === 'lightbox') closeLightbox();
-        });
-
-        // Language Switch Logic
-        let currentLanguage = 'fr';
-        const langButtons = document.querySelectorAll('.lang-btn');
-
-        function updateLanguage(lang) {
-            currentLanguage = lang;
-
-            // Mettre à jour tous les labels avec data-key
-            document.querySelectorAll('[data-key]').forEach(element => {
-                const key = element.dataset.key;
-
-                if (!translations[lang] || !translations[lang][key]) return;
-
-                // Cas spécifique : bouton captures avec compteur
-                if (key === 'voirCaptures' && element.classList.contains('screenshots-button-text')) {
-                    const count = element.dataset.count || '';
-                    element.textContent = `${translations[lang][key]} (${count})`;
-                    return;
-                }
-
-                // Cas standard : section-title avec <span class="label-text">
-                const labelText = element.querySelector('.label-text');
-                if (labelText) {
-                    labelText.textContent = translations[lang][key];
-                } else {
-                    // fallback : si l'élément porte data-key directement
-                    element.textContent = translations[lang][key];
-                }
-            });
-
-            // Mettre à jour les titres des projets dans les slides
-            document.querySelectorAll('.translatable-title').forEach(element => {
-                const index = parseInt(element.dataset.projectIndex);
-                element.textContent = getLocalized(projects[index].title, lang);
-            });
-
-            // Mettre à jour les industries dans les slides
-            document.querySelectorAll('.translatable-industry').forEach(element => {
-                const index = parseInt(element.dataset.projectIndex);
-                element.textContent = getLocalized(projects[index].industry, lang);
-            });
-
-            // Mettre à jour les devices (PC / Mobile / Tablette)
-            document.querySelectorAll('.device-badge').forEach(el => {
-                const key = el.dataset.device || el.textContent.trim();
-                el.dataset.device = key; // sécurise si jamais absent
-                const translated = translations[lang]?.devices?.[key];
-                if (translated) el.textContent = translated;
-            });
-
-            // Mettre à jour le contenu dynamique des projets (problem/users/solution + listes)
-            document.querySelectorAll('.translatable-field').forEach(element => {
-                const index = parseInt(element.dataset.projectIndex);
-                const field = element.dataset.field;
-
-                const value = projects[index][field];
-                const localized = getLocalized(value, lang);
-
-                // Listes
-                if (field === 'features' || field === 'userBenefits' || field === 'businessValue') {
-                    element.innerHTML = renderList(localized);
-                } else {
-                    // HTML autorisé (problem/users/solution)
-                    element.innerHTML = localized;
-                }
-            });
-
-            // Mettre à jour les titres du sommaire
-            document.querySelectorAll('.translatable-sommaire-title').forEach(element => {
-                const index = parseInt(element.dataset.projectIndex);
-                element.textContent = getLocalized(projects[index].title, lang);
-            });
-
-            // Mettre à jour les industries du sommaire
-            document.querySelectorAll('.translatable-sommaire-industry').forEach(element => {
-                const index = parseInt(element.dataset.projectIndex);
-                element.textContent = getLocalized(projects[index].industry, lang);
-            });
-
-            // Mettre à jour le titre du sommaire (h1 "Sommaire")
-            const sommaireTitles = document.querySelectorAll('.sommaire-slide h1');
-            sommaireTitles.forEach(title => {
-                title.textContent = translations[lang]['sommaire'];
-            });
-
-            // Mettre à jour le bouton du sommaire
-            const sommaireIcon = document.getElementById('sommaireIcon');
-            if (sommaireIcon) {
-                sommaireIcon.title = translations[lang]['retourSommaire'];
-            }
-
-            // Si la lightbox est ouverte, rafraîchir le titre (capture)
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox && lightbox.classList.contains('active')) {
-                showScreenshot();
-            }
-        }
-
-        langButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const lang = e.target.dataset.lang;
-
-                // Retirer active de tous les boutons
-                langButtons.forEach(b => b.classList.remove('active'));
-                // Ajouter active au bouton cliqué
-                e.target.classList.add('active');
-
-                // Mettre à jour la langue
-                updateLanguage(lang);
-            });
-        });
-
-        // Init
-        updateNavigation();
-
-        // Initialiser la langue APRÈS que tout soit dans le DOM
-        updateLanguage('fr');
-
-        // Ouvrir la bonne slide si un hash est présent dans l’URL
-        goToSlide(slideFromHash());
-
-        // Suivre les changements de hash (collage de lien, navigation navigateur)
-        window.addEventListener("hashchange", () => {
-            goToSlide(slideFromHash());
-        });
-
-        // Blocage sélection / copie
-
-        (() => {
-            "use strict";
-
-
-            const CFG = {
-                // Autoriser sélection/copie dans certains éléments (email, liens contact, etc.)
-                allowSelectSelector: ".allow-select, input, textarea",
-
-                // Dissuasion watermark (très faible opacité)
-                watermark: {
-                    enabled: true,
-                    // Mets ton nom / ta marque / ton site
-                    text: "Osalyd Consulting",
-                    opacity: 0.02,          // 0.02 à 0.06 selon ton goût
-                    fontSize: 28,            // px
-                    rotationDeg: -22,        // angle
-                    gapX: 260,               // espacement horizontal
-                    gapY: 180,               // espacement vertical
-                    zIndex: 9999
-                },
-
-                // Bloquages
-                block: {
-                    contextMenu: true,
-                    selection: true,
-                    clipboardEvents: true,   // copy/cut/paste
-                    hotkeys: true            // Ctrl/Cmd + C/A/U/X/S/P
-                }
-            };
-
-            /** --------------------------
-             *  Helpers
-             *  -------------------------- */
-            const isAllowedTarget = (target) => {
-                if (!target || !(target instanceof Element)) return false;
-                return !!target.closest(CFG.allowSelectSelector);
-            };
-
-            const injectStyle = () => {
-                const css = `
-      /* blocage sélection global (sauf zones autorisées) */
-      body[data-nocopy="1"] * {
-        -webkit-user-select: none !important;
-        -moz-user-select: none !important;
-        -ms-user-select: none !important;
-        user-select: none !important;
-      }
-      body[data-nocopy="1"] ${CFG.allowSelectSelector},
-      body[data-nocopy="1"] ${CFG.allowSelectSelector} * {
-        -webkit-user-select: text !important;
-        -moz-user-select: text !important;
-        -ms-user-select: text !important;
-        user-select: text !important;
-      }
-
-      /* watermark overlay */
-      .wm-overlay {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: ${CFG.watermark.zIndex};
-        opacity: ${CFG.watermark.opacity};
-        mix-blend-mode: normal;
-      }
-    `.trim();
-
-                const style = document.createElement("style");
-                style.setAttribute("data-nocopy-style", "1");
-                style.appendChild(document.createTextNode(css));
-                document.head.appendChild(style);
-            };
-
-            const createWatermark = () => {
-                if (!CFG.watermark.enabled) return;
-
-                // Canvas watermark (répétée) -> image de fond
-                const canvas = document.createElement("canvas");
-                const ctx = canvas.getContext("2d");
-
-                // Taille du motif (canvas)
-                canvas.width = CFG.watermark.gapX;
-                canvas.height = CFG.watermark.gapY;
-
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.translate(canvas.width / 2, canvas.height / 2);
-                ctx.rotate((CFG.watermark.rotationDeg * Math.PI) / 180);
-                ctx.font = `${CFG.watermark.fontSize}px sans-serif`;
-                ctx.fillStyle = "rgba(0,0,0,1)"; // l'opacité est gérée par le div overlay
-                ctx.textAlign = "center";
-                ctx.textBaseline = "middle";
-                ctx.fillText(CFG.watermark.text, 0, 0);
-
-                const overlay = document.createElement("div");
-                overlay.className = "wm-overlay";
-                overlay.setAttribute("aria-hidden", "true");
-                overlay.style.backgroundImage = `url("${canvas.toDataURL("image/png")}")`;
-                overlay.style.backgroundRepeat = "repeat";
-                overlay.style.backgroundPosition = "0 0";
-
-                document.body.appendChild(overlay);
-            };
-
-            const installGuards = () => {
-                document.body.setAttribute("data-nocopy", "1");
-
-                // Clic droit
-                if (CFG.block.contextMenu) {
-                    document.addEventListener(
-                        "contextmenu",
-                        (e) => {
-                            if (isAllowedTarget(e.target)) return;
-                            e.preventDefault();
-                        },
-                        { capture: true }
-                    );
-                }
-
-                // Sélection (drag / double click / etc.)
-                if (CFG.block.selection) {
-                    // Empêche la sélection au démarrage
-                    document.addEventListener(
-                        "selectstart",
-                        (e) => {
-                            if (isAllowedTarget(e.target)) return;
-                            e.preventDefault();
-                        },
-                        { capture: true }
-                    );
-                }
-
-                // Clipboard events
-                if (CFG.block.clipboardEvents) {
-                    ["copy", "cut", "paste"].forEach((evt) => {
-                        document.addEventListener(
-                            evt,
-                            (e) => {
-                                if (isAllowedTarget(e.target)) return;
-                                e.preventDefault();
-                            },
-                            { capture: true }
-                        );
-                    });
-                }
-
-                // Raccourcis clavier (Ctrl/Cmd + ...)
-                if (CFG.block.hotkeys) {
-                    document.addEventListener(
-                        "keydown",
-                        (e) => {
-                            if (isAllowedTarget(e.target)) return;
-
-                            const key = (e.key || "").toLowerCase();
-                            const ctrlOrCmd = e.ctrlKey || e.metaKey;
-
-                            // Tu peux ajuster la liste si besoin
-                            const blocked = ["c", "a", "u", "x", "s", "p"]; // copy, select all, view source, cut, save, print
-
-                            if (ctrlOrCmd && blocked.includes(key)) {
-                                e.preventDefault();
-                            }
-                        },
-                        { capture: true }
-                    );
-                }
-            };
-
-            /** --------------------------
-             *  Boot
-             *  -------------------------- */
-            const boot = () => {
-                injectStyle();
-                installGuards();
-                createWatermark();
-            };
-
-            if (document.readyState === "loading") {
-                document.addEventListener("DOMContentLoaded", boot, { once: true });
-            } else {
-                boot();
-            }
-        })();
-
-
-    </script>
-
-    <div class="copyright-footer allow-select">
-        <span>© 2025 Osalyd Consulting</span>
-
-        <a class="copyright-linkedin" href="https://www.linkedin.com/in/juliebredeche" target="_blank"
-            rel="noopener noreferrer" aria-label="LinkedIn Osalyd Consulting" title="LinkedIn">
-            <img class="linkedin-icon" aria-hidden="true" focusable="false"
-                src="https://www.osalydconsulting.com/media/files/Linkedin-White.png">
-        </a>
-    </div>
-
-
+            <div class="col-right-sub">
+              <div class="card">
+                <div class="ic-title">⚡ <span data-field="labelBenefits">${T[lang].labelBenefits}</span></div>
+                <ul class="il check" data-field="benefits">${renderList(p.benefits[lang])}</ul>
+              </div>
+              <div class="card tinted">
+                <div class="ic-title grad">📊 <span data-field="labelROI">${T[lang].labelROI}</span></div>
+                <div class="roi-grid" data-field="roi">${renderRoi(p.roi[lang])}</div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+      track.appendChild(slide);
+    });
+  }
+
+  function renderList(items) {
+    return items.map(item => `<li>${item}</li>`).join('');
+  }
+  function renderRoi(items) {
+    return items.map(r => `
+      <div class="roi-card">
+        <span class="roi-val gt">${r.val}</span>
+        <span class="roi-label">${r.label}</span>
+      </div>`).join('');
+  }
+
+  /* ================================================================
+     DOTS
+  ================================================================ */
+  function buildDots() {
+    const wrap = document.getElementById('dots');
+    wrap.innerHTML = '';
+    for (let i = 0; i < TOTAL; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === cur ? ' on' : '');
+      d.onclick = () => goTo(i);
+      wrap.appendChild(d);
+    }
+  }
+  function updateDots() {
+    document.querySelectorAll('.dot').forEach((d,i) => {
+      d.classList.toggle('on', i === cur);
+    });
+  }
+
+  /* ================================================================
+     NAVIGATION
+  ================================================================ */
+  function goTo(n) {
+    cur = Math.max(0, Math.min(TOTAL-1, n));
+    document.getElementById('track').style.transform = `translateX(-${cur * 100}%)`;
+
+    // reset + retrigger animations on project slides
+    document.querySelectorAll('.slide-project').forEach(s => {
+      s.querySelectorAll('.anim-in').forEach(el => {
+        el.style.animation = 'none';
+        el.offsetHeight; // reflow
+        el.style.animation = '';
+      });
+    });
+
+    updateDots();
+    updateBar();
+    updateNavLinks();
+    setHash();
+    scrollActiveSlide();
+  }
+
+  function nextOrBack() {
+    if (cur < TOTAL-1) goTo(cur+1);
+    else goTo(0);
+  }
+
+  function updateBar() {
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const barCount = document.getElementById('barCount');
+
+    btnPrev.disabled = (cur === 0);
+    if (cur === TOTAL-1) {
+      btnNext.textContent = T[lang].btnBack;
+    } else {
+      btnNext.textContent = T[lang].btnNext;
+    }
+
+    if (cur === 0) {
+      barCount.innerHTML = '';
+    } else {
+      barCount.innerHTML = `<strong>${T[lang].slideOf}</strong> <strong>${cur}</strong> ${T[lang].of} <strong>${TOTAL-1}</strong>`;
+    }
+  }
+
+  function updateNavLinks() {
+    const links = document.querySelectorAll('.nav-links .nav-link');
+    links.forEach((l,i) => l.classList.toggle('active', i === cur));
+  }
+
+  function scrollActiveSlide() {
+    const slides = document.querySelectorAll('.slide');
+    if (slides[cur]) slides[cur].scrollTop = 0;
+  }
+
+  /* ================================================================
+     HASH
+  ================================================================ */
+  const HASH_MAP = { cover:0, p1:1, p2:2, p3:3 };
+  function setHash() {
+    const keys = Object.keys(HASH_MAP);
+    history.replaceState(null,'', '#' + (keys[cur] || 'cover'));
+  }
+  function fromHash() {
+    const h = (location.hash||'').replace('#','').toLowerCase();
+    return HASH_MAP[h] ?? 0;
+  }
+  window.addEventListener('hashchange', () => goTo(fromHash()));
+
+  /* ================================================================
+     LANGUAGE
+  ================================================================ */
+  function setLang(l) {
+    lang = l;
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.className = 'lang-btn ' + (b.dataset.lang === l ? 'on' : 'off');
+    });
+    applyLang();
+  }
+
+  function applyLang() {
+    const t = T[lang];
+
+    // Static i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+
+    // Cover grid titles + sectors
+    const coverCards = document.querySelectorAll('.cover-card');
+    coverCards.forEach((card, i) => {
+      const p = PROJECTS[i];
+      card.querySelector('.cover-card-title').textContent = p.title[lang];
+      card.querySelector('.cover-card-sector').textContent = p.sector[lang];
+    });
+
+    // Project slides
+    document.querySelectorAll('.slide-project').forEach((slide, i) => {
+      const p = PROJECTS[i];
+      const l = lang;
+
+      const get = sel => slide.querySelector(`[data-field="${sel}"]`);
+
+      if(get('title')) get('title').textContent = p.title[l];
+      if(get('sector')) get('sector').textContent = p.sector[l];
+      if(get('problem')) get('problem').innerHTML = p.problem[l];
+      if(get('users')) get('users').innerHTML = p.users[l];
+      if(get('solution')) get('solution').innerHTML = p.solution[l];
+      if(get('features')) get('features').innerHTML = renderList(p.features[l]);
+      if(get('benefits')) get('benefits').innerHTML = renderList(p.benefits[l]);
+      if(get('roi')) get('roi').innerHTML = renderRoi(p.roi[l]);
+
+      // Device badges
+      const devWrap = slide.querySelector('.badge-device-wrap');
+      if(devWrap) devWrap.innerHTML = p.devices[l].map(d=>`<span class="badge-device">${d}</span>`).join('');
+
+      // Labels
+      ['labelProblem','labelUsers','labelSolution','labelFeatures','labelBenefits','labelROI'].forEach(k => {
+        const el = slide.querySelector(`[data-field="${k}"]`);
+        if(el) el.textContent = t[k];
+      });
+
+      // Visuals button
+      const vBtn = slide.querySelector('[data-field="visuals"]');
+      if(vBtn) vBtn.textContent = `${t.btnVisuals} (${p.screenshots.length})`;
+    });
+
+    // Bottom bar
+    updateBar();
+  }
+
+  /* ================================================================
+     LIGHTBOX
+  ================================================================ */
+  let lbProject = null, lbIdx = 0;
+
+  function openLb(pIdx) {
+    lbProject = PROJECTS[pIdx];
+    lbIdx = 0;
+    showLbSlide();
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLb() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  function lbClickOutside(e) { if (e.target === document.getElementById('lightbox')) closeLb(); }
+  function lbStep(dir) {
+    if (!lbProject) return;
+    lbIdx = (lbIdx + dir + lbProject.screenshots.length) % lbProject.screenshots.length;
+    showLbSlide();
+  }
+  function showLbSlide() {
+    if (!lbProject) return;
+    const s = lbProject.screenshots[lbIdx];
+    document.getElementById('lbImg').src = s.url;
+    const title = s.title ? (s.title[lang] || s.title) : '';
+    document.getElementById('lbCounter').innerHTML =
+      `<span>${title}</span><br><small>${lbIdx+1} / ${lbProject.screenshots.length}</small>`;
+  }
+
+  /* ================================================================
+     KEYBOARD + SWIPE
+  ================================================================ */
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lightbox');
+    if (lb.classList.contains('open')) {
+      if (e.key === 'Escape')     closeLb();
+      if (e.key === 'ArrowLeft')  lbStep(-1);
+      if (e.key === 'ArrowRight') lbStep(1);
+    } else {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  goTo(cur+1);
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')    goTo(cur-1);
+    }
+  });
+
+  let tX = 0;
+  document.querySelector('.slider-wrap').addEventListener('touchstart', e => { tX = e.changedTouches[0].screenX; });
+  document.querySelector('.slider-wrap').addEventListener('touchend',   e => {
+    const diff = tX - e.changedTouches[0].screenX;
+    if (diff > 50)  goTo(cur+1);
+    if (diff < -50) goTo(cur-1);
+  });
+
+  /* ================================================================
+     WATERMARK
+  ================================================================ */
+  (() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 260; canvas.height = 180;
+    const ctx = canvas.getContext('2d');
+    ctx.translate(130, 90); ctx.rotate(-22 * Math.PI / 180);
+    ctx.font = '600 15px "Plus Jakarta Sans",sans-serif';
+    ctx.fillStyle = 'rgba(15,95,173,1)';
+    ctx.textAlign = 'center';
+    ctx.fillText('Osalyd Consulting', 0, 0);
+    const div = document.createElement('div');
+    div.style.cssText = `position:fixed;inset:0;pointer-events:none;z-index:9000;
+      opacity:0.025;background-image:url(${canvas.toDataURL()});`;
+    document.body.appendChild(div);
+  })();
+
+  /* ================================================================
+     INIT
+  ================================================================ */
+  buildCoverGrid();
+  buildProjectSlides();
+  buildDots();
+  goTo(fromHash());
+  applyLang();
+  </script>
 </body>
-
 </html>
