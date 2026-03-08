@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -14,9 +15,15 @@ export const metadata: Metadata = {
   },
 }
 
-const approche = [
+const approche: { icon: ReactNode; color: string; title: string; items: string[] }[] = [
   {
-    icon: '🧩',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 20h9" />
+        <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+      </svg>
+    ),
+    color: 'rgba(24,176,232,0.12)',
     title: 'Conception sur-mesure',
     items: [
       'Écoute des enjeux métiers',
@@ -27,7 +34,12 @@ const approche = [
     ],
   },
   {
-    icon: '💎',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </svg>
+    ),
+    color: 'rgba(77,255,214,0.12)',
     title: 'Valeur ajoutée',
     items: [
       'Double compétence tech/métiers',
@@ -38,7 +50,14 @@ const approche = [
     ],
   },
   {
-    icon: '🔄 ',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="6" />
+        <circle cx="12" cy="12" r="2" />
+      </svg>
+    ),
+    color: 'rgba(24,176,232,0.12)',
     title: 'Périmètre d\'intervention',
     items: [
       'Pilotage de bout en bout',
@@ -158,9 +177,11 @@ export default function QuiSuisJePage() {
             Mon Approche
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }} className="valeurs-grid">
-            {approche.map(({ icon, title, items }) => (
+            {approche.map(({ icon, color, title, items }) => (
               <div key={title} className="card" style={{ padding: '1.75rem' }}>
-                <span style={{ fontSize: '2rem', display: 'block', marginBottom: '0.75rem' }} aria-hidden="true">{icon}</span>
+                <div style={{ width: 48, height: 48, borderRadius: '12px', background: color, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                  {icon}
+                </div>
                 <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>{title}</h3>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   {items.map((item) => (

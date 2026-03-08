@@ -64,7 +64,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
                 marginBottom: '0.4rem',
               }}
             >
-              Services
+              Ce que je propose
             </p>
             <h2
               style={{
@@ -75,7 +75,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
                 margin: 0,
               }}
             >
-              Mes offres de service
+              Services
             </h2>
           </div>
           <Link href="/services" className="btn-ghost">
