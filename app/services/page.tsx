@@ -55,7 +55,7 @@ export default function OffresPage() {
                 Solutions PowerApps, Power Automate & Agents Copilot
               </h2>
               <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
-                Je conçois et développe des applications métier, des automatisations intelligentes et des agents conversationnels sur mesure pour votre organisation. Du cadrage à la mise en production, jusqu'à l'adoption.
+                Je conçois et développe des applications métier, des automatisations intelligentes et des agents conversationnels sur mesure pour votre organisation. Du cadrage à la mise en production, jusqu&apos;à l&apos;adoption.
               </p>
               <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.75rem' }}>
                 Charge moyenne : <strong style={{ color: 'var(--ink)' }}>20 à 30 jours</strong> pour une solution complète.
@@ -124,7 +124,7 @@ export default function OffresPage() {
               Audit SharePoint
             </h2>
             <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '1.25rem' }}>
-Votre environnement SharePoint a grandi au fil du temps, et avec lui, une gestion de plus en plus complexe. Je réalise un diagnostic complet de votre architecture, de vos permissions et de vos usages pour vous donner une vision claire de l'existant et un plan d'action concret pour en tirer le meilleur parti.            </p>
+Votre environnement SharePoint a grandi au fil du temps, et avec lui, une gestion de plus en plus complexe. Je réalise un diagnostic complet de votre architecture, de vos permissions et de vos usages pour vous donner une vision claire de l&apos;existant et un plan d&apos;action concret pour en tirer le meilleur parti.            </p>
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               {['Analyse de l\'architecture des sites',
       'Évaluation des droits et des permissions',
