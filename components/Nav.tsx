@@ -95,7 +95,7 @@ export default function Nav() {
           <Link
             href="/contact"
             className="btn-primary hidden md:inline-flex"
-            style={{ padding: '0.5rem 1.1rem', fontSize: '0.85rem' }}
+            style={{ padding: '0.5rem 1.1rem', fontSize: '0.85rem', whiteSpace: 'nowrap' }}
           >
             Me contacter
           </Link>
