@@ -93,11 +93,11 @@ export default function Nav() {
         {/* CTA */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Link
-            href="/blog"
+            href="/contact"
             className="btn-primary hidden md:inline-flex"
             style={{ padding: '0.5rem 1.1rem', fontSize: '0.85rem' }}
           >
-            S&apos;abonner
+            Me contacter
           </Link>
 
           {/* Mobile hamburger */}
@@ -166,7 +166,7 @@ export default function Nav() {
             )
           })}
           <Link
-            href="/blog"
+            href="/contact"
             className="btn-primary"
             onClick={() => setMenuOpen(false)}
             style={{ width: 'fit-content', marginTop: '0.5rem' }}

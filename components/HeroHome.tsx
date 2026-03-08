@@ -116,7 +116,7 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
             className="animate-fadeUp animate-fadeUp-4"
             style={{ display: 'flex', alignItems: 'center', gap: '1.55rem', flexWrap: 'wrap', marginBottom: '2.55rem',}}
           >
-            <Link href="/#offres" className="btn-primary">
+            <Link href="/#services" className="btn-primary">
               Voir mes services →
             </Link>
             <Link href="/#ressources" className="btn-ghost">

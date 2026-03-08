@@ -141,10 +141,10 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
         {/* OneDrive Path Checker card */}
         <div
           className="card"
-          style={{ marginTop: '1.5rem', padding: '1.75rem', background: 'var(--font-jarkarta)', border: '1.5px solid var(--border)' }}
+          style={{ marginTop: '1.5rem', padding: '1.25rem', background: 'var(--font-jarkarta)', border: '1.5px solid var(--border)' }}
         >
-          {/* Icon + Title */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.6rem' }}>
+          {/* Icon + Title + Badge in one row */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
             <div style={{ width: 44, height: 44, borderRadius: '12px', background: 'linear-gradient(135deg, rgba(96,198,255,0.15) 0%, rgba(24,176,232,0.15) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M4 3v18h17v-3H7V3z" />
@@ -156,27 +156,25 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
                 <line x1="19" y1="18" x2="19" y2="15" />
               </svg>
             </div>
-            <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.4, margin: 0 }}>
-              Outil : Détecteur de chemins trop longs pour OneDrive &amp; SharePoint
+            <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.35, margin: 0, flex: 1 }}>
+              Outil : Détecteur de chemins de fichiers trop longs
             </h3>
+            <span style={{ color: 'var(--c3)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap', flexShrink: 0 }}>
+              Disponible sur le Microsoft Store · 24h d'essai gratuit
+            </span>
           </div>
 
-          {/* Description */}
-          <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, marginBottom: '1rem' }}>
-            Auditez vos chemins de fichiers avant migration SharePoint et évitez les erreurs de synchronisation OneDrive.
-          </p>
-
-          {/* Badge + Button */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
-            <span style={{ background: 'var(--c3)', border: '1px solid var(--border)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', color: 'var(--off)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              Disponible sur le Microsoft Store
-            </span>
+          {/* Description + Button at same height */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
+            <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, margin: 0 }}>
+              Auditez vos chemins de fichiers avant migration SharePoint et évitez les erreurs de synchronisation OneDrive.
+            </p>
             <Link
               href="https://onedrivepathchecker.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline"
-              style={{ whiteSpace: 'nowrap', flexShrink: 0, fontSize: '0.8rem', padding: '0.45rem 1rem', background: 'var(--off)' }}
+              className="btn-dark"
+              style={{ whiteSpace: 'nowrap', flexShrink: 0, fontSize: '0.90rem'}}
             >
               Découvrir l&apos;outil →
             </Link>
