@@ -22,7 +22,7 @@ export async function sendContactEmail(data: ContactFormData) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Contact <contact@juliebredeche.pro>',
+        from: 'Contact <julie.bredeche@osalydconsulting.com>',
         to: ['julie.bredeche@osalydconsulting.com'], // TODO: remplacer par votre email
         reply_to: data.email,
         subject: `[Contact] ${data.subject}`,
