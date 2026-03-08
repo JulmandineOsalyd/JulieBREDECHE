@@ -127,15 +127,24 @@ export default function QuiSuisJePage() {
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', color: 'var(--muted)', lineHeight: 1.75, fontSize: '1rem' }}>
             <p>
-              Mon aventure avec Microsoft 365 a commencé en 2016, lorsque j&apos;ai été chargée de déployer SharePoint pour une entreprise de services. J&apos;ai immédiatement été fascinée par la puissance de la plateforme — et par le fossé entre ce qu&apos;elle peut faire et ce que les équipes savent réellement en tirer.
+              Mon aventure avec Microsoft 365 a débuté en 2014, en participant au déploiement du plus gros intranet SharePoint pour un grand groupe de l&apos;énergie.
+              J&apos;ai immédiatement été fascinée par la puissance et les possibilités infinies de SharePoint ! 
+              Très vite, je me suis spécialisée dans l&apos;automatisation de processus avec SharePoint Designer et Nintex, avant l&apos;arrivée de Power Automate.
             </p>
             <p>
-              Après plusieurs années en ESN à accompagner des grands comptes (énergie, finance, culture), j&apos;ai créé Osalyd Consulting en 2019 pour travailler directement avec des entreprises qui ont de vrais projets de transformation numérique. La liberté du freelance m&apos;a permis de me spécialiser profondément plutôt que de rester généraliste.
+              Après avoir intégré une ESN spécialisée autour des outils Microsoft 365 et réalisé des missions pour plusieurs grands comptes, 
+              j&apos;ai créé Osalyd Consulting en 2020. Cette liberté entrepreneuriale m&apos;a permis de me concentrer sur mes domaines d&apos;excellence : SharePoint et la Power Platform.
             </p>
             <p>
-              L&apos;arrivée de la Power Platform, puis de Copilot Studio, a changé ma pratique. Ce qui prenait 6 mois de développement peut maintenant être livré en 3 semaines. Mais la technologie ne suffit pas : c&apos;est l&apos;adoption et la formation des équipes qui font la différence entre un projet réussi et un outil abandonné.
+              Le fossé entre ce que la technologie peut faire et ce que les équipes savent en faire reste important. 
+              C&apos;est là que je fais la différence, transformer des besoins métiers en outils, en solutions concrètes intégrées dans l&apos;écosystème M365.
             </p>
-          </div>
+            <p>
+              Issue d&apos;une école de commerce, j&apos;assure une double compétence technique et fonctionnelle. 
+              Mon appétence naturelle pour la technique m&apos;a conduite à maîtriser en profondeur l&apos;ensemble des technologies Microsoft 365 que je déploie.
+            </p>
+</div>
+
         </div>
       </section>
 
