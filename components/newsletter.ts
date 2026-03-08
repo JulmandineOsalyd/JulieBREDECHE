@@ -1,7 +1,7 @@
 'use server'
 
 export async function subscribeToNewsletter(email: string, firstName?: string) {
-  const apiKey = process.env.RESEND_API_KEY
+  const apiKey = process.env.RESEND_NL_API_KEY
   const audienceId = process.env.RESEND_AUDIENCE_ID
 
   if (!apiKey || !audienceId) {
