@@ -16,39 +16,40 @@ export const metadata: Metadata = {
 
 const approche = [
   {
-    icon: '💡',
-    title: 'Mon approche',
+    icon: '🧩',
+    title: 'Conception sur-mesure',
     items: [
-      'Compréhension des enjeux métiers',
-      'Cadrage des besoins',
-      'Conception de solutions sur-mesure et évolutives',
-      'Intégration dans l\'écosystème IT existant',
-      'Accompagnement à l\'adoption',
+      'Écoute des enjeux métiers',
+      'Cadrage précis des besoins',
+      'Architecture adaptée',
+      'Solutions évolutives',
+      'Prototype fonctionnel',
     ],
   },
   {
-    icon: '🔍',
-    title: 'Ma valeur ajoutée',
+    icon: '💎',
+    title: 'Valeur ajoutée',
     items: [
-      'Vision technico-fonctionnelle',
-      'Discours accessible pour les métiers',
-      'Capacité d’arbitrage entre besoins, contraintes et priorités',
-      'Rigueur et sens du détail',
-      'Documentation claire et maintenable',
+      'Double compétence tech/métiers',
+      'Discours accessible aux non-techniques',
+      'Arbitrage technique & budget',
+      'Rigueur méthodologique',
+      'Expertise SharePoint/Power Platform',
     ],
   },
   {
-    icon: '🏢',
+    icon: '🔄 ',
     title: 'Périmètre d\'intervention',
     items: [
-      'Accompagnement au changement et adoption',
-      'Architecture de solutions',
-      'Conception et développement de solutions sur-mesure',
-      'Gouvernance et bonnes pratiques',
+      'Pilotage de bout en bout',
+      'Architecture de solution',
+      'Développement et design',
+      'Optimisation des process',
       'Accompagnement au changement',
     ],
   },
 ]
+
 
 export default function QuiSuisJePage() {
   return (
@@ -57,7 +58,7 @@ export default function QuiSuisJePage() {
       <section style={{ padding: '5rem 6% 3rem', background: '#ffffff' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 380px', gap: '4rem', alignItems: 'center' }} className="qs-hero-grid">
           <div>
-            <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.75rem' }}>
+            <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '1.75rem' }}>
               À propos
             </p>
 
@@ -74,17 +75,19 @@ export default function QuiSuisJePage() {
               </div>
               <div>
                 <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)', color: 'var(--ink)', lineHeight: 1.2, margin: 0 }}>
-                  Julie BREDECHE
-                </h1>
-                <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)', color: 'var(--ink)', lineHeight: 1.3, margin: '0.25rem 0 0' }}>
-                  Consultante{' '}
                   <span style={{ background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                    Julie BREDECHE{' '}
+                  </span>
+                </h1>
+                <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)', color: 'var(--ink)', lineHeight: 1.3, margin: '0.75rem 0 0' }}>
+                  Consultante{' '}
+                  <span style={{}}>
                     Microsoft 365
                   </span>
                 </h2>
               </div>
             </div>
-            <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
+            <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '2.15rem' }}>
               Spécialiste SharePoint et Power Platform depuis plus de 10 ans, j&apos;accompagne les directions métiers dans la <b>modernisation de leurs outils collaboratifs</b>, l&apos;<b>automatisation de processus</b> et la <b>structuration efficace des contenus,</b> en m&apos;appuyant sur les solutions Microsoft 365.
             </p>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -112,7 +115,7 @@ export default function QuiSuisJePage() {
                 style={{ objectFit: 'contain' }}
               />
               <span style={{ fontSize: '0.95rem', color: 'var(--c3)', fontWeight: 600, lineHeight: 1.9, textAlign: 'center' }}>
-                Certifiée Microsoft : <br/><u>Power Platform Solution Architect Expert</u> 
+                Certifiée Microsoft : <br /><u>Power Platform Solution Architect Expert</u>
               </span>
             </a>
           </div>
@@ -128,22 +131,22 @@ export default function QuiSuisJePage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', color: 'var(--muted)', lineHeight: 1.75, fontSize: '1rem' }}>
             <p>
               Mon aventure avec Microsoft 365 a débuté en 2014, en participant au déploiement du plus gros intranet SharePoint pour un grand groupe de l&apos;énergie.
-              J&apos;ai immédiatement été fascinée par la puissance et les possibilités infinies de SharePoint ! 
+              J&apos;ai immédiatement été fascinée par la puissance et les possibilités infinies de SharePoint !
               Très vite, je me suis spécialisée dans l&apos;automatisation de processus avec SharePoint Designer et Nintex, avant l&apos;arrivée de Power Automate.
             </p>
             <p>
-              Après avoir intégré une ESN spécialisée autour des outils Microsoft 365 et réalisé des missions pour plusieurs grands comptes, 
+              Après avoir intégré une ESN spécialisée autour des outils Microsoft 365 et réalisé des missions pour plusieurs grands comptes,
               j&apos;ai créé Osalyd Consulting en 2020. Cette liberté entrepreneuriale m&apos;a permis de me concentrer sur mes domaines d&apos;excellence : SharePoint et la Power Platform.
             </p>
             <p>
-              Le fossé entre ce que la technologie peut faire et ce que les équipes savent en faire reste important. 
+              Le fossé entre ce que la technologie peut faire et ce que les équipes savent en faire reste important.
               C&apos;est là que je fais la différence, transformer des besoins métiers en outils, en solutions concrètes intégrées dans l&apos;écosystème M365.
             </p>
             <p>
-              Issue d’une formation en école de commerce, j’ai un background qui me permet de dialoguer naturellement avec les métiers. 
+              Issue d’une formation en école de commerce, j’ai un background qui me permet de dialoguer naturellement avec les métiers.
               Mon appétence naturelle pour la technique m&apos;a conduite à maîtriser en profondeur l&apos;ensemble des technologies Microsoft 365 que je déploie.
             </p>
-</div>
+          </div>
 
         </div>
       </section>
@@ -176,12 +179,14 @@ export default function QuiSuisJePage() {
       {/* CTA */}
       <section style={{ padding: '4rem 6%', background: '#ffffff', textAlign: 'center' }}>
         <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '1rem' }}>
-          Vous avez un projet Microsoft 365 ?
+          Vous avez un projet{' '}
+          <span style={{ background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            Microsoft 365 ?</span>
         </h2>
         <p style={{ color: 'var(--muted)', fontSize: '1rem', marginBottom: '1.75rem' }}>
           Discutons de vos besoins et voyons comment je peux vous aider.
         </p>
-        <Link href="/services" className="btn-primary">Voir mes offres →</Link>
+        <Link href="/contact" className="btn-primary">Me contacter</Link>
       </section>
     </>
   )
