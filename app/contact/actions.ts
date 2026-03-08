@@ -18,7 +18,7 @@ export async function sendContactEmail(data: ContactFormData) {
   console.log('[sendContactEmail] API key found, length:', apiKey.length)
 
   const payload = {
-    from: 'Contact <onboarding@resend.dev>',
+    from: 'Contact <contact@osalydconsulting.com>',
     to: ['julie.bredeche@osalydconsulting.com'],
     reply_to: [data.email],
     subject: `[Contact] ${data.subject}`,

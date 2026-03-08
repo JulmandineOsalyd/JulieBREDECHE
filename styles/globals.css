@@ -440,6 +440,13 @@ h1, h2, h3 {
 @media (max-width: 600px) {
   .portfolio-grid { grid-template-columns: 1fr !important; }
 }
+.portfolio-card { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+.portfolio-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(15,95,173,0.14); }
+
+/* Modal body grid responsive */
+@media (max-width: 680px) {
+  .modal-body-grid { grid-template-columns: 1fr !important; }
+}
 
 /* Outil features */
 @media (max-width: 768px) {
