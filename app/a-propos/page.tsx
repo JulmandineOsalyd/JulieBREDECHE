@@ -63,12 +63,12 @@ export default function QuiSuisJePage() {
 
             {/* Avatar + Titres */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '1.5rem' }}>
-              <div style={{ width: 80, height: 80, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, boxShadow: '0 6px 20px rgba(15,95,173,0.2)' }}>
+              <div style={{ width: 100, height: 100, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, boxShadow: '0 6px 20px rgba(15,95,173,0.2)' }}>
                 <Image
                   src="/images/JBR.png"
                   alt="Julie BREDECHE"
-                  width={80}
-                  height={80}
+                  width={100}
+                  height={100}
                   style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
               </div>
@@ -111,8 +111,8 @@ export default function QuiSuisJePage() {
                 height={140}
                 style={{ objectFit: 'contain' }}
               />
-              <span style={{ fontSize: '0.82rem', color: 'var(--c3)', fontWeight: 600, lineHeight: 1.4, textAlign: 'center' }}>
-                ⭐️ Certifiée Microsoft : Power Platform Solution Architect Expert
+              <span style={{ fontSize: '0.95rem', color: 'var(--c3)', fontWeight: 600, lineHeight: 1.9, textAlign: 'center' }}>
+                Certifiée Microsoft : <br/><u>Power Platform Solution Architect Expert</u> 
               </span>
             </a>
           </div>
