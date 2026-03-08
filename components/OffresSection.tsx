@@ -160,7 +160,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
               Outil : Détecteur de chemins de fichiers trop longs
             </h3>
             <span style={{ color: 'var(--c3)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap', flexShrink: 0 }}>
-              Disponible sur le Microsoft Store · 24h d'essai gratuit
+              Disponible sur le Microsoft Store · 24h d&apos;essai gratuit
             </span>
           </div>
 

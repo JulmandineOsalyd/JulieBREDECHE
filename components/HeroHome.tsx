@@ -209,7 +209,7 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
             style={{ marginTop: '1.5rem' }}
           >
             <p style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '0.6rem' }}>
-              Ils m'ont fait confiance :
+              Ils m&apos;ont fait confiance :
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
               {clients.map((c) => (
