@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Mes offres — Julie Bredeche',
+  title: 'Mes services — Julie Bredeche',
   description:
-    'Applications PowerApps, automatisations Power Automate, agents Copilot Studio, coaching et audit Microsoft 365. Découvrez mes offres et ma méthode.',
+    'Applications PowerApps, automatisations Power Automate, agents Copilot Studio, coaching et audit Microsoft 365. Découvrez mes services et ma méthode.',
   openGraph: {
-    title: 'Mes offres — Julie Bredeche',
+    title: 'Mes services — Julie Bredeche',
     description: 'Applications PowerApps, Power Automate, agents Copilot Studio, coaching et audit M365.',
     url: 'https://juliebredeche.pro/services',
     type: 'website',
@@ -14,12 +14,12 @@ export const metadata: Metadata = {
 }
 
 const methodSteps = [
-  { n: '01', title: 'Comprendre', text: 'Ateliers de cadrage avec les parties prenantes pour identifier les vrais besoins, les contraintes techniques et les critères de succès.' },
-  { n: '02', title: 'Cadrer', text: 'Rédaction du cahier des charges fonctionnel, architecture technique, choix des composants Microsoft 365 et estimation détaillée.' },
-  { n: '03', title: 'Schématiser', text: 'Maquettes des interfaces et des flux. Validation par vos utilisateurs clés avant d\'écrire la première ligne de code.' },
-  { n: '04', title: 'Développer', text: 'Développement itératif par sprints de 2 semaines. Démos régulières, ajustements continus basés sur vos retours.' },
-  { n: '05', title: 'Tester', text: 'Tests fonctionnels, tests de performance, tests utilisateurs. Résolution de tous les bugs avant mise en production.' },
-  { n: '06', title: 'Maintenir', text: 'Documentation complète, formation des administrateurs, forfait de maintenance mensuel optionnel.' },
+  { n: '01', title: 'Comprendre le besoin', text: 'Avant de parler solution, je pose les bonnes questions : combien d\'utilisateurs, quelle volumétrie, des externes ? Cela valide la faisabilité technique et identifie les contraintes dès le départ.' },
+  { n: '02', title: 'Cadrer et chiffrer', text: 'J\'identifie les fonctionnalités clés par parcours utilisateur, puis je chiffre. Pour une TPE/PME, la plupart de mes projets représentent 20 à 30 jours de prestation au total.' },
+  { n: '03', title: 'Schématiser et valider', text: 'Je schématise les processus et crée des maquettes directement dans Power Apps. Résultat : le client comprend la logique, précise ses besoins — et je sais dans quel ordre avancer.' },
+  { n: '04', title: 'Développer en agilité', text: 'Dès qu\'une fonctionnalité est prête, je la présente et laisse le client la tester pendant que je poursuis. Si de nouveaux besoins émergent, on arbitre ensemble sans dépasser le chiffrage.' },
+  { n: '05', title: 'Tester et déployer', text: 'Tests de bout en bout, utilisateurs pilotes, cahier de tests si les règles de gestion sont complexes. Documentation technico-fonctionnelle complète livrée avec le projet.' },
+  { n: '06', title: 'Maintenir et faire évoluer', text: 'Gestion des erreurs, reporting des incidents, et forfait annuel optionnel couvrant la correction des anomalies et les petites évolutions.' },
 ]
 
 export default function OffresPage() {
@@ -29,17 +29,17 @@ export default function OffresPage() {
       <section style={{ padding: '5rem 6% 3rem', background: '#ffffff' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
           <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.75rem' }}>
-            Ce que je propose
+            offre de services
           </p>
-          <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.25rem' }}>
-            Des solutions Microsoft 365{' '}
-            <em style={{ fontStyle: 'italic', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              qui livrent
-            </em>
+          <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.7rem)', color: 'var(--ink)', lineHeight: 1.4, marginBottom: '1.25rem', marginTop: '1rem' }}>
+            Mon{' '}
+            <span style={{ background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              expertise Microsoft 365
+            </span>
+            , à chaque étape de votre projet
           </h1>
           <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75 }}>
-            De l&apos;application sur mesure à l&apos;agent conversationnel, je conçois et déploie des outils qui s&apos;intègrent dans vos workflows existants et que vos équipes adoptent vraiment.
-          </p>
+          Conception de solutions, coaching, audit : tout ce dont vous avez besoin pour tirer le meilleur de Microsoft 365, où que vous en soyez.          </p>
         </div>
       </section>
 
@@ -52,25 +52,25 @@ export default function OffresPage() {
                 Offre principale
               </span>
               <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.6rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '1rem' }}>
-                Applications PowerApps, Power Automate & Agents Copilot
+                Solutions PowerApps, Power Automate & Agents Copilot
               </h2>
               <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
                 Je conçois et développe des applications métier, des automatisations intelligentes et des agents conversationnels sur mesure pour votre organisation. Du cadrage à la mise en production, en passant par la formation de vos équipes.
               </p>
               <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.75rem' }}>
-                Délai type : <strong style={{ color: 'var(--ink)' }}>20 à 30 jours</strong> pour une application complète TPE/PME.
+                Charge moyenne : <strong style={{ color: 'var(--ink)' }}>20 à 30 jours</strong> pour une solution complète.
               </p>
               <Link href="#contact" className="btn-primary">Parlons de votre projet</Link>
             </div>
             <div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {[
-                  'Applications PowerApps Canvas et Model-driven sur mesure',
+                  'Applications PowerApps Canvas sur mesure',
                   'Flux Power Automate : approbations, alertes, synchronisations avec ERP/CRM',
                   'Agents Copilot Studio connectés à SharePoint et vos bases de données',
                   'Portails SharePoint Online : intranet, extranet, espaces projet',
-                  'Documentation technique et fonctionnelle incluse',
                   'Formation des administrateurs et utilisateurs finaux',
+                  'Documentation technique et fonctionnelle incluse',
                   'Forfait maintenance mensuel (support, évolutions mineures)',
                 ].map((item) => (
                   <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
@@ -162,19 +162,76 @@ export default function OffresPage() {
         </div>
       </section>
 
+      {/* Outil — OneDrive Path Checker */}
+      <section style={{ padding: '4rem 6%', background: '#ffffff', borderTop: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.5rem' }}>
+              Outil complémentaire
+            </p>
+            <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.6rem, 3vw, 2rem)', color: 'var(--ink)', margin: 0 }}>
+              Un outil que j&apos;ai créé pour mes missions
+            </h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }} className="offre-grid">
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+                <div style={{ width: 48, height: 48, borderRadius: '12px', background: 'linear-gradient(135deg, rgba(96,198,255,0.15) 0%, rgba(24,176,232,0.15) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M4 3v18h17v-3H7V3z" />
+                    <line x1="7" y1="7" x2="10" y2="7" />
+                    <line x1="7" y1="11" x2="10" y2="11" />
+                    <line x1="7" y1="15" x2="10" y2="15" />
+                    <line x1="11" y1="18" x2="11" y2="15" />
+                    <line x1="15" y1="18" x2="15" y2="15" />
+                    <line x1="19" y1="18" x2="19" y2="15" />
+                  </svg>
+                </div>
+                <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.3rem', color: 'var(--ink)', margin: 0 }}>
+                  Détecteur de chemins de fichiers trop longs
+                </h3>
+              </div>
+              <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
+                Lors de mes missions de migration SharePoint, je rencontrais régulièrement des erreurs de synchronisation OneDrive causées par des chemins de fichiers trop longs non détectés par les outils de migration. J&apos;ai donc développé cet outil pour <strong style={{ color: 'var(--ink)' }}>auditer et détecter ces chemins problématiques avant et après migration</strong>, évitant ainsi les mauvaises surprises en production.
+              </p>
+              <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.75rem' }}>
+                Disponible sur le <strong style={{ color: 'var(--ink)' }}>Microsoft Store</strong>, il s&apos;intègre directement dans votre environnement Windows.
+              </p>
+              <Link href="https://onedrivepathchecker.com/" target="_blank" rel="noopener noreferrer" className="btn-dark" style={{ display: 'inline-flex', padding: '0.6rem 1.3rem', fontSize: '0.9rem' }}>
+                Découvrir l&apos;outil →
+              </Link>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              {[
+                { icon: '📁', title: 'Chemins >255 et >400 caractères', text: 'Analyse vos dossiers et identifie les chemins dépassant les limites Windows et SharePoint.' },
+                { icon: '⚡', title: '2 modes d\'utilisation', text: 'Idéal pour préparer une migration SharePoint et éviter les erreurs de synchronisation en production.' },
+                { icon: '📊', title: 'Rapports détaillés', text: 'Export de la liste des fichiers problématiques avec leur chemin complet pour traitement rapide.' },
+                { icon: '🔒', title: '100% Local & sécurisé', text: 'L\'outil est exécuté en local sur votre machine, sans droits d\'administrateurs. Aucune donnée n\'est envoyée sur internet.' },
+              ].map(({ icon, title, text }) => (
+                <div key={title} className="card" style={{ padding: '1.25rem', background: 'var(--off)' }}>
+                  <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }} aria-hidden="true">{icon}</span>
+                  <div style={{ fontWeight: 700, fontSize: '0.875rem', color: 'var(--ink)', marginBottom: '0.35rem' }}>{title}</div>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.55, margin: 0 }}>{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA contact */}
-      <section id="contact" style={{ padding: '5rem 6%', background: '#ffffff', textAlign: 'center' }}>
+      <section id="contact" style={{ padding: '5rem 6%', background: 'var(--off)', textAlign: 'center' }}>
         <div style={{ maxWidth: '560px', margin: '0 auto' }}>
           <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: 'var(--ink)', marginBottom: '1rem' }}>
             Prêt(e) à démarrer ?
           </h2>
           <p style={{ color: 'var(--muted)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem' }}>
-            Décrivez-moi votre projet en quelques lignes par email ou sur LinkedIn. Je vous réponds sous 24h avec une proposition d&apos;appel de découverte (30 min, gratuit).
+            Décrivez-moi votre projet en quelques lignes. Je vous réponds sous 24h avec une proposition d&apos;appel de découverte (30 min, gratuit).
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="mailto:julie.bredeche@osalydconsulting.com" className="btn-primary">
-              Envoyer un email
-            </a>
+            <Link href="/contact" className="btn-primary">
+              Me contacter →
+            </Link>
             <a href="https://linkedin.com/in/juliebredeche" target="_blank" rel="noopener noreferrer" className="btn-outline">
               Contacter sur LinkedIn
             </a>

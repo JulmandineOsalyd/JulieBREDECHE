@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 const offresPrincipale = {
-  title: 'Architecture Power Platform',
+  title: 'Solutions Power Platform',
   description:
     'Conception et développement de solutions métier sur mesure avec Microsoft 365 : de l\'analyse des besoins à la mise en production.',
   methodLink: '/services',
@@ -141,7 +141,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
         {/* OneDrive Path Checker card */}
         <div
           className="card"
-          style={{ marginTop: '1.5rem', padding: '1.25rem', background: 'var(--font-jarkarta)', border: '1.5px solid var(--border)' }}
+          style={{ marginTop: '1.5rem', padding: '1.25rem', background: 'white', border: '1.5px solid var(--border)' }}
         >
           {/* Icon + Title + Badge in one row */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
