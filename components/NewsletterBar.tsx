@@ -1,20 +1,20 @@
 'use client'
 
 import { useState } from 'react'
+import { subscribeToNewsletter } from './newsletter'
 
 export default function NewsletterBar() {
   const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!email) return
-    if (process.env.NEXT_PUBLIC_MAILCHIMP_URL) {
-      // Mailchimp integration to plug in later
-      console.log('Subscribe:', email)
-    }
-    setSubmitted(true)
-    setEmail('')
+
+    setStatus('loading')
+    const result = await subscribeToNewsletter(email)
+    setStatus(result.success ? 'success' : 'error')
+    if (result.success) setEmail('')
   }
 
   return (
@@ -56,9 +56,9 @@ export default function NewsletterBar() {
         </div>
 
         {/* Form */}
-        {submitted ? (
+        {status === 'success' ? (
           <p style={{ color: 'rgba(255,255,255,1)', fontWeight: 700, fontSize: '0.9rem' }}>
-            Merci ! Vous allez recevoir une confirmation par mail.
+            Merci ! Vous recevrez mes prochaines publications par mail.
           </p>
         ) : (
           <form
@@ -85,9 +85,19 @@ export default function NewsletterBar() {
                 transition: 'border-color 0.2s ease',
               }}
             />
-            <button type="submit" className="btn-primary" style={{ whiteSpace: 'nowrap', background: 'var(--c2)' }}>
-              S&apos;abonner
+            <button
+              type="submit"
+              className="btn-primary"
+              disabled={status === 'loading'}
+              style={{ whiteSpace: 'nowrap', background: 'var(--c2)', opacity: status === 'loading' ? 0.7 : 1 }}
+            >
+              {status === 'loading' ? 'Inscription...' : "S'abonner"}
             </button>
+            {status === 'error' && (
+              <p style={{ width: '100%', margin: '0.25rem 0 0', color: 'rgba(255,200,200,1)', fontSize: '0.82rem' }}>
+                ❌ Une erreur est survenue, réessayez.
+              </p>
+            )}
           </form>
         )}
       </div>
