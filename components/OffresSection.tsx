@@ -11,8 +11,8 @@ const offresPrincipale = {
     'Applications PowerApps sur mesure',
     'Automatisations Power Automate',
     'Agents Copilot Studio',
-    'Documentation technique et fonctionnelle incluse',
-    'Forfait maintenance mensuel disponible',
+    'Formations et documentation',
+    'Forfaits de maintenance',
   ],
 }
 
@@ -23,7 +23,7 @@ const coaching = {
     'Sessions 1:1 en visio',
     'Cas pratiques sur vos flux existants',
     'Bonnes pratiques et anti-patterns',
-    'Support entre les sessions par email',
+    'Programme sur mesure selon votre niveau'
   ],
 }
 
@@ -34,7 +34,7 @@ const audit = {
     'Analyse de l\'architecture des sites',
     'Évaluation des droits et des permissions',
     'Optimisation de la gestion des métadonnées',
-    'Mise en place d\'une recherche PnP ou d\'agents Copilot',
+    'Gestion du schéma de recherche',
   ],
 }
 
@@ -166,7 +166,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
 
           {/* Description + Button at same height */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
-            <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, margin: 0 }}>
+            <p style={{ fontSize: '0.875rem', color: 'var(--ink)', lineHeight: 1.65, margin: 0 }}>
               Auditez vos chemins de fichiers avant migration SharePoint et évitez les erreurs de synchronisation OneDrive.
             </p>
             <Link

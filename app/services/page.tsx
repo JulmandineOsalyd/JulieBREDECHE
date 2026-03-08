@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const methodSteps = [
   { n: '01', title: 'Comprendre le besoin', text: 'Avant de parler solution, je pose les bonnes questions : combien d\'utilisateurs, quelle volumétrie, des externes ? Cela valide la faisabilité technique et identifie les contraintes dès le départ.' },
-  { n: '02', title: 'Cadrer et chiffrer', text: 'J\'identifie les fonctionnalités clés par parcours utilisateur, puis je chiffre. Pour une TPE/PME, la plupart de mes projets représentent 20 à 30 jours de prestation au total.' },
+  { n: '02', title: 'Cadrer et chiffrer', text: 'J\'identifie les fonctionnalités clés par parcours utilisateur, puis je chiffre. La plupart de mes projets représentent 20 à 30 jours de prestation au total.' },
   { n: '03', title: 'Schématiser et valider', text: 'Je schématise les processus et crée des maquettes directement dans Power Apps. Résultat : le client comprend la logique, précise ses besoins — et je sais dans quel ordre avancer.' },
   { n: '04', title: 'Développer en agilité', text: 'Dès qu\'une fonctionnalité est prête, je la présente et laisse le client la tester pendant que je poursuis. Si de nouveaux besoins émergent, on arbitre ensemble sans dépasser le chiffrage.' },
   { n: '05', title: 'Tester et déployer', text: 'Tests de bout en bout, utilisateurs pilotes, cahier de tests si les règles de gestion sont complexes. Documentation technico-fonctionnelle complète livrée avec le projet.' },
@@ -39,7 +39,7 @@ export default function OffresPage() {
             , à chaque étape de votre projet
           </h1>
           <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75 }}>
-          Conception de solutions, coaching, audit : tout ce dont vous avez besoin pour tirer le meilleur de Microsoft 365, où que vous en soyez.          </p>
+            Conception de solutions, coaching, audit : tout ce dont vous avez besoin pour tirer le meilleur de Microsoft 365, où que vous en soyez.          </p>
         </div>
       </section>
 
@@ -55,21 +55,22 @@ export default function OffresPage() {
                 Solutions PowerApps, Power Automate & Agents Copilot
               </h2>
               <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
-                Je conçois et développe des applications métier, des automatisations intelligentes et des agents conversationnels sur mesure pour votre organisation. Du cadrage à la mise en production, en passant par la formation de vos équipes.
+                Je conçois et développe des applications métier, des automatisations intelligentes et des agents conversationnels sur mesure pour votre organisation. Du cadrage à la mise en production, jusqu'à l'adoption.
               </p>
               <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.75rem' }}>
                 Charge moyenne : <strong style={{ color: 'var(--ink)' }}>20 à 30 jours</strong> pour une solution complète.
               </p>
               <Link href="#contact" className="btn-primary">Parlons de votre projet</Link>
             </div>
-            <div>
+            <div className="offre-list-col">
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {[
-                  'Applications PowerApps Canvas sur mesure',
-                  'Flux Power Automate : approbations, alertes, synchronisations avec ERP/CRM',
-                  'Agents Copilot Studio connectés à SharePoint et vos bases de données',
+                  'Applications PowerApps sur(mesure',
+                  'Design (UI) et expérience utilisateur (UX)',
+                  'Flux Power Automate simples et avancés',
+                  'Agents Copilot Studio connectés votre environnement',
                   'Portails SharePoint Online : intranet, extranet, espaces projet',
-                  'Formation des administrateurs et utilisateurs finaux',
+                  'Formation des administrateurs fonctionnels',
                   'Documentation technique et fonctionnelle incluse',
                   'Forfait maintenance mensuel (support, évolutions mineures)',
                 ].map((item) => (
@@ -103,7 +104,7 @@ export default function OffresPage() {
               Montez en compétence sur Power Automate avec un accompagnement personnalisé. Idéal pour les équipes IT qui veulent devenir autonomes sur la plateforme, ou pour les métiers qui souhaitent automatiser leurs tâches répétitives.
             </p>
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {['Sessions 1:1 en visio ou présentiel (Paris)', 'Cas pratiques sur vos flux existants', 'Bonnes pratiques, patterns et anti-patterns', 'Support entre les sessions par email/Teams', 'Programme sur mesure selon votre niveau'].map((b) => (
+              {['Sessions 1:1 en visio', 'Cas pratiques sur vos flux existants', 'Bonnes pratiques, anti-patterns', 'Programme sur mesure selon votre niveau'].map((b) => (
                 <li key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.875rem', color: 'var(--ink)' }}>
                   <span style={{ color: 'var(--c2)', fontWeight: 700, flexShrink: 0 }}>·</span>{b}
                 </li>
@@ -120,13 +121,15 @@ export default function OffresPage() {
               Audit & Conseil
             </span>
             <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '0.75rem' }}>
-              Audit SharePoint & Power Platform
+              Audit SharePoint
             </h2>
             <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '1.25rem' }}>
-              Diagnostic complet de votre environnement Microsoft 365 avec recommandations actionnables et roadmap priorisée. Idéal avant de lancer un grand chantier ou pour reprendre un existant en désordre.
-            </p>
+Votre environnement SharePoint a grandi au fil du temps, et avec lui, une gestion de plus en plus complexe. Je réalise un diagnostic complet de votre architecture, de vos permissions et de vos usages pour vous donner une vision claire de l'existant et un plan d'action concret pour en tirer le meilleur parti.            </p>
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {['Analyse de la gouvernance SharePoint (permissions, hub sites, taxonomie)', 'Revue des flux Power Automate existants (performance, sécurité)', 'Évaluation des licences et de leur utilisation', 'Rapport d\'audit avec score de maturité', 'Roadmap priorisée avec ROI estimé pour chaque action'].map((b) => (
+              {['Analyse de l\'architecture des sites',
+      'Évaluation des droits et des permissions',
+      'Optimisation de la gestion des métadonnées',
+      'Gestion du schéma de recherche'].map((b) => (
                 <li key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.875rem', color: 'var(--ink)' }}>
                   <span style={{ color: 'var(--c2)', fontWeight: 700, flexShrink: 0 }}>·</span>{b}
                 </li>
@@ -159,6 +162,11 @@ export default function OffresPage() {
               </div>
             ))}
           </div>
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <Link href="/blog/methode-infaillible-projets-power-platform" className="btn-outline" style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center' }}>
+              Lire l&apos;article complet sur ma méthode →
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -167,11 +175,8 @@ export default function OffresPage() {
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
             <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.5rem' }}>
-              Outil complémentaire
+              Utilitaire
             </p>
-            <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.6rem, 3vw, 2rem)', color: 'var(--ink)', margin: 0 }}>
-              Un outil que j&apos;ai créé pour mes missions
-            </h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }} className="offre-grid">
             <div>
@@ -191,11 +196,9 @@ export default function OffresPage() {
                   Détecteur de chemins de fichiers trop longs
                 </h3>
               </div>
-              <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
-                Lors de mes missions de migration SharePoint, je rencontrais régulièrement des erreurs de synchronisation OneDrive causées par des chemins de fichiers trop longs non détectés par les outils de migration. J&apos;ai donc développé cet outil pour <strong style={{ color: 'var(--ink)' }}>auditer et détecter ces chemins problématiques avant et après migration</strong>, évitant ainsi les mauvaises surprises en production.
-              </p>
-              <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.75rem' }}>
-                Disponible sur le <strong style={{ color: 'var(--ink)' }}>Microsoft Store</strong>, il s&apos;intègre directement dans votre environnement Windows.
+              <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: 'rem' }}>
+                Développé pour mes missions de migration SharePoint, cet outil <strong style={{ color: 'var(--ink)' }}>détecte les chemins de fichiers trop longs</strong> avant qu&apos;ils ne causent des erreurs de synchronisation OneDrive. </p>
+                <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.75rem' }}>Disponible sur le <strong style={{ color: 'var(--ink)' }}>Microsoft Store </strong>avec un essai gratuit de 24h.
               </p>
               <Link href="https://onedrivepathchecker.com/" target="_blank" rel="noopener noreferrer" className="btn-dark" style={{ display: 'inline-flex', padding: '0.6rem 1.3rem', fontSize: '0.9rem' }}>
                 Découvrir l&apos;outil →
@@ -203,15 +206,55 @@ export default function OffresPage() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               {[
-                { icon: '📁', title: 'Chemins >255 et >400 caractères', text: 'Analyse vos dossiers et identifie les chemins dépassant les limites Windows et SharePoint.' },
-                { icon: '⚡', title: '2 modes d\'utilisation', text: 'Idéal pour préparer une migration SharePoint et éviter les erreurs de synchronisation en production.' },
-                { icon: '📊', title: 'Rapports détaillés', text: 'Export de la liste des fichiers problématiques avec leur chemin complet pour traitement rapide.' },
-                { icon: '🔒', title: '100% Local & sécurisé', text: 'L\'outil est exécuté en local sur votre machine, sans droits d\'administrateurs. Aucune donnée n\'est envoyée sur internet.' },
+                {
+                  icon: (
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                    </svg>
+                  ),
+                  title: 'Limites Windows & SharePoint',
+                  text: 'Détecte les chemins dépassant 255 caractères (Windows) et 400 caractères (SharePoint).',
+                },
+                {
+                  icon: (
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <rect x="3" y="3" width="8" height="8" rx="1" />
+                      <rect x="13" y="3" width="8" height="8" rx="1" />
+                      <rect x="3" y="13" width="8" height="8" rx="1" />
+                      <rect x="13" y="13" width="8" height="8" rx="1" />
+                    </svg>
+                  ),
+                  title: '2 modes d\u2019utilisation',
+                  text: 'Pré-migration SharePoint ou post-synchronisation OneDrive — adaptez l\u2019analyse à votre contexte.',
+                },
+                {
+                  icon: (
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                  ),
+                  title: 'Export rapport détaillé',
+                  text: 'Liste des fichiers problématiques avec leur chemin complet, prête à traiter.',
+                },
+                {
+                  icon: (
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                      <path d="M7 11V7a5 5 0 0110 0v4" />
+                    </svg>
+                  ),
+                  title: '100% local & sécurisé',
+                  text: 'Tourne en local, sans droits admin. Aucune donnée envoyée sur internet.',
+                },
               ].map(({ icon, title, text }) => (
                 <div key={title} className="card" style={{ padding: '1.25rem', background: 'var(--off)' }}>
-                  <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }} aria-hidden="true">{icon}</span>
-                  <div style={{ fontWeight: 700, fontSize: '0.875rem', color: 'var(--ink)', marginBottom: '0.35rem' }}>{title}</div>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.55, margin: 0 }}>{text}</p>
+                  <div style={{ width: 40, height: 40, borderRadius: '10px', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.6rem', border: '1px solid var(--border)' }}>{icon}</div>
+                  <div style={{ fontWeight: 700, fontSize: '0.875rem', color: 'var(--ink)', marginBottom: '0.3rem' }}>{title}</div>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.5, margin: 0 }}>{text}</p>
                 </div>
               ))}
             </div>
@@ -233,7 +276,9 @@ export default function OffresPage() {
               Me contacter →
             </Link>
             <a href="https://linkedin.com/in/juliebredeche" target="_blank" rel="noopener noreferrer" className="btn-outline">
-              Contacter sur LinkedIn
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+
+              Me contacter sur LinkedIn
             </a>
           </div>
         </div>

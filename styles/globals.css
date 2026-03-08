@@ -399,13 +399,16 @@ h1, h2, h3 {
   .offres-grid { grid-template-columns: 1fr !important; }
   .offres-grid .card { transform: none !important; }
 }
+@media (min-width: 769px) {
+  .offre-list-col { padding-top: calc(0.72rem * 1.5 + 0.5rem + 1rem); }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .method-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
 @media (max-width: 768px) {
   .offre-inner { grid-template-columns: 1fr !important; }
   .offre-grid { grid-template-columns: 1fr !important; }
   .method-grid { grid-template-columns: 1fr !important; }
-}
-@media (max-width: 1024px) {
-  .method-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
 /* Footer */
