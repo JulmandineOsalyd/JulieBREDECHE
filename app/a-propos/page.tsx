@@ -140,7 +140,7 @@ export default function QuiSuisJePage() {
               C&apos;est là que je fais la différence, transformer des besoins métiers en outils, en solutions concrètes intégrées dans l&apos;écosystème M365.
             </p>
             <p>
-              Issue d&apos;une école de commerce, j&apos;assure une double compétence technique et fonctionnelle. 
+              Issue d’une formation en école de commerce, j’ai un background qui me permet de dialoguer naturellement avec les métiers. 
               Mon appétence naturelle pour la technique m&apos;a conduite à maîtriser en profondeur l&apos;ensemble des technologies Microsoft 365 que je déploie.
             </p>
 </div>
