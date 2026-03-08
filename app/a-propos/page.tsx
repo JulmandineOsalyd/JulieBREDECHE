@@ -60,12 +60,30 @@ export default function QuiSuisJePage() {
             <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.75rem' }}>
               À propos
             </p>
-            <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.5rem' }}>
-              Consultante {' '}
-              <span style={{ background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                Microsoft 365
-              </span  >
-            </h1>
+
+            {/* Avatar + Titres */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '1.5rem' }}>
+              <div style={{ width: 80, height: 80, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, boxShadow: '0 6px 20px rgba(15,95,173,0.2)' }}>
+                <Image
+                  src="/images/JBR.png"
+                  alt="Julie BREDECHE"
+                  width={80}
+                  height={80}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                />
+              </div>
+              <div>
+                <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)', color: 'var(--ink)', lineHeight: 1.2, margin: 0 }}>
+                  Julie BREDECHE
+                </h1>
+                <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)', color: 'var(--ink)', lineHeight: 1.3, margin: '0.25rem 0 0' }}>
+                  Consultante{' '}
+                  <span style={{ background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                    Microsoft 365
+                  </span>
+                </h2>
+              </div>
+            </div>
             <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
               Spécialiste SharePoint et Power Platform depuis plus de 10 ans, j&apos;accompagne les directions métiers dans la <b>modernisation de leurs outils collaboratifs</b>, l&apos;<b>automatisation de processus</b> et la <b>structuration efficace des contenus,</b> en m&apos;appuyant sur les solutions Microsoft 365.
             </p>
@@ -78,40 +96,24 @@ export default function QuiSuisJePage() {
             </div>
           </div>
 
-          {/* Avatar card */}
-          <div style={{ background: 'linear-gradient(160deg, #f0f8ff 0%, #e6f4fd 100%)', borderRadius: '20px', border: '1px solid var(--border)', padding: '2rem', textAlign: 'center' }}>
-            <div style={{ width: 100, height: 100, borderRadius: '50%', overflow: 'hidden', margin: '0 auto 1.25rem', boxShadow: '0 8px 24px rgba(15,95,173,0.25)' }}>
-              <Image
-                src="/images/JBR.png"
-                alt="Julie BREDECHE"
-                width={100}
-                height={100}
-                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-              />
-            </div>
-            <div style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.2rem', color: 'var(--ink)', marginBottom: '1.5rem' }}>
-              Julie BREDECHE
-            </div>
-
-            {/* Certification */}
+          {/* Certification card */}
+          <div style={{ background: 'linear-gradient(160deg, #f0f8ff 0%, #e6f4fd 100%)', borderRadius: '20px', border: '1px solid var(--border)', padding: '2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             <a
               href="https://learn.microsoft.com/en-us/users/juliebredeche-7611/credentials/c3637ace7f120052"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: 'block', textDecoration: 'none' }}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}
             >
-              <div style={{ paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
-                <Image
-                  src="/images/MSCertif.png"
-                  alt="Microsoft Certified: Power Platform Solution Architect Expert"
-                  width={120}
-                  height={120}
-                  style={{ objectFit: 'contain' }}
-                />
-                <span style={{ fontSize: '0.78rem', color: 'var(--c3)', fontWeight: 600, lineHeight: 1.4, textAlign: 'center' }}>
-                   ⭐️   Certifiée Microsoft : Power Platform Solution Architect Expert
-                </span>
-              </div>
+              <Image
+                src="/images/MSCertif.png"
+                alt="Microsoft Certified: Power Platform Solution Architect Expert"
+                width={140}
+                height={140}
+                style={{ objectFit: 'contain' }}
+              />
+              <span style={{ fontSize: '0.82rem', color: 'var(--c3)', fontWeight: 600, lineHeight: 1.4, textAlign: 'center' }}>
+                ⭐️ Certifiée Microsoft : Power Platform Solution Architect Expert
+              </span>
             </a>
           </div>
         </div>
