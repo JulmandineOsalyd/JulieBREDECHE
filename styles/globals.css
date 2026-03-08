@@ -473,4 +473,27 @@ h1, h2, h3 {
     grid-template-rows: auto !important;
   }
   .bento-grid-inner > a:first-child { grid-row: span 1 !important; }
+  /* Afficher seulement 3 articles en mobile */
+  .bento-grid-inner > a:nth-child(n+4) { display: none; }
+}
+
+/* Hero mobile */
+@media (max-width: 700px) {
+  .hero-section { padding: 1.25rem 5% 1rem !important; }
+  .hero-grid { gap:0 !important; }
+}
+
+/* Services - Solutions Power Platform en premier sur mobile */
+@media (max-width: 900px) {
+  .offres-grid .offre-featured { order: -1; }
+}
+
+/* OneDrive card mobile */
+@media (max-width: 700px) {
+  .onedrive-badge { font-size: 0.68rem !important; white-space: normal !important; padding:0 !important }
+  .onedrive-body {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .onedrive-body .btn-dark { width: 100%; justify-content: center; }
 }

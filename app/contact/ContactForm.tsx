@@ -4,11 +4,9 @@ import { useState } from 'react'
 import { sendContactEmail } from './actions'
 
 const subjects = [
-  'Projet SharePoint',
-  'Projet Power Automate / Power Apps',
-  'Copilot Studio / Agent IA',
-  'Audit Microsoft 365',
-  'Formation & accompagnement',
+  'Projet Power Platform / Copilot Studio',
+  'Audit SharePoint',
+  'Coaching Power Automate',
   'Autre',
 ]
 

@@ -15,6 +15,7 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
   return (
     <section
       style={{ padding: '5rem 6% 4rem', background: '#ffffff' }}
+      className="hero-section"
     >
       <div
         style={{
@@ -127,7 +128,7 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
 
         {/* Right column — Profile card */}
         <div
-          className="animate-fadeUp animate-fadeUp-2"
+          className="animate-fadeUp animate-fadeUp-2 hero-profile-card"
           style={{
             background: 'white',
             borderRadius: '20px',

@@ -15,15 +15,15 @@ export const metadata: Metadata = {
   },
 }
 
-const approche: { icon: ReactNode; color: string; title: string; items: string[] }[] = [
+const approche: { icon: ReactNode; iconColor: string; title: string; items: string[] }[] = [
   {
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M12 20h9" />
         <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
       </svg>
     ),
-    color: 'rgba(24,176,232,0.12)',
+    iconColor: 'var(--c3)',
     title: 'Conception sur-mesure',
     items: [
       'Écoute des enjeux métiers',
@@ -35,11 +35,11 @@ const approche: { icon: ReactNode; color: string; title: string; items: string[]
   },
   {
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
       </svg>
     ),
-    color: 'rgba(77,255,214,0.12)',
+    iconColor: 'var(--c2)',
     title: 'Valeur ajoutée',
     items: [
       'Double compétence tech/métiers',
@@ -51,13 +51,13 @@ const approche: { icon: ReactNode; color: string; title: string; items: string[]
   },
   {
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10" />
         <circle cx="12" cy="12" r="6" />
         <circle cx="12" cy="12" r="2" />
       </svg>
     ),
-    color: 'rgba(24,176,232,0.12)',
+    iconColor: '#4dffd6',
     title: 'Périmètre d\'intervention',
     items: [
       'Pilotage de bout en bout',
@@ -150,7 +150,7 @@ export default function QuiSuisJePage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', color: 'var(--muted)', lineHeight: 1.75, fontSize: '1rem' }}>
             <p>
               Mon aventure avec Microsoft 365 a débuté en 2014, en participant au déploiement du plus gros intranet SharePoint pour un grand groupe de l&apos;énergie.
-              J&apos;ai immédiatement été fascinée par la puissance et les possibilités infinies de SharePoint !
+              J&apos;ai immédiatement été attirée par la puissance et les possibilités infinies de SharePoint !
               Très vite, je me suis spécialisée dans l&apos;automatisation de processus avec SharePoint Designer et Nintex, avant l&apos;arrivée de Power Automate.
             </p>
             <p>
@@ -159,11 +159,11 @@ export default function QuiSuisJePage() {
             </p>
             <p>
               Le fossé entre ce que la technologie peut faire et ce que les équipes savent en faire reste important.
-              C&apos;est là que je fais la différence, transformer des besoins métiers en outils, en solutions concrètes intégrées dans l&apos;écosystème M365.
+              C&apos;est là que je fais la différence, transformer des besoins métiers en en solutions concrètes intégrées dans l&apos;écosystème M365.
             </p>
             <p>
               Issue d’une formation en école de commerce, j’ai un background qui me permet de dialoguer naturellement avec les métiers.
-              Mon appétence naturelle pour la technique m&apos;a conduite à maîtriser en profondeur l&apos;ensemble des technologies Microsoft 365 que je déploie.
+              Mon appétence naturelle pour la technique m&apos;a permis de maîtriser en profondeur les technologies Microsoft 365 que je déploie.
             </p>
           </div>
 
@@ -177,12 +177,12 @@ export default function QuiSuisJePage() {
             Mon Approche
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }} className="valeurs-grid">
-            {approche.map(({ icon, color, title, items }) => (
+            {approche.map(({ icon, iconColor, title, items }) => (
               <div key={title} className="card" style={{ padding: '1.75rem' }}>
-                <div style={{ width: 48, height: 48, borderRadius: '12px', background: color, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                  {icon}
-                </div>
-                <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>{title}</h3>
+                <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink)', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: iconColor, flexShrink: 0 }}>{icon}</span>
+                  {title}
+                </h3>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   {items.map((item) => (
                     <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.55 }}>

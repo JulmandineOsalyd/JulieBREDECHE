@@ -165,14 +165,6 @@ export default function Nav() {
               </Link>
             )
           })}
-          <Link
-            href="/contact"
-            className="btn-primary"
-            onClick={() => setMenuOpen(false)}
-            style={{ width: 'fit-content', marginTop: '0.5rem' }}
-          >
-            S&apos;abonner
-          </Link>
         </div>
       )}
     </header>

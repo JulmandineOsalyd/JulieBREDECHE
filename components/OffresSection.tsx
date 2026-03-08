@@ -144,7 +144,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
           style={{ marginTop: '1.5rem', padding: '1.25rem', background: 'white', border: '1.5px solid var(--border)' }}
         >
           {/* Icon + Title + Badge in one row */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
             <div style={{ width: 44, height: 44, borderRadius: '12px', background: 'linear-gradient(135deg, rgba(96,198,255,0.15) 0%, rgba(24,176,232,0.15) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M4 3v18h17v-3H7V3z" />
@@ -159,13 +159,13 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
             <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.35, margin: 0, flex: 1 }}>
               Outil : Détecteur de chemins de fichiers trop longs
             </h3>
-            <span style={{ color: 'var(--c3)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap', flexShrink: 0 }}>
-              Disponible sur le Microsoft Store · 24h d&apos;essai gratuit
+            <span className="onedrive-badge" style={{ color: 'var(--c3)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap', flexShrink: 0 }}>
+              Disponible sur Microsoft Store · 24h d&apos;essai gratuit
             </span>
           </div>
 
           {/* Description + Button at same height */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
+          <div className="onedrive-body" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
             <p style={{ fontSize: '0.875rem', color: 'var(--ink)', lineHeight: 1.65, margin: 0 }}>
               Auditez vos chemins de fichiers avant migration SharePoint et évitez les erreurs de synchronisation OneDrive.
             </p>
@@ -212,7 +212,7 @@ function OffreCard({
 
   return (
     <div
-      className="card"
+      className={`card${featured ? ' offre-featured' : ''}`}
       style={{
         padding: '1.75rem',
         background: featured ? '#0d1f35' : 'white',
