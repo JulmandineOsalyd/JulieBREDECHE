@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import type { ReactNode } from 'react'
 import { Lora, Plus_Jakarta_Sans } from 'next/font/google'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import NewsletterBar from '@/components/NewsletterBar'
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <main>{children}</main>
         <NewsletterBar />
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   )
