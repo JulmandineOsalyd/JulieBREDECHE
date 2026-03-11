@@ -1,0 +1,77 @@
+---
+title: "Zéro ticket de support OneDrive après migration ? Voici comment j'ai fait !"
+date: "2026-03-11"
+category: "SharePoint"
+excerpt: "Les migrations vers Microsoft 365 sont terminées, mais les problèmes de synchronisation OneDrive restent. Voici pourquoi et comment j'ai construit un outil pour que les utilisateurs n'aient plus à attendre le support IT."
+readingTime: 4
+tags: ["OneDrive", "SharePoint", "Migration", "Microsoft 365", "Outils"]
+featured: true
+---
+
+La migration est terminée. Les fichiers sont dans SharePoint. Et les tickets de support commencent à arriver.
+
+*"Mes fichiers ne se synchronisent plus."*
+*"Pourquoi il y a une croix rouge sur mon icône OneDrive ?"*
+*"Je n'arrive pas à ouvrir mon fichier"*
+
+Ce n'est pas un problème d'utilsiation, c'est la limite silencieuse que ni SharePoint, ni OneDrive, ni les outils de migration ne signalent clairement : **les chemins de fichiers trop longs**.
+
+---
+
+## 1. ShareGate vérifie... mais pas la bonne limite
+
+ShareGate est l'outil de référence pour les migrations SharePoint. Il contrôle les caractères interdits, les tailles excessives et surtout vérifie même la longueur des chemins de fichiers.
+
+**Mais il vérifie la mauvaise limite.**
+
+| Outil | Limite | Impact |
+|---|---|---|
+| SharePoint (stockage en ligne) | 400 caractères | ✅ &nbsp; Contrôlée par ShareGate |
+| OneDrive (synchronisation locale) | 255 caractères | ❌ &nbsp; **Non contrôlée** |
+
+La limite à 255 caractères dépend du nom du site et des bibliothèques SharePoint de destination, une information que ShareGate ne demande pas au moment de l'analyse.
+
+> **Résultat :** le fichier passe la vérification, la migration s'exécute sans erreur, les fichiers arrivent bien dans SharePoint. Mais dès que l'utilisateur tente de les synchroniser sur son poste, les problèmes arrivent.
+
+---
+
+## 2. L'utilisateur face à des erreurs incompréhensibles
+
+Côté utilisateur, l'expérience est frustrante :
+
+- OneDrive affiche une joli croix rouge
+- Des messages d'erreurs peu clairs s'affichent à l'ouverture des fichiers
+
+La suite logique : un ticket au support. Et dans la grande majorité des cas, le technicien n'a pas non plus **d'outil pour identifier précisément les fichiers problématiques**. Le ticket est escaladé. Les délais s'allongent.
+
+> **Ce n'est pas un problème de compétence. C'est un problème d'outillage.**
+
+---
+
+## 3. Quand la synchro ne marche pas, l'adoption s'arrête là
+
+Pour la plupart des collaborateurs, "travailler avec ses fichiers" = ouvrir l'explorateur Windows, naviguer dans les dossiers, double-cliquer sur un fichier. Ce réflexe est ancré depuis des années sur serveur réseau.
+
+Si OneDrive ne fonctionne pas le lendemain de la migration, le verdict est immédiat :
+
+- Retour aux anciens réflexes "Je vais mettre le fichier sur mon Bureau"
+- La valeur ajoutée de Microsoft 365 ne se matérialise jamais
+- La confiance envers l'IT diminue
+
+> **Une migration réussie techniquement peut être un échec d'adoption total.**
+
+---
+
+## La solution : détecter avant que ça casse
+
+C'est de ce constat que j'ai crée "OneDrive Path Checker", un détecteur de chemins de fichiers trop longs qui permet : 
+
+- **Pour les équipes IT (avant la migration) :**
+Simuler l'URL SharePoint cible, identifier les chemins à risque (400 et 255 caractères), et agir avant que les problèmes n'arrivent chez les utilisateurs.
+
+- **Pour les utilisateurs (après la migration) :**
+Une interface claire qui liste exactement les fichiers bloqués, indique la longueur problématique, et ouvre directement le dossier pour corriger soi-même.
+
+Parce que le vrai succès d'une migration, ce n'est pas que les fichiers arrivent dans SharePoint. **C'est que les utilisateurs puissent travailler normalement le lendemain.**
+
+💡 Plus d'infos ici : https://onedrivepathchecker.com/
