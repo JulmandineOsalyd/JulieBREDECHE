@@ -9,12 +9,20 @@ const categories = ['Tous', 'Copilot de A à Z','SharePoint', 'Power Automate', 
 export default function BlogList({ articles }: { articles: ArticleMeta[] }) {
   const [active, setActive] = useState('Tous')
 
-  const filtered =
-    active === 'Tous'
-      ? articles
-      : articles.filter((a) =>
-          Array.isArray(a.category) ? a.category.includes(active) : a.category === active
-        )
+  const filtered = (() => {
+    const list =
+      active === 'Tous'
+        ? articles
+        : articles.filter((a) =>
+            Array.isArray(a.category) ? a.category.includes(active) : a.category === active
+          )
+
+    if (active === 'Copilot de A à Z') {
+      return [...list].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    }
+
+    return list
+  })()
 
   return (
     <>
