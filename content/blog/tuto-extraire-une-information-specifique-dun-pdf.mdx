@@ -4,7 +4,7 @@ date: "2025-11-24"
 category: "Power Automate"
 excerpt: "Comment extraire automatiquement un numéro de commande dans des milliers de PDF de factures grâce à Power Automate, AI Builder et une regex ? Le tutoriel complet avec le code Office Script."
 readingTime: 6
-slug: "tuto-extraire-une-information-specifique-dun-pdf"
+slug: "power-automate-extraire-une-information-pdf"
 tags: ["Power Automate", "AI Builder", "Office Script", "Automatisation"]
 featured: false
 ---
@@ -40,7 +40,8 @@ Avant de démarrer, vérifiez que vous disposez de :
 
 Utilisez l'action **« Obtenir le contenu du fichier en utilisant le chemin »** et configurez l'adresse du site SharePoint et le chemin du fichier.
 
-![Récupération du contenu PDF dans Power Automate](/images/blog/2025-11-24-13_33_34-ChatGPT-Site-Web-Osalyd.png)
+<div className="prose-articlemax"><img src="/images/blog/Recuperation-contenuPDF.png" alt="Récupération du contenu PDF dans Power Automate" /></div>
+
 
 ---
 
@@ -50,7 +51,8 @@ Appliquez l'action **« Reconnaître le texte dans une image ou un document »**
 
 Cette étape retourne le texte brut du PDF. Elle fonctionne aussi sur les **documents scannés** grâce à l'OCR intégré.
 
-![Extraction du texte avec AI Builder](/images/blog/2025-11-24-13_34_22-ChatGPT-Site-Web-Osalyd.png)
+<div className="prose-articlemax"><img src="/images/blog/Extraction-AIBuilder.png" alt="Extraction du texte avec AI Builder" /></div>
+
 
 ---
 
@@ -85,7 +87,8 @@ Appelez le script en lui passant :
 - Le pattern regex : `[A-Z]{3}\d{6}[A-Z]$`
 - Les flags souhaités (ex. : `g` pour global)
 
-![Exécution du script dans Power Automate](/images/blog/2025-11-26-14_42_37-Site-Web-Osalyd-Structure-article-Power-Automate.png)
+<div className="prose-articlemax"><img src="/images/blog/Execution-OfficeScript.png" alt="Exécution du script dans Power Automate" /></div>
+
 
 Le script retourne le numéro de commande trouvé, ou une liste vide si aucune correspondance.
 
@@ -101,13 +104,14 @@ Une fois le numéro récupéré, les possibilités sont nombreuses :
 - Envoyer un email de contrôle
 - Alimenter un CRM ou un helpdesk
 
-![Utilisation du numéro de commande extrait](/images/blog/2025-11-24-13_43_47-ChatGPT-Site-Web-Osalyd.png)
+<div className="prose-articlemax"><img src="/images/blog/Utilisation-Commande.png" alt="Utilisation du numéro de commande extrait" /></div>
+
 
 ---
 
 ## Bonnes pratiques et points de vigilance
 
-- Les **PDF scannés** nécessitent l'OCR via AI Builder — prévoyez les crédits correspondants
+- Les **PDF scannés** nécessitent l'OCR via AI Builder : prévoyez les crédits correspondants
 - Vérifiez l'**unicité** du numéro de commande par document
 - Gérez le cas **« aucune correspondance trouvée »** pour éviter les erreurs silencieuses
 - Maintenez un **journal d'erreurs** dans une liste dédiée pour les traitements en échec

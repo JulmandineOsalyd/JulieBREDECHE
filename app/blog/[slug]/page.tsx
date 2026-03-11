@@ -71,7 +71,7 @@ export default function ArticlePage({ params }: Props) {
             {/* Header */}
             <header style={{ marginBottom: '2.5rem' }}>
               <span style={{ display: 'inline-block', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.75rem' }}>
-                {article.category}
+                {Array.isArray(article.category) ? article.category.join(' · ') : article.category}
               </span>
               <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.75rem, 3.5vw, 2.4rem)', color: 'var(--ink)', lineHeight: 1.25, marginBottom: '1rem' }}>
                 {article.title}

@@ -12,26 +12,45 @@ export default function ArticleCard({ article }: ArticleCardProps) {
     <Link
       href={`/blog/${article.slug}`}
       style={{ textDecoration: 'none', display: 'block' }}
-      className="card"
+      className={`card${article.category === 'Copilot de A à Z' ? ' card-series' : ''}`}
     >
       <article style={{ padding: '1.5rem' }}>
         {/* Category badge */}
-        <span
-          style={{
-            display: 'inline-block',
-            background: 'var(--grad)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            fontSize: '0.75rem',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            marginBottom: '0.6rem',
-          }}
-        >
-          {article.category}
-        </span>
+        {article.category === 'Copilot de A à Z' ? (
+          <span
+            style={{
+              display: 'inline-block',
+              background: 'var(--grad)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              marginBottom: '0.6rem',
+            }}
+          >
+            Série : Copilot de A à Z
+          </span>
+        ) : (
+          <span
+            style={{
+              display: 'inline-block',
+              background: 'var(--grad)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              marginBottom: '0.6rem',
+            }}
+          >
+            {Array.isArray(article.category) ? article.category.join(' · ') : article.category}
+          </span>
+        )}
 
         <h3
           style={{

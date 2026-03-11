@@ -134,6 +134,23 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(15, 95, 173, 0.1);
 }
+.card-series {
+  position: relative;
+  overflow: hidden;
+}
+.card-series::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #5ceae8 0%, #18b0e8 45%, #0f5fad 100%);
+  border-radius: 16px 0 0 16px;
+}
+.card-series:hover {
+  box-shadow: 0 12px 32px rgba(15, 95, 173, 0.15);
+}
 
 /* Section spacing */
 .section {

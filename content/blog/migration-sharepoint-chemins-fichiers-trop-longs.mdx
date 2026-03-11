@@ -1,0 +1,84 @@
+---
+title: "Ce que SharePoint ne vous dit pas quand votre migration échoue"
+date: "2026-03-11"
+category: "SharePoint"
+excerpt: "Les migrations vers Microsoft 365 avancent. Les problèmes de synchronisation OneDrive, eux, restent. Voici pourquoi — et comment j'ai construit un outil pour que les utilisateurs n'aient plus à attendre le support IT."
+readingTime: 6
+slug: "migration-sharepoint-chemins-fichiers-trop-longs"
+tags: ["OneDrive", "SharePoint", "Migration", "Microsoft 365", "Outils"]
+featured: false
+---
+
+Les migrations de serveurs réseau vers Microsoft 365 sont devenues monnaie courante. Les entreprises investissent dans des outils comme ShareGate, planifient leurs phases de migration, déroulent leurs projets. Et puis, quelques semaines après le déploiement, les tickets de support arrivent.
+
+"Mes fichiers ne se synchronisent plus."
+"L'icône OneDrive tourne dans le vide."
+"Je ne retrouve plus mes dossiers depuis l'explorateur Windows."
+
+Ce n'est pas un bug. Ce n'est pas un problème réseau. C'est une limite silencieuse que ni SharePoint, ni OneDrive, ni même les outils de migration ne signalent clairement : **les chemins de fichiers trop longs**.
+
+---
+
+## 1. ShareGate vérifie. Mais pas tout.
+
+ShareGate est l'outil de référence pour les migrations SharePoint. Il analyse les fichiers avant de les déplacer, signale les problèmes de caractères interdits, les doublons, les tailles excessives. Il effectue même un contrôle sur la longueur des chemins.
+
+Mais voilà le problème : **ShareGate vérifie la limite de 400 caractères** — celle de SharePoint en ligne côté stockage. Ce n'est pas la limite qui bloque la synchronisation OneDrive.
+
+La vraie limite critique, celle qui provoque les erreurs de synchro sur les postes utilisateurs, c'est **255 caractères** pour le chemin complet une fois le fichier synchronisé en local. Et cette limite dépend directement de l'URL du site SharePoint de destination — une information que ShareGate ne demande pas au moment de l'analyse.
+
+Concrètement : un chemin peut passer la vérification ShareGate, la migration se déroule sans erreur, et les fichiers arrivent bien dans SharePoint. Mais dès que l'utilisateur tente de les synchroniser via OneDrive sur son poste, c'est l'échec — silencieux, partiel, incompréhensible.
+
+> **Le fichier est là. Il est accessible depuis le navigateur. Mais il ne descend pas dans le dossier local OneDrive. Et personne ne vous dit pourquoi.**
+
+---
+
+## 2. Les utilisateurs sont seuls face à une erreur sans visage
+
+Côté utilisateur, l'expérience est frustrante. OneDrive affiche une icône d'erreur. Un message générique apparaît parfois dans la barre des tâches. Windows Explorer ne reflète pas les fichiers que le collègue voit pourtant très bien dans son navigateur.
+
+Deux problèmes majeurs rendent cette situation difficile à résoudre :
+
+**Aucun outil ne dit combien de fichiers sont concernés.** OneDrive ne liste pas les fichiers bloqués de manière accessible. Windows ne propose pas de rapport. L'utilisateur sait qu'il y a un problème, mais il ne sait pas où chercher ni ce qu'il cherche.
+
+**Les messages d'erreur ne sont pas actionnables.** "Synchronisation impossible", "Élément ignoré", "Problème de connexion" — ces messages ne pointent pas vers une cause. L'utilisateur ne peut pas corriger ce qu'il ne comprend pas.
+
+La suite logique : il contacte son support informatique. Le ticket est ouvert. Et dans la grande majorité des cas, le technicien support n'a pas non plus d'outil pour identifier précisément les fichiers problématiques. Le ticket est escaladé. Les délais s'allongent. La frustration monte.
+
+> **Ce n'est pas un problème de compétence. C'est un problème d'outillage.**
+
+---
+
+## 3. Quand la synchro ne marche pas, l'adoption s'arrête là
+
+La migration vers Microsoft 365 n'est pas qu'une opération technique. C'est une promesse faite aux utilisateurs : vous retrouverez vos fichiers, partout, facilement, comme avant — en mieux.
+
+Pour une grande partie des collaborateurs en entreprise, "travailler avec ses fichiers" signifie concrètement **ouvrir l'explorateur Windows, naviguer dans les dossiers, double-cliquer sur un fichier Excel**. Ce réflexe est ancré depuis des années de travail sur des serveurs réseau.
+
+OneDrive, dans ce contexte, n'est pas perçu comme une révolution. C'est juste le nouveau serveur. Et si ce nouveau serveur ne fonctionne pas — si les fichiers n'apparaissent pas, si la synchro tourne en rond — le verdict est immédiat et difficile à faire évoluer : *"Avant c'était mieux."*
+
+L'impact dépasse le simple ticket de support :
+
+- Les utilisateurs contournent l'outil et reviennent aux anciens réflexes (clés USB, mails avec pièces jointes, dossiers personnels non synchronisés)
+- La valeur ajoutée de la migration — partage simplifié, travail collaboratif, accès mobile — ne se matérialise jamais
+- La confiance envers l'IT et envers les outils Microsoft en général s'érode
+
+> **Une migration réussie techniquement peut être un échec d'adoption total si les utilisateurs ne peuvent pas travailler normalement le lendemain.**
+
+---
+
+## Conclusion : un outil pour ne plus attendre le support
+
+C'est de cette réalité terrain qu'est né **OneDrive Path Checker**.
+
+L'idée de départ était simple : donner aux équipes IT un moyen de détecter les chemins trop longs *avant* la migration, en tenant compte de l'URL réelle du site SharePoint de destination — pas une limite générique, mais la limite effective pour cet environnement précis.
+
+Mais en travaillant sur le sujet, il est devenu évident que l'outil devait aussi servir *après* la migration, directement entre les mains des utilisateurs. Sans PowerShell. Sans ligne de commande. Sans ticket de support.
+
+OneDrive Path Checker détecte en quelques secondes les chemins de fichiers trop longs qui bloquent vos migrations SharePoint et vos synchronisations OneDrive. Il liste exactement les fichiers concernés, indique la longueur problématique, et ouvre directement le dossier pour que l'utilisateur puisse corriger lui-même.
+
+**Pour les équipes IT :** une analyse pré-migration qui simule l'URL SharePoint cible, identifie les risques réels, et permet d'agir avant que les problèmes n'arrivent chez les utilisateurs.
+
+**Pour les utilisateurs :** une interface claire, sans jargon, qui transforme une erreur incompréhensible en action concrète — sans passer par le support.
+
+Parce que le vrai succès d'une migration, ce n'est pas que les fichiers arrivent dans SharePoint. C'est que les utilisateurs puissent continuer à travailler normalement le lendemain.

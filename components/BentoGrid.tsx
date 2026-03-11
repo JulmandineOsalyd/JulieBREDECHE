@@ -116,7 +116,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
                   letterSpacing: '0.06em',
                 }}
               >
-                {featured.category}
+                {Array.isArray(featured.category) ? featured.category.join(' · ') : featured.category}
               </span>
               <h3
                 style={{
@@ -202,7 +202,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
                     letterSpacing: '0.06em',
                   }}
                 >
-                  {article.category}
+                  {Array.isArray(article.category) ? article.category.join(' · ') : article.category}
                 </span>
                 <h3
                   style={{
