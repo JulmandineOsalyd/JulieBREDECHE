@@ -14,6 +14,7 @@ export interface ArticleMeta {
   readingTime: number
   tags?: string[]
   featured?: boolean
+  draft?: boolean
 }
 
 export interface Article extends ArticleMeta {
@@ -49,6 +50,7 @@ export function getArticleBySlug(slug: string): Article | null {
     readingTime,
     tags: data.tags ?? [],
     featured: data.featured ?? false,
+    draft: data.draft ?? false,
     content,
   }
 }
@@ -56,7 +58,7 @@ export function getArticleBySlug(slug: string): Article | null {
 export function getAllArticles(): Article[] {
   return getFileSlugs()
     .map((slug) => getArticleBySlug(slug))
-    .filter((article): article is Article => article !== null)
+    .filter((article): article is Article => article !== null && !article.draft)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 }
 
