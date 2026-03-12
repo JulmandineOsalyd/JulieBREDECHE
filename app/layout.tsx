@@ -5,6 +5,8 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import NewsletterBar from '@/components/NewsletterBar'
 import '@/styles/globals.css'
+import { Analytics } from '@vercel/analytics/next';
+
 
 const lora = Lora({
   subsets: ['latin'],
@@ -57,6 +59,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <Nav />
         <main>{children}</main>
+        <Analytics />
         <NewsletterBar />
         <Footer />
       </body>

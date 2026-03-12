@@ -28,6 +28,7 @@ Maîtriser la rédaction de prompts vous permet de :
 
 ## Les ingrédients d'un bon prompt
 
+
 Un prompt efficace s'appuie sur jusqu'à 8 composantes clés. Pas besoin de toutes les inclure à chaque fois — mais plus vous en utilisez, meilleure sera la réponse.
 
 ### 1. Le contexte
@@ -66,57 +67,71 @@ Cibler une population spécifique assure la pertinence et l'utilisation d'un voc
 
 ## 3 templates de prompts à tester dès aujourd'hui
 
-### Template #1 : Contexte | Tâche | Format
+### Template #1 : <span className="text-c1">Contexte</span> | <span className="text-c2">Tâche</span> | <span className="text-c3">Format</span>
 
-> *Idéal pour décrire rapidement une situation et obtenir une sortie structurée.*
+Idéal pour décrire rapidement une situation et obtenir une sortie structurée.
 
 **Exemple :**
 
-> « Je démarre une mission de chef de projet pour Osalyd Consulting au sujet de M365 Copilot. Je dois préparer et animer la réunion de lancement du projet, en la rendant interactive. Propose-moi un ordre du jour à cette réunion, en 5 parties, en liste à puces. »
+> « <span className="text-c1">Je démarre une mission de chef de projet pour Osalyd Consulting sur le déploiement de Copilot. Je dois préparer et animer la réunion de lancement du projet.</span> <span className="text-c2">Propose-moi un ordre du jour à cette réunion</span><span className="text-c3">, en 5 parties, en liste à puces.</span> »
 
 ---
 
-### Template #2 : Rôle | Tâche | Format
+### Template #2 : <span className="text-c1">Rôle</span> | <span className="text-c2">Tâche</span> | <span className="text-c3">Format</span>
 
-> *Parfait quand vous adoptez un rôle métier spécifique : community manager, juriste, formateur…*
+Parfait quand vous adoptez un rôle métier spécifique : community manager, juriste, formateur…
 
 **Exemple :**
 
-> « Tu es community manager pour Osalyd Consulting. Rédige une publication pour les réseaux sociaux, au sujet de l'arrivée des Knowledge Agents dans SharePoint. La publication doit être en 3 paragraphes : l'accroche, la description et l'appel à l'action, et se terminer par 5 hashtags. »
+> « <span className="text-c1">Tu es community manager pour Osalyd Consulting.</span> <span className="text-c2">Rédige une publication pour les réseaux sociaux, au sujet de l'arrivée des Knowledge Agents dans SharePoint.</span> <span className="text-c3">La publication doit être en 3 paragraphes : l'accroche, la description et l'appel à l'action, et se terminer par 5 hashtags.</span> »
 
 ---
 
-### Template #3 : Contexte | Tâche | Action | Détails | Exemple
+### Template #3 : <span className="text-c1">Contexte</span> | <span className="text-c2">Tâche</span> | <span className="text-c3">Action</span> | <span className="text-c4">Détails</span> | <span className="text-c5">Exemple</span>
 
-> *Pour des réponses très guidées, riches et structurées.*
+Pour des réponses très guidées, riches et structurées.
 
 **Exemple :**
 
-> « Je dois préparer les entretiens annuels des membres de mon équipe. Propose-moi une liste de 24 questions qui seraient intéressantes à poser. Liste 4 thématiques et propose 6 questions dans chaque thématique. »
+> « <span className="text-c1">Je dois préparer les entretiens annuels des membres de mon équipe.</span> <span className="text-c2">Propose-moi une liste de 24 questions qui seraient intéressantes à poser.</span> <span className="text-c2">Liste 4 thématiques et propose 6 questions dans chaque thématique.</span> <span className="text-c4">Mon équipe travaille au quotidien sur des sujets de change management et donne de nombreuses formations. </span><span className="text-c5">Propose des questions telles que : "Quelle format de formation préfères-tu dispenser ?".</span> »
 
 ---
 
 ## Les bonnes pratiques
 
-### ✅ À faire
+| ✅ A faire | ❌ A éviter |
+|---|---|
+| Être **clair et spécifique** dans votre demande | Les demandes vagues sans verbe d'action ni contexte |
+| Fournir un maximum de détails | Solliciter du contenu contraire à l'éthique, confidentiel ou discriminatoire |
+| Utiliser le mode conversationnel et itérer pour affiner les réponses | Un langage irrespectueux ou trop familier |
+| Écrire avec une ponctuation et une orthographe correctes | Des instructions contradictoires |
+| Vérifier l'exactitude des réponses et leurs sources | Changer abruptement de sujet en cours de conversation |
+| Continuer une conversation existante quand le contexte est pertinent | Demander des informations sur des événements récents ou l'actualité |
 
-- Être **clair et spécifique** dans votre demande
-- Fournir un maximum de détails
-- Utiliser le mode conversationnel et itérer pour affiner les réponses
-- Écrire avec une ponctuation et une orthographe correctes
-- Vérifier la précision des réponses et leurs sources
-- Continuer une conversation existante quand le contexte est pertinent
-- Démarrer une nouvelle conversation quand le contexte est perdu
-- Encourager l'IA avec confiance
 
-### ❌ À éviter
+---
 
-- Les demandes vagues sans verbe d'action ni contexte
-- Solliciter du contenu contraire à l'éthique, confidentiel ou discriminatoire
-- Un langage irrespectueux ou trop familier
-- Des instructions contradictoires
-- Changer abruptement de sujet en cours de conversation
-- Demander des informations sur des événements récents ou l'actualité
+## Quelques techniques de prompting
+
+Au-delà de la structure d'un prompt, certaines techniques permettent d'optimiser encore davantage vos interactions avec Copilot. En voici trois à connaître.
+
+### Few-shot prompting
+
+Fournissez des **exemples concrets dans votre prompt** pour guider Copilot vers le résultat attendu. En montrant ce que vous attendez, vous orientez le modèle avant même qu'il génère sa réponse.
+
+**Le modèle : ACTION + CONTENU = RÉSULTAT**
+
+### Zero-shot prompting
+
+Donnez une **instruction directe**, sans exemple ni contexte supplémentaire. Idéal pour des demandes simples et rapides, cette technique mise sur la clarté de la formulation pour obtenir une réponse précise et efficace.
+
+**Le modèle : EXEMPLE + ATTENTE = RESULTAT**
+
+### Reverse prompting
+
+Inversez le processus : **fournissez un texte** et demandez à Copilot de retrouver le prompt qui aurait pu le générer. Une excellente façon de s'améliorer, de trouver l'inspiration et d'affiner progressivement sa façon de formuler des prompts.
+
+**Le modèle : CONTENU + ATTENTE = PROMPT**
 
 ---
 

@@ -26,6 +26,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Color utilities */
+.text-c1 { color: #40dcf7; }
+.text-c2 { color: #07a9e4; }
+.text-c3 { color: #0558ab; }
+.text-c4 { color: #54e4d6; }
+.text-c5 { color: #7e41d9; }
+
 /* Gradient text utility */
 .gradient-text {
   background: var(--grad);
