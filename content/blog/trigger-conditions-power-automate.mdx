@@ -1,0 +1,108 @@
+---
+title: "Votre flow tourne en boucle ? Les Trigger Conditions vont tout changer"
+date: "2025-12-02"
+category: "Power Automate"
+excerpt: "Vos flows se déclenchent trop souvent, vous approchez des limites d'exécution, ou vous créez des boucles infinies sans le vouloir ? Les \"trigger conditions\" vont vous sauver !"
+readingTime: 5
+slug: "trigger-conditions-power-automate"
+tags: ["Power Automate", "Automatisation", "Power Platform"]
+featured: false
+---
+
+Il y a quelques mois, j'ai reçu une alerte : un flow chez un client venait de dépasser le quota mensuel d'exécutions. Le flow se déclenchait à chaque modification d'un élément SharePoint — y compris les modifications faites par le flow lui-même. Résultat : une boucle infinie, des milliers d'exécutions inutiles, et une facture de licences à revoir.
+
+La solution ? Elle tenait en deux lignes. Elle s'appelle les **trigger conditions**.
+
+---
+
+## Ce qu'on ne vous dit pas au départ
+
+Quand vous créez un flow Power Automate déclenché à modification d'un élément SharePoint, le déclencheur s'active à **chaque modification** :
+
+- Votre flow modifie un champ pour indiquer que le traitement est terminé → le flow se redéclenche
+- Un utilisateur ouvre un élément et clique "Enregistrer" sans rien changer → le flow se redéclenche
+- Un autre flow met à jour la même liste → les deux flows se redéclenchent mutuellement
+
+Power Automate applique des **limites d'exécution** par utilisateur. Sur une licence standard, on parle de plusieurs milliers d'exécutions par mois (ce qui semble beaucoup jusqu'au jour où une boucle consomme tout ça en quelques heures).
+
+Le premier réflexe seule est d'ajouter une condition en tout début de flow pour le stopper immédiatement si les critères ne sont pas remplis. 
+
+⚠️ Mais le flow s'exécute et consomme quand même une exécution.
+
+---
+
+## Ce que font les Trigger conditions
+
+Les "trigger conditions" sont des expressions évaluées **avant** que le flow ne démarre. Si l'expression retourne `false`, le flow ne s'exécute tout simplement pas.
+
+C'est une différence fondamentale avec une condition placée à l'intérieur du flow.
+
+> **Retour terrain :** Chez un client avec 200 collaborateurs qui mettaient à jour une liste SharePoint toute la journée, on a réduit le nombre d'exécutions réelles de 90 % simplement en ajoutant une trigger condition sur le statut de l'élément. Le quota mensuel n'a plus jamais été atteint.
+
+En pratique, les trigger conditions permettent de :
+
+- **Éviter les boucles** : en filtrant les modifications faites par le compte de service du flow lui-même
+- **Économiser les exécutions** : en ne déclenchant le flow que si un champ spécifique a changé
+- **Cibler précisément** : en limitant le déclenchement à certaines valeurs, certains utilisateurs, ou certaines conditions métier
+
+---
+
+## Comment ajouter une Trigger condition
+
+Dans Power Automate, ouvrez votre flow et cliquez sur le déclencheur pour afficher le panneau des options. Sélectionnez l'onglet **Settings**.
+
+Vous trouverez une section **Trigger Conditions**. Cliquez sur **+** pour saisir votre expression.
+
+<div className="prose-article70"><img src="/images/blog/Trigger-conditions-PowerAutomate.png" alt="Ajouter Trigger Condition Power Automate" /></div><br/>
+
+
+
+Les expressions utilisent la syntaxe des expressions Power Automate (la même que dans les formules dynamiques). Quelques exemples courants :
+
+**Déclencher uniquement si le statut est "Approuvé" :**
+```
+@equals(triggerBody()?['Statut']?['Value'], 'Approuvé')
+```
+
+**Déclencher uniquement si un champ numérique dépasse un seuil :**
+```
+@greaterOrEquals(triggerBody()?['Montant'], 1000)
+```
+
+**Éviter une boucle — ne pas déclencher si la modification vient du compte de service :**
+```
+@not(equals(triggerBody()?['Editor']?['Email'], 'monflow@mondomaine.com'))
+```
+
+Vous pouvez ajouter **plusieurs trigger conditions** : elles sont toutes évaluées, et le flow ne démarre que si **toutes** retournent `true` (logique ET).
+
+---
+
+## L'astuce du Filter Array pour trouver la bonne syntaxe
+
+J'ai souvent eu du mal à toruver la bonne syntaxe pour renseigner mes trigger conditions. 
+Mais j'ai trouvé cette astuce infaillible que j'utilise systématiquement  : **utiliser une action Filter Array pour tester votre expression d'abord**.
+
+### Pourquoi ça fonctionne
+
+L'action **Filter Array** (Filtrer un tableau) utilise exactement la même syntaxe d'expression que les trigger conditions. Vous pouvez donc :
+
+1. Ajouter une action **Filter Array** 
+2. Construire votre condition visuellement avec le mode basique
+3. CLiquer sur Edit in advanced mode pour afficher la condition avec la bonne syntaxe
+4. Coller cette expression dans la trigger condition
+
+<div className="prose-article70"><img src="/images/blog/Trigger-conditions-Filter-Array.png" alt="Action Filter Array Trigger Condition" /></div><br/>
+<div className="prose-article70"><img src="/images/blog/Trigger-conditions-Filter-Array-AdvancedMode.png" alt="Action Filter Array Trigger Condition Advanced Mode" /></div><br/>
+
+> Cette méthode est particulièrement utile pour les champs de type Choix, Personne, ou Recherche (Lookup) dont la structure JSON n'est pas intuitive. Plutôt que de deviner, vous laissez Power Automate vous montrer le chemin exact.
+
+---
+
+## Mes bonnes pratiques
+
+- Mettez toujours une trigger condition dès qu'un flow se déclenche sur modification : c'est une bonne pratique systématique !
+- Pour éviter les boucles, filtrez sur "Modifié par" ou sur un champ "Statut" que vous gérez vous-même
+- Utilisez l'action Filter Array pour valider la synthaxe de votre Trigger condition
+
+Si vous n'avez pas encore l'habitude de les utiliser, **prenez cinq minutes pour revoir vos flows existants**. Il y a de bonnes chances que l'un d'entre eux déclenche plus qu'il ne devrait.
