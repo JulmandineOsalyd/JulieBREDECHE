@@ -330,6 +330,33 @@ h1, h2, h3 {
   margin:0 auto;
 }
 
+.prose-article70 img {
+  max-width: 70%;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  display: block;
+  margin:0 auto;
+}
+
+.prose-article80 img {
+  max-width: 80%;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  display: block;
+  margin:0 auto;
+}
+
+.prose-article90 img {
+  max-width: 90%;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  display: block;
+  margin:0 auto;
+}
+
 .prose-articlemax img {
   max-width: 100%;
   border-radius: 12px;
