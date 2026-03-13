@@ -13,7 +13,7 @@ interface Project {
   devices:     string[]
   techs:       string[]
   screenshots: Screenshot[]
-  problem:     string
+  problem:     string[]
   users:       string[]
   solution:    string
   features:    string[]
@@ -37,15 +37,19 @@ const PROJECTS: Project[] = [
       { url: '/portfolio/MyBooking/MyBooking-MobileForm.png',  title: '6. Formulaire – Mobile' },
       { url: '/portfolio/MyBooking/MyBooking-BackOffice.png',  title: '7. Back-office SharePoint pour le staff' },
     ],
-    problem:  '<p>Demandes de réservation gérées <b>uniquement par mail</b> avec les gestionnaires.</p><p>Des <b>validations manuelles</b> retardaient le processus.</p> <p>Nombreux allers-retours, oublis et <b>erreurs de saisie</b>.</p>',
+    problem:  [
+      'Demandes de réservation gérées **uniquement par mail** avec les gestionnaires.',
+      'Des **validations manuelles** retardaient le processus.',
+      'Nombreux allers-retours, oublis et **erreurs de saisie**.',
+    ],
     users:    ['200 professeurs sur 2 campus', '2 gestionnaires des réservations', 'Service Comptabilité'],
-    solution: "Une <b>application mobile</b> de saisie des demandes avec workflow de validation et notifications automatiques.<br><br>Un <b>tableau de bord interactif</b> pour le staff avec suivi comptable structuré.",
+    solution: "Une **application mobile** de saisie des demandes avec workflow de validation et notifications automatiques.\n\nUn **tableau de bord interactif** pour le staff avec suivi comptable structuré.",
     features: [
-      '<b>Formulaire dynamique</b> avec règles métier pour fiabiliser la saisie',
-      '<b>Duplication des réservations</b> récurrentes en 2 clics',
-      '<b>Workflow de validation automatique</b> selon le statut du professeur',
-      '<b>Notifications automatisées</b> tout au long du traitement',
-      '<b>Tableau de bord unifié</b> avec vues dédiées',
+      '**Formulaire dynamique** avec règles métier pour fiabiliser la saisie',
+      '**Duplication des réservations** récurrentes en 2 clics',
+      '**Workflow de validation automatique** selon le statut du professeur',
+      '**Notifications automatisées** tout au long du traitement',
+      '**Tableau de bord unifié** avec vues dédiées',
     ],
     benefits: [
       'Gain de temps significatif pour les professeurs',
@@ -71,14 +75,17 @@ const PROJECTS: Project[] = [
       { url: '/portfolio/LecturePDF/2.png', title: '3. REGEX utilisée dans un Office Script' },
       { url: '/portfolio/LecturePDF/3.png', title: '4. Utilisation de la REGEX dans le flux' },
     ],
-    problem:  '<p><b>Extraction manuelle</b> des numéros de commande sur des milliers de factures PDF pour les intégrer à un nouvel outil de facturation.</p><p style="margin-top:.5rem">Processus chronophage engendrant <b>risques d\'erreurs</b> et retards de facturation.</p>',
+    problem:  [
+      "**Extraction manuelle** des numéros de commande sur des milliers de factures PDF pour les intégrer à un nouvel outil de facturation.",
+      "Processus chronophage engendrant **risques d'erreurs** et retards de facturation.",
+    ],
     users:    ['2 personnes mobilisées à temps plein', '10 000 factures en retard à traiter', 'Flux continu de PDF reçu de l\'ancien système'],
-    solution: "Un flux Power Automate intégré à SharePoint pour une <b>lecture OCR automatisée</b> des factures PDF, détectant précisément leurs <b>numéros de commande</b> via une REGEX.",
+    solution: "Un flux Power Automate intégré à SharePoint pour une **lecture OCR automatisée** des factures PDF, détectant précisément leurs **numéros de commande** via une REGEX.",
     features: [
       "Flux automatisé parcourant les documents d'une bibliothèque SharePoint",
-      '<b>Lecture OCR</b> via AI Builder pour extraire le n° de commande',
-      '<b>Renommage automatique</b> des fichiers valides',
-      '<b>Déplacement</b> des cas non conformes vers un dossier de révision',
+      '**Lecture OCR** via AI Builder pour extraire le n° de commande',
+      '**Renommage automatique** des fichiers valides',
+      '**Déplacement** des cas non conformes vers un dossier de révision',
     ],
     benefits: [
       '90 % du temps manuel éliminé',
@@ -103,14 +110,17 @@ const PROJECTS: Project[] = [
       { url: '/portfolio/Contratheque/Contratheque-Classement.png',   title: '3. Document déplacé dans la contrathèque' },
       { url: '/portfolio/Contratheque/Contratheque-Recherche.png',    title: '4. Moteur de recherche avancé' },
     ],
-    problem:  "<p>Les contrats finalisés se retrouvaient <b>dispersés parmi des documents de travail</b>.</p><p style='margin-top:.5rem'>Résultat : une recherche <b>longue et aléatoire</b> pour trouver le dernier contrat en vigueur ou l'historique fournisseur.</p>",
+    problem:  [
+      "Les contrats finalisés se retrouvaient **dispersés parmi des documents de travail**.",
+      "Résultat : une recherche **longue et aléatoire** pour trouver le dernier contrat en vigueur ou l'historique fournisseur.",
+    ],
     users:    ['Service Achats (10 personnes)', '~50 contrats finalisés par mois à classer', 'Documents de travail mélangés aux contrats signés'],
-    solution: "Un flux Power Automate ouvrant un <b>formulaire de saisie des métadonnées</b> (fournisseur, montant, échéance…) puis déplaçant le contrat vers une bibliothèque SharePoint dédiée avec un <b>moteur de recherche avancé</b>.",
+    solution: "Un flux Power Automate ouvrant un **formulaire de saisie des métadonnées** (fournisseur, montant, échéance…) puis déplaçant le contrat vers une bibliothèque SharePoint dédiée avec un **moteur de recherche avancé**.",
     features: [
-      '<b>Déclenchement manuel</b> par bouton : formulaire de saisie des métadonnées',
-      '<b>Déplacement automatisé</b> vers la Contrathèque avec mise à jour des métadonnées',
-      '<b>Alertes Teams</b> automatiques à l\'approche de l\'échéance',
-      '<b>Mise à jour du statut</b> du contrat après sa date de fin',
+      '**Déclenchement manuel** par bouton : formulaire de saisie des métadonnées',
+      '**Déplacement automatisé** vers la Contrathèque avec mise à jour des métadonnées',
+      "**Alertes Teams** automatiques à l'approche de l'échéance",
+      '**Mise à jour du statut** du contrat après sa date de fin',
     ],
     benefits: [
       'Classement guidé en quelques clics',
@@ -124,6 +134,12 @@ const PROJECTS: Project[] = [
     ],
   },
 ]
+
+function md(text: string): string {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n\n/g, '<br><br>')
+}
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -340,16 +356,12 @@ export default function PortfolioPage() {
               <div style={{ padding: '22px 0', borderBottom: '1px solid #f0f3f7' }}>
                 <SectionLabel>Problématique métier</SectionLabel>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  {project.problem.split(/<p[^>]*>/).filter(Boolean).map((seg, i) => {
-                    const clean = seg.replace(/<\/p>/g, '').trim()
-                    if (!clean) return null
-                    return (
-                      <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '14px', color: '#2d3a4a', lineHeight: 2 }}>
-                        <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#4a9fd4', flexShrink: 0, marginTop: '10px', display: 'inline-block' }} />
-                        <span dangerouslySetInnerHTML={{ __html: clean }} />
-                      </div>
-                    )
-                  })}
+                  {project.problem.map((line, i) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '14px', color: '#2d3a4a', lineHeight: 2 }}>
+                      <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#4a9fd4', flexShrink: 0, marginTop: '10px', display: 'inline-block' }} />
+                      <span dangerouslySetInnerHTML={{ __html: md(line) }} />
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -373,7 +385,7 @@ export default function PortfolioPage() {
                 <SectionLabel>Solution mise en place</SectionLabel>
                 <div
                   style={{ fontSize: '14px', color: '#2d3a4a', lineHeight: 1.75 }}
-                  dangerouslySetInnerHTML={{ __html: project.solution }}
+                  dangerouslySetInnerHTML={{ __html: md(project.solution) }}
                 />
               </div>
 
@@ -391,7 +403,7 @@ export default function PortfolioPage() {
                       }}>
                         ✓
                       </div>
-                      <span dangerouslySetInnerHTML={{ __html: f }} />
+                      <span dangerouslySetInnerHTML={{ __html: md(f) }} />
                     </div>
                   ))}
                 </div>
@@ -515,7 +527,7 @@ export default function PortfolioPage() {
             <img
               src={project.screenshots[lbIndex].url}
               alt={project.screenshots[lbIndex].title}
-              style={{ display: 'block', width: '100%', height: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '10px', boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }}
+              style={{ display: 'block', width: '100%', height: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '20px', boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }}
             />
           </div>
 
