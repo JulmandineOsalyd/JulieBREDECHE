@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import type { ReactNode } from 'react'
-import { Lora, Plus_Jakarta_Sans } from 'next/font/google'
+import { Lora, Plus_Jakarta_Sans, DM_Serif_Display, DM_Sans } from 'next/font/google'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import NewsletterBar from '@/components/NewsletterBar'
@@ -20,10 +20,27 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: 'swap',
 })
 
+const dmSerifDisplay = DM_Serif_Display({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-dm-serif',
+  display: 'swap',
+})
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: {
     default: 'Julie Bredeche — Consultante SharePoint & Copilot Studio',
     template: '%s | Julie Bredeche',
+  },
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
   },
   description:
     'Consultante Microsoft 365 indépendante. SharePoint, Power Platform, Copilot Studio. Projets sur mesure pour TPE, PME et grands comptes.',
@@ -55,7 +72,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="fr" className={`${lora.variable} ${plusJakartaSans.variable}`}>
+    <html lang="fr" className={`${lora.variable} ${plusJakartaSans.variable} ${dmSerifDisplay.variable} ${dmSans.variable}`}>
       <body>
         <Nav />
         <main>{children}</main>

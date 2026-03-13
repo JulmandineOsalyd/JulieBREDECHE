@@ -1,17 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
-
-const TECH_LOGOS: Record<string, string> = {
-  PowerApps:       '/icons/PowerApps.svg',
-  'Power Automate':'/icons/PowerAutomate.svg',
-  SharePoint:      '/icons/SharePoint2025.png',
-  Teams:           '/icons/Teams2025.png',
-  Forms:           '/icons/Forms.png',
-  Outlook:         '/icons/Outlook2025.png',
-  'AI Builder':    '/icons/AIBuilder.svg',
-}
 
 interface Screenshot { url: string; title: string }
 interface RoiItem    { val: string; label: string }
@@ -24,7 +14,7 @@ interface Project {
   techs:       string[]
   screenshots: Screenshot[]
   problem:     string
-  users:       string
+  users:       string[]
   solution:    string
   features:    string[]
   benefits:    string[]
@@ -47,8 +37,8 @@ const PROJECTS: Project[] = [
       { url: '/portfolio/MyBooking/MyBooking-MobileForm.png',  title: '6. Formulaire – Mobile' },
       { url: '/portfolio/MyBooking/MyBooking-BackOffice.png',  title: '7. Back-office SharePoint pour le staff' },
     ],
-    problem:  '<p>Demandes de réservation gérées <b>uniquement par mail</b> avec les gestionnaires.</p><p style="margin-top:.5rem">Des <b>validations manuelles</b> retardaient le processus. Nombreux allers-retours, oublis et <b>erreurs de saisie</b>.</p>',
-    users:    "<ul style='list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.4rem'><li style='display:flex;gap:.5rem'><span style='color:var(--c2);font-weight:700;flex-shrink:0'>·</span>200 professeurs sur 2 campus</li><li style='display:flex;gap:.5rem'><span style='color:var(--c2);font-weight:700;flex-shrink:0'>·</span>2 gestionnaires des réservations</li><li style='display:flex;gap:.5rem'><span style='color:var(--c2);font-weight:700;flex-shrink:0'>·</span>Service Comptabilité</li></ul>",
+    problem:  '<p>Demandes de réservation gérées <b>uniquement par mail</b> avec les gestionnaires.</p><p>Des <b>validations manuelles</b> retardaient le processus.</p> <p>Nombreux allers-retours, oublis et <b>erreurs de saisie</b>.</p>',
+    users:    ['200 professeurs sur 2 campus', '2 gestionnaires des réservations', 'Service Comptabilité'],
     solution: "Une <b>application mobile</b> de saisie des demandes avec workflow de validation et notifications automatiques.<br><br>Un <b>tableau de bord interactif</b> pour le staff avec suivi comptable structuré.",
     features: [
       '<b>Formulaire dynamique</b> avec règles métier pour fiabiliser la saisie',
@@ -60,7 +50,7 @@ const PROJECTS: Project[] = [
     benefits: [
       'Gain de temps significatif pour les professeurs',
       '95 % de réduction des erreurs de saisie',
-      'Visibilité en temps réel de létat des demandes',
+      'Visibilité en temps réel de l\'état des demandes',
       'Collaboration facilitée gestionnaires et comptabilité',
     ],
     roi: [
@@ -82,7 +72,7 @@ const PROJECTS: Project[] = [
       { url: '/portfolio/LecturePDF/3.png', title: '4. Utilisation de la REGEX dans le flux' },
     ],
     problem:  '<p><b>Extraction manuelle</b> des numéros de commande sur des milliers de factures PDF pour les intégrer à un nouvel outil de facturation.</p><p style="margin-top:.5rem">Processus chronophage engendrant <b>risques d\'erreurs</b> et retards de facturation.</p>',
-    users:    "<ul style='list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.4rem'><li style='display:flex;gap:.5rem'><span style='color:var(--c2);font-weight:700;flex-shrink:0'>·</span>2 personnes mobilisées à temps plein</li><li style='display:flex;gap:.5rem'><span style='color:var(--c2);font-weight:700;flex-shrink:0'>·</span>10 000 factures en retard à traiter</li><li style='display:flex;gap:.5rem'><span style='color:var(--c2);font-weight:700;flex-shrink:0'>·</span>Flux continu de PDF reçu de l'ancien système</li></ul>",
+    users:    ['2 personnes mobilisées à temps plein', '10 000 factures en retard à traiter', 'Flux continu de PDF reçu de l\'ancien système'],
     solution: "Un flux Power Automate intégré à SharePoint pour une <b>lecture OCR automatisée</b> des factures PDF, détectant précisément leurs <b>numéros de commande</b> via une REGEX.",
     features: [
       "Flux automatisé parcourant les documents d'une bibliothèque SharePoint",
@@ -114,7 +104,7 @@ const PROJECTS: Project[] = [
       { url: '/portfolio/Contratheque/Contratheque-Recherche.png',    title: '4. Moteur de recherche avancé' },
     ],
     problem:  "<p>Les contrats finalisés se retrouvaient <b>dispersés parmi des documents de travail</b>.</p><p style='margin-top:.5rem'>Résultat : une recherche <b>longue et aléatoire</b> pour trouver le dernier contrat en vigueur ou l'historique fournisseur.</p>",
-    users:    "<ul style='list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.4rem'><li style='display:flex;gap:.5rem'><span style='color:var(--c2);font-weight:700;flex-shrink:0'>·</span>Service Achats (10 personnes)</li><li style='display:flex;gap:.5rem'><span style='color:var(--c2);font-weight:700;flex-shrink:0'>·</span>~50 contrats finalisés par mois à classer</li><li style='display:flex;gap:.5rem'><span style='color:var(--c2);font-weight:700;flex-shrink:0'>·</span>Documents de travail mélangés aux contrats signés</li></ul>",
+    users:    ['Service Achats (10 personnes)', '~50 contrats finalisés par mois à classer', 'Documents de travail mélangés aux contrats signés'],
     solution: "Un flux Power Automate ouvrant un <b>formulaire de saisie des métadonnées</b> (fournisseur, montant, échéance…) puis déplaçant le contrat vers une bibliothèque SharePoint dédiée avec un <b>moteur de recherche avancé</b>.",
     features: [
       '<b>Déclenchement manuel</b> par bouton : formulaire de saisie des métadonnées',
@@ -135,13 +125,49 @@ const PROJECTS: Project[] = [
   },
 ]
 
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+      <span style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: '#8a9ab0', whiteSpace: 'nowrap' as const }}>
+        {children}
+      </span>
+      <div style={{ flex: 1, height: '1px', background: '#edf0f5' }} />
+    </div>
+  )
+}
+
 export default function PortfolioPage() {
-  const [open, setOpen]       = useState<number | null>(null)
-  const [lbIndex, setLbIndex] = useState<number | null>(null)
+  const [open, setOpen]               = useState<number | null>(null)
+  const [activeSlide, setActiveSlide] = useState(0)
+  const [lbIndex, setLbIndex]         = useState<number | null>(null)
 
   const project = open !== null ? PROJECTS[open] : null
 
-  function openLb(i: number) { setLbIndex(i) }
+  // Bloquer le scroll du body quand un overlay est ouvert
+  useEffect(() => {
+    document.body.style.overflow = (open !== null || lbIndex !== null) ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [open, lbIndex])
+
+  function openProject(i: number) {
+    setOpen(i)
+    setActiveSlide(0)
+  }
+
+  function closeModal() {
+    setOpen(null)
+    setActiveSlide(0)
+  }
+
+  function goPrev() {
+    if (open !== null && open > 0) { setOpen(open - 1); setActiveSlide(0) }
+  }
+
+  function goNext() {
+    if (open !== null && open < PROJECTS.length - 1) { setOpen(open + 1); setActiveSlide(0) }
+  }
+
+  function openLb(i: number) { setActiveSlide(i); setLbIndex(i) }
   function closeLb()          { setLbIndex(null) }
   function prevLb()           { setLbIndex(i => (i !== null && project ? (i - 1 + project.screenshots.length) % project.screenshots.length : null)) }
   function nextLb()           { setLbIndex(i => (i !== null && project ? (i + 1) % project.screenshots.length : null)) }
@@ -169,26 +195,19 @@ export default function PortfolioPage() {
           {PROJECTS.map((p, i) => (
             <button
               key={i}
-              onClick={() => setOpen(i)}
+              onClick={() => openProject(i)}
               className="card portfolio-card"
               style={{ padding: '1.75rem', textAlign: 'left', cursor: 'pointer', background: 'white', border: '1.5px solid var(--border)', width: '100%', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
             >
-              {/* Number */}
               <span style={{ fontSize: '2rem', fontWeight: 800, fontFamily: 'var(--font-lora), Georgia, serif', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1 }}>
                 {String(i + 1).padStart(2, '0')}
               </span>
-
-              {/* Title */}
               <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1rem', color: 'var(--ink)', lineHeight: 1.4, margin: 0 }}>
                 {p.title}
               </h2>
-
-              {/* Sector badge */}
               <span style={{ alignSelf: 'flex-start', fontSize: '0.68rem', fontWeight: 700, color: 'white', background: 'var(--c3)', border: '1px solid rgba(14,76,137,0.18)', borderRadius: '99px', padding: '0.15rem 0.6rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 {p.sector}
               </span>
-
-              {/* Tech pills */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginTop: 'auto', paddingTop: '0.5rem', borderTop: '1px solid var(--border)' }}>
                 {p.techs.map(t => (
                   <span key={t} style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--c3)', background: 'var(--off)', border: '1px solid var(--border)', borderRadius: '6px', padding: '0.15rem 0.5rem' }}>
@@ -196,7 +215,6 @@ export default function PortfolioPage() {
                   </span>
                 ))}
               </div>
-
               <span style={{ fontSize: '0.8rem', color: 'var(--c3)', fontWeight: 600, marginTop: '0.25rem' }}>
                 Voir le projet →
               </span>
@@ -205,157 +223,214 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* ── Modal detail ── */}
+      {/* ── Modal ── */}
       {open !== null && project && (
         <div
-          onClick={() => setOpen(null)}
+          onClick={closeModal}
           style={{
             position: 'fixed', inset: 0, zIndex: 200,
-            background: 'rgba(7,24,40,0.7)',
-            backdropFilter: 'blur(6px)',
-            WebkitBackdropFilter: 'blur(6px)',
+            background: 'rgba(10,18,28,0.82)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '2vh 2vw',
+            padding: '20px 16px',
           }}
         >
           <div
             onClick={e => e.stopPropagation()}
+            className="animate-fadeUp"
             style={{
-              width: '100%', maxWidth: '1100px',
-              height: '95vh',
               background: '#fff',
               borderRadius: '16px',
+              width: '100%',
+              maxWidth: '720px',
+              maxHeight: '95vh',
               overflow: 'hidden',
-              boxShadow: '0 32px 80px rgba(7,24,40,0.45)',
               display: 'flex',
               flexDirection: 'column',
             }}
           >
-            {/* Header */}
+
+            {/* HEADER */}
             <div style={{
-              background: 'linear-gradient(135deg,#0d2d50 0%,#1a4a7a 50%,#1e5a96 100%)',
-              padding: '1.25rem 1.75rem',
+              background: '#0f2744',
+              padding: '24px 28px 20px',
+              borderRadius: '16px 16px 0 0',
+              flexShrink: 0,
             }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  {/* Titre + secteur sur la même ligne */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '0.65rem' }}>
-                    <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.05rem, 2.5vw, 1.35rem)', color: 'white', lineHeight: 1.3, margin: 0 }}>
-                      {project.title}
-                    </h2>
-                    <span style={{ marginLeft: 'auto', flexShrink: 0, fontSize: '0.7rem', fontWeight: 700, background: 'rgba(24,176,232,0.2)', color: '#60c6ff', border: '1px solid rgba(96,198,255,0.35)', borderRadius: '99px', padding: '0.15rem 0.7rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                      {project.sector}
-                    </span>
-                  </div>
-
-                  {/* Outils */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', alignItems: 'center' }}>
-                    {project.techs.map(t => (
-                      <span key={t} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.7rem', fontWeight: 600, background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.85)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '99px', padding: '0.15rem 0.6rem' }}>
-                        {TECH_LOGOS[t] && (
-                          <Image src={TECH_LOGOS[t]} alt={t} width={13} height={13} style={{ width: 13, height: 13, objectFit: 'contain' }} unoptimized />
-                        )}
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Close */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', marginBottom: '6px' }}>
+                <span style={{
+                  fontSize: '10px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase',
+                  color: '#7db4e0', background: 'rgba(125,180,224,0.12)', border: '1px solid rgba(125,180,224,0.2)',
+                  padding: '4px 10px', borderRadius: '20px',
+                }}>
+                  {project.sector}
+                </span>
                 <button
-                  onClick={() => setOpen(null)}
+                  onClick={closeModal}
                   aria-label="Fermer"
-                  style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', fontSize: '0.95rem', fontWeight: 600 }}
+                  style={{
+                    width: 32, height: 32, border: '1px solid rgba(255,255,255,0.2)', borderRadius: '50%',
+                    background: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '16px', cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                  }}
                 >
                   ✕
                 </button>
               </div>
+
+              <h2 style={{
+                fontFamily: 'var(--font-dm-serif), Georgia, serif',
+                fontSize: '22px', color: '#fff', fontWeight: 400, lineHeight: 1.3, margin: '8px 0 16px',
+              }}>
+                {project.title}
+              </h2>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                {project.techs.map(t => (
+                  <span key={t} style={{
+                    fontSize: '11px', fontWeight: 500, color: '#a8c8f0',
+                    background: 'rgba(168,200,240,0.1)', border: '1px solid rgba(168,200,240,0.15)',
+                    padding: '3px 10px', borderRadius: '20px',
+                  }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            {/* Body — grille 3 rangées × 2 colonnes */}
-            <div style={{ padding: '1.25rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', background: 'var(--off)', overflowY: 'auto', flex: 1 }} className="modal-body-grid">
+            {/* BODY - zone scrollable (slider inclus) */}
+            <div style={{ flex: 1, overflowY: 'auto', scrollbarWidth: 'thin', scrollbarColor: '#d0d8e4 transparent' }}>
 
-
-              {/* ── Rangée 2 : Problématique | Contexte ── */}
-              <div style={{ background: 'white', borderRadius: '12px', padding: '1.25rem', border: '1.5px solid var(--border)', borderTop: '3px solid var(--c3)' }}>
-                <p style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--c3)', marginBottom: '0.65rem' }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
-                  Problématique métier
+              {/* SLIDER */}
+              <div style={{ background: '#e8f2fa', padding: '16px 28px' }}>
+                <div style={{
+                  display: 'flex', gap: '10px', overflowX: 'auto',
+                  scrollSnapType: 'x mandatory', paddingBottom: '4px',
+                  msOverflowStyle: 'none', scrollbarWidth: 'none',
+                }}>
+                  {project.screenshots.map((s, i) => (
+                    <div
+                      key={i}
+                      onClick={() => openLb(i)}
+                      style={{
+                        flexShrink: 0, width: '110px', height: '68px',
+                        borderRadius: '6px', background: '#c8dff0',
+                        border: `2px solid ${i === activeSlide ? '#4a9fd4' : 'transparent'}`,
+                        scrollSnapAlign: 'start', cursor: 'pointer',
+                        overflow: 'hidden', transition: 'border-color 0.2s',
+                      }}
+                    >
+                      <Image
+                        src={s.url}
+                        alt={s.title}
+                        width={110}
+                        height={68}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <p style={{ fontSize: '11px', color: '#7aa8c4', textAlign: 'center', marginTop: '10px', letterSpacing: '0.03em' }}>
+                  {project.screenshots.length} Captures (cliquer pour agrandir)
                 </p>
-                <div style={{ fontSize: '0.855rem', color: 'var(--ink)', lineHeight: 1.7 }} dangerouslySetInnerHTML={{ __html: project.problem }} />
               </div>
 
-              <div style={{ background: 'white', borderRadius: '12px', padding: '1.25rem', border: '1.5px solid var(--border)', borderTop: '3px solid var(--c3)' }}>
-                <p style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--c3)', marginBottom: '0.65rem' }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  Contexte et utilisateurs
-                </p>
-                <div style={{ fontSize: '0.855rem', color: 'var(--ink)', lineHeight: 1.7 }} dangerouslySetInnerHTML={{ __html: project.users }} />
+              <div style={{ padding: '0 28px 24px' }}>
+
+              {/* Problématique métier */}
+              <div style={{ padding: '22px 0', borderBottom: '1px solid #f0f3f7' }}>
+                <SectionLabel>Problématique métier</SectionLabel>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  {project.problem.split(/<p[^>]*>/).filter(Boolean).map((seg, i) => {
+                    const clean = seg.replace(/<\/p>/g, '').trim()
+                    if (!clean) return null
+                    return (
+                      <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '14px', color: '#2d3a4a', lineHeight: 2 }}>
+                        <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#4a9fd4', flexShrink: 0, marginTop: '10px', display: 'inline-block' }} />
+                        <span dangerouslySetInnerHTML={{ __html: clean }} />
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
 
-              {/* ── Rangée 3 : Solution | Fonctionnalités ── */}
-              <div style={{ background: 'white', borderRadius: '12px', padding: '1.25rem', border: '1.5px solid var(--border)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <p style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--c2)', margin: 0 }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="6"/><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/><line x1="12" y1="22" x2="12" y2="18"/><path d="M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-                  Solution mise en place
-                </p>
-                <p style={{ fontSize: '0.855rem', color: 'var(--ink)', lineHeight: 1.7, margin: 0, flex: 1 }} dangerouslySetInnerHTML={{ __html: project.solution }} />
-                <button
-                  onClick={() => openLb(0)}
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.4rem 0.85rem', borderRadius: '7px', border: '1.5px solid var(--c2)', background: 'rgba(24,176,232,0.06)', color: 'var(--c3)', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', alignSelf: 'flex-start' }}
-                >
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                  Voir les captures ({project.screenshots.length})
-                </button>
+              {/* Contexte et utilisateurs */}
+              <div style={{ padding: '22px 0', borderBottom: '1px solid #f0f3f7' }}>
+                <SectionLabel>Contexte et utilisateurs</SectionLabel>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  {project.users.map((u, i) => (
+                    <div key={i} style={{
+                      fontSize: '13px', color: '#2d3a4a', background: '#f4f7fb',
+                      border: '1px solid #e4eaf3', borderRadius: '8px', padding: '8px 14px',
+                    }}>
+                      {u}
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div style={{ background: 'white', borderRadius: '12px', padding: '1.25rem', border: '1.5px solid var(--border)' }}>
-                <p style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--c2)', marginBottom: '0.65rem' }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  Fonctionnalités clés
-                </p>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
+              {/* Solution mise en place */}
+              <div style={{ padding: '22px 0', borderBottom: '1px solid #f0f3f7' }}>
+                <SectionLabel>Solution mise en place</SectionLabel>
+                <div
+                  style={{ fontSize: '14px', color: '#2d3a4a', lineHeight: 1.75 }}
+                  dangerouslySetInnerHTML={{ __html: project.solution }}
+                />
+              </div>
+
+              {/* Fonctionnalités clés */}
+              <div style={{ padding: '22px 0', borderBottom: '1px solid #f0f3f7' }}>
+                <SectionLabel>Fonctionnalités clés</SectionLabel>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   {project.features.map((f, i) => (
-                    <li key={i} style={{ display: 'flex', gap: '0.5rem', fontSize: '0.845rem', color: 'var(--ink)', alignItems: 'flex-start' }}>
-                      <span style={{ width: 15, height: 15, borderRadius: '50%', background: 'var(--grad)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '3px' }}>
-                        <svg width="8" height="8" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                          <path d="M2 6l3 3 5-5" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </span>
+                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', fontSize: '13.5px', color: '#2d3a4a', lineHeight: 1.55 }}>
+                      <div style={{
+                        width: '18px', height: '18px', borderRadius: '50%',
+                        background: '#deeef9', border: '1px solid #a8cfe8',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: '10px', color: '#2a7db5', flexShrink: 0, marginTop: '1px',
+                      }}>
+                        ✓
+                      </div>
                       <span dangerouslySetInnerHTML={{ __html: f }} />
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
 
-              {/* ── Rangée 4 : Bénéfices | ROI ── */}
-              <div style={{ background: 'white', borderRadius: '12px', padding: '1.25rem', border: '1.5px solid var(--border)' }}>
-                <p style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', marginBottom: '0.65rem' }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#18b0e8" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  Bénéfices utilisateurs
-                </p>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+              {/* Bénéfices utilisateurs */}
+              <div style={{ padding: '22px 0', borderBottom: '1px solid #f0f3f7' }}>
+                <SectionLabel>Bénéfices utilisateurs</SectionLabel>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {project.benefits.map((b, i) => (
-                    <li key={i} style={{ display: 'flex', gap: '0.5rem', fontSize: '0.845rem', color: 'var(--ink)', alignItems: 'flex-start' }}>
-                      <span style={{ color: 'var(--c2)', fontWeight: 700, flexShrink: 0 }}>·</span>
+                    <div key={i} style={{
+                      fontSize: '13.5px', color: '#2d3a4a', lineHeight: 1.55,
+                      background: '#f8fbff', border: '1px solid #e4edf7',
+                      borderLeft: '3px solid #4a9fd4', borderRadius: '0 8px 8px 0',
+                      padding: '10px 14px',
+                    }}>
                       {b}
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
 
-              <div style={{ background: 'linear-gradient(135deg,rgba(77,255,214,.08) 0%,rgba(24,176,232,.08) 45%,rgba(15,95,173,.08) 100%)', borderRadius: '12px', padding: '1.25rem', border: '1.5px solid var(--border)' }}>
-                <p style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', marginBottom: '0.85rem' }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#18b0e8" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                  Valeur business (ROI)
-                </p>
-                <div style={{ display: 'grid', gridTemplateColumns: `repeat(${project.roi.length}, 1fr)`, gap: '0.75rem' }}>
+              {/* Valeur business (ROI) */}
+              <div style={{ padding: '22px 0' }}>
+                <SectionLabel>Valeur business (ROI)</SectionLabel>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
                   {project.roi.map((r, i) => (
-                    <div key={i} style={{ background: 'white', borderRadius: '10px', padding: '0.85rem 0.6rem', textAlign: 'center', border: '1px solid var(--border)' }}>
-                      <div style={{ fontSize: '1.45rem', fontWeight: 800, background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.1, marginBottom: '0.3rem' }}>
+                    <div key={i} style={{
+                      background: '#f4f7fb', border: '1px solid #e4eaf3',
+                      borderRadius: '10px', padding: '14px 12px', textAlign: 'center',
+                    }}>
+                      <div style={{
+                        fontFamily: 'var(--font-dm-serif), Georgia, serif',
+                        fontSize: '26px', color: '#0f2744', fontWeight: 400,
+                        lineHeight: 1, marginBottom: '6px',
+                      }}>
                         {r.val}
                       </div>
-                      <div style={{ fontSize: '0.72rem', color: 'var(--muted)', lineHeight: 1.3 }}>
+                      <div style={{ fontSize: '11px', color: '#7a8ea4', lineHeight: 1.4 }}>
                         {r.label}
                       </div>
                     </div>
@@ -363,30 +438,53 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-            </div>
+              </div>{/* fin padding sections */}
+            </div>{/* fin body scrollable */}
 
-            {/* Barre bas : prev / next */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.65rem 1.75rem', borderTop: '1px solid var(--border)', background: 'white' }}>
+            {/* FOOTER */}
+            <div style={{
+              background: '#fff',
+              borderTop: '1px solid #edf0f5', padding: '14px 28px',
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              borderRadius: '0 0 16px 16px', flexShrink: 0,
+            }}>
               <button
-                onClick={() => setOpen(o => o !== null && o > 0 ? o - 1 : o)}
+                onClick={goPrev}
                 disabled={open === 0}
-                style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', padding: '0.35rem 0.75rem', borderRadius: '7px', border: '1.5px solid var(--border)', background: 'white', color: open === 0 ? 'var(--muted)' : 'var(--ink)', fontSize: '0.78rem', fontWeight: 600, cursor: open === 0 ? 'default' : 'pointer', opacity: open === 0 ? 0.4 : 1 }}
+                style={{
+                  fontSize: '13px', background: 'none',
+                  border: '1px solid #d8e0eb', borderRadius: '8px', padding: '7px 16px',
+                  cursor: open === 0 ? 'default' : 'pointer', color: '#2d3a4a',
+                  opacity: open === 0 ? 0.4 : 1,
+                }}
               >
                 ← Précédent
               </button>
+              <span style={{ fontSize: '12px', color: '#9aaabb' }}>
+                {open + 1} / {PROJECTS.length}
+              </span>
               <button
-                onClick={() => setOpen(o => o !== null && o < PROJECTS.length - 1 ? o + 1 : o)}
+                onClick={goNext}
                 disabled={open === PROJECTS.length - 1}
-                style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', padding: '0.35rem 0.75rem', borderRadius: '7px', border: '1.5px solid var(--border)', background: 'white', color: open === PROJECTS.length - 1 ? 'var(--muted)' : 'var(--ink)', fontSize: '0.78rem', fontWeight: 600, cursor: open === PROJECTS.length - 1 ? 'default' : 'pointer', opacity: open === PROJECTS.length - 1 ? 0.4 : 1 }}
+                style={{
+                  fontSize: '13px',
+                  background: open === PROJECTS.length - 1 ? 'none' : '#0f2744',
+                  color: open === PROJECTS.length - 1 ? '#2d3a4a' : '#fff',
+                  border: `1px solid ${open === PROJECTS.length - 1 ? '#d8e0eb' : '#0f2744'}`,
+                  borderRadius: '8px', padding: '7px 16px',
+                  cursor: open === PROJECTS.length - 1 ? 'default' : 'pointer',
+                  opacity: open === PROJECTS.length - 1 ? 0.4 : 1,
+                }}
               >
                 Suivant →
               </button>
             </div>
+
           </div>
         </div>
       )}
 
-      {/* ── Lightbox screenshots ── */}
+      {/* ── Lightbox ── */}
       {lbIndex !== null && project && (
         <div
           onClick={closeLb}
@@ -395,64 +493,66 @@ export default function PortfolioPage() {
             background: 'rgba(5,21,37,0.95)',
             backdropFilter: 'blur(8px)',
             WebkitBackdropFilter: 'blur(8px)',
-            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-            padding: '1.5rem',
+            display: 'flex', flexDirection: 'column', alignItems: 'center',
+            padding: '1.5rem 1.5rem 1rem',
           }}
         >
-          {/* Close */}
-          <button
-            onClick={closeLb}
-            style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', width: 40, height: 40, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.08)', color: 'white', fontSize: '1.1rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          >
-            ✕
-          </button>
+          {/* Barre top : compteur + fermer */}
+          <div style={{ width: '100%', maxWidth: '860px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', flexShrink: 0 }}>
+            <span style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.5)', fontWeight: 600 }}>
+              {lbIndex + 1} / {project.screenshots.length}
+            </span>
+            <button
+              onClick={closeLb}
+              style={{ width: 34, height: 34, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.08)', color: 'white', fontSize: '1rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              ✕
+            </button>
+          </div>
 
-          {/* Counter */}
-          <p style={{ position: 'absolute', top: '1.4rem', left: '50%', transform: 'translateX(-50%)', fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', fontWeight: 600 }}>
-            {lbIndex + 1} / {project.screenshots.length}
-          </p>
-
-          {/* Image */}
-          <div onClick={e => e.stopPropagation()} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          {/* Image — prend tout l'espace disponible */}
+          <div onClick={e => e.stopPropagation()} style={{ flex: 1, width: '100%', maxWidth: '860px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 0 }}>
             <img
               src={project.screenshots[lbIndex].url}
               alt={project.screenshots[lbIndex].title}
-              style={{ display: 'block', maxWidth: '860px', width: '100%', maxHeight: '65vh', objectFit: 'contain', borderRadius: '10px', boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }}
+              style={{ display: 'block', width: '100%', height: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '10px', boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }}
             />
-            <p style={{ marginTop: '1rem', fontSize: '0.85rem', color: 'rgba(255,255,255,0.65)' }}>
-              {project.screenshots[lbIndex].title}
-            </p>
           </div>
 
-          {/* Prev / Next */}
-          <div onClick={e => e.stopPropagation()} style={{ display: 'flex', gap: '0.75rem', marginTop: '1.25rem' }}>
+          {/* Titre de la capture */}
+          <p onClick={e => e.stopPropagation()} style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.55)', marginTop: '0.6rem', flexShrink: 0 }}>
+            {project.screenshots[lbIndex].title}
+          </p>
+
+          {/* Miniatures */}
+          <div onClick={e => e.stopPropagation()} style={{ display: 'flex', gap: '0.5rem', marginTop: '0.6rem', flexWrap: 'wrap', justifyContent: 'center', flexShrink: 0 }}>
+            {project.screenshots.map((s, i) => (
+              <button
+                key={i}
+                onClick={() => setLbIndex(i)}
+                style={{ width: 48, height: 34, borderRadius: '4px', overflow: 'hidden', border: i === lbIndex ? '2px solid #4a9fd4' : '2px solid transparent', padding: 0, cursor: 'pointer', opacity: i === lbIndex ? 1 : 0.5 }}
+              >
+                <img src={s.url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </button>
+            ))}
+          </div>
+
+          {/* Boutons précédent / suivant — tout en bas */}
+          <div onClick={e => e.stopPropagation()} style={{ display: 'flex', gap: '0.5rem', marginTop: '0.6rem', flexShrink: 0 }}>
             <button
               onClick={prevLb}
               disabled={lbIndex === 0}
-              style={{ padding: '0.55rem 1.2rem', borderRadius: '8px', border: '1.5px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.07)', color: 'white', fontSize: '0.85rem', fontWeight: 600, cursor: lbIndex === 0 ? 'default' : 'pointer', opacity: lbIndex === 0 ? 0.35 : 1 }}
+              style={{ padding: '0.3rem 0.9rem', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.07)', color: 'white', fontSize: '0.75rem', cursor: lbIndex === 0 ? 'default' : 'pointer', opacity: lbIndex === 0 ? 0.3 : 1 }}
             >
               ← Précédent
             </button>
             <button
               onClick={nextLb}
               disabled={lbIndex === project.screenshots.length - 1}
-              style={{ padding: '0.55rem 1.2rem', borderRadius: '8px', border: '1.5px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.07)', color: 'white', fontSize: '0.85rem', fontWeight: 600, cursor: lbIndex === project.screenshots.length - 1 ? 'default' : 'pointer', opacity: lbIndex === project.screenshots.length - 1 ? 0.35 : 1 }}
+              style={{ padding: '0.3rem 0.9rem', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.07)', color: 'white', fontSize: '0.75rem', cursor: lbIndex === project.screenshots.length - 1 ? 'default' : 'pointer', opacity: lbIndex === project.screenshots.length - 1 ? 0.3 : 1 }}
             >
               Suivant →
             </button>
-          </div>
-
-          {/* Thumbnails strip */}
-          <div onClick={e => e.stopPropagation()} style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-            {project.screenshots.map((s, i) => (
-              <button
-                key={i}
-                onClick={() => setLbIndex(i)}
-                style={{ width: 54, height: 38, borderRadius: '5px', overflow: 'hidden', border: i === lbIndex ? '2px solid #4dffd6' : '2px solid transparent', padding: 0, cursor: 'pointer', opacity: i === lbIndex ? 1 : 0.5 }}
-              >
-                <img src={s.url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </button>
-            ))}
           </div>
         </div>
       )}

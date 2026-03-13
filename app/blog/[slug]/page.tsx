@@ -121,27 +121,14 @@ export default function ArticlePage({ params }: Props) {
                 </div>
                 <div>
                   <p style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--ink)', margin: 0 }}>Julie Bredeche</p>
-                  <p style={{ fontSize: '0.75rem', color: 'var(--muted)', margin: 0 }}>Consultante M365</p>
+                  <p style={{ fontSize: '0.75rem', color: 'var(--muted)', margin: 0 }}>Consultante indépendante M365</p>
                 </div>
               </div>
               <p style={{ fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '0.75rem' }}>
-                Spécialiste SharePoint, Power Platform et Copilot Studio depuis 2016.
+                Spécialiste SharePoint et Power Platform
               </p>
               <Link href="/a-propos" className="btn-outline" style={{ width: '100%', justifyContent: 'center', fontSize: '0.8rem' }}>
                 En savoir plus
-              </Link>
-            </div>
-
-            {/* Offres card */}
-            <div style={{ background: 'linear-gradient(160deg, #f0f8ff 0%, #e6f4fd 100%)', border: '1.5px solid var(--border)', borderRadius: '16px', padding: '1.25rem' }}>
-              <p style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>
-                Un projet Microsoft 365 ?
-              </p>
-              <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginBottom: '0.75rem', lineHeight: 1.5 }}>
-                SharePoint, Power Platform, Copilot Studio — je vous accompagne de l&apos;analyse à la mise en production.
-              </p>
-              <Link href="/services" className="btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '0.85rem' }}>
-                Voir mes offres →
               </Link>
             </div>
           </aside>
