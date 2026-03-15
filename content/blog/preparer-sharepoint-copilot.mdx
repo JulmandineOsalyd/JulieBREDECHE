@@ -1,0 +1,79 @@
+---
+title: "Préparer SharePoint pour Copilot : les 2 astuces terrain que j'applique systématiquement"
+date: "2026-03-17"
+category: "SharePoint"
+excerpt: "Avant de déployer Copilot, la base doit être solide. Voici deux colonnes SharePoint formatées en JSON que je paramètre chez mes clients pour mieux maîtriser le partage et identifier les connaissances clés."
+readingTime: 5
+tags: ["SharePoint", "Copilot", "Gouvernance", "JSON"]
+featured: false
+---
+
+Tout le monde en parle en ce moment, la structuration des contenus n'est pas une étape optionnelle dans le déploiement de Copilot. 
+C'est la condition pour que Copilot soit fiable.
+
+Le problème, c'est que ça reste toujours compliqué de demander aux utilisateurs de "bien taguer leurs contenus". Les astuces que je partage ici reposent sur un principe simple : rendre le taguage si rapide et si visuel que les utilisateurs le font naturellement.
+
+Voici deux astuces concrètes que j'applique systématiquement lorsque je crée un espace collaboratif pour une équipe ou une Direction.
+
+---
+
+## Pourquoi ça commence dans SharePoint
+
+Copilot exploite les données là où elles sont. Pour la plupart des organisations, c'est Teams ou SharePoint.
+
+Deux problèmes reviennent sans cesse sur le terrain :
+
+1. **Les droits sont un chaos.** Des documents partagés ponctuellement, des permissions uniques oubliées, personne ne sait vraiment qui voit quoi. Copilot respecte les droits d'accès et peut divulguer des informations en principe confidentielles.
+
+2. **Tout se vaut.** Une note de réunion de 2019 a le même poids qu'une procédure RH en vigueur. Copilot ne sait pas ce qui est important si vous ne le lui signalez pas.
+
+Ces deux problèmes ont une solution simple : des colonnes bien pensées, formatées en JSON, que les utilisateurs peuvent actionner en un clic.
+
+---
+
+## Astuce 1 : Maîtriser le partage avec des colonnes dédiées
+
+Dans SharePoint, chaque fois qu'un utilisateur partage un document directement avec une personne (lien "Personnes spécifiques"), il sort du schéma initial de droits de la bibliothèque. 
+
+Ma solution : 
+
+- **Une colonne "Statut partage"** : quand un utilisateur partage un document manuellement, il clique pour le signaler. 
+La colonne change d'apparence : une pastille colorée indique clairement que ce document a des permissions spécifiques.
+
+- **Un bouton "Arrêter le partage"** : en un clic, il déclenche un flow Power Automate qui restaure l'héritage des permissions et restaure la valeur de la colonne "Statut partage". Le document retrouve les droits de la bibliothèque parent. Plus de permissions orphelines.
+
+<div className="prose-article70"><img src="/images/blog/preparer-sharepoint-copilot-colonne-partage.png" alt="Colonnes de gestion du partage" /></div>
+
+>Ce que ça change pour Copilot : les agents opèrent dans un **périmètre de droits propre et contrôlé**. Le risque de fuite d'information vers des utilisateurs qui ne devraient pas avoir accès est fortement diminué. 
+
+---
+
+## Astuce 2 : Identifier les connaissances clés avec un toggle
+
+Tous les documents ne se valent pas. Mais comment distinguer une procédure de référence d'un brouillon de travail, sans complexifier la vie des utilisateurs ?
+
+Ma solution : **une colonne Oui/Non** intitulée "Connaissance clé", formatée en JSON sous forme de toggle visuel.
+
+Un clic suffit pour basculer le toggle. Le document est immédiatement identifié comme source de connaissance prioritaire.
+
+<div className="prose-article60"><img src="/images/blog/preparer-sharepoint-copilot-connaissance-cle.png" alt="Toggle connaissance clé" /><br/></div>
+
+
+Aujourd'hui, j'utilise cette colonne pour faire ressortir ces documents dans le **moteur de recherche SharePoint**. 
+
+<div className="prose-article80"><img src="/images/blog/preparer-sharepoint-copilot-recherche.png" alt="Recherche connaissance clé" /></div>
+
+> Demain, elle pourra indiquer explicitement à un agent Copilot quels sont les **documents de référence** sur lesquels s'appuyer en priorité.
+
+---
+
+## Ce que ça change en pratique
+
+Ces astuces sont très faciles à implémenter et s'intègrent dans le quotidien des utilisateurs sans difficulté.
+
+Leur impact sur la qualité des résultats Copilot est immédiat :
+
+- Les partages sont plus lisibles au quotidien, et facilement gérables
+- Les contenus importants sont identifiés progressivement
+
+C'est aussi ça, préparer SharePoint pour l'IA : des choix simples, intégrés dans le quotidien des utilisateurs, qui rendent l'information exploitable.
