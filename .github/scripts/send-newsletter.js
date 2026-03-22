@@ -87,9 +87,9 @@ const html = `<!DOCTYPE html>
 
           <!-- Header -->
           <tr>
-            <td style="background:linear-gradient(135deg,#4dffd6 0%,#18b0e8 100%);padding:32px 40px;">
-              <p style="margin:0;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#0a2a2a;">${category}</p>
-              <h1 style="margin:8px 0 0;font-size:22px;font-weight:700;color:#0a2a2a;line-height:1.35;">${title}</h1>
+            <td style="background:linear-gradient(135deg,#5ceae8 0%,#18b0e8 45%,#0f5fad 100%);padding:32px 40px;">
+              <p style="margin:0;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#ffffff;opacity:0.8;">${category}</p>
+              <h1 style="margin:8px 0 0;font-size:22px;font-weight:700;color:#ffffff;line-height:1.35;">${title}</h1>
             </td>
           </tr>
 
@@ -100,9 +100,9 @@ const html = `<!DOCTYPE html>
 
               <table cellpadding="0" cellspacing="0">
                 <tr>
-                  <td style="border-radius:8px;background:linear-gradient(135deg,#4dffd6 0%,#18b0e8 100%);">
+                  <td style="border-radius:8px;background:linear-gradient(135deg,#5ceae8 0%,#18b0e8 45%,#0f5fad 100%);">
                     <a href="${articleUrl}"
-                       style="display:inline-block;padding:12px 28px;font-size:14px;font-weight:700;color:#0a2a2a;text-decoration:none;">
+                       style="display:inline-block;padding:12px 28px;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;">
                       Lire l'article →
                     </a>
                   </td>
@@ -115,7 +115,7 @@ const html = `<!DOCTYPE html>
           <tr>
             <td style="padding:20px 40px 32px;border-top:1px solid #f0f0f0;">
               <p style="margin:0;font-size:12px;color:#9ca3af;line-height:1.6;">
-                Vous recevez cet email car vous êtes abonné(e) à la newsletter de Julie Brédèche.<br />
+                Vous recevez cet email car vous êtes abonné(e) à la newsletter de Julie BREDECHE.<br />
                 <a href="{{{ unsubscribe_url }}}" style="color:#9ca3af;">Se désabonner</a>
               </p>
             </td>
@@ -142,10 +142,14 @@ async function main() {
     },
     body: JSON.stringify({
       audience_id: audienceId,
-      from: 'Julie Brédèche <julie.bredeche@osalydconsulting.com>',
+      from: 'Julie BREDECHE <julie.bredeche@osalydconsulting.com>',
       reply_to: 'julie.bredeche@osalydconsulting.com',
-      subject: title,
+      subject: `Nouvel article | ${title}`,
       html,
+      headers: {
+        'List-Unsubscribe': '<{{{ unsubscribe_url }}}>',
+        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+      },
     }),
   })
 
