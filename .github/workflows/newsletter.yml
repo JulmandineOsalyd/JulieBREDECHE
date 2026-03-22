@@ -1,0 +1,60 @@
+name: Send Newsletter on New Article
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'content/blog/fr/**.mdx'
+
+jobs:
+  newsletter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect articles with send_newsletter added
+        id: detect
+        run: |
+          ARTICLE=""
+
+          # Check all added or modified FR MDX files
+          CHANGED=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'content/blog/fr/*.mdx')
+
+          for FILE in $CHANGED; do
+            # send_newsletter: true must be present in current version
+            HAS_FLAG=$(grep -c '^send_newsletter: true' "$FILE" || true)
+            # and must NOT have been present in previous version (newly added)
+            HAD_FLAG=$(git show HEAD~1:"$FILE" 2>/dev/null | grep -c '^send_newsletter: true' || true)
+
+            if [ "$HAS_FLAG" -gt "0" ] && [ "$HAD_FLAG" -eq "0" ]; then
+              ARTICLE="$FILE"
+              echo "send_newsletter flag detected: $ARTICLE"
+              break
+            fi
+          done
+
+          if [ -z "$ARTICLE" ]; then
+            echo "No send_newsletter flag found. Skipping."
+            echo "has_new=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_new=true" >> $GITHUB_OUTPUT
+            echo "article=$ARTICLE" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Node.js
+        if: steps.detect.outputs.has_new == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Send newsletter
+        if: steps.detect.outputs.has_new == 'true'
+        env:
+          RESEND_NL_API_KEY: ${{ secrets.RESEND_NL_API_KEY }}
+          RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID }}
+        run: |
+          node .github/scripts/send-newsletter.js "${{ steps.detect.outputs.article }}"
