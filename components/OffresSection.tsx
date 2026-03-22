@@ -7,6 +7,8 @@ import { useTranslation } from '@/lib/i18n'
 export default function OffresSection({ compact = false }: { compact?: boolean }) {
   const { t } = useTranslation()
   const { coaching, main, audit, onedrive, badge } = t.offers
+  const tool = t.services.tool
+  const toolFeatures = tool.features as unknown as { title: string; text: string }[]
 
   return (
     <section id="services" className="section" style={{ background: 'var(--off)' }}>
@@ -111,43 +113,64 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
         </div>
 
         {/* OneDrive Path Checker card */}
-        <div
-          className="card"
-          style={{ marginTop: '1.5rem', padding: '1.25rem', background: 'white', border: '1.5px solid var(--border)' }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
-            <div style={{ width: 44, height: 44, borderRadius: '12px', background: 'linear-gradient(135deg, rgba(96,198,255,0.15) 0%, rgba(24,176,232,0.15) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M4 3v18h17v-3H7V3z" />
-                <line x1="7" y1="7" x2="10" y2="7" />
-                <line x1="7" y1="11" x2="10" y2="11" />
-                <line x1="7" y1="15" x2="10" y2="15" />
-                <line x1="11" y1="18" x2="11" y2="15" />
-                <line x1="15" y1="18" x2="15" y2="15" />
-                <line x1="19" y1="18" x2="19" y2="15" />
-              </svg>
-            </div>
-            <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.35, margin: 0, flex: 1 }}>
-              {onedrive.title}
-            </h3>
-            <span className="onedrive-badge" style={{ color: 'var(--c3)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap', flexShrink: 0 }}>
-              {onedrive.badge}
-            </span>
-          </div>
+        <div className="card" style={{ marginTop: '1.5rem', padding: '1.75rem', background: 'white', border: '1.5px solid var(--border)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', alignItems: 'center' }} className="offre-grid">
 
-          <div className="onedrive-body" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
-            <p style={{ fontSize: '0.875rem', color: 'var(--ink)', lineHeight: 1.65, margin: 0 }}>
-              {onedrive.description}
-            </p>
-            <Link
-              href="https://onedrivepathchecker.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-dark"
-              style={{ whiteSpace: 'nowrap', flexShrink: 0, fontSize: '0.90rem' }}
-            >
-              {onedrive.cta}
-            </Link>
+            {/* Left: title + description + CTA */}
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                <div style={{ width: 44, height: 44, borderRadius: '12px', background: 'linear-gradient(135deg, rgba(96,198,255,0.15) 0%, rgba(24,176,232,0.15) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M4 3v18h17v-3H7V3z" />
+                    <line x1="7" y1="7" x2="10" y2="7" />
+                    <line x1="7" y1="11" x2="10" y2="11" />
+                    <line x1="7" y1="15" x2="10" y2="15" />
+                    <line x1="11" y1="18" x2="11" y2="15" />
+                    <line x1="15" y1="18" x2="15" y2="15" />
+                    <line x1="19" y1="18" x2="19" y2="15" />
+                  </svg>
+                </div>
+                <div>
+                  <p style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--c2)', margin: '0 0 0.2rem' }}>
+                    {tool.label}
+                  </p>
+                  <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.3, margin: 0 }}>
+                    {onedrive.title}
+                  </h3>
+                </div>
+              </div>
+              <span className="onedrive-badge" style={{ display: 'inline-block', color: 'var(--c3)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', textTransform: 'uppercase', letterSpacing: '0.04em', background: 'var(--off)', border: '1px solid var(--border)', marginBottom: '0.85rem' }}>
+                {onedrive.badge}
+              </span>
+              <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, margin: '0 0 1.25rem' }}>
+                {onedrive.description}
+              </p>
+              <Link href="https://onedrivepathchecker.com/" target="_blank" rel="noopener noreferrer" className="btn-dark" style={{ fontSize: '0.9rem' }}>
+                {onedrive.cta}
+              </Link>
+            </div>
+
+            {/* Right: 2×2 features */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
+              {toolFeatures.map(({ title, text }, i) => {
+                const icons = [
+                  <svg key="0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>,
+                  <svg key="1" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1" /><rect x="13" y="3" width="8" height="8" rx="1" /><rect x="3" y="13" width="8" height="8" rx="1" /><rect x="13" y="13" width="8" height="8" rx="1" /></svg>,
+                  <svg key="2" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>,
+                  <svg key="3" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0110 0v4" /></svg>,
+                ]
+                return (
+                  <div key={title} className="card" style={{ padding: '1rem', background: 'var(--off)' }}>
+                    <div style={{ width: 36, height: 36, borderRadius: '8px', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem', border: '1px solid var(--border)' }}>
+                      {icons[i]}
+                    </div>
+                    <div style={{ fontWeight: 700, fontSize: '0.82rem', color: 'var(--ink)', marginBottom: '0.2rem', lineHeight: 1.35 }}>{title}</div>
+                    <p style={{ fontSize: '0.78rem', color: 'var(--muted)', lineHeight: 1.5, margin: 0 }}>{text}</p>
+                  </div>
+                )
+              })}
+            </div>
+
           </div>
         </div>
       </div>

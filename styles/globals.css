@@ -32,6 +32,7 @@ body {
 .text-c3 { color: #0558ab; }
 .text-c4 { color: #54e4d6; }
 .text-c5 { color: #7e41d9; }
+.text-white { color: #fff !important};
 
 /* Gradient text utility */
 .gradient-text {
@@ -371,6 +372,36 @@ h1, h2, h3 {
   border: 1px solid var(--border);
   display: block;
   margin:0 auto;
+}
+
+/* Blog article CTA tool callout */
+.cta-tool {
+  background: linear-gradient(135deg, rgba(77,255,214,0.06) 0%, rgba(24,176,232,0.06) 100%);
+  border: 1px solid rgba(24,176,232,0.25);
+  border-radius: 16px;
+  padding: 1.5rem 2rem 1.5rem 2.5rem;
+  margin: 2rem 0;
+}
+.cta-tool-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--c2);
+  margin: 0 0 0.4rem;
+}
+.cta-tool-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+  font-family: var(--font-lora), Georgia, serif;
+}
+.cta-tool-desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
 }
 
 .prose-article hr {

@@ -249,7 +249,7 @@ export const fr = {
       ],
     },
     tool: {
-      label: 'Projet personnel',
+      label: 'Side project',
       title: 'OneDrive Path Checker',
       p1: "Développé pour mes missions de migration SharePoint, cet outil <strong>détecte les chemins de fichiers trop longs</strong> avant qu'ils ne causent des erreurs de synchronisation OneDrive.",
       p2: 'Disponible sur le <strong>Microsoft Store</strong>.',
