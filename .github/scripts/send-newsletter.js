@@ -116,7 +116,7 @@ const html = `<!DOCTYPE html>
             <td style="padding:20px 40px 32px;border-top:1px solid #f0f0f0;">
               <p style="margin:0;font-size:12px;color:#9ca3af;line-height:1.6;">
                 Vous recevez cet email car vous êtes abonné(e) à la newsletter de Julie BREDECHE.<br />
-                <a href="{{{ unsubscribe_url }}}" style="color:#9ca3af;">Se désabonner</a>
+                <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color:#9ca3af;">Se désabonner</a>
               </p>
             </td>
           </tr>
@@ -146,10 +146,6 @@ async function main() {
       reply_to: 'julie.bredeche@osalydconsulting.com',
       subject: `Nouvel article | ${title}`,
       html,
-      headers: {
-        'List-Unsubscribe': '<{{{ unsubscribe_url }}}>',
-        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
-      },
     }),
   })
 
