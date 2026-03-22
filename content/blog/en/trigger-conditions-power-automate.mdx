@@ -9,7 +9,7 @@ tags: ["Power Automate", "Automation", "Power Platform"]
 featured: false
 ---
 
-A few months ago, I received an alert: a client's flow had exceeded the monthly execution quota. The flow was triggering on every SharePoint item modification — including modifications made by the flow itself. The result: an infinite loop, thousands of useless executions, and a license bill that needed reviewing.
+A few months ago, I received an alert: a client's flow had exceeded the monthly execution quota. The flow was triggering on every SharePoint item modification, including modifications made by the flow itself. The result: an infinite loop, thousands of useless executions, and a license bill that needed reviewing.
 
 The solution? It came down to two lines. It's called **trigger conditions**.
 
@@ -69,7 +69,7 @@ Expressions use Power Automate expression syntax (the same as dynamic formulas).
 @greaterOrEquals(triggerBody()?['Amount'], 1000)
 ```
 
-**Avoid a loop — don't trigger if the modification comes from the service account:**
+**Avoid a loop: don't trigger if the modification comes from the service account:**
 ```
 @not(equals(triggerBody()?['Editor']?['Email'], 'myflow@mydomain.com'))
 ```

@@ -112,7 +112,7 @@ export const en = {
     journey: [
       'My adventure with Microsoft 365 began in 2014, when I took part in deploying the largest SharePoint intranet for a major energy group. I was immediately drawn to the power and endless possibilities of SharePoint! I quickly specialised in process automation with SharePoint Designer and Nintex, before Power Automate arrived.',
       'After joining a consulting firm specialised in Microsoft 365 tools and completing missions for several large accounts, I founded Osalyd Consulting in 2020. This entrepreneurial freedom allowed me to focus on my areas of excellence: SharePoint and the Power Platform.',
-      'The gap between what technology can do and what teams know how to do with it remains significant. That is where I make a difference — turning business needs into concrete solutions integrated into the M365 ecosystem.',
+      'The gap between what technology can do and what teams know how to do with it remains significant. That is where I make a difference, turning business needs into concrete solutions integrated into the M365 ecosystem.',
       'With a business school background, I can naturally engage with business teams. My innate appetite for technology has allowed me to master in depth the Microsoft 365 technologies I deploy.',
     ],
     approachTitle: 'My Approach',
@@ -229,7 +229,7 @@ export const en = {
         {
           n: '03',
           title: 'Diagram and validate',
-          text: 'I map processes and create wireframes directly in Power Apps. The result: the client understands the logic, refines their needs — and I know the order to proceed.',
+          text: 'I map processes and create wireframes directly in Power Apps. The result: the client understands the logic, refines their needs and I know the order to proceed.',
         },
         {
           n: '04',

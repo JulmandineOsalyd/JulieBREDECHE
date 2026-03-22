@@ -9,7 +9,7 @@ tags: ["Power Automate", "Automatisation", "Power Platform"]
 featured: false
 ---
 
-Il y a quelques mois, j'ai reçu une alerte : un flow chez un client venait de dépasser le quota mensuel d'exécutions. Le flow se déclenchait à chaque modification d'un élément SharePoint — y compris les modifications faites par le flow lui-même. Résultat : une boucle infinie, des milliers d'exécutions inutiles, et une facture de licences à revoir.
+Il y a quelques mois, j'ai reçu une alerte : un flow chez un client venait de dépasser le quota mensuel d'exécutions. Le flow se déclenchait à chaque modification d'un élément SharePoint, y compris les modifications faites par le flow lui-même. Résultat : une boucle infinie, des milliers d'exécutions inutiles, et une facture de licences à revoir.
 
 La solution ? Elle tenait en deux lignes. Elle s'appelle les **trigger conditions**.
 
@@ -69,7 +69,7 @@ Les expressions utilisent la syntaxe des expressions Power Automate (la même qu
 @greaterOrEquals(triggerBody()?['Montant'], 1000)
 ```
 
-**Éviter une boucle — ne pas déclencher si la modification vient du compte de service :**
+**Éviter une boucle : ne pas déclencher si la modification vient du compte de service :**
 ```
 @not(equals(triggerBody()?['Editor']?['Email'], 'monflow@mondomaine.com'))
 ```

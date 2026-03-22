@@ -229,7 +229,7 @@ export const fr = {
         {
           n: '03',
           title: 'Schématiser et valider',
-          text: 'Je schématise les processus et crée des maquettes directement dans Power Apps. Résultat : le client comprend la logique, précise ses besoins — et je sais dans quel ordre avancer.',
+          text: 'Je schématise les processus et crée des maquettes directement dans Power Apps. Résultat : le client comprend la logique, précise ses besoins et je sais dans quel ordre avancer.',
         },
         {
           n: '04',
