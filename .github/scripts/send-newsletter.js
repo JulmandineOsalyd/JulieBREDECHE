@@ -144,7 +144,7 @@ async function main() {
       audience_id: audienceId,
       from: 'Julie BREDECHE <julie.bredeche@osalydconsulting.com>',
       reply_to: 'julie.bredeche@osalydconsulting.com',
-      subject: `Nouvel article | ${title}`,
+      subject: title,
       html,
     }),
   })
