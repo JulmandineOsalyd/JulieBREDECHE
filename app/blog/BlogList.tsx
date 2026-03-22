@@ -3,11 +3,20 @@
 import { useState } from 'react'
 import type { ArticleMeta } from '@/lib/mdx'
 import ArticleCard from '@/components/ArticleCard'
+import { useTranslation } from '@/lib/i18n'
 
-const categories = ['Tous', 'Copilot de A à Z','SharePoint', 'Power Automate', 'PowerApps', 'Copilot Studio']
+const CATEGORY_KEYS = ['Tous', 'Copilot de A à Z', 'SharePoint', 'Power Automate', 'PowerApps', 'Copilot Studio'] as const
 
 export default function BlogList({ articles }: { articles: ArticleMeta[] }) {
   const [active, setActive] = useState('Tous')
+  const { t } = useTranslation()
+
+  // Map fr category key → display label
+  const categoryLabel = (key: string) => {
+    if (key === 'Tous') return t.blog.categories.all
+    if (key === 'Copilot de A à Z') return t.blog.categories.serie
+    return key
+  }
 
   const filtered = (() => {
     const list =
@@ -26,9 +35,22 @@ export default function BlogList({ articles }: { articles: ArticleMeta[] }) {
 
   return (
     <>
+      {/* Header */}
+      <div style={{ marginBottom: '3rem' }}>
+        <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.6rem' }}>
+          {t.blog.label}
+        </p>
+        <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1rem' }}>
+          {t.blog.title}
+        </h1>
+        <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.7, maxWidth: '600px' }}>
+          {t.blog.description}
+        </p>
+      </div>
+
       {/* Filters */}
       <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
-        {categories.map((cat) => (
+        {CATEGORY_KEYS.map((cat) => (
           <button
             key={cat}
             onClick={() => setActive(cat)}
@@ -72,17 +94,17 @@ export default function BlogList({ articles }: { articles: ArticleMeta[] }) {
                   background: active === cat ? 'rgba(255,255,255,0.25)' : 'linear-gradient(135deg, #5ceae8 0%, #18b0e8 45%, #0f5fad 100%)',
                   color: 'white',
                   lineHeight: 1.4,
-                }}>SÉRIE</span>
-                {cat}
+                }}>{t.blog.categories.serieLabel}</span>
+                {categoryLabel(cat)}
               </span>
-            ) : cat}
+            ) : categoryLabel(cat)}
           </button>
         ))}
       </div>
 
       {filtered.length === 0 ? (
         <p style={{ color: 'var(--muted)', textAlign: 'center', padding: '3rem 0' }}>
-          Aucun article dans cette catégorie pour l&apos;instant.
+          {t.blog.empty}
         </p>
       ) : (
         <div
@@ -98,7 +120,6 @@ export default function BlogList({ articles }: { articles: ArticleMeta[] }) {
           ))}
         </div>
       )}
-
     </>
   )
 }

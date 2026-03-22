@@ -1,17 +1,21 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import type { ArticleMeta } from '@/lib/mdx'
+import { useTranslation } from '@/lib/i18n'
 
-const clients = ['TotalEnergies', 'PwC', 'Sacem', 'BPI France', 'Groupama', 'Medtronic', 'PMU','Candriam']
-const tags = ['Microsoft 365', 'SharePoint', 'Power Automate', 'PowerApps', 'Copilot Studio']
-
-const stats = [
-  { value: '10+', label: 'ans d\'expérience' },
-  { value: '15+', label: 'clients' },
-  { value: '100%', label: 'de satisfaction' },
-]
+const clients = ['TotalEnergies', 'PwC', 'Sacem', 'BPI France', 'Groupama', 'Medtronic', 'PMU', 'Candriam']
 
 export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta }) {
+  const { t } = useTranslation()
+
+  const stats = [
+    { value: '10+', label: t.hero.stats.experience },
+    { value: '15+', label: t.hero.stats.clients },
+    { value: '100%', label: t.hero.stats.satisfaction },
+  ]
+
   return (
     <section
       style={{ padding: '5rem 6% 4rem', background: '#ffffff' }}
@@ -63,7 +67,7 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
                 backgroundClip: 'text',
               }}
             >
-              Consultante indépendante Microsoft 365
+              {t.hero.badge}
             </span>
           </div>
 
@@ -78,21 +82,21 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
               lineHeight: 1.3,
               marginBottom: '1.25rem',
               marginTop: '1.25rem',
-              width:'97%',
+              width: '97%',
             }}
           >
-            Tirez le meilleur parti de{' '}
-            <span style={{  background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            {t.hero.h1.before}{' '}
+            <span style={{ background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               SharePoint
             </span>
-            , la {' '}
-            <span style={{background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              Power Platform {' '}
+            , {t.hero.h1.articlePP}
+            <span style={{ background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              Power Platform{' '}
             </span>
-             et{' '}
-            <span style={{background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            {t.hero.h1.and}{' '}
+            <span style={{ background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               Copilot Studio
-            </span  >
+            </span>
           </h1>
 
           {/* Description */}
@@ -106,22 +110,19 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
               marginBottom: '2.95rem',
             }}
           >
-            Je transforme vos processus métier en applications et automatisations Microsoft 365 qui vous font gagner en productivité. <br/>
-          
+            {t.hero.description}
           </p>
-
-
 
           {/* CTAs */}
           <div
             className="animate-fadeUp animate-fadeUp-4"
-            style={{ display: 'flex', alignItems: 'center', gap: '1.55rem', flexWrap: 'wrap', marginBottom: '2.55rem',}}
+            style={{ display: 'flex', alignItems: 'center', gap: '1.55rem', flexWrap: 'wrap', marginBottom: '2.55rem' }}
           >
             <Link href="/#services" className="btn-primary">
-              Voir mes services →
+              {t.hero.cta1}
             </Link>
             <Link href="/#ressources" className="btn-ghost">
-              Lire mes articles ↓
+              {t.hero.cta2}
             </Link>
           </div>
         </div>
@@ -143,7 +144,6 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
         >
           {/* Avatar + name */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            {/* Gradient ring around avatar */}
             <div
               style={{
                 width: 72,
@@ -163,12 +163,10 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
                 Julie BREDECHE
               </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--muted)', lineHeight: 1.45 }}>
-                Consultante indépendante<br/>SharePoint · Power Platform · Copilot Studio
+                {t.hero.cardSubtitle}<br />SharePoint · Power Platform · Copilot Studio
               </div>
             </div>
           </div>
-
-
 
           {/* Stats */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
@@ -204,13 +202,13 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
             ))}
           </div>
 
-                    {/* Clients strip */}
+          {/* Clients strip */}
           <div
             className="animate-fadeUp animate-fadeUp-3"
             style={{ marginTop: '1.5rem' }}
           >
             <p style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '0.6rem' }}>
-              Ils m&apos;ont fait confiance :
+              {t.hero.clients}
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
               {clients.map((c) => (
@@ -230,10 +228,8 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
               ))}
             </div>
           </div>
-
         </div>
       </div>
-
     </section>
   )
 }

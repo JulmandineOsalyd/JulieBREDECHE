@@ -4,18 +4,20 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-
-const links = [
-  { href: '/', label: 'Accueil' },
-  { href: '/a-propos', label: 'À propos' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/services', label: 'Services' },
-  { href: '/portfolio', label: 'Portfolio' },
-]
+import { useTranslation, type Locale } from '@/lib/i18n'
 
 export default function Nav() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  const { t, locale, setLocale } = useTranslation()
+
+  const links = [
+    { href: '/', label: t.nav.home },
+    { href: '/a-propos', label: t.nav.about },
+    { href: '/blog', label: t.nav.blog },
+    { href: '/services', label: t.nav.services },
+    { href: '/portfolio', label: t.nav.portfolio },
+  ]
 
   return (
     <header
@@ -47,7 +49,7 @@ export default function Nav() {
         <Link
           href="/"
           style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', textDecoration: 'none' }}
-          aria-label="Julie BREDECHE — Accueil"
+          aria-label={t.nav.homeLabel}
         >
           <div
             style={{
@@ -72,7 +74,7 @@ export default function Nav() {
 
         {/* Desktop nav */}
         <nav
-          aria-label="Navigation principale"
+          aria-label={t.nav.mainNav}
           style={{ gap: '1.75rem', alignItems: 'center' }}
           className="hidden md:flex"
         >
@@ -90,20 +92,56 @@ export default function Nav() {
           })}
         </nav>
 
-        {/* CTA */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        {/* CTA + language switcher */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          {/* Language switcher */}
+          <div
+            className="hidden md:flex"
+            style={{
+              alignItems: 'center',
+              gap: '2px',
+              background: 'var(--off)',
+              border: '1px solid var(--border)',
+              borderRadius: '8px',
+              padding: '2px',
+            }}
+          >
+            {(['fr', 'en'] as Locale[]).map((lang) => (
+              <button
+                key={lang}
+                onClick={() => setLocale(lang)}
+                aria-label={lang === 'fr' ? 'Passer en français' : 'Switch to English'}
+                style={{
+                  padding: '0.2rem 0.55rem',
+                  borderRadius: '6px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: '0.72rem',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.04em',
+                  transition: 'all 0.15s ease',
+                  background: locale === lang ? 'var(--grad)' : 'transparent',
+                  color: locale === lang ? 'white' : 'var(--muted)',
+                }}
+              >
+                {lang}
+              </button>
+            ))}
+          </div>
+
           <Link
             href="/contact"
             className="btn-primary hidden md:inline-flex"
             style={{ padding: '0.5rem 1.1rem', fontSize: '0.85rem', whiteSpace: 'nowrap' }}
           >
-            Me contacter
+            {t.nav.contact}
           </Link>
 
           {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+            aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={menuOpen}
             className="md:hidden"
             style={{
@@ -165,6 +203,31 @@ export default function Nav() {
               </Link>
             )
           })}
+
+          {/* Mobile language switcher */}
+          <div style={{ display: 'flex', gap: '0.5rem', paddingTop: '0.25rem' }}>
+            {(['fr', 'en'] as Locale[]).map((lang) => (
+              <button
+                key={lang}
+                onClick={() => { setLocale(lang); setMenuOpen(false) }}
+                style={{
+                  padding: '0.4rem 1rem',
+                  borderRadius: '8px',
+                  border: '1.5px solid',
+                  borderColor: locale === lang ? 'transparent' : 'var(--border)',
+                  cursor: 'pointer',
+                  fontSize: '0.8rem',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.04em',
+                  background: locale === lang ? 'var(--grad)' : 'white',
+                  color: locale === lang ? 'white' : 'var(--muted)',
+                }}
+              >
+                {lang}
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </header>

@@ -1,8 +1,13 @@
+'use client'
+
+import { useTranslation } from '@/lib/i18n'
+
 interface ReadingTimeProps {
   minutes: number
 }
 
 export default function ReadingTime({ minutes }: ReadingTimeProps) {
+  const { t } = useTranslation()
   return (
     <span
       style={{
@@ -22,7 +27,7 @@ export default function ReadingTime({ minutes }: ReadingTimeProps) {
         <circle cx="12" cy="12" r="10" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
       </svg>
-      {minutes} min de lecture
+      {minutes} {t.blog.readingMin}
     </span>
   )
 }

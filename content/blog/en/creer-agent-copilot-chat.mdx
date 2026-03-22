@@ -1,0 +1,120 @@
+---
+title: "Episode 4 • Build Your HR Onboarding Agent in 5 Minutes with Copilot Chat"
+date: "2025-12-10"
+category: "Copilot de A à Z"
+excerpt: "An HR agent capable of answering new hire questions in natural language, without making them search through the intranet? Step-by-step tutorial to create your first declarative agent in Copilot Chat."
+readingTime: 6
+slug: "creer-un-agent-avec-copilot-chat"
+tags: ["Copilot Studio", "Microsoft 365", "Agents", "Onboarding"]
+featured: false
+---
+
+In many organizations, onboarding information is scattered across the SharePoint intranet with no clear navigation. Rather than forcing new employees to dig through documents, a better approach exists: a **dedicated agent** that answers their questions in natural language.
+
+Here's how to create this type of agent directly from Copilot Chat in a few minutes, with no code.
+
+---
+
+## Step 1: Create a New Agent
+
+From the Microsoft 365 Copilot home page or the URL https://m365.cloud.microsoft/, click **New Agent**.
+
+![Creating a new agent in Copilot Chat](/images/blog/Agent-Nouvel-Agent.png)
+
+Two design modes are available:
+- The **"Describe"** tab: describe the agent in natural language and Copilot configures the settings for you
+- The **"Configure"** tab: manually enter each parameter
+
+> **Recommendation:** use the **Configure** tab for more precision and control over agent behavior.
+
+![Describe and Configure tabs](/images/blog/Agent-Decrire-Configurer.png)
+
+---
+
+## Step 2: Fill in Details and Instructions
+
+![Agent Name and Details fields](/images/blog/Agent-Nom-Details-2.png)
+
+
+**Agent name** *(30 characters max)*: Choose a descriptive and unique name, easy for your users to identify.
+
+**Description** *(1,000 characters max)*: A brief, precise description of what the agent does.
+
+**Instructions** *(8,000 characters max)*: This is **the most important step**. Instructions define:
+- The agent's objective
+- The expected tone
+- The scope of responses
+- Behaviors to avoid
+
+The more precise the instructions, the more reliable and relevant the agent will be.
+
+![Agent Instructions](/images/blog/Agent-Instructions-2.png)
+
+---
+
+## Step 3: Select Knowledge Sources
+
+The agent will rely on the sources you specify to answer questions.
+
+![SharePoint Intranet as knowledge source](/images/blog/Intranet-SharePoint-2.png)
+
+Enable the **"Use only specified sources"** option so the agent only answers from your content — not from the internet or other sources.
+
+![Selecting knowledge sources](/images/blog/Agent-Sources-3.png)
+
+You can add files directly or reference SharePoint sites.
+
+![Uploading files as a source](/images/blog/Agent-Charger-fichiers-2.png)
+
+> ⚠️ **Important note on permissions management**
+>
+> When you **load a file directly** as a knowledge source, anyone with access to the agent can use the file's content through the agent's responses, **regardless of SharePoint permissions**.
+>
+> **Prefer referencing SharePoint files**: existing permissions are then automatically respected.
+
+---
+
+## Step 4: [Optional] Add Suggested Prompts
+
+You can suggest sample questions that appear when the agent opens. Useful for guiding users and showcasing the agent's capabilities from the very first interaction.
+
+![Suggested prompts for the agent](/images/blog/Agent-Prompts-suggeres-5.png)
+
+---
+
+## Step 5: Test the Agent
+
+The preview section allows you to test the agent in real time before publishing.
+
+![Testing a prompt in the agent](/images/blog/Agent-Test-Prompt-1-3.png)
+
+Check the quality of responses, the sources cited, and the consistency with your instructions.
+
+![Test result](/images/blog/Agent-Test-Prompt-Resultat.png)
+
+---
+
+## Step 6: Finalize and Share the Agent
+
+Once satisfied with testing, click **"Create"**. The agent remains **private by default**, accessible only via a sharing link.
+
+![Agent sharing options](/images/blog/Agent-options-de-partage.png)
+
+> **For organization-wide distribution**, publishing via Copilot Studio is required. Declarative agents created in Copilot Chat are limited to link sharing.
+
+---
+
+## Key Takeaways
+
+- Copilot licenses are required to access SharePoint resources
+- Verify the quality and permissions of knowledge sources before publishing
+- Prefer sources stored in SharePoint over directly uploaded files
+- Sharing a declarative agent is limited to a link; for broad distribution, use advanced agents via Copilot Studio
+
+---
+
+## Conclusion
+
+Creating a first declarative agent in Copilot Chat takes only a few minutes. The bulk of the work lies in writing the **instructions**, choosing reliable **knowledge sources**, and **testing** before deployment.
+
+**In the next episode: can you create agents without a Copilot license? The answer might surprise you.**

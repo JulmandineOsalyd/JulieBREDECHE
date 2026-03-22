@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { cookies } from 'next/headers'
 import Link from 'next/link'
 import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
@@ -11,18 +12,22 @@ import ArticleCard from '@/components/ArticleCard'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkGfm from 'remark-gfm'
+import { fr } from '@/lib/i18n/fr'
+import { en } from '@/lib/i18n/en'
 
 interface Props {
   params: { slug: string }
 }
 
 export async function generateStaticParams() {
-  const articles = getAllArticlesMeta()
+  const articles = getAllArticlesMeta('fr')
   return articles.map((a) => ({ slug: a.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const article = getArticleBySlug(params.slug)
+  const cookieStore = cookies()
+  const locale = (cookieStore.get('locale')?.value ?? 'fr') as 'fr' | 'en'
+  const article = getArticleBySlug(params.slug, locale)
   if (!article) return {}
   return {
     title: article.title,
@@ -44,10 +49,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function ArticlePage({ params }: Props) {
-  const article = getArticleBySlug(params.slug)
+  const cookieStore = cookies()
+  const locale = (cookieStore.get('locale')?.value ?? 'fr') as 'fr' | 'en'
+  const ui = locale === 'en' ? en : fr
+
+  const article = getArticleBySlug(params.slug, locale)
   if (!article) notFound()
 
-  const related = getRelatedArticles(article.slug, article.category)
+  const related = getRelatedArticles(article.slug, article.category, locale)
 
   return (
     <>
@@ -56,7 +65,7 @@ export default function ArticlePage({ params }: Props) {
       {/* Breadcrumb */}
       <div style={{ padding: '1.25rem 6% 0', background: '#ffffff' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: 'var(--muted)' }}>
-          <Link href="/" style={{ color: 'var(--muted)', textDecoration: 'none' }}>Accueil</Link>
+          <Link href="/" style={{ color: 'var(--muted)', textDecoration: 'none' }}>{ui.blog.article.home}</Link>
           <span>/</span>
           <Link href="/blog" style={{ color: 'var(--muted)', textDecoration: 'none' }}>Blog</Link>
           <span>/</span>
@@ -71,7 +80,11 @@ export default function ArticlePage({ params }: Props) {
             {/* Header */}
             <header style={{ marginBottom: '2.5rem' }}>
               <span style={{ display: 'inline-block', background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.75rem' }}>
-                {Array.isArray(article.category) ? article.category.join(' · ') : article.category}
+                {Array.isArray(article.category)
+                  ? article.category.join(' · ')
+                  : article.category === 'Copilot de A à Z'
+                  ? ui.blog.categories.serieCard
+                  : article.category}
               </span>
               <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.75rem, 3.5vw, 2.4rem)', color: 'var(--ink)', lineHeight: 1.25, marginBottom: '1rem' }}>
                 {article.title}
@@ -87,7 +100,7 @@ export default function ArticlePage({ params }: Props) {
                   <span style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--ink)' }}>Julie Bredeche</span>
                 </div>
                 <time dateTime={article.date} style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                  {formatDate(article.date)}
+                  {formatDate(article.date, locale)}
                 </time>
                 <ReadingTime minutes={article.readingTime} />
               </div>
@@ -121,14 +134,14 @@ export default function ArticlePage({ params }: Props) {
                 </div>
                 <div>
                   <p style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--ink)', margin: 0 }}>Julie Bredeche</p>
-                  <p style={{ fontSize: '0.75rem', color: 'var(--muted)', margin: 0 }}>Consultante indépendante M365</p>
+                  <p style={{ fontSize: '0.75rem', color: 'var(--muted)', margin: 0 }}>{ui.blog.article.authorRole}</p>
                 </div>
               </div>
               <p style={{ fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '0.75rem' }}>
-                Spécialiste SharePoint et Power Platform
+                {ui.blog.article.authorSpeciality}
               </p>
               <Link href="/a-propos" className="btn-outline" style={{ width: '100%', justifyContent: 'center', fontSize: '0.8rem' }}>
-                En savoir plus
+                {ui.blog.article.learnMore}
               </Link>
             </div>
           </aside>
@@ -138,7 +151,7 @@ export default function ArticlePage({ params }: Props) {
         {related.length > 0 && (
           <div style={{ maxWidth: '1200px', margin: '4rem auto 0' }}>
             <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', marginBottom: '1.5rem' }}>
-              Articles similaires
+              {ui.blog.article.relatedTitle}
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }} className="related-grid">
               {related.map((a) => (

@@ -2,13 +2,7 @@
 
 import { useState } from 'react'
 import { sendContactEmail } from './actions'
-
-const subjects = [
-  'Projet Power Platform / Copilot Studio',
-  'Audit SharePoint',
-  'Coaching Power Automate',
-  'Autre',
-]
+import { useTranslation } from '@/lib/i18n'
 
 const inputStyle: React.CSSProperties = {
   width: '100%',
@@ -26,6 +20,8 @@ const inputStyle: React.CSSProperties = {
 export default function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+  const { t } = useTranslation()
+  const f = t.contact.form
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -43,10 +39,10 @@ export default function ContactForm() {
           </svg>
         </div>
         <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>
-          Message envoyé !
+          {f.success.title}
         </h2>
         <p style={{ color: 'var(--muted)', fontSize: '0.95rem', lineHeight: 1.7, margin: 0 }}>
-          Merci pour votre message. Je vous réponds sous 24h ouvrées.
+          {f.success.description}
         </p>
       </div>
     )
@@ -58,26 +54,26 @@ export default function ContactForm() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginBottom: '1.25rem' }} className="contact-fields">
         <div>
           <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.4rem' }}>
-            Nom <span style={{ color: 'var(--c3)' }}>*</span>
+            {f.name} <span style={{ color: 'var(--c3)' }}>*</span>
           </label>
           <input
             type="text"
             required
             value={form.name}
-            onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-            placeholder="Votre nom"
+            onChange={e => setForm(fv => ({ ...fv, name: e.target.value }))}
+            placeholder={f.namePlaceholder}
             style={inputStyle}
           />
         </div>
         <div>
           <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.4rem' }}>
-            Email <span style={{ color: 'var(--c3)' }}>*</span>
+            {f.email} <span style={{ color: 'var(--c3)' }}>*</span>
           </label>
           <input
             type="email"
             required
             value={form.email}
-            onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+            onChange={e => setForm(fv => ({ ...fv, email: e.target.value }))}
             placeholder="votre@email.com"
             style={inputStyle}
           />
@@ -87,29 +83,29 @@ export default function ContactForm() {
       {/* Sujet */}
       <div style={{ marginBottom: '1.25rem' }}>
         <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.4rem' }}>
-          Sujet <span style={{ color: 'var(--c3)' }}>*</span>
+          {f.subject} <span style={{ color: 'var(--c3)' }}>*</span>
         </label>
         <select
           required
           value={form.subject}
-          onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
+          onChange={e => setForm(fv => ({ ...fv, subject: e.target.value }))}
           style={{ ...inputStyle, appearance: 'none', backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%234a6080' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.9rem center', paddingRight: '2.5rem', cursor: 'pointer' }}
         >
-          <option value="">Choisir un sujet...</option>
-          {subjects.map(s => <option key={s} value={s}>{s}</option>)}
+          <option value="">{f.subjectPlaceholder}</option>
+          {(f.subjects as unknown as string[]).map(s => <option key={s} value={s}>{s}</option>)}
         </select>
       </div>
 
       {/* Message */}
       <div style={{ marginBottom: '1.75rem' }}>
         <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.4rem' }}>
-          Message <span style={{ color: 'var(--c3)' }}>*</span>
+          {f.message} <span style={{ color: 'var(--c3)' }}>*</span>
         </label>
         <textarea
           required
           value={form.message}
-          onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-          placeholder="Décrivez votre projet ou votre besoin..."
+          onChange={e => setForm(fv => ({ ...fv, message: e.target.value }))}
+          placeholder={f.messagePlaceholder}
           rows={6}
           style={{ ...inputStyle, resize: 'vertical', minHeight: '150px', lineHeight: 1.65 }}
         />
@@ -118,7 +114,7 @@ export default function ContactForm() {
       {/* Erreur */}
       {status === 'error' && (
         <p style={{ fontSize: '0.85rem', color: '#c53030', marginBottom: '1rem', padding: '0.75rem 1rem', background: '#fff5f5', borderRadius: '8px', border: '1px solid #fed7d7' }}>
-          Une erreur s&apos;est produite. Veuillez réessayer ou me contacter directement sur LinkedIn.
+          {f.error}
         </p>
       )}
 
@@ -128,7 +124,7 @@ export default function ContactForm() {
         className="btn-primary"
         style={{ width: '100%', justifyContent: 'center', opacity: status === 'loading' ? 0.7 : 1, cursor: status === 'loading' ? 'not-allowed' : 'pointer', border: 'none' }}
       >
-        {status === 'loading' ? 'Envoi en cours…' : 'Envoyer le message →'}
+        {status === 'loading' ? f.sending : f.send}
       </button>
     </form>
   )

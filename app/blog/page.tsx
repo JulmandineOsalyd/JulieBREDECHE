@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import { getAllArticlesMeta } from '@/lib/mdx'
 import BlogList from './BlogList'
 
@@ -15,24 +16,13 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
-  const articles = getAllArticlesMeta()
+  const cookieStore = cookies()
+  const locale = (cookieStore.get('locale')?.value ?? 'fr') as 'fr' | 'en'
+  const articles = getAllArticlesMeta(locale)
 
   return (
     <section style={{ padding: '5rem 6%', background: '#ffffff' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        {/* Header */}
-        <div style={{ marginBottom: '3rem' }}>
-          <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.6rem' }}>
-            Blog
-          </p>
-          <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1rem' }}>
-            Tous mes articles
-          </h1>
-          <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.7, maxWidth: '600px' }}>
-            Tutoriels, retours d&apos;expérience et analyse des enjeux actuels sur SharePoint, la Power Platform et Copilot. Pour les équipes Microsoft 365 qui veulent aller plus loin.
-          </p>
-        </div>
-
         <BlogList articles={articles} />
       </div>
     </section>

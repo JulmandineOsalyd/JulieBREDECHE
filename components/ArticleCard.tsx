@@ -1,6 +1,9 @@
+'use client'
+
 import Link from 'next/link'
 import type { ArticleMeta } from '@/lib/mdx'
 import { formatDate } from '@/lib/utils'
+import { useTranslation } from '@/lib/i18n'
 import ReadingTime from './ReadingTime'
 
 interface ArticleCardProps {
@@ -8,6 +11,14 @@ interface ArticleCardProps {
 }
 
 export default function ArticleCard({ article }: ArticleCardProps) {
+  const { t, locale } = useTranslation()
+
+  const categoryDisplay = Array.isArray(article.category)
+    ? article.category.join(' · ')
+    : article.category === 'Copilot de A à Z'
+    ? t.blog.categories.serieCard
+    : article.category
+
   return (
     <Link
       href={`/blog/${article.slug}`}
@@ -16,41 +27,22 @@ export default function ArticleCard({ article }: ArticleCardProps) {
     >
       <article style={{ padding: '1.5rem' }}>
         {/* Category badge */}
-        {article.category === 'Copilot de A à Z' ? (
-          <span
-            style={{
-              display: 'inline-block',
-              background: 'var(--grad)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              marginBottom: '0.6rem',
-            }}
-          >
-            Série : Copilot de A à Z
-          </span>
-        ) : (
-          <span
-            style={{
-              display: 'inline-block',
-              background: 'var(--grad)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              marginBottom: '0.6rem',
-            }}
-          >
-            {Array.isArray(article.category) ? article.category.join(' · ') : article.category}
-          </span>
-        )}
+        <span
+          style={{
+            display: 'inline-block',
+            background: 'var(--grad)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            fontSize: '0.75rem',
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            marginBottom: '0.6rem',
+          }}
+        >
+          {categoryDisplay}
+        </span>
 
         <h3
           style={{
@@ -93,7 +85,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
             dateTime={article.date}
             style={{ fontSize: '0.78rem', color: 'var(--muted)', fontWeight: 500 }}
           >
-            {formatDate(article.date)}
+            {formatDate(article.date, locale)}
           </time>
           <ReadingTime minutes={article.readingTime} />
         </div>

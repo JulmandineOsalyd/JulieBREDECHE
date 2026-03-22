@@ -1,0 +1,77 @@
+---
+title: "Zero OneDrive Support Tickets After Migration? Here's How I Did It!"
+date: "2026-03-11"
+category: "SharePoint"
+excerpt: "The migrations to Microsoft 365 are done, but OneDrive sync issues remain. Here's why — and how I built a tool so users no longer have to wait for IT support."
+readingTime: 4
+tags: ["OneDrive", "SharePoint", "Migration", "Microsoft 365", "Tools"]
+featured: true
+---
+
+The migration is complete. Files are in SharePoint. And the support tickets are starting to arrive.
+
+*"My files aren't syncing anymore."*
+*"Why is there a red X on my OneDrive icon?"*
+*"I can't open my file"*
+
+This isn't a usage problem — it's the silent limit that neither SharePoint, nor OneDrive, nor migration tools clearly flag: **file paths that are too long**.
+
+---
+
+## 1. ShareGate Checks… But the Wrong Limit
+
+ShareGate is the go-to tool for SharePoint migrations. It checks for forbidden characters, excessive sizes, and even file path length.
+
+**But it checks the wrong limit.**
+
+| Tool | Limit | Impact |
+|---|---|---|
+| SharePoint (online storage) | 400 characters | ✅ &nbsp; Checked by ShareGate |
+| OneDrive (local sync) | 255 characters | ❌ &nbsp; **Not checked** |
+
+The 255-character limit depends on the destination SharePoint site name and library names — information that ShareGate doesn't ask for at analysis time.
+
+> **Result:** the file passes validation, the migration runs without error, and files land in SharePoint. But as soon as the user tries to sync them to their computer, problems arise.
+
+---
+
+## 2. The User Facing Incomprehensible Errors
+
+From the user's perspective, the experience is frustrating:
+
+- OneDrive displays a red X
+- Unclear error messages appear when opening files
+
+The logical next step: a support ticket. And in the vast majority of cases, the technician also lacks **a tool to precisely identify the problematic files**. The ticket escalates. Delays pile up.
+
+> **This isn't a competence problem. It's a tooling problem.**
+
+---
+
+## 3. When Sync Doesn't Work, Adoption Stops There
+
+For most employees, "working with files" means opening Windows Explorer, navigating through folders, double-clicking on a file. This reflex has been ingrained for years on network drives.
+
+If OneDrive doesn't work the day after migration, the verdict is immediate:
+
+- Back to old reflexes — "I'll just put the file on my Desktop"
+- The added value of Microsoft 365 never materializes
+- Trust in IT diminishes
+
+> **A technically successful migration can be a complete adoption failure.**
+
+---
+
+## The Solution: Detect Before It Breaks
+
+It's from this observation that I created "OneDrive Path Checker" — a file path length detector that allows:
+
+- **For IT teams (before migration):**
+Simulate the target SharePoint URL, identify at-risk paths (both 400 and 255 characters), and act before problems reach users.
+
+- **For users (after migration):**
+A clear interface that lists exactly the blocked files, indicates the problematic length, and directly opens the folder to fix it yourself.
+
+Because a truly successful migration isn't just about files arriving in SharePoint. **It's about users being able to work normally the next day.**
+
+💡 More info here: https://onedrivepathchecker.com/

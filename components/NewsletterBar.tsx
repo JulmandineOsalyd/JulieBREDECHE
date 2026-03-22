@@ -2,15 +2,17 @@
 
 import { useState } from 'react'
 import { subscribeToNewsletter } from './newsletter'
+import { useTranslation } from '@/lib/i18n'
 
 export default function NewsletterBar() {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const { t } = useTranslation()
+  const n = t.newsletter
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!email) return
-
     setStatus('loading')
     const result = await subscribeToNewsletter(email)
     setStatus(result.success ? 'success' : 'error')
@@ -47,10 +49,10 @@ export default function NewsletterBar() {
           </div>
           <div>
             <p style={{ fontWeight: 700, fontSize: '1rem', color: 'white', margin: 0 }}>
-              Recevoir mes prochains articles
+              {n.title}
             </p>
             <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,1)', margin: 0 }}>
-              sur SharePoint, la Power Platform et Copilot Studio
+              {n.subtitle}
             </p>
           </div>
         </div>
@@ -58,21 +60,21 @@ export default function NewsletterBar() {
         {/* Form */}
         {status === 'success' ? (
           <p style={{ color: 'rgba(255,255,255,1)', fontWeight: 700, fontSize: '0.9rem' }}>
-            Merci ! Vous recevrez mes prochaines publications par mail.
+            {n.success}
           </p>
         ) : (
           <form
             onSubmit={handleSubmit}
             style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}
-            aria-label="Formulaire d'abonnement newsletter"
+            aria-label={n.ariaLabel}
           >
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="votre@email.com"
+              placeholder={n.placeholder}
               required
-              aria-label="Adresse email"
+              aria-label={n.emailLabel}
               style={{
                 padding: '0.6rem 1rem',
                 border: '1.5px solid var(--border)',
@@ -91,11 +93,11 @@ export default function NewsletterBar() {
               disabled={status === 'loading'}
               style={{ whiteSpace: 'nowrap', background: 'var(--c2)', opacity: status === 'loading' ? 0.7 : 1 }}
             >
-              {status === 'loading' ? 'Inscription...' : "S'abonner"}
+              {status === 'loading' ? n.subscribing : n.subscribe}
             </button>
             {status === 'error' && (
               <p style={{ width: '100%', margin: '0.25rem 0 0', color: 'rgba(255,200,200,1)', fontSize: '0.82rem' }}>
-                ❌ Une erreur est survenue, réessayez.
+                {n.error}
               </p>
             )}
           </form>

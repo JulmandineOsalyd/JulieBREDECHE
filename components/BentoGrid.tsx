@@ -1,6 +1,9 @@
+'use client'
+
 import Link from 'next/link'
 import type { ArticleMeta } from '@/lib/mdx'
 import { formatDate } from '@/lib/utils'
+import { useTranslation } from '@/lib/i18n'
 import ReadingTime from './ReadingTime'
 
 interface BentoGridProps {
@@ -8,6 +11,7 @@ interface BentoGridProps {
 }
 
 export default function BentoGrid({ articles }: BentoGridProps) {
+  const { t, locale } = useTranslation()
   const [featured, ...rest] = articles
   const others = rest.slice(0, 4)
 
@@ -49,11 +53,11 @@ export default function BentoGrid({ articles }: BentoGridProps) {
                 margin: 0,
               }}
             >
-              Derniers articles
+                {t.blog.latestTitle}
             </h2>
           </div>
           <Link href="/blog" className="btn-ghost">
-            Tous les articles →
+            {t.blog.allArticles}
           </Link>
         </div>
 
@@ -143,7 +147,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
               </p>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
                 <time dateTime={featured.date} style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.45)', fontWeight: 500 }}>
-                  {formatDate(featured.date)}
+                  {formatDate(featured.date, locale)}
                 </time>
                 <ReadingTime minutes={featured.readingTime} />
               </div>
@@ -158,7 +162,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
                   fontSize: '0.875rem',
                 }}
               >
-                Lire l&apos;article
+                {t.blog.readArticle}
                 <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -219,7 +223,7 @@ export default function BentoGrid({ articles }: BentoGridProps) {
                 </h3>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.4rem', marginTop: 'auto' }}>
                   <time dateTime={article.date} style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>
-                    {formatDate(article.date)}
+                    {formatDate(article.date, locale)}
                   </time>
                   <ReadingTime minutes={article.readingTime} />
                 </div>

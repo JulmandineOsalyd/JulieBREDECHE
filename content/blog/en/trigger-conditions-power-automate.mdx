@@ -1,0 +1,108 @@
+---
+title: "Your Flow Looping? Trigger Conditions Will Change Everything"
+date: "2025-12-02"
+category: "Power Automate"
+excerpt: "Your flows trigger too often, you're approaching execution limits, or you're creating infinite loops without meaning to? \"Trigger conditions\" will save you!"
+readingTime: 5
+slug: "trigger-conditions-power-automate"
+tags: ["Power Automate", "Automation", "Power Platform"]
+featured: false
+---
+
+A few months ago, I received an alert: a client's flow had exceeded the monthly execution quota. The flow was triggering on every SharePoint item modification — including modifications made by the flow itself. The result: an infinite loop, thousands of useless executions, and a license bill that needed reviewing.
+
+The solution? It came down to two lines. It's called **trigger conditions**.
+
+---
+
+## What Nobody Tells You at the Start
+
+When you create a Power Automate flow triggered on SharePoint item modification, the trigger activates on **every modification**:
+
+- Your flow modifies a field to indicate processing is complete → the flow re-triggers
+- A user opens an item and clicks "Save" without changing anything → the flow re-triggers
+- Another flow updates the same list → both flows re-trigger each other
+
+Power Automate applies **execution limits** per user. On a standard license, that's several thousand executions per month (which sounds like a lot until a loop consumes all of that in a few hours).
+
+The first reflex is to add a condition at the very beginning of the flow to stop it immediately if the criteria aren't met.
+
+⚠️ But the flow still runs and still consumes one execution.
+
+---
+
+## What Trigger Conditions Do
+
+Trigger conditions are expressions evaluated **before** the flow starts. If the expression returns `false`, the flow simply doesn't run.
+
+This is a fundamental difference from a condition placed inside the flow.
+
+> **Field feedback:** At a client with 200 employees updating a SharePoint list all day long, we reduced actual executions by 90% simply by adding a trigger condition on the item status. The monthly quota was never reached again.
+
+In practice, trigger conditions allow you to:
+
+- **Avoid loops**: by filtering out modifications made by the flow's own service account
+- **Save executions**: by only triggering the flow if a specific field has changed
+- **Target precisely**: by limiting triggering to certain values, certain users, or certain business conditions
+
+---
+
+## How to Add a Trigger Condition
+
+In Power Automate, open your flow and click on the trigger to display the options panel. Select the **Settings** tab.
+
+You'll find a **Trigger Conditions** section. Click **+** to enter your expression.
+
+<div className="prose-article70"><img src="/images/blog/Trigger-conditions-PowerAutomate.png" alt="Add Trigger Condition Power Automate" /></div><br/>
+
+
+
+Expressions use Power Automate expression syntax (the same as dynamic formulas). A few common examples:
+
+**Trigger only if the status is "Approved":**
+```
+@equals(triggerBody()?['Status']?['Value'], 'Approved')
+```
+
+**Trigger only if a numeric field exceeds a threshold:**
+```
+@greaterOrEquals(triggerBody()?['Amount'], 1000)
+```
+
+**Avoid a loop — don't trigger if the modification comes from the service account:**
+```
+@not(equals(triggerBody()?['Editor']?['Email'], 'myflow@mydomain.com'))
+```
+
+You can add **multiple trigger conditions**: they are all evaluated, and the flow only starts if **all** return `true` (AND logic).
+
+---
+
+## The Filter Array Trick for Finding the Right Syntax
+
+I've often struggled to find the right syntax for trigger conditions.
+But I found this foolproof trick I use systematically: **use a Filter Array action to test your expression first**.
+
+### Why It Works
+
+The **Filter Array** action uses exactly the same expression syntax as trigger conditions. So you can:
+
+1. Add a **Filter Array** action
+2. Build your condition visually using basic mode
+3. Click on Edit in advanced mode to display the condition with the correct syntax
+4. Copy that expression into the trigger condition
+
+<div className="prose-article70"><img src="/images/blog/Trigger-conditions-Filter-Array.png" alt="Filter Array Action Trigger Condition" /></div><br/>
+<div className="prose-article70"><img src="/images/blog/Trigger-conditions-Filter-Array-AdvancedMode.png" alt="Filter Array Action Trigger Condition Advanced Mode" /></div><br/>
+
+> This method is particularly useful for Choice, Person, or Lookup field types whose JSON structure isn't intuitive. Rather than guessing, you let Power Automate show you the exact path.
+
+---
+
+## My Best Practices
+
+- Always add a trigger condition whenever a flow triggers on modification — it's a systematic best practice!
+- To avoid loops, filter on "Modified by" or a "Status" field that you manage yourself
+- Use the Filter Array action to validate the syntax of your Trigger condition
+
+If you haven't yet gotten into the habit of using them, **take five minutes to review your existing flows**. Chances are at least one of them is triggering more than it should.

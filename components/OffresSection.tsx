@@ -1,44 +1,13 @@
+'use client'
+
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-
-const offresPrincipale = {
-  title: 'Solutions Power Platform',
-  description:
-    'Conception et développement de solutions métier sur mesure avec Microsoft 365 : de l\'analyse des besoins à la mise en production.',
-  methodLink: '/services',
-  methodLinkLabel: 'ma méthode',
-  bullets: [
-    'Applications PowerApps sur mesure',
-    'Automatisations Power Automate',
-    'Agents Copilot Studio',
-    'Formations et documentation',
-    'Forfaits de maintenance',
-  ],
-}
-
-const coaching = {
-  title: 'Coaching Power Automate',
-  description: 'Montez en compétence sur Power Automate avec un accompagnement personnalisé.',
-  bullets: [
-    'Sessions 1:1 en visio',
-    'Cas pratiques sur vos flux existants',
-    'Bonnes pratiques et anti-patterns',
-    'Programme sur mesure selon votre niveau'
-  ],
-}
-
-const audit = {
-  title: 'Audit SharePoint',
-  description: 'Analyse approfondie de votre environnement SharePoint pour en tirer le meilleur parti.',
-  bullets: [
-    'Analyse de l\'architecture des sites',
-    'Évaluation des droits et des permissions',
-    'Optimisation de la gestion des métadonnées',
-    'Gestion du schéma de recherche',
-  ],
-}
+import { useTranslation } from '@/lib/i18n'
 
 export default function OffresSection({ compact = false }: { compact?: boolean }) {
+  const { t } = useTranslation()
+  const { coaching, main, audit, onedrive, badge } = t.offers
+
   return (
     <section id="services" className="section" style={{ background: 'var(--off)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
@@ -64,7 +33,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
                 marginBottom: '0.4rem',
               }}
             >
-              Ce que je propose
+              {t.offers.sectionLabel}
             </p>
             <h2
               style={{
@@ -75,11 +44,11 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
                 margin: 0,
               }}
             >
-              Services
+              {t.offers.sectionTitle}
             </h2>
           </div>
           <Link href="/services" className="btn-ghost">
-            Détail des services →
+            {t.offers.viewAll}
           </Link>
         </div>
 
@@ -102,10 +71,11 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
                 <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
               </svg>
             }
-            badge="Coaching"
+            badge={badge.coaching}
             title={coaching.title}
             description={coaching.description}
-            bullets={coaching.bullets}
+            bullets={coaching.bullets as unknown as string[]}
+            learnMore={t.offers.learnMore}
           />
 
           {/* Offre principale — featured, au milieu */}
@@ -116,11 +86,12 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
                 <path d="M8 21h8M12 17v4" />
               </svg>
             }
-            badge="Offre principale"
-            title={offresPrincipale.title}
-            description={offresPrincipale.description}
-            bullets={offresPrincipale.bullets}
+            badge={badge.main}
+            title={main.title}
+            description={main.description}
+            bullets={main.bullets as unknown as string[]}
             featured
+            learnMore={t.offers.learnMore}
           />
 
           {/* Audit */}
@@ -131,10 +102,11 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
                 <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
               </svg>
             }
-            badge="Audit & Conseil"
+            badge={badge.audit}
             title={audit.title}
             description={audit.description}
-            bullets={audit.bullets}
+            bullets={audit.bullets as unknown as string[]}
+            learnMore={t.offers.learnMore}
           />
         </div>
 
@@ -143,7 +115,6 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
           className="card"
           style={{ marginTop: '1.5rem', padding: '1.25rem', background: 'white', border: '1.5px solid var(--border)' }}
         >
-          {/* Icon + Title + Badge in one row */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
             <div style={{ width: 44, height: 44, borderRadius: '12px', background: 'linear-gradient(135deg, rgba(96,198,255,0.15) 0%, rgba(24,176,232,0.15) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -157,31 +128,29 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
               </svg>
             </div>
             <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.35, margin: 0, flex: 1 }}>
-              Outil : Détecteur de chemins de fichiers trop longs
+              {onedrive.title}
             </h3>
             <span className="onedrive-badge" style={{ color: 'var(--c3)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap', flexShrink: 0 }}>
-              Disponible sur Microsoft Store · 24h d&apos;essai gratuit
+              {onedrive.badge}
             </span>
           </div>
 
-          {/* Description + Button at same height */}
           <div className="onedrive-body" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
             <p style={{ fontSize: '0.875rem', color: 'var(--ink)', lineHeight: 1.65, margin: 0 }}>
-              Auditez vos chemins de fichiers avant migration SharePoint et évitez les erreurs de synchronisation OneDrive.
+              {onedrive.description}
             </p>
             <Link
               href="https://onedrivepathchecker.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-dark"
-              style={{ whiteSpace: 'nowrap', flexShrink: 0, fontSize: '0.90rem'}}
+              style={{ whiteSpace: 'nowrap', flexShrink: 0, fontSize: '0.90rem' }}
             >
-              Découvrir l&apos;outil →
+              {onedrive.cta}
             </Link>
           </div>
         </div>
       </div>
-
     </section>
   )
 }
@@ -196,6 +165,7 @@ function OffreCard({
   href = '/services',
   cta,
   external = false,
+  learnMore,
 }: {
   icon: ReactNode
   badge: string
@@ -206,6 +176,7 @@ function OffreCard({
   href?: string
   cta?: string
   external?: boolean
+  learnMore: string
 }) {
   const ink = featured ? 'white' : 'var(--ink)'
   const muted = featured ? 'rgba(255,255,255,0.7)' : 'var(--muted)'
@@ -298,7 +269,7 @@ function OffreCard({
         style={{ width: '100%', justifyContent: 'center' }}
         {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
-        {cta ?? (featured ? 'En savoir plus' : 'En savoir plus')}
+        {cta ?? learnMore}
       </Link>
     </div>
   )

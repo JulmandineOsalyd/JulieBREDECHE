@@ -1,0 +1,125 @@
+---
+title: "Power Automate + AI Builder: Hundreds of Hours Saved with Automatic PDF Reading"
+date: "2025-11-24"
+category: "Power Automate"
+excerpt: "How to automatically extract an order number from thousands of invoice PDFs using Power Automate, AI Builder and a regex? The complete tutorial including the Office Script code."
+readingTime: 6
+slug: "power-automate-extraire-une-information-pdf"
+tags: ["Power Automate", "AI Builder", "Office Script", "Automation"]
+featured: false
+---
+
+Manually extracting information from hundreds of invoice PDFs is time-consuming, tedious, and error-prone. With **Power Automate + AI Builder**, this processing can be fully automated.
+
+Here's how I implemented this solution for a client: extracting order numbers from thousands of PDFs and automatically integrating them into their billing tracking system.
+
+---
+
+## The Initial Need
+
+The client needed to retrieve order numbers in the format `ABC123456A` from invoice PDFs to integrate them into their new system.
+
+This well-defined format — **3 letters, 6 digits, 1 letter** — is ideal for extraction using a regular expression (regex).
+
+---
+
+## Prerequisites
+
+Before starting, make sure you have:
+
+- A SharePoint library or OneDrive folder containing the PDFs
+- A standard Power Automate license with AI Builder / Copilot credits
+- A clearly identifiable order number format
+- An Excel file configured to run the regex via Office Script
+
+---
+
+## The Power Automate Flow Steps
+
+### Step 1: Retrieve the PDF Content
+
+Use the **"Get file content using path"** action and configure the SharePoint site address and file path.
+
+<div className="prose-articlemax"><img src="/images/blog/Recuperation-contenuPDF.png" alt="Retrieving PDF content in Power Automate" /></div>
+
+
+---
+
+### Step 2: Extract Text from the PDF
+
+Apply the **"Recognize text in an image or a document"** action from AI Builder.
+
+This step returns the raw text from the PDF. It also works on **scanned documents** thanks to the built-in OCR.
+
+<div className="prose-articlemax"><img src="/images/blog/Extraction-AIBuilder.png" alt="Text extraction with AI Builder" /></div>
+
+
+---
+
+### Step 3: Create the Office Script
+
+Create an Office Script in Excel with the following code. It takes 3 parameters: the text string, the regex pattern, and the flags.
+
+```typescript
+function main(
+    workbook: ExcelScript.Workbook,
+    inputString: string,
+    pattern: string,
+    flags: string
+): Array<string> {
+    let regExp = new RegExp(pattern, flags);
+    let matches: Array<string> = inputString.match(regExp);
+
+    if (matches) {
+        return matches;
+    } else {
+        return [];
+    }
+}
+```
+
+---
+
+### Step 4: Run the Script in Power Automate
+
+Call the script passing:
+- The text extracted from the PDF in step 2
+- The regex pattern: `[A-Z]{3}\d{6}[A-Z]$`
+- The desired flags (e.g., `g` for global)
+
+<div className="prose-articlemax"><img src="/images/blog/Execution-OfficeScript.png" alt="Running the script in Power Automate" /></div>
+
+
+The script returns the order number found, or an empty list if no match.
+
+---
+
+### Step 5: Use the Extracted Number
+
+Once the number is retrieved, the possibilities are numerous:
+
+- Save to a SharePoint column
+- Update a Dataverse table
+- Add to an Excel file
+- Send a control email
+- Feed a CRM or helpdesk
+
+<div className="prose-articlemax"><img src="/images/blog/Utilisation-Commande.png" alt="Using the extracted order number" /></div>
+
+
+---
+
+## Best Practices and Points of Attention
+
+- **Scanned PDFs** require OCR via AI Builder: plan for the corresponding credits
+- Verify the **uniqueness** of the order number per document
+- Handle the **"no match found"** case to avoid silent errors
+- Maintain an **error log** in a dedicated list for failed processing
+
+---
+
+## Conclusion
+
+This flow eliminates the manual review of thousands of documents. Extraction is fast, reliable, and easily adaptable if the number format changes or if new fields need to be extracted.
+
+The same principle applies to any structured data: product references, VAT numbers, customer codes…

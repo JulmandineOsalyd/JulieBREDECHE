@@ -1,4 +1,10 @@
+'use client'
+
+import { useTranslation } from '@/lib/i18n'
+
 export default function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer style={{ background: 'var(--off)', borderTop: '1px solid var(--border)' }}>
       <div
@@ -20,7 +26,7 @@ export default function Footer() {
           href="https://linkedin.com/in/juliebredeche"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Profil LinkedIn de Julie Bredeche"
+          aria-label={t.footer.linkedinLabel}
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -38,7 +44,7 @@ export default function Footer() {
           LinkedIn
         </a>
         <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-          Consultante Microsoft 365 · SharePoint · Power Platform · Copilot Studio
+          {t.footer.tagline}
         </span>
       </div>
     </footer>

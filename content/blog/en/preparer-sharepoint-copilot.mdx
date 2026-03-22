@@ -1,0 +1,79 @@
+---
+title: "Preparing SharePoint for Copilot: The 2 Field Tips I Always Apply"
+date: "2026-03-17"
+category: "SharePoint"
+excerpt: "Before deploying Copilot, the foundation must be solid. Here are two JSON-formatted SharePoint columns I configure at client sites to better control sharing and identify key knowledge."
+readingTime: 5
+tags: ["SharePoint", "Copilot", "Governance", "JSON"]
+featured: false
+---
+
+Everyone is talking about it right now — structuring content is not an optional step in a Copilot deployment.
+It is the condition for Copilot to be reliable.
+
+The problem is that asking users to "properly tag their content" always remains complicated. The tips I share here rely on a simple principle: make tagging so fast and so visual that users do it naturally.
+
+Here are two concrete tips I apply systematically whenever I create a collaborative space for a team or a department.
+
+---
+
+## Why It Starts in SharePoint
+
+Copilot exploits data where it lives. For most organizations, that's Teams or SharePoint.
+
+Two problems come up repeatedly in the field:
+
+1. **Permissions are a mess.** Documents shared ad hoc, forgotten unique permissions — nobody really knows who sees what. Copilot respects access rights and can surface information that is supposed to be confidential.
+
+2. **Everything is equal.** A 2019 meeting note carries the same weight as a current HR procedure. Copilot doesn't know what's important if you don't signal it.
+
+Both problems have a simple solution: well-designed columns, JSON-formatted, that users can activate in one click.
+
+---
+
+## Tip 1: Control Sharing with Dedicated Columns
+
+In SharePoint, every time a user shares a document directly with someone (a "Specific people" link), they step outside the library's initial permissions scheme.
+
+My solution:
+
+- **A "Sharing Status" column**: when a user manually shares a document, they click to flag it.
+The column changes appearance: a colored dot clearly indicates that this document has specific permissions.
+
+- **A "Stop Sharing" button**: one click triggers a Power Automate flow that restores permissions inheritance and resets the "Sharing Status" column value. The document returns to the parent library's permissions. No more orphaned permissions.
+
+<div className="prose-article70"><img src="/images/blog/preparer-sharepoint-copilot-colonne-partage.png" alt="Sharing management columns" /></div>
+
+> What this changes for Copilot: agents operate within a **clean, controlled permissions scope**. The risk of information leaking to users who shouldn't have access is greatly reduced.
+
+---
+
+## Tip 2: Identify Key Knowledge with a Toggle
+
+Not all documents are equal. But how do you distinguish a reference procedure from a working draft without complicating users' lives?
+
+My solution: **a Yes/No column** titled "Key Knowledge", JSON-formatted as a visual toggle.
+
+One click is all it takes to flip the toggle. The document is immediately identified as a priority knowledge source.
+
+<div className="prose-article60"><img src="/images/blog/preparer-sharepoint-copilot-connaissance-cle.png" alt="Key knowledge toggle" /><br/></div>
+
+
+Today, I use this column to surface these documents in the **SharePoint search engine**.
+
+<div className="prose-article80"><img src="/images/blog/preparer-sharepoint-copilot-recherche.png" alt="Key knowledge search" /></div>
+
+> Tomorrow, it will be able to explicitly tell a Copilot agent which **reference documents** to prioritize.
+
+---
+
+## What This Changes in Practice
+
+These tips are very easy to implement and integrate into users' daily workflow without friction.
+
+Their impact on Copilot result quality is immediate:
+
+- Sharing is more readable day-to-day and easy to manage
+- Important content is progressively identified
+
+This is also what preparing SharePoint for AI looks like: simple choices, embedded in users' daily routines, that make information exploitable.

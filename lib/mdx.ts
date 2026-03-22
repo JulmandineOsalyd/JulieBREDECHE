@@ -21,53 +21,59 @@ export interface Article extends ArticleMeta {
   content: string
 }
 
-function getFileSlugs(): string[] {
-  if (!fs.existsSync(CONTENT_DIR)) return []
+function getFileSlugs(locale: 'fr' | 'en'): string[] {
+  const dir = path.join(CONTENT_DIR, locale)
+  if (!fs.existsSync(dir)) return []
   return fs
-    .readdirSync(CONTENT_DIR)
+    .readdirSync(dir)
     .filter((file) => file.endsWith('.mdx'))
     .map((file) => file.replace(/\.mdx$/, ''))
 }
 
-export function getArticleBySlug(slug: string): Article | null {
-  const filePath = path.join(CONTENT_DIR, `${slug}.mdx`)
-  if (!fs.existsSync(filePath)) return null
+export function getArticleBySlug(slug: string, locale: 'fr' | 'en' = 'fr'): Article | null {
+  // Try requested locale first, fall back to 'fr'
+  const locales: Array<'fr' | 'en'> = locale === 'fr' ? ['fr'] : ['en', 'fr']
+  for (const l of locales) {
+    const filePath = path.join(CONTENT_DIR, l, `${slug}.mdx`)
+    if (!fs.existsSync(filePath)) continue
 
-  const raw = fs.readFileSync(filePath, 'utf-8')
-  const { data, content } = matter(raw)
+    const raw = fs.readFileSync(filePath, 'utf-8')
+    const { data, content } = matter(raw)
 
-  const readingTime =
-    typeof data.readingTime === 'number'
-      ? data.readingTime
-      : calculateReadingTime(content)
+    const readingTime =
+      typeof data.readingTime === 'number'
+        ? data.readingTime
+        : calculateReadingTime(content)
 
-  return {
-    slug,
-    title: data.title ?? '',
-    date: data.date ?? '',
-    category: data.category ?? 'Général',
-    excerpt: data.excerpt ?? '',
-    readingTime,
-    tags: data.tags ?? [],
-    featured: data.featured ?? false,
-    draft: data.draft ?? false,
-    content,
+    return {
+      slug,
+      title: data.title ?? '',
+      date: data.date ?? '',
+      category: data.category ?? 'Général',
+      excerpt: data.excerpt ?? '',
+      readingTime,
+      tags: data.tags ?? [],
+      featured: data.featured ?? false,
+      draft: data.draft ?? false,
+      content,
+    }
   }
+  return null
 }
 
-export function getAllArticles(): Article[] {
-  return getFileSlugs()
-    .map((slug) => getArticleBySlug(slug))
+export function getAllArticles(locale: 'fr' | 'en' = 'fr'): Article[] {
+  return getFileSlugs(locale)
+    .map((slug) => getArticleBySlug(slug, locale))
     .filter((article): article is Article => article !== null && !article.draft)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 }
 
-export function getAllArticlesMeta(): ArticleMeta[] {
-  return getAllArticles().map(({ content: _content, ...meta }) => meta)
+export function getAllArticlesMeta(locale: 'fr' | 'en' = 'fr'): ArticleMeta[] {
+  return getAllArticles(locale).map(({ content: _content, ...meta }) => meta)
 }
 
-export function getArticlesByCategory(category: string): ArticleMeta[] {
-  return getAllArticlesMeta().filter(
+export function getArticlesByCategory(category: string, locale: 'fr' | 'en' = 'fr'): ArticleMeta[] {
+  return getAllArticlesMeta(locale).filter(
     (a) => a.category.toLowerCase() === category.toLowerCase()
   )
 }
@@ -75,9 +81,10 @@ export function getArticlesByCategory(category: string): ArticleMeta[] {
 export function getRelatedArticles(
   currentSlug: string,
   category: string,
+  locale: 'fr' | 'en' = 'fr',
   limit = 3
 ): ArticleMeta[] {
-  return getAllArticlesMeta()
+  return getAllArticlesMeta(locale)
     .filter((a) => a.slug !== currentSlug && a.category === category)
     .slice(0, limit)
 }

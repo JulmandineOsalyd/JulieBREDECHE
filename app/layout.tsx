@@ -4,6 +4,7 @@ import { Lora, Plus_Jakarta_Sans, DM_Serif_Display, DM_Sans } from 'next/font/go
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import NewsletterBar from '@/components/NewsletterBar'
+import { LanguageProvider } from '@/lib/i18n'
 import '@/styles/globals.css'
 import { Analytics } from '@vercel/analytics/next';
 
@@ -74,11 +75,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr" className={`${lora.variable} ${plusJakartaSans.variable} ${dmSerifDisplay.variable} ${dmSans.variable}`}>
       <body>
-        <Nav />
-        <main>{children}</main>
-        <Analytics />
-        <NewsletterBar />
-        <Footer />
+        <LanguageProvider>
+          <Nav />
+          <main>{children}</main>
+          <Analytics />
+          <NewsletterBar />
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   )
