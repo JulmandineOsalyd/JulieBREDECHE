@@ -1,135 +1,105 @@
 ---
-title: "Why AI Won't Replace Me as a Power Automate Expert"
+title: "Why AI won't replace me as a Power Automate expert"
 date: "2026-04-06"
 category: "Power Automate"
-excerpt: "Copilot can generate a flow in seconds. So why do my clients keep calling on me? Because building a flow is the easy part... and even that!"
+excerpt: "Copilot can generate a flow in seconds. So why do my clients still call me? Because building a flow is the easy part... and even then!"
 readingTime: 5
 tags: ["Power Automate", "AI", "Copilot", "Automation", "Expertise"]
 featured: false
 send_newsletter: false
-draft: true
+draft: false
 ---
 
-Since Copilot made its way into Power Automate, I often hear the same question:
+Since Copilot arrived in Power Automate, I hear the same question often:
 
-*"With AI, do we still need an expert?"*
+**"With Copilot, do we still need an expert to create Power Automate flows?"**
 
-And honestly, I get it. Copilot generates flows in natural language. It suggests actions, structures conditions, recommends connectors. It's impressive.
+I understand the question: Copilot generates flows in natural language. It proposes actions, structures conditions, suggests connectors. It's impressive.
 
-But building a flow is the easy part.
-
----
-
-## What AI Does Very Well
-
-Let's be honest: AI has changed the way I work, and that's a good thing.
-
-- It generates a **first draft** of a flow in seconds
-- It helps me **recall the syntax** of an expression I've forgotten
-- It suggests **alternatives** when I'm looking for the right connector
-- It **explains an error** without me having to dig through documentation
-
-I use it every day. It's made me faster.
-
-But faster at what, exactly? At the technical part. At implementation.
-
-And implementation, in a Power Automate project, is rarely where the real stakes lie.
+But building a flow is often the easiest part.
 
 ---
 
-## What AI Can't Do
+## What Copilot does very well in Power Automate
 
-### 1. Understand What the Client Actually Wants
+Copilot is an excellent tool for getting started with Power Automate:
 
-When a client tells me *"we want to automate our purchase orders"*, that's not a flow description. It's a starting point.
+- It generates a **first draft** of a flow in seconds, handy when you're new and don't know Power Automate actions.
+- It helps **find the syntax** for certain expressions
+- It **explains an error** without needing to go through each action
 
-What needs to be untangled from there:
+But for now, Copilot is still not very good at configuring each action and often generates errors that make flows unusable.
+
+> **The real challenge of an automation project isn't technical, it's understanding the context.**
+
+---
+
+## What Copilot can't do
+
+### 1. Understand what the client really wants
+
+When a client tells me *"we want to automate our purchase order entry"*, that's not a flow description. **It's the starting point of a requirements statement**.
+
+What you need to untangle next:
 
 - Who approves? In what order? What if the approver is absent?
-- What is a "purchase order" for them? An email? An Excel file? A scanned paper form?
+- What does a "purchase order" mean for them? An email? An Excel file? A scanned paper form?
 - Which systems need to be updated in parallel?
 - What happens if the order is rejected at step 3 out of 4?
 
-AI doesn't ask these questions. It takes the description at face value and builds something that looks like it works. Something that doesn't match the reality on the ground.
-
-> **AI starts from the need as it's expressed. An expert starts from the need as it's actually experienced.**
+These questions, Copilot doesn't ask. It takes your prompt literally and builds something that seems to work, **but doesn't match the client's reality**.
 
 ---
 
-### 2. Navigate Environmental Constraints
+### 2. Navigate the constraints of the environment
 
-Power Automate is an ecosystem. And that ecosystem has its rules, its limits, its traps.
+Power Automate is a tool in a complex Microsoft ecosystem, which has its rules and limits.
 
-| Constraint | What AI Ignores |
+| Constraint | What AI ignores |
 |---|---|
-| **Licenses** | Which premium connector is activated? Who has a Power Automate per-user license? |
-| **Governance** | Do DLP policies allow this connector in this environment? |
+| **Licenses** | Which premium connector is used? Who has a premium Power Automate license? |
+| **Governance** | Do DLP policies allow this connector in that environment? |
 | **Platform limits** | How many actions per flow? What data volume is expected? |
-| **Connectors** | Is the standard version enough, or is the premium connector needed? |
-| **Environments** | Dev, test, prod: how to manage connections and variables across environments? |
+| **Connectors** | Is the Power Automate version enough, or do you need the third-party connector? |
+| **Environments** | Dev, test, prod: how do you manage connections and variables between environments? |
 
-A flow generated by Copilot can be technically correct and completely unusable in a given client context.
-
----
-
-### 3. Anticipate What Will Break
-
-Field experience can't be improvised. And after years of projects, I have a mental catalogue of "things that always break":
-
-- Flows that fail silently with no error notification
-- Conditions that don't cover edge cases
-- Automations that work in testing and fail in production due to volume
-- Approval timeouts that nobody had anticipated
-- Flows that break after an unannounced Microsoft update
-
-AI builds for the nominal case. It doesn't build for reality.
+A flow generated by Copilot can be technically correct and completely unusable depending on the governance established at the client.
 
 ---
 
-### 4. Support Change
+### 3. Anticipate exceptions and manage errors
+
+Years of experience can't be replaced. After years of projects, I've built a mental catalog of "classic mistakes":
+
+- Flows that fail silently without error notification
+- Conditions that don't account for exceptions
+- Automations that work in test and fail in production due to volume
+- Approval timeout periods not anticipated
+
+---
+
+### 4. Support change management
 
 A deployed flow that nobody uses is a failed project.
 
 The technical part is only half the work. The other half is:
 
-- Explaining to teams **why** their process is changing
-- Training the functional administrators who will maintain the solution
-- Managing resistance (*"we used to do it this way and it worked just fine"*)
-- Adapting the solution when field feedback reveals unexpressed needs
-
-AI delivers a solution. An expert delivers **adoption**.
+- Explaining to colleagues **why** their process is changing
+- Training functional administrators who will maintain the solution
+- Managing resistance (*"before we did it this way and it worked great"*)
+- Adapting the solution when field feedback reveals unarticulated needs
 
 ---
 
-### 5. Build Something That Lasts
+## My conclusion
 
-Power Automate lives in a Microsoft environment that continuously evolves. What works today may need adjustment in six months.
+I think the real question isn't "will AI replace experts?" but "**what has real value in an expert's work?**"
 
-What I put in place on every project:
+Placing a "Send an email" action after a "Create a SharePoint item" action remains relatively accessible. What has real added value is:
 
-- **Technical-functional documentation** that teams can revisit without me
-- **Error handling mechanisms** and reporting to monitor incidents
-- An architecture that anticipates **foreseeable business changes**
-- **End-to-end testing** before each deployment
+✅ Translating a vague business need into a robust solution<br/>
+✅ Knowing Microsoft's limits to build a viable long-term project<br/>
+✅ Understanding licensing to control project costs<br/>
+✅ Supporting teams through change<br/>
 
-It's not just about building. It's about building to last.
-
----
-
-## AI: My Tool, Not My Replacement
-
-The real question isn't *"will AI replace experts?"* but *"what is valuable in an expert's work?"*
-
-What has value is not knowing how to place a "Send an email" action after a "Create SharePoint item" action. Anyone can do that. Copilot too.
-
-What has value is:
-
-✅ **Translating a vague business need into a robust solution**
-✅ **Knowing the platform's limits before hitting them**
-✅ **Building what holds up over time**
-✅ **Supporting teams through change**
-✅ **Being accountable for the outcome, not just the delivery**
-
-AI helps me go faster on the technical side. It frees up time to focus on what really matters: understanding the business, scoping the need, delivering a solution that works in real life.
-
-> **It's not the tool that makes the expert. It's what you do with it.**
+**Copilot can help go faster on certain technical aspects, but it doesn't replace what really matters: understanding the business, scoping the need, delivering a solution that works well in a specific client context.**
