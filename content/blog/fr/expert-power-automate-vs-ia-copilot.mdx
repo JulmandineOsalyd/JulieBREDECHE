@@ -12,36 +12,34 @@ draft: false
 
 Depuis que Copilot s'est invité dans Power Automate, j'entends souvent la même question :
 
-*"Avec l'IA, est-ce qu'on a encore besoin d'une experte ?"*
+*"Avec Copilot, est-ce qu'on a encore besoin d'une experte pour créer des flux Power Automate?"*
 
-Et honnêtement, je comprends la question. Copilot génère des flux en langage naturel. Il propose des actions, structure des conditions, suggère des connecteurs. C'est bluffant.
+Je comprends la question : Copilot génère des flux en langage naturel. Il propose des actions, structure des conditions, suggère des connecteurs. C'est bluffant.
 
-Mais construire un flux, c'est la partie facile.
-
----
-
-## Ce que l'IA fait très bien
-
-Soyons honnêtes : l'IA a changé ma façon de travailler, et c'est tant mieux.
-
-- Elle génère une **première ébauche** de flux en quelques secondes
-- Elle m'aide à **retrouver la syntaxe** d'une expression que j'ai oubliée
-- Elle suggère des **alternatives** quand je cherche le bon connecteur
-- Elle **explique une erreur** sans que j'aie besoin de fouiller la documentation
-
-Je l'utilise tous les jours. Elle m'a rendue plus rapide.
-
-Mais plus rapide sur quoi, exactement ? Sur la partie technique. Sur l'implémentation.
-
-Et l'implémentation, dans un projet Power Automate, c'est rarement là où se jouent les vrais enjeux.
+Mais construire un flux, c'est souvent la partie la plus facile.
 
 ---
 
-## Ce que l'IA ne sait pas faire
+## Ce que Copilot fait très bien dans Power Automate
+
+Copilot est un excellent outil pour débuter sur Power Automate :
+
+- Il génère une **première ébauche** de flux en quelques secondes, pratique quand on est novice et qu'on ne connait pas les actions Power Automate.
+- Il aide à **trouver la syntaxe** de certaines expressions
+- Il **explique une erreur** sans avoir besoin de parcourir chaque action 
+
+
+Mais pour l'instant, Copilot reste encore peu performant dans le paramétrage de chaque action et génère souvent des erreurs qui rendent les flux inutilisables.
+
+Et finalement, le développement d'un flux dans un projet d'automanisation, c'est rarement là où se jouent les vrais enjeux.
+
+---
+
+## Ce que Copilot ne sait pas faire
 
 ### 1. Comprendre ce que le client veut vraiment
 
-Quand un client me dit *"on veut automatiser nos bons de commande"*, ce n'est pas une description de flux. C'est un point de départ.
+Quand un client me dit *"on veut automatiser la saisie de nos bons de commande"*, ce n'est pas une description de flux. C'est un point de départ.
 
 Ce qu'il faut ensuite démêler :
 
@@ -50,7 +48,7 @@ Ce qu'il faut ensuite démêler :
 - Quels systèmes doivent être mis à jour en parallèle ?
 - Que se passe-t-il si la commande est rejetée à l'étape 3 sur 4 ?
 
-Ces questions, l'IA ne les pose pas. Elle prend la description au pied de la lettre et construit quelque chose qui semble fonctionner. Quelque chose qui ne correspond pas à la réalité du terrain.
+Ces questions, Copilot ne les pose pas. Il s'appuie sur votre prompt au pied de la lettre et construit quelque chose qui semble fonctionner, mais qui ne correspond pas à la réalité du client.
 
 > **L'IA part du besoin tel qu'il est exprimé. Un expert part du besoin tel qu'il est vécu.**
 
@@ -58,31 +56,29 @@ Ces questions, l'IA ne les pose pas. Elle prend la description au pied de la let
 
 ### 2. Naviguer dans les contraintes de l'environnement
 
-Power Automate, c'est un écosystème. Et cet écosystème a ses règles, ses limites, ses pièges.
+Power Automate, c'est un outil dans un écosystème Microsoft complexe, qui a ses règles et ses limites.
 
 | Contrainte | Ce que l'IA ignore |
 |---|---|
-| **Licences** | Quel connecteur premium est activé ? Qui a une licence Power Automate per-user ? |
+| **Licences** | Quel connecteur premium est utilisé ? Qui a une licence Power Automate premium ? |
 | **Gouvernance** | Les DLP policies autorisent-elles ce connecteur dans cet environnement ? |
 | **Limites de la plateforme** | Combien d'actions par flux ? Quelle volumétrie de données attendue ? |
-| **Connecteurs** | La version standard suffit-elle, ou faut-il le connecteur premium ? |
+| **Connecteurs** | La version Power Automate suffit-elle, ou faut-il le connecteur tiers ? |
 | **Environnements** | Dev, test, prod : comment gérer les connexions et les variables entre les environnements ? |
 
-Un flux généré par Copilot peut être techniquement correct et complètement inutilisable dans un contexte client donné.
+Un flux généré par Copilot peut être techniquement correct et complètement inutilisable en fonction de la gouvernance établie chez le client.
 
 ---
 
-### 3. Anticiper ce qui va casser
+### 3. Anticiper les exceptions et gérer les erreurs
 
-L'expérience terrain, ça ne s'improvise pas. Et après des années de projets, j'ai un catalogue mental de "ce qui casse toujours" :
+Les années d'expériences ne se remplacent pas. Et après des années de projets, j'ai développé un catalogue mental des "erreurs classques" :
 
 - Les flux qui plantent silencieusement sans notification d'erreur
-- Les conditions qui ne couvrent pas les cas limites
+- Les conditions qui ne prenent pas en compte des exceptions
 - Les automatisations qui fonctionnent en test et échouent en production à cause du volume
-- Les délais d'expiration sur les approbations que personne n'avait anticipés
-- Les flux qui cassent après une mise à jour Microsoft non annoncée
+- Les délais d'expiration sur les approbations non anticipés
 
-L'IA construit pour le cas nominal. Elle ne construit pas pour la réalité.
 
 ---
 
@@ -92,44 +88,26 @@ Un flux déployé que personne n'utilise, c'est un projet raté.
 
 La partie technique n'est que la moitié du travail. L'autre moitié, c'est :
 
-- Expliquer aux équipes **pourquoi** leur processus change
+- Expliquer aux collaborateurs **pourquoi** leur processus change
 - Former les administrateurs fonctionnels qui vont maintenir la solution
 - Gérer les résistances (*"avant on faisait comme ça et ça marchait très bien"*)
 - Adapter la solution quand les retours terrain révèlent des besoins non exprimés
 
-L'IA livre une solution. Un expert livré une **adoption**.
+Copilot peut aider à développer une solution, mais un expert participe aussi à **l'adoption du projet**.
 
 ---
 
-### 5. Construire une solution qui dure
+## Ma conclusion
 
-Power Automate est dans un environnement Microsoft qui évolue en continu. Ce qui marche aujourd'hui peut nécessiter une adaptation dans six mois.
-
-Ce que je mets en place sur chaque projet :
-
-- Une **documentation technico-fonctionnelle** que les équipes peuvent relire sans moi
-- Des **mécanismes de gestion d'erreurs** et un reporting pour monitorer les incidents
-- Une architecture qui anticipe les **évolutions prévisibles** du métier
-- Des **tests de bout en bout** avant chaque déploiement
-
-Ce n'est pas juste construire. C'est construire pour que ça dure.
-
----
-
-## L'IA : mon outil, pas mon remplaçant
-
-La vraie question n'est pas *"l'IA va-t-elle remplacer les experts ?"* mais *"qu'est-ce qui a de la valeur dans le travail d'un expert ?"*
+Je crois que la vraie question n'est pas *"l'IA va-t-elle remplacer les experts ?"* mais *"qu'est-ce qui a de la valeur dans le travail d'un expert ?"*
 
 Ce qui a de la valeur, ce n'est pas de savoir placer une action "Envoyer un e-mail" après une action "Créer un élément SharePoint". Ça, n'importe qui peut le faire. Copilot aussi.
 
 Ce qui a de la valeur, c'est :
 
 ✅ **Traduire un besoin métier flou en solution robuste**
-✅ **Connaître les limites de la plateforme avant de les heurter**
-✅ **Construire ce qui résiste dans le temps**
+✅ **Connaître les limites Microsoft pour construire un projet viable dans la durée**
+✅ **Connaître le fonctionnement des licences pour maîtriser les coûts du projet"
 ✅ **Accompagner les équipes dans le changement**
-✅ **Être responsable du résultat, pas juste de la livraison**
 
-L'IA m'aide à aller plus vite sur la technique. Elle me libère du temps pour me concentrer sur ce qui compte vraiment : comprendre le métier, cadrer le besoin, livrer une solution qui fonctionne dans la vraie vie.
-
-> **Ce n'est pas l'outil qui fait l'expert. C'est ce qu'on en fait.**
+Copilot peut aider à aller plus vite sur certains aspects techniques, mais ne remplace pas ce qui compte vraiment : comprendre le métier, cadrer le besoin, livrer une solution qui fonctionne bien dans un contexte client spécifique.
