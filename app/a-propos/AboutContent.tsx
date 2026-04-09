@@ -68,6 +68,7 @@ export default function AboutContent() {
             </div>
             <p
               style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '2.15rem' }}
+              // SAFETY: content is static i18n strings
               dangerouslySetInnerHTML={{ __html: a.speciality }}
             />
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>

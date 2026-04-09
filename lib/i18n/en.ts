@@ -1,4 +1,6 @@
-export const en = {
+import type { Translations } from './index'
+
+export const en: Translations = {
   nav: {
     home: 'Home',
     about: 'About',
@@ -481,4 +483,4 @@ export const en = {
     home: 'Back to home',
     blog: 'View the blog',
   },
-} as const
+}

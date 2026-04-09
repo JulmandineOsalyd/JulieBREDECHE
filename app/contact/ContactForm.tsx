@@ -19,7 +19,7 @@ const inputStyle: React.CSSProperties = {
 
 export default function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '', honeypot: '' })
   const { t } = useTranslation()
   const f = t.contact.form
 
@@ -49,14 +49,28 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    <form onSubmit={handleSubmit}>
+      {/* Honeypot - hidden from humans, filled by bots */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }}>
+        <label htmlFor="website">Website</label>
+        <input
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.honeypot}
+          onChange={e => setForm(fv => ({ ...fv, honeypot: e.target.value }))}
+        />
+      </div>
       {/* Nom + Email */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginBottom: '1.25rem' }} className="contact-fields">
         <div>
-          <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.4rem' }}>
+          <label htmlFor="contact-name" style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.4rem' }}>
             {f.name} <span style={{ color: 'var(--c3)' }}>*</span>
           </label>
           <input
+            id="contact-name"
             type="text"
             required
             value={form.name}
@@ -66,10 +80,11 @@ export default function ContactForm() {
           />
         </div>
         <div>
-          <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.4rem' }}>
+          <label htmlFor="contact-email" style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.4rem' }}>
             {f.email} <span style={{ color: 'var(--c3)' }}>*</span>
           </label>
           <input
+            id="contact-email"
             type="email"
             required
             value={form.email}
@@ -82,26 +97,28 @@ export default function ContactForm() {
 
       {/* Sujet */}
       <div style={{ marginBottom: '1.25rem' }}>
-        <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.4rem' }}>
+        <label htmlFor="contact-subject" style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.4rem' }}>
           {f.subject} <span style={{ color: 'var(--c3)' }}>*</span>
         </label>
         <select
+          id="contact-subject"
           required
           value={form.subject}
           onChange={e => setForm(fv => ({ ...fv, subject: e.target.value }))}
           style={{ ...inputStyle, appearance: 'none', backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%234a6080' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.9rem center', paddingRight: '2.5rem', cursor: 'pointer' }}
         >
           <option value="">{f.subjectPlaceholder}</option>
-          {(f.subjects as unknown as string[]).map(s => <option key={s} value={s}>{s}</option>)}
+          {(f.subjects).map(s => <option key={s} value={s}>{s}</option>)}
         </select>
       </div>
 
       {/* Message */}
       <div style={{ marginBottom: '1.75rem' }}>
-        <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.4rem' }}>
+        <label htmlFor="contact-message" style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.4rem' }}>
           {f.message} <span style={{ color: 'var(--c3)' }}>*</span>
         </label>
         <textarea
+          id="contact-message"
           required
           value={form.message}
           onChange={e => setForm(fv => ({ ...fv, message: e.target.value }))}

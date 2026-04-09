@@ -6,6 +6,7 @@ import { useTranslation } from '@/lib/i18n'
 
 export default function NewsletterBar() {
   const [email, setEmail] = useState('')
+  const [honeypot, setHoneypot] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const { t } = useTranslation()
   const n = t.newsletter
@@ -14,7 +15,7 @@ export default function NewsletterBar() {
     e.preventDefault()
     if (!email) return
     setStatus('loading')
-    const result = await subscribeToNewsletter(email)
+    const result = await subscribeToNewsletter(email, undefined, honeypot)
     setStatus(result.success ? 'success' : 'error')
     if (result.success) setEmail('')
   }
@@ -68,6 +69,17 @@ export default function NewsletterBar() {
             style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}
             aria-label={n.ariaLabel}
           >
+            {/* Honeypot */}
+            <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }}>
+              <input
+                name="company"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={honeypot}
+                onChange={e => setHoneypot(e.target.value)}
+              />
+            </div>
             <input
               type="email"
               value={email}

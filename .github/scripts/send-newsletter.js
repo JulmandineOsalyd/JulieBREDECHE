@@ -67,7 +67,7 @@ const excerpt = fm.excerpt || ''
 const slug = fm.slug || path.basename(filePath, '.mdx')
 const category = fm.category || ''
 
-const articleUrl = `https://juliebredeche.pro/fr/blog/${slug}`
+const articleUrl = `https://juliebredeche.pro/blog/${slug}`
 
 // ---------------------------------------------------------------------------
 // 3. Build email HTML

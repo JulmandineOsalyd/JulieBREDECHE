@@ -20,6 +20,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
+  // Slugs are identical across FR and EN, so fetching one locale is sufficient
   const articles = getAllArticlesMeta('fr')
   return articles.map((a) => ({ slug: a.slug }))
 }

@@ -10,54 +10,55 @@ export default function ServicesContent() {
   return (
     <>
       {/* Hero */}
-      <section style={{ padding: '5rem 6% 3rem', background: '#ffffff' }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-          <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.75rem' }}>
+      <section className="py-20 px-[6%] bg-white">
+        <div className="max-w-[800px] mx-auto text-center">
+          <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-3">
             {s.hero.label}
           </p>
-          <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.7rem)', color: 'var(--ink)', lineHeight: 1.4, marginBottom: '1.25rem', marginTop: '1rem' }}>
+          <h1 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.7rem)] text-[var(--ink)] leading-snug mb-5 mt-4">
             {s.hero.h1.before}{' '}
-            <span style={{ background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            <span className="bg-[var(--grad)] bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
               {s.hero.h1.highlight}
             </span>
             {s.hero.h1.after}
           </h1>
-          <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.75 }}>
+          <p className="text-base text-[var(--muted)] leading-[1.75]">
             {s.hero.description}
           </p>
         </div>
       </section>
 
       {/* Offre 1 — Développement */}
-      <section style={{ padding: '3rem 6%', background: 'var(--off)', borderTop: '1px solid var(--border)' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'start' }} className="offre-grid">
+      <section className="py-12 px-[6%] bg-[var(--off)] border-t border-[var(--border)]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="grid grid-cols-2 gap-12 items-start offre-grid">
             <div>
-              <span style={{ display: 'inline-block', background: 'var(--grad)', color: 'white', fontSize: '0.72rem', fontWeight: 700, padding: '0.25rem 0.75rem', borderRadius: '99px', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '1rem' }}>
+              <span className="inline-block bg-[var(--grad)] text-white text-[0.72rem] font-bold py-1 px-3 rounded-full uppercase tracking-tight mb-4">
                 {s.offer1.badge}
               </span>
-              <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.6rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '1rem' }}>
+              <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[1.6rem] text-[var(--ink)] leading-tight mb-4">
                 {s.offer1.title}
               </h2>
-              <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
+              <p className="text-[0.975rem] text-[var(--muted)] leading-[1.75] mb-5">
                 {s.offer1.p1}
               </p>
               <p
-                style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.75rem' }}
+                className="text-[0.975rem] text-[var(--muted)] leading-[1.75] mb-7"
+                // SAFETY: content is static i18n strings
                 dangerouslySetInnerHTML={{ __html: s.offer1.p2 }}
               />
               <Link href="#contact" className="btn-primary">{s.offer1.cta}</Link>
             </div>
             <div className="offre-list-col">
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                {(s.offer1.bullets as unknown as string[]).map((item) => (
-                  <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
-                    <span style={{ width: 20, height: 20, borderRadius: '50%', background: 'var(--grad)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '1px' }}>
+              <ul className="list-none p-0 m-0 flex flex-col gap-3">
+                {s.offer1.bullets.map((item) => (
+                  <li key={item} className="flex items-start gap-[0.65rem]">
+                    <span className="w-5 h-5 rounded-full bg-[var(--grad)] flex items-center justify-center shrink-0 mt-px">
                       <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                         <path d="M2 6l3 3 5-5" stroke="white" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </span>
-                    <span style={{ fontSize: '0.9rem', color: 'var(--ink)', lineHeight: 1.55 }}>{item}</span>
+                    <span className="text-sm text-[var(--ink)] leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -67,50 +68,50 @@ export default function ServicesContent() {
       </section>
 
       {/* Offre 2 & 3 */}
-      <section style={{ padding: '3rem 6%', background: '#ffffff' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }} className="offre-grid">
+      <section className="py-12 px-[6%] bg-white">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-2 gap-6 offre-grid">
           {/* Coaching */}
-          <div className="card" style={{ padding: '2rem', background: 'white' }}>
-            <span style={{ display: 'inline-block', background: 'var(--off)', border: '1px solid var(--border)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', color: 'var(--c3)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '1rem' }}>
+          <div className="card p-8 bg-white">
+            <span className="inline-block bg-[var(--off)] border border-[var(--border)] rounded-full text-[0.72rem] font-bold py-[0.2rem] px-[0.65rem] text-[var(--c3)] uppercase tracking-tight mb-4">
               {s.coaching.badge}
             </span>
-            <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '0.75rem' }}>
+            <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[1.4rem] text-[var(--ink)] leading-tight mb-3">
               {s.coaching.title}
             </h2>
-            <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '1.25rem' }}>
+            <p className="text-sm text-[var(--muted)] leading-relaxed mb-5">
               {s.coaching.description}
             </p>
-            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {(s.coaching.bullets as unknown as string[]).map((b) => (
-                <li key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.875rem', color: 'var(--ink)' }}>
-                  <span style={{ color: 'var(--c2)', fontWeight: 700, flexShrink: 0 }}>·</span>{b}
+            <ul className="list-none p-0 mb-6 flex flex-col gap-2">
+              {(s.coaching.bullets).map((b) => (
+                <li key={b} className="flex items-start gap-2 text-sm text-[var(--ink)]">
+                  <span className="text-[var(--c2)] font-bold shrink-0">·</span>{b}
                 </li>
               ))}
             </ul>
-            <Link href="#contact" className="btn-outline" style={{ width: '100%', justifyContent: 'center' }}>
+            <Link href="#contact" className="btn-outline w-full justify-center">
               {s.coaching.cta}
             </Link>
           </div>
 
           {/* Audit */}
-          <div className="card" style={{ padding: '2rem', background: 'white' }}>
-            <span style={{ display: 'inline-block', background: 'var(--off)', border: '1px solid var(--border)', borderRadius: '99px', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.65rem', color: 'var(--c3)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '1rem' }}>
+          <div className="card p-8 bg-white">
+            <span className="inline-block bg-[var(--off)] border border-[var(--border)] rounded-full text-[0.72rem] font-bold py-[0.2rem] px-[0.65rem] text-[var(--c3)] uppercase tracking-tight mb-4">
               {s.audit.badge}
             </span>
-            <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '0.75rem' }}>
+            <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[1.4rem] text-[var(--ink)] leading-tight mb-3">
               {s.audit.title}
             </h2>
-            <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '1.25rem' }}>
+            <p className="text-sm text-[var(--muted)] leading-relaxed mb-5">
               {s.audit.description}
             </p>
-            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {(s.audit.bullets as unknown as string[]).map((b) => (
-                <li key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.875rem', color: 'var(--ink)' }}>
-                  <span style={{ color: 'var(--c2)', fontWeight: 700, flexShrink: 0 }}>·</span>{b}
+            <ul className="list-none p-0 mb-6 flex flex-col gap-2">
+              {(s.audit.bullets).map((b) => (
+                <li key={b} className="flex items-start gap-2 text-sm text-[var(--ink)]">
+                  <span className="text-[var(--c2)] font-bold shrink-0">·</span>{b}
                 </li>
               ))}
             </ul>
-            <Link href="#contact" className="btn-outline" style={{ width: '100%', justifyContent: 'center' }}>
+            <Link href="#contact" className="btn-outline w-full justify-center">
               {s.audit.cta}
             </Link>
           </div>
@@ -118,27 +119,27 @@ export default function ServicesContent() {
       </section>
 
       {/* Ma méthode */}
-      <section style={{ padding: '4rem 6%', background: 'var(--off)' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.5rem' }}>
+      <section className="py-16 px-[6%] bg-[var(--off)]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-2">
               {s.method.label}
             </p>
-            <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.6rem, 3vw, 2rem)', color: 'var(--ink)', margin: 0 }}>
+            <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(1.6rem,3vw,2rem)] text-[var(--ink)] m-0">
               {s.method.title}
             </h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }} className="method-grid">
+          <div className="grid grid-cols-3 gap-5 method-grid">
             {(s.method.steps as unknown as { n: string; title: string; text: string }[]).map(({ n, title, text }) => (
-              <div key={n} className="card" style={{ padding: '1.5rem', background: 'white', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: '1rem', right: '1rem', fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 800, fontSize: '2.5rem', color: 'rgba(24,176,232,0.1)', lineHeight: 1 }}>{n}</div>
-                <div style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink)', marginBottom: '0.6rem' }}>{title}</div>
-                <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, margin: 0 }}>{text}</p>
+              <div key={n} className="card p-6 bg-white relative overflow-hidden">
+                <div className="absolute top-4 right-4 font-[var(--font-lora),Georgia,serif] font-extrabold text-[2.5rem] text-[rgba(24,176,232,0.1)] leading-none">{n}</div>
+                <div className="font-[var(--font-lora),Georgia,serif] font-bold text-base text-[var(--ink)] mb-2">{title}</div>
+                <p className="text-sm text-[var(--muted)] leading-relaxed m-0">{text}</p>
               </div>
             ))}
           </div>
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <Link href="/blog/methode-infaillible-projets-power-platform" className="btn-outline" style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center' }}>
+          <div className="text-center mt-8">
+            <Link href="/blog/methode-infaillible-projets-power-platform" className="btn-outline inline-flex gap-2 items-center">
               {s.method.readMore}
             </Link>
           </div>
@@ -146,17 +147,17 @@ export default function ServicesContent() {
       </section>
 
       {/* Outil — OneDrive Path Checker */}
-      <section style={{ padding: '4rem 6%', background: '#ffffff', borderTop: '1px solid var(--border)' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <p style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--c2)', marginBottom: '0.5rem' }}>
+      <section className="py-16 px-[6%] bg-white border-t border-[var(--border)]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="text-center mb-10">
+            <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-2">
               {s.tool.label}
             </p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }} className="offre-grid">
+          <div className="grid grid-cols-2 gap-12 items-center offre-grid">
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                <div style={{ width: 48, height: 48, borderRadius: '12px', background: 'linear-gradient(135deg, rgba(96,198,255,0.15) 0%, rgba(24,176,232,0.15) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-[linear-gradient(135deg,rgba(96,198,255,0.15)_0%,rgba(24,176,232,0.15)_100%)] flex items-center justify-center shrink-0">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M4 3v18h17v-3H7V3z" />
                     <line x1="7" y1="7" x2="10" y2="7" />
@@ -167,23 +168,25 @@ export default function ServicesContent() {
                     <line x1="19" y1="18" x2="19" y2="15" />
                   </svg>
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.3rem', color: 'var(--ink)', margin: 0 }}>
+                <h3 className="font-[var(--font-lora),Georgia,serif] font-bold text-[1.3rem] text-[var(--ink)] m-0">
                   {s.tool.title}
                 </h3>
               </div>
               <p
-                style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '0.5rem' }}
+                className="text-[0.975rem] text-[var(--muted)] leading-[1.75] mb-2"
+                // SAFETY: content is static i18n strings
                 dangerouslySetInnerHTML={{ __html: s.tool.p1 }}
               />
               <p
-                style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '1.75rem' }}
+                className="text-[0.975rem] text-[var(--muted)] leading-[1.75] mb-7"
+                // SAFETY: content is static i18n strings
                 dangerouslySetInnerHTML={{ __html: s.tool.p2 }}
               />
-              <Link href="https://onedrivepathchecker.com/" target="_blank" rel="noopener noreferrer" className="btn-dark" style={{ display: 'inline-flex', padding: '0.6rem 1.3rem', fontSize: '0.9rem' }}>
+              <Link href="https://onedrivepathchecker.com/" target="_blank" rel="noopener noreferrer" className="btn-dark inline-flex py-[0.6rem] px-[1.3rem] text-sm">
                 {s.tool.cta}
               </Link>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="grid grid-cols-2 gap-4">
               {(s.tool.features as unknown as { title: string; text: string }[]).map(({ title, text }, i) => {
                 const icons = [
                   <svg key="0" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>,
@@ -192,10 +195,10 @@ export default function ServicesContent() {
                   <svg key="3" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0110 0v4" /></svg>,
                 ]
                 return (
-                  <div key={title} className="card" style={{ padding: '1.25rem', background: 'var(--off)' }}>
-                    <div style={{ width: 40, height: 40, borderRadius: '10px', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.6rem', border: '1px solid var(--border)' }}>{icons[i]}</div>
-                    <div style={{ fontWeight: 700, fontSize: '0.875rem', color: 'var(--ink)', marginBottom: '0.3rem' }}>{title}</div>
-                    <p style={{ fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.5, margin: 0 }}>{text}</p>
+                  <div key={title} className="card p-5 bg-[var(--off)]">
+                    <div className="w-10 h-10 rounded-[10px] bg-white flex items-center justify-center mb-2 border border-[var(--border)]">{icons[i]}</div>
+                    <div className="font-bold text-sm text-[var(--ink)] mb-1">{title}</div>
+                    <p className="text-xs text-[var(--muted)] leading-normal m-0">{text}</p>
                   </div>
                 )
               })}
@@ -205,15 +208,15 @@ export default function ServicesContent() {
       </section>
 
       {/* CTA contact */}
-      <section id="contact" style={{ padding: '5rem 6%', background: 'var(--off)', textAlign: 'center' }}>
-        <div style={{ maxWidth: '560px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: 'var(--ink)', marginBottom: '1rem' }}>
+      <section id="contact" className="py-20 px-[6%] bg-[var(--off)] text-center">
+        <div className="max-w-[560px] mx-auto">
+          <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(1.5rem,3vw,2rem)] text-[var(--ink)] mb-4">
             {s.cta.title}
           </h2>
-          <p style={{ color: 'var(--muted)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem' }}>
+          <p className="text-[var(--muted)] text-base leading-relaxed mb-8">
             {s.cta.description}
           </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="flex gap-4 justify-center flex-wrap">
             <Link href="/contact" className="btn-primary">
               {s.cta.contact}
             </Link>

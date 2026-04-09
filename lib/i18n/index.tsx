@@ -8,7 +8,7 @@ import { en } from './en'
 export type Locale = 'fr' | 'en'
 export type Translations = typeof fr
 
-const TranslationsMap: Record<Locale, Translations> = { fr, en: en as unknown as Translations }
+const TranslationsMap: Record<Locale, Translations> = { fr, en }
 
 interface LanguageContextValue {
   locale: Locale
@@ -22,8 +22,8 @@ const LanguageContext = createContext<LanguageContextValue>({
   setLocale: () => {},
 })
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('fr')
+export function LanguageProvider({ children, initialLocale = 'fr' }: { children: ReactNode; initialLocale?: Locale }) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale)
   const router = useRouter()
 
   useEffect(() => {

@@ -482,4 +482,4 @@ export const fr = {
     home: "Retour à l'accueil",
     blog: 'Voir le blog',
   },
-} as const
+}

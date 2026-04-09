@@ -76,7 +76,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
             badge={badge.coaching}
             title={coaching.title}
             description={coaching.description}
-            bullets={coaching.bullets as unknown as string[]}
+            bullets={coaching.bullets}
             learnMore={t.offers.learnMore}
           />
 
@@ -91,7 +91,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
             badge={badge.main}
             title={main.title}
             description={main.description}
-            bullets={main.bullets as unknown as string[]}
+            bullets={main.bullets}
             featured
             learnMore={t.offers.learnMore}
           />
@@ -107,7 +107,7 @@ export default function OffresSection({ compact = false }: { compact?: boolean }
             badge={badge.audit}
             title={audit.title}
             description={audit.description}
-            bullets={audit.bullets as unknown as string[]}
+            bullets={audit.bullets}
             learnMore={t.offers.learnMore}
           />
         </div>
