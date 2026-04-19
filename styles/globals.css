@@ -308,6 +308,9 @@ h1, h2, h3 {
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+.prose-article thead th strong {
+  color: white;
+}
 .prose-article tbody tr {
   border-top: 1px solid var(--border);
   transition: background 0.15s ease;

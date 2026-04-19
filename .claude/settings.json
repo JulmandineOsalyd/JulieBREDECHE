@@ -5,7 +5,8 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/blog/agent-copilot)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/outils/onedrive-path-checker)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/page-inexistante)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/page-inexistante)",
+      "Bash(kill 41283)"
     ],
     "additionalDirectories": [
       "/Users/julie/Downloads/JulieBREDECHE/content/blog/en"
