@@ -605,3 +605,28 @@ h1, h2, h3 {
   }
   .onedrive-body .btn-dark { width: 100%; justify-content: center; }
 }
+
+/* Article prose — prevent horizontal overflow on any device */
+.prose-article { overflow-wrap: break-word; word-wrap: break-word; min-width: 0; }
+.prose-article a,
+.prose-article code { overflow-wrap: anywhere; word-break: break-word; }
+.prose-article img,
+.prose-article iframe,
+.prose-article video { max-width: 100%; height: auto; }
+.prose-article pre { max-width: 100%; white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; }
+.prose-article pre code { white-space: pre-wrap; word-break: break-word; }
+.prose-article table { width: 100%; table-layout: fixed; }
+.prose-article th,
+.prose-article td { overflow-wrap: anywhere; word-break: break-word; }
+
+@media (max-width: 700px) {
+  .prose-article h2 { font-size: 1.4rem; }
+  .prose-article h3 { font-size: 1.1rem; }
+  .prose-article img,
+  .prose-article70 img,
+  .prose-article80 img,
+  .prose-article90 img { max-width: 100%; }
+  .prose-article table { font-size: 0.82rem; }
+  .prose-article th,
+  .prose-article td { padding: 0.55rem 0.5rem !important; }
+}
