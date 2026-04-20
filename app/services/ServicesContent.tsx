@@ -17,7 +17,7 @@ export default function ServicesContent() {
           </p>
           <h1 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.7rem)] text-[var(--ink)] leading-snug mb-5 mt-4">
             {s.hero.h1.before}{' '}
-            <span className="bg-[var(--grad)] bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
+            <span className="gradient-text">
               {s.hero.h1.highlight}
             </span>
             {s.hero.h1.after}
