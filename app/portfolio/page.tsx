@@ -99,8 +99,8 @@ export default function PortfolioPage() {
             {p.title}
           </h1>
           <div className="inline-flex items-center gap-[0.45rem] bg-[linear-gradient(135deg,rgba(77,255,214,0.12)_0%,rgba(24,176,232,0.12)_100%)] border border-[rgba(24,176,232,0.3)] rounded-full py-[0.3rem] px-[0.9rem] mb-5">
-            <span className="w-[7px] h-[7px] rounded-full bg-[var(--grad)] inline-block shrink-0" />
-            <span className="text-xs font-semibold bg-[var(--grad)] bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
+            <span className="w-[7px] h-[7px] rounded-full bg-grad inline-block shrink-0" />
+            <span className="text-xs font-semibold gradient-text">
               {p.comingSoon}
             </span>
           </div>
@@ -119,7 +119,7 @@ export default function PortfolioPage() {
               onClick={() => openProject(i)}
               className="card portfolio-card p-7 text-left cursor-pointer bg-white border-[1.5px] border-[var(--border)] w-full flex flex-col gap-3"
             >
-              <span className="text-[2rem] font-extrabold font-[var(--font-lora),Georgia,serif] bg-[var(--grad)] bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] leading-none">
+              <span className="text-[2rem] font-extrabold font-[var(--font-lora),Georgia,serif] gradient-text leading-none">
                 {String(i + 1).padStart(2, '0')}
               </span>
               <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-base text-[var(--ink)] leading-snug m-0">

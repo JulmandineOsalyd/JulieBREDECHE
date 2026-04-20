@@ -33,7 +33,7 @@ export default function ServicesContent() {
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-2 gap-12 items-start offre-grid">
             <div>
-              <span className="inline-block bg-[var(--grad)] text-white text-[0.72rem] font-bold py-1 px-3 rounded-full uppercase tracking-tight mb-4">
+              <span className="inline-block bg-grad text-white text-[0.72rem] font-bold py-1 px-3 rounded-full uppercase tracking-tight mb-4">
                 {s.offer1.badge}
               </span>
               <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[1.6rem] text-[var(--ink)] leading-tight mb-4">
@@ -53,7 +53,7 @@ export default function ServicesContent() {
               <ul className="list-none p-0 m-0 flex flex-col gap-3">
                 {s.offer1.bullets.map((item) => (
                   <li key={item} className="flex items-start gap-[0.65rem]">
-                    <span className="w-5 h-5 rounded-full bg-[var(--grad)] flex items-center justify-center shrink-0 mt-px">
+                    <span className="w-5 h-5 rounded-full bg-grad flex items-center justify-center shrink-0 mt-px">
                       <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                         <path d="M2 6l3 3 5-5" stroke="white" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
