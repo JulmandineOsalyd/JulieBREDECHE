@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quelle maîtresse seras-tu pour Banh-mi ?</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #faf9f5;
+    color: #1a1a1a;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .container {
+    width: 100%;
+    max-width: 480px;
+    padding: 1.5rem 1.25rem;
+    min-height: 100vh;
+  }
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 8px;
+  }
+  h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0 0 1.25rem;
+  }
+  p { margin: 0; }
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: #1a1a1a;
+    color: white;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: transform 0.1s, opacity 0.2s;
+  }
+  button:active { transform: scale(0.97); }
+  .answer-btn {
+    background: white;
+    color: #1a1a1a;
+    border: 1px solid rgba(0,0,0,0.12);
+    padding: 16px 18px;
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.4;
+    width: 100%;
+    border-radius: 12px;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  }
+  .answer-btn:hover { background: #f5f4ef; border-color: rgba(0,0,0,0.25); }
+  .answer-btn:active { transform: scale(0.98); }
+  .progress-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(0,0,0,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #1a1a1a;
+    transition: width 0.3s;
+  }
+  .result-card {
+    background: #f1efe8;
+    border-radius: 14px;
+    padding: 1.25rem;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+  .dog-quote {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 12px;
+    margin-top: 16px;
+  }
+  .muted { color: #666; }
+  .retry-btn {
+    background: transparent;
+    color: #1a1a1a;
+    border: 1px solid rgba(0,0,0,0.2);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div id="intro-screen">
+    <div style="text-align: center; padding: 3rem 0.5rem 2rem;">
+      <div style="font-size: 56px; margin-bottom: 12px;">🥖🐕</div>
+      <h1>Quelle maîtresse seras-tu pour Banh-mi ?</h1>
+      <p class="muted" style="font-size: 14px; margin: 0 0 32px;">9 questions. Zéro jugement.</p>
+      <button id="start-btn">Commencer le quiz</button>
+    </div>
+  </div>
+
+  <div id="question-screen" style="display: none;">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem;">
+      <span id="progress-label" style="font-size: 12px; color: #666; min-width: 34px;">1/9</span>
+      <div class="progress-track">
+        <div id="progress-bar" class="progress-fill" style="width: 11.1%;"></div>
+      </div>
+    </div>
+    <h2 id="question-text"></h2>
+    <div id="answers" style="display: flex; flex-direction: column; gap: 10px;"></div>
+  </div>
+
+  <div id="result-screen" style="display: none;">
+    <div style="text-align: center; padding: 1rem 0;">
+      <div id="result-emoji" style="font-size: 64px; margin-bottom: 8px;"></div>
+      <p class="muted" style="font-size: 13px; margin: 0 0 4px;">Emilie, tu es...</p>
+      <h1 id="result-title" style="margin-bottom: 20px;"></h1>
+      <div class="result-card">
+        <p id="result-desc" style="font-size: 14px; line-height: 1.7;"></p>
+        <div class="dog-quote">
+          <p class="muted" style="font-size: 11px; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Banh-mi de son côté</p>
+          <p id="result-dog" style="font-size: 14px; line-height: 1.6; font-style: italic;"></p>
+        </div>
+      </div>
+      <button id="retry-btn" class="retry-btn">Recommencer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const questions = [
+    {
+      q: "Banh-mi, 3 mois, te fait les yeux doux pendant que tu manges un croissant. Tu...",
+      a: [
+        { t: "Lui en donne un petit bout, c'est bébé quand même", p: "poule" },
+        { t: "Non c'est non, même avec les yeux de biche", p: "cadre" },
+        { t: "Je détourne le regard et je culpabilise", p: "chill" },
+        { t: "Je partage la moitié, on est une équipe", p: "impro" }
+      ]
+    },
+    {
+      q: "Première nuit à la maison. Banh-mi pleure dans son panier. Tu...",
+      a: [
+        { t: "Il dort dans le lit, décision finale", p: "poule" },
+        { t: "Je tiens bon, c'est pour son bien", p: "cadre" },
+        { t: "Je dors par terre à côté de lui", p: "chill" },
+        { t: "On verra bien comment ça évolue", p: "impro" }
+      ]
+    },
+    {
+      q: "Banh-mi a peur de l'aspirateur robot. Tu fais quoi ?",
+      a: [
+        { t: "Je le prends dans mes bras, on se cache ensemble", p: "poule" },
+        { t: "Désensibilisation progressive, étape par étape", p: "cadre" },
+        { t: "Je passe l'aspi quand il n'est pas là, point", p: "chill" },
+        { t: "Je mets un bandana à l'aspi pour le rendre sympa", p: "impro" }
+      ]
+    },
+    {
+      q: "Au parc, Banh-mi fonce vers un gros chien inconnu. Réflexe ?",
+      a: [
+        { t: "Je cours et je le prends dans mes bras", p: "poule" },
+        { t: "Rappel ferme, il revient au pied", p: "cadre" },
+        { t: "Je laisse faire, les chiens se comprennent", p: "chill" },
+        { t: "Je sors une friandise et je prie", p: "impro" }
+      ]
+    },
+    {
+      q: "Banh-mi a mangé ta paire de baskets neuves. Tu...",
+      a: [
+        { t: "Ce n'est pas grave mon bébé, viens là", p: "poule" },
+        { t: "Gros non, timeout, on recadre", p: "cadre" },
+        { t: "Tant pis, j'aurais dû les ranger", p: "chill" },
+        { t: "Je rigole et je poste la photo", p: "impro" }
+      ]
+    },
+    {
+      q: "C'est l'anniversaire de Banh-mi. Au programme ?",
+      a: [
+        { t: "Grosse teuf, gâteau canin, invités à 4 pattes", p: "poule" },
+        { t: "Nouveau jouet éducatif et balade plus longue", p: "cadre" },
+        { t: "Journée câlins et sa friandise préférée", p: "chill" },
+        { t: "On verra le jour J selon l'inspiration", p: "impro" }
+      ]
+    },
+    {
+      q: "Week-end prévu. Banh-mi fait partie du plan comment ?",
+      a: [
+        { t: "Tout est organisé autour de lui", p: "poule" },
+        { t: "Planning clair : balades, repas, siestes", p: "cadre" },
+        { t: "Il suit, on chill ensemble", p: "chill" },
+        { t: "On improvise, il adore la surprise", p: "impro" }
+      ]
+    },
+    {
+      q: "Photo de Banh-mi sur ton téléphone, on en est à...",
+      a: [
+        { t: "Plus de 500, il a son album dédié", p: "poule" },
+        { t: "Une sélection propre, bien rangée", p: "cadre" },
+        { t: "Quelques-unes, les plus mignonnes", p: "chill" },
+        { t: "Un bazar de screenshots et vidéos floues", p: "impro" }
+      ]
+    },
+    {
+      q: "Il pose sa tête sur tes genoux pendant ton film. Tu dois aller aux toilettes. Tu...",
+      a: [
+        { t: "Je tiens, la vessie peut attendre", p: "poule" },
+        { t: "Je le pousse gentiment, il comprendra", p: "cadre" },
+        { t: "Je fais pause et j'attends qu'il bouge", p: "chill" },
+        { t: "Je le soulève et je l'emmène avec moi", p: "impro" }
+      ]
+    }
+  ];
+
+  const profiles = {
+    poule: {
+      emoji: "🧸",
+      title: "La maman poule",
+      desc: "Banh-mi ne sera pas un chien, il sera ton bébé. Manteau en hiver, panier orthopédique, album photo dédié — tu vas être la maîtresse que tous les chiens rêvent d'avoir. Il va être choyé, rassuré, aimé au-delà du raisonnable, et franchement il a beaucoup de chance.",
+      dog: "\"Je porte un bandana assorti à ma gamelle et j'ai trois manteaux. La vie est belle.\""
+    },
+    cadre: {
+      emoji: "📚",
+      title: "La disciplinaire bienveillante",
+      desc: "Règles claires, routine carrée, éducation dès le premier jour. Banh-mi va être un chien bien dans ses pattes, qui comprend ce qu'on attend de lui et se sent en sécurité grâce à tes repères. C'est un cadeau immense que tu lui offres.",
+      dog: "\"Je connais 12 ordres, je m'assois avant de manger, et franchement je suis fier de moi.\""
+    },
+    chill: {
+      emoji: "🛋️",
+      title: "La team slow life",
+      desc: "Canapé, balades tranquilles, complicité silencieuse. Tu ne vas pas stresser pour un rien et Banh-mi va capter ton énergie zen. Vous allez former le duo le plus détendu du quartier, et votre complicité va être belle à voir.",
+      dog: "\"On a regardé trois épisodes, j'ai dormi contre elle, c'était parfait.\""
+    },
+    impro: {
+      emoji: "🤹",
+      title: "L'improvisatrice au grand cœur",
+      desc: "Tu gères à l'instinct, parfois c'est le chaos, mais il y a tellement d'amour que ça passe crème. Banh-mi va avoir une vie pleine de surprises, de rires et d'aventures improbables avec toi. Il ne s'ennuiera jamais.",
+      dog: "\"Je ne sais jamais ce qui va se passer et j'adore ça. Hier on a dormi dans une tente.\""
+    }
+  };
+
+  let current = 0;
+  const scores = { poule: 0, cadre: 0, chill: 0, impro: 0 };
+
+  const intro = document.getElementById("intro-screen");
+  const qScreen = document.getElementById("question-screen");
+  const rScreen = document.getElementById("result-screen");
+  const qText = document.getElementById("question-text");
+  const answers = document.getElementById("answers");
+  const progressBar = document.getElementById("progress-bar");
+  const progressLabel = document.getElementById("progress-label");
+
+  function renderQuestion() {
+    const q = questions[current];
+    qText.textContent = q.q;
+    progressLabel.textContent = (current + 1) + "/" + questions.length;
+    progressBar.style.width = ((current + 1) / questions.length * 100) + "%";
+    answers.innerHTML = "";
+    q.a.forEach(function(ans) {
+      const btn = document.createElement("button");
+      btn.className = "answer-btn";
+      btn.textContent = ans.t;
+      btn.addEventListener("click", function() {
+        scores[ans.p]++;
+        current++;
+        if (current >= questions.length) {
+          showResult();
+        } else {
+          renderQuestion();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      });
+      answers.appendChild(btn);
+    });
+  }
+
+  function showResult() {
+    let top = "poule";
+    let max = -1;
+    Object.keys(scores).forEach(function(k) {
+      if (scores[k] > max) { max = scores[k]; top = k; }
+    });
+    const p = profiles[top];
+    document.getElementById("result-emoji").textContent = p.emoji;
+    document.getElementById("result-title").textContent = p.title;
+    document.getElementById("result-desc").textContent = p.desc;
+    document.getElementById("result-dog").textContent = p.dog;
+    qScreen.style.display = "none";
+    rScreen.style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  document.getElementById("start-btn").addEventListener("click", function() {
+    intro.style.display = "none";
+    qScreen.style.display = "block";
+    renderQuestion();
+  });
+
+  document.getElementById("retry-btn").addEventListener("click", function() {
+    current = 0;
+    Object.keys(scores).forEach(function(k) { scores[k] = 0; });
+    rScreen.style.display = "none";
+    intro.style.display = "block";
+  });
+})();
+</script>
+</body>
+</html>
