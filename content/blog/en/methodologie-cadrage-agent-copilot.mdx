@@ -1,0 +1,134 @@
+---
+title: "Episode 7 • Building a Copilot agent: 80% business scoping, 20% configuration"
+date: "2026-04-23"
+category: "Copilot de A à Z"
+excerpt: "A Copilot agent that actually works isn't about configuration. It's about business scoping. Here's my 5-phase method."
+readingTime: 4
+tags: ["Copilot", "Agents", "Microsoft 365", "Methodology"]
+featured: false
+send_newsletter: false
+draft: true
+---
+
+> *"We'd like a Copilot agent for our HR department. Can you build it for us?"*
+
+The request comes in regularly, framed like a classic dev project.
+
+Except that building a **declarative Copilot agent** (the kind you create inside Copilot Chat, without Copilot Studio) isn't development — it's business scoping. Flip those proportions, and you end up with an agent that works technically but no one uses after three weeks.
+
+Here's my 5-phase method.
+
+---
+
+## Phase 1 • Identify prerequisites and stakeholders
+
+A scoping call with the **business requesters**.
+
+My standard questions:
+
+- **If the agent could only handle 3 priority use cases, which ones?** The question forces the business to make trade-offs. They usually show up with a list of 15 ideas. We leave with 3.
+- **Who will use the agent?** Employees, managers, HR team? And more importantly, why?
+- **Which Copilot licenses do you have?** I ask them to get the info from IT, or connect me directly if needed.
+
+> **Without the right licenses in place, the agent simply cannot be used.**
+
+By the end of this call, the business sponsor and the IT reference are identified. If either is missing, we don't move to phase 2.
+
+---
+
+## Phase 2 • Structure the knowledge and prepare the content
+
+The quality of a declarative agent depends 90% on the content you give it to read.
+
+Two workshops:
+
+- **Help defining use cases** with the business: we list recurring questions, time-consuming processes, pain points.
+- **Data governance workshop with IT**: which sources can we connect? Which data is sensitive?
+
+I can then propose a clear methodology to guide the business through selecting knowledge sources and structuring the content.
+
+---
+
+## Phase 3 • Select and document the target process
+
+This is where we really define the agent's behavior.
+
+At a minimum, I run the following workshops:
+
+1. **Use case / knowledge mapping**: for every question the agent will handle, we identify the associated source of truth.
+2. **Data and knowledge sources**: we validate the SharePoint sources or other files that will feed the agent.
+3. **Tone, stance, and limits** of the agent: formal or informal address, level of detail, behavior when a question is out of scope.
+4. **Confidentiality and legal framework**: sensitive data to exclude, disclaimers to display, GDPR compliance.
+
+> **Deliverable**: an **agent specification** document. It becomes the reference for every iteration that follows.
+
+---
+
+## Phase 4 • Configure the agent over several iterations
+
+One iteration per week keeps the project on track and forces concrete delivery each cycle.
+
+For the first three iterations, the **requesters** (the project team) do the testing. They know the need and can spot what's off. A broader pilot group steps in during the last iteration.
+
+**Iteration 1: First working version of the agent**
+
+I plug in the main sources, write a first instruction prompt, and set the baseline behavior. The agent responds to the priority use cases identified in phase 1.
+
+The project team tests the priority use cases and gives concrete feedback on what works and what doesn't.
+
+**Iteration 2: Adjusting sources and prompts**
+
+Most of the refinement work happens here. We remove documents that pollute the answers, add the ones that were missing, and restructure the knowledge base if needed.
+
+Instructions are tweaked to fix the drifts noticed during early testing.
+
+**Iteration 3: Refining tone, limits, and trick questions**
+
+We work on the agent's posture: formal or informal address, answer length, direct or more educational tone. And most importantly, we test **trick questions**:
+
+- **Out-of-scope questions**: an employee asking an HR agent for IT info.
+- **Ambiguous questions**: a wording that could apply to two different topics.
+
+**Iteration 4: Pilot rollout**
+
+A small group of 5-6 end users (outside the project team) tests the agent in real conditions during the week.
+
+It's the first time the agent meets users who don't know the project. The feedback is often very different from what the project team gave.
+
+---
+
+## Phase 5 • Deploy and share the agent with end users
+
+In most cases, this is an IT step. They have the admin rights and they know the organization's distribution channels.
+
+Three sharing options depending on context:
+
+- **Direct Copilot link**: the fastest — send a link to targeted users. Works for small audiences.
+- **Published on a SharePoint site**: the agent becomes accessible to authorized users. Ideal when the target population is large.
+- **Integration into a dedicated Teams app**: for agents that fit into daily usage.
+
+> **If users don't have access to the agent's knowledge sources, it will quickly become unusable.**
+
+---
+
+## Who does what? A summary
+
+| Phase | **My actions** | **Client actions** |
+|---|---|---|
+| **1. Prerequisites and stakeholders** | <ul><li>Scoping call with the business</li><li>Identify the sponsor and IT reference</li></ul> | <ul><li>Get license info from IT</li></ul> |
+| **2. Structure the knowledge** | <ul><li>Business workshop on use cases</li><li>IT workshop on data governance</li></ul> | <ul><li>Formalize the needs</li><li>Validate technical prerequisites</li></ul> |
+| **3. Agent specifications** | <ul><li>Use case / knowledge mapping</li><li>Validate data sources</li><li>Define tone and limits</li><li>Confidentiality and GDPR framing</li></ul> | <ul><li>Participate in workshops</li><li>Validate the specification document</li><li>Structure source content</li></ul> |
+| **4. Iterative configuration** | <ul><li>4 configuration iterations</li></ul> | <ul><li>Regular testing by the project team</li><li>Form the pilot group</li></ul> |
+| **5. Deployment** | <ul><li>Recommend the sharing method</li></ul> | <ul><li>Configure sharing (link, SharePoint, Teams app)</li><li>Verify source access</li></ul> |
+
+---
+
+## My takeaway
+
+Building a successful declarative Copilot agent means accepting that configuration isn't the heart of the project.
+
+Three things I see over and over:
+
+1. **Projects that fail** almost always come down to incomplete business scoping, an IT team that wasn't involved enough, or poorly managed governance.
+2. A **declarative agent's quality depends 90% on its sources**, not its configuration.
+3. **Without a business sponsor, the agent won't live long.** Even with the best specifications in the world.
