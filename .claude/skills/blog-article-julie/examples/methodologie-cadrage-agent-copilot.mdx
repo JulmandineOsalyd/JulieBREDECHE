@@ -1,0 +1,134 @@
+---
+title: "Épisode 7 • Créer un agent Copilot : 80% de cadrage métier, 20% de paramétrage"
+date: "2026-04-23"
+category: "Copilot de A à Z"
+excerpt: "Un agent Copilot qui marche, ce n'est pas une question de paramétrage. C'est une question de cadrage métier. Ma méthode en 5 phases."
+readingTime: 4
+tags: ["Copilot", "Agents", "Microsoft 365", "Méthodologie"]
+featured: false
+send_newsletter: false
+draft: true
+---
+
+> *"On voudrait un agent Copilot pour notre service RH. Tu peux nous le développer ?"*
+
+La demande arrive régulièrement, formulée comme un projet de dev classique.
+
+Sauf que créer un **agent Copilot déclaratif** (celui qu'on construit dans Copilot Chat, sans Copilot Studio), ce n'est pas du développement, c'est du cadrage métier. Si on inverse les proportions, on se retrouve avec un agent qui fonctionne techniquement mais que personne n'utilise au bout de trois semaines.
+
+Voici ma méthode en 5 phases.
+
+---
+
+## Phase 1 • Identifier les prérequis et les parties prenantes
+
+Un call de cadrage avec les **métiers demandeurs**.
+
+Mes questions systématiques :
+
+- **Si l'agent ne devait répondre qu'à 3 usages prioritaires, lesquels ?** La question force le métier à trancher. Souvent, ils arrivent avec une liste de 15 idées. On repart avec 3.
+- **Qui va utiliser l'agent ?** Collaborateurs, managers, équipe RH ? Et surtout pourquoi ?
+- **Quelles licences Copilot avez-vous ?** Je leur demande de récupérer l'info auprès de la DSI, ou de me mettre en relation si besoin.
+
+> **Sans les bonnes licences en place, l'agent ne pourra pas être exploité.**
+
+Le sponsor métier et le référent DSI sont identifiés à la sortie de ce call. Si l'un des deux manque, on ne passe pas en phase 2.
+
+---
+
+## Phase 2 • Structurer la connaissance et préparer les contenus
+
+La qualité d'un agent déclaratif dépend à 90% des contenus qu'on lui donne à lire.
+
+Deux ateliers :
+
+- **Aide à la définition des cas d'usages** avec le métier : on liste les questions récurrentes, les processus chronophages, les points de friction.
+- **Atelier sur la gouvernance des données avec la DSI** : quelles sources peut-on connecter ? Quelles données sont sensibles ?
+
+Je peux ensuite proposer une méthodologie claire pour guider le métier dans le choix des sources de connaissances et la structuration des contenus.
+
+---
+
+## Phase 3 • Sélectionner et documenter le processus cible
+
+C'est ici qu'on définit vraiment le comportement de l'agent.
+
+Je propose à minima les ateliers suivants :
+
+1. **Mapping cas d'usage / connaissances** : pour chaque question que l'agent devra traiter, on identifie la source de vérité associée.
+2. **Données et sources de connaissances** : on valide les sources de données SharePoint ou autres fichiers qui alimenteront l'agent.
+3. **Ton, posture et limites** de l'agent : tutoiement ou vouvoiement, niveau de détail, comportement face à une question hors périmètre.
+4. **Confidentialité et cadre légal** : données sensibles à exclure, disclaimers à afficher, conformité RGPD.
+
+> **Livrable produit** : un document de **spécifications de l'agent**. C'est la référence pour les itérations suivantes.
+
+---
+
+## Phase 4 • Paramétrer l'agent en plusieurs itérations
+
+Une itération par semaine évite de perdre le fil du projet, et force à livrer du concret à chaque cycle.
+
+Sur les trois premières itérations, ce sont les **demandeurs** (l'équipe projet) qui testent. Ils connaissent le besoin, ils savent repérer ce qui cloche. Un groupe pilote élargi pourra entrer en jeu lors de la dernière itération.
+
+**Itération 1 : Première version fonctionnelle de l'agent**
+
+Je branche les sources principales, je rédige un premier prompt d'instruction, je cadre le comportement de base. L'agent répond aux cas d'usage prioritaires identifiés en phase 1.
+
+L'équipe projet teste les cas usages prioritaires et fait des retours concrets sur ce qui fonctionne ou dérape.
+
+**Itération 2 : Ajustement des sources et des prompts**
+
+Le plus gros du travail d'affinage se joue ici. On retire les documents qui polluent les réponses, on ajoute ceux qui manquent, on restructure la base de connaissance si besoin.
+
+Les instructions sont retouchées pour corriger les dérives constatées lors des premiers tests.
+
+**Itération 3 : Affinage du ton, des limites, questions pièges**
+
+On travaille la posture de l'agent : tutoiement ou vouvoiement, longueur des réponses, ton direct ou plus pédagogique. Et surtout, on teste les **questions pièges** :
+
+- **Questions hors périmètre** : un collaborateur qui demande des infos IT à un agent RH.
+- **Questions ambiguës** : une formulation qui pourrait concerner deux sujets différents.
+
+**Itération 4 : Déploiement du pilote**
+
+Un groupe restreint de 5-6 utilisateurs finaux (hors équipe projet) teste l'agent en conditions réelles pendant la semaine.
+
+C'est la première fois que l'agent rencontre des utilisateurs qui ne connaissent pas le projet. Les retours sont souvent très différents de ceux de l'équipe projet.
+
+---
+
+## Phase 5 • Déployer et partager l'agent aux utilisateurs finaux
+
+C'est une étape DSI dans la majorité des cas. Elle a les droits administrateurs nécessaires, et elle maîtrise les canaux de distribution de l'organisation.
+
+Trois options de partage selon le contexte :
+
+- **Lien Copilot direct** : le plus rapide, on envoie un lien aux utilisateurs ciblés. Adapté aux populations restreintes.
+- **Mise à disposition sur un site SharePoint** : l'agent devient accessible par les utilisateurs autorisés. Idéal quand la population cible est large.
+- **Intégration dans une app Teams dédiée** : pour les agents qui s'inscrivent dans des usages quotidiens.
+
+> **Si les utilisateurs n'ont pas accès aux sources de connaissances de l'agent, il sera vite inexploitable.**
+
+---
+
+## Qui fait quoi ? La répartition en synthèse
+
+| Phase | **Mes actions** | **Actions client** |
+|---|---|---|
+| **1. Prérequis et parties prenantes** | <ul><li>Call de cadrage avec les métiers</li><li>Identification du sponsor et du référent DSI</li></ul> | <ul><li>Récupérer les infos licences auprès de la DSI</li></ul> |
+| **2. Structurer la connaissance** | <ul><li>Atelier métier sur les cas d'usages</li><li>Atelier DSI sur la gouvernance des données</li></ul> | <ul><li>Formalisation des besoins</li><li>Validation des prérequis techniques</li></ul> |
+| **3. Spécifications de l'agent** | <ul><li>Mapping cas d'usage / connaissances</li><li>Validation des sources de données</li><li>Définition du ton et des limites</li><li>Cadrage confidentialité et RGPD</li></ul> | <ul><li>Participation aux ateliers</li><li>Validation du document de spécifications</li><li>Structuration des contenus sources</li></ul> |
+| **4. Paramétrage en itérations** | <ul><li>4 itérations de paramétrage</li></ul> | <ul><li>Tests réguliers de l'équipe projet</li><li>Constitution du groupe pilote</li></ul> |
+| **5. Déploiement** | <ul><li>Recommandation du mode de partage</li></ul> | <ul><li>Configuration du partage (lien, SharePoint, app Teams)</li><li>Vérification des accès aux sources</li></ul> |
+
+---
+
+## Ma conclusion
+
+Créer un agent Copilot déclaratif réussi, c'est accepter que le paramétrage n'est pas le cœur du projet.
+
+Trois constats qui reviennent souvent :
+
+1. **Les projets qui ratent**, c'est très souvent un cadrage métier incomplet, une DSI pas assez impliquée, ou une gouvernance mal maîtrisée.
+2. La **qualité d'un agent déclaratif dépend à 90% de ses sources**, pas de son paramétrage.
+3. **Sans sponsor métier, l'agent ne vivra pas bien longtemps.** Même avec les meilleures spécifications du monde.
