@@ -1,0 +1,103 @@
+---
+title: "5 erreurs à éviter quand on automatise un processus"
+date: "2025-10-05"
+category: "Power Automate"
+excerpt: "Process bancal, exceptions oubliées, adoption négligée : les 5 erreurs qui plombent vos automatisations, et les réflexes terrain pour les éviter."
+readingTime: 4
+tags: ["Power Automate", "Automatisation", "Power Platform", "Conduite du changement"]
+featured: false
+send_newsletter: false
+draft: true
+---
+
+
+
+Automatiser un processus, ce n'est pas simplement accumuler une série d'actions et de condition. Voici les 5 erreurs que je vois revenir le plus souvent lors de mes missions.
+
+---
+
+## Erreur #1 : Automatiser un process défaillant
+
+Un process bancal automatisé, ce n'est pas un process corrigé. Ce sont des bugs qui arrivent plus vite, à plus grande échelle.
+
+Avant d'ouvrir Power Automate, trois réflexes :
+
+- **Analyser** le process existant : quelles sont les étapes clés ? Quelles sont les exceptions ?
+- **Clarifier les rôles** : qui fait quoi, à quel moment ? Qui valide ? Qui est notifié ?
+- **Simplifier** : toutes les étapes sont-elles vraiment indispensables ? Certaines existent peut-être par habitude.
+
+> **Automatiser ne corrige pas un process. Ça en amplifie les défauts.**
+
+---
+
+## Erreur #2 : Vouloir tout automatiser
+
+L'enthousiasme du début pousse à automatiser large. Mauvais réflexe. Toutes les tâches ne se valent pas.
+
+| Bon candidat à l'automatisation | À garder en humain |
+|---|---|
+| ✅ &nbsp; Tâche simple et répétitive | ❌ &nbsp; Beaucoup d'exceptions au cas par cas |
+| ✅ &nbsp; Règles claires, peu d'ambiguïté | ❌ &nbsp; Décision sensible ou subjective |
+| ✅ &nbsp; Pas de jugement humain requis | ❌ &nbsp; Contexte qui change tout le temps |
+
+Une tâche bourrée d'exceptions, automatisée, ce sont autant de branches conditionnelles dans le flux. Un cauchemar à maintenir, une logique illisible six mois plus tard.
+
+> **Automatiser, oui. Tout automatiser, non.**
+
+---
+
+## Erreur #3 : Négliger l'adoption
+
+Un flux qui marche techniquement mais que personne n'utilise, c'est un flux inutile. J'ai vu des automatisations brillantes mourir parce que personne n'avait pris le temps d'expliquer ce qu'elles changeaient au quotidien.
+
+Trois leviers à activer dès le début du projet :
+
+- **Impliquer** les futurs utilisateurs : pas juste les sponsors, les vrais utilisateurs finaux. Dès le cadrage.
+- **Expliquer** : à quoi ça sert ? Quel problème ça résout pour eux ? Quel temps gagné ?
+- **Former** : démos rapides, support disponible, FAQ accessible. Pas un email avec un lien.
+
+> **Une automatisation non adoptée est un échec, même si elle fonctionne bien techniquement.**
+
+---
+
+## Erreur #4 : Oublier les exceptions
+
+Le flux gère bien le cas nominal. Et le jour où le validateur est en congés ? Le jour où le fichier source est vide ? Le jour où l'API tierce renvoie une erreur ?
+
+Un imprévu non géré ne fait pas gagner du temps. Il devient un point de blocage que personne ne sait résoudre.
+
+À prévoir dès la conception :
+
+- **Scénarios alternatifs** : absence d'un acteur, donnée manquante, valeur inattendue
+- **Alertes et escalades** : un humain est notifié quand le flux ne sait pas trancher
+- **Contrôles** : vérifications en amont pour garantir la fiabilité, pas juste l'exécution
+
+> **Un bon flux ne se contente pas de fonctionner. Il sait dire qu'il ne sait pas.**
+
+---
+
+## Erreur #5 : Croire que livré = terminé
+
+La mise en prod n'est pas la fin du projet. C'est le début de sa vraie vie. Un flux qu'on abandonne après le déploiement vieillit mal : nouveaux cas d'usage, évolution des outils, retours utilisateurs ignorés.
+
+Un système se pilote. Concrètement :
+
+- **Mesurer les résultats** : indicateurs de suivi, monitoring des exécutions, taux d'échec
+- **Ajuster** : intégrer les retours terrain et les cas d'usage non anticipés au démarrage
+- **Viser l'agilité** : un bon outil évolue avec l'organisation et les versions de la plateforme
+
+> **Un système qu'on abandonne se dégrade. Un système qu'on pilote se bonifie.**
+
+---
+
+## Ma conclusion
+
+Automatiser un processus efficacement, c'est selon moi surtout une histoire de méthodologie.
+
+Trois constats qui reviennent dans la majorité des projets :
+
+1. **Le succès se joue un cadrage propre**, un process simplifié et des rôles clairs.
+2. **L'adoption est la moitié du projet.** Une automatisation qui marche techniquement mais que personne n'utilise n'a aucune valeur métier.
+3. **Un flux doit évoluer dans la durée ** selon les nouvelles contraintes métiers ou les changements organisationnels.
+
+Écouter, ajuster, faire simple.

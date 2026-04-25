@@ -1,0 +1,103 @@
+---
+title: "5 mistakes to avoid when automating a process"
+date: "2025-10-05"
+category: "Power Automate"
+excerpt: "Broken process, forgotten exceptions, neglected adoption: the 5 mistakes that wreck your automations, and the field-tested reflexes to avoid them."
+readingTime: 4
+tags: ["Power Automate", "Automation", "Power Platform", "Change Management"]
+featured: false
+send_newsletter: false
+draft: true
+---
+
+
+
+Automating a process isn't just stacking up a series of actions and conditions. Here are the 5 mistakes I see most often during my engagements.
+
+---
+
+## Mistake #1: Automating a broken process
+
+A broken process automated isn't a fixed process. It's bugs that hit faster, at a bigger scale.
+
+Before opening Power Automate, three reflexes:
+
+- **Analyze** the existing process: what are the key steps? What are the exceptions?
+- **Clarify the roles**: who does what, and when? Who approves? Who gets notified?
+- **Simplify**: are all the steps really necessary? Some may just exist out of habit.
+
+> **Automation doesn't fix a process. It amplifies its flaws.**
+
+---
+
+## Mistake #2: Trying to automate everything
+
+Early enthusiasm pushes teams to automate broadly. Wrong reflex. Not every task deserves it.
+
+| Good candidate for automation | Better kept human |
+|---|---|
+| ✅ &nbsp; Simple and repetitive task | ❌ &nbsp; Many case-by-case exceptions |
+| ✅ &nbsp; Clear rules, little ambiguity | ❌ &nbsp; Sensitive or subjective decision |
+| ✅ &nbsp; No human judgment required | ❌ &nbsp; Context changes constantly |
+
+A task full of exceptions, automated, means as many conditional branches in the flow. A nightmare to maintain, an unreadable logic six months later.
+
+> **Automate, yes. Automate everything, no.**
+
+---
+
+## Mistake #3: Neglecting adoption
+
+A flow that works technically but no one uses is a useless flow. I've seen brilliant automations die because no one took the time to explain what they actually changed in people's daily work.
+
+Three levers to activate from day one:
+
+- **Involve** future users: not just sponsors, the actual end users. Right from the scoping phase.
+- **Explain**: what's it for? What problem does it solve for them? What time is saved?
+- **Train**: short demos, available support, accessible FAQ. Not just an email with a link.
+
+> **An unadopted automation is a failure, even if it runs perfectly.**
+
+---
+
+## Mistake #4: Forgetting the exceptions
+
+The flow handles the nominal case well. And the day the approver is on leave? The day the source file is empty? The day the third-party API returns an error?
+
+An unhandled edge case doesn't save time. It becomes a blocker that no one knows how to solve.
+
+What to plan for from the design phase:
+
+- **Alternative scenarios**: missing actor, missing data, unexpected value
+- **Alerts and escalations**: a human gets notified when the flow can't decide
+- **Controls**: upstream checks to guarantee reliability, not just execution
+
+> **A good flow doesn't just work. It knows how to say it doesn't know.**
+
+---
+
+## Mistake #5: Believing that delivered = finished
+
+Going live isn't the end of the project. It's the start of its real life. A flow that gets abandoned after deployment ages badly: new use cases, tools evolving, user feedback ignored.
+
+A system needs to be steered. Concretely:
+
+- **Measure results**: tracking indicators, run monitoring, failure rates
+- **Adjust**: integrate field feedback and use cases that weren't anticipated at the start
+- **Aim for agility**: a good tool evolves with the organization and the platform versions
+
+> **A system you abandon decays. A system you steer gets better.**
+
+---
+
+## My takeaway
+
+Automating a process effectively is, in my view, mostly a matter of methodology.
+
+Three observations that come back in most projects:
+
+1. **Success is decided by clean scoping**, a simplified process, and clear roles.
+2. **Adoption is half the project.** An automation that works technically but no one uses has no business value.
+3. **A flow must evolve over time**, in line with new business constraints or organizational changes.
+
+Listen, adjust, keep it simple.
