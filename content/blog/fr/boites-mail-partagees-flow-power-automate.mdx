@@ -1,0 +1,95 @@
+---
+title: "Boîtes mail partagées ingérables ? Voici le flow qui a sauvé leur rentrée"
+date: "2025-09-12"
+category: "Power Automate"
+excerpt: "3 boîtes mail, 10 agents, +1000 messages à traiter. Retour d'expérience sur un flow Power Automate qui a remis de l'ordre."
+readingTime: 4
+tags: ["Power Automate", "AI Builder", "SharePoint", "Microsoft 365"]
+featured: false
+send_newsletter: false
+draft: false
+---
+
+Un service client réparti sur plusieurs sites en Europe. Plusieurs boîtes mail partagées, plusieurs langues, des demandes très variées qui arrivent en continu.
+
+À la rentrée, le système atteint ses limites.
+
+
+---
+
+## 1. Le chaos de la rentrée et l'idée d'un cockpit unique
+
+Le problème n'est pas nouveau, mais il explose à la rentrée :
+
+- **3 boîtes mail partagées** pour gérer les demandes entrantes
+- **10 agents** qui doivent se coordonner pour répondre
+- **+1000 messages** empilés après les congés
+
+Outlook fait ce qu'il peut. Mais entre les drapeaux, les dossiers personnels et les catégories que personne n'applique pareil, le suivi devient vite illisible. Deux agents répondent au même mail. D'autres passent à travers les mailles.
+
+**Ma proposition** : Une liste SharePoint structurée, où chaque message devient un enregistrement. Un agent s'affecte une ligne en un clic, et tout le monde voit qui traite quoi.
+
+> Le mail reste le canal d'entrée, mais le pilotage bascule côté SharePoint.
+
+
+---
+
+## 2. Le flow : Outlook → Power Automate → SharePoint
+
+L'architecture tient en trois briques :
+
+- **Outlook** : la source, les trois boîtes mail partagées
+- **Power Automate** : le chef d'orchestre qui récupère les mails et les transforme
+- **SharePoint** : la destination, une liste personnalisée avec mise en forme JSON
+
+Le flow se déclenche à chaque nouveau mail reçu. Il extrait les métadonnées (expéditeur, objet, date, corps), puis les pousse dans la liste.
+
+> Et c'est là que j'ai ajouté une couche AI Builder pour enrichir chaque enregistrement !
+
+- 📝 **Résumé synthétique** du mail, pour scanner l'essentiel sans ouvrir
+- 🌍 **Détection de la langue**, utile quand les boîtes reçoivent du multilingue
+- 😊 **Analyse du sentiment**, pour repérer les mails tendus à traiter en priorité
+
+L'agent voit d'un coup d'œil ce qu'il a dans sa file d'attente, sans ouvrir un seul mail pour trier.
+
+---
+
+## 3. ⚠️ Le point de vigilance : l'IA, ça peut vite coûter cher
+
+C'est le piège qu'il faut voir arriver.
+
+Chaque action AI Builder dans Power Automate **consomme des crédits**. Sur une volumétrie raisonnable, ça passe. Sur une boîte qui reçoit beaucoup de spams, ou qui prend plusieurs centaines de mails par jour, la facture grimpe vite.
+
+Avant de basculer en production :
+
+- **Estimer la volumétrie réelle** sur une semaine type
+- **Vérifier les licences** Power Automate Premium et les capacités AI Builder disponibles
+- **Filtrer en amont** les mails sans intérêt (newsletters, notifications automatiques) pour ne pas les passer à l'IA
+
+**L'IA c'est puissant, mais pas gratuit.** Bien cadrer le périmètre avant de déployer, c'est éviter une mauvaise surprise sur la refacturation interne.
+
+---
+
+## 4. Le résultat pour les agents
+
+Ce qui a changé concrètement, côté utilisateurs :
+
+- Ils **ne jonglent plus** entre trois boîtes mail ouvertes en parallèle
+- Ils retrouvent tous les messages **déjà analysés par l'IA** dans une seule liste SharePoint
+- Ils **s'affectent les messages en un clic**, et chacun voit qui traite quoi
+
+
+
+
+---
+
+## Et si on allait plus loin ?
+
+Le flow couvre déjà l'essentiel, mais je pense déjà à quelques pistes d'évolution :
+
+- **Une application PowerApps** pour répondre aux mails directement depuis l'application, sans repasser par Outlook. Les agents restent dans un seul outil, de bout en bout.
+- **Un rapport Power BI** pour piloter la charge : volume de mails par jour, temps de traitement moyen, répartition par agent, sentiment global des demandes.
+
+À ce stade, on n'a plus un flow. **On a un véritable outil collaboratif.**
+
+C'est toute la logique Power Platform : partir d'un petit besoin concret, et faire évoluer la solution au rythme des usages.

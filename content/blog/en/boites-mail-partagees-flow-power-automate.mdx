@@ -1,0 +1,95 @@
+---
+title: "Unmanageable Shared Mailboxes? Here's the Flow That Saved Their Back-to-School Season"
+date: "2025-09-12"
+category: "Power Automate"
+excerpt: "3 mailboxes, 10 agents, +1000 messages to process. Field feedback on a Power Automate flow that brought order back."
+readingTime: 4
+tags: ["Power Automate", "AI Builder", "SharePoint", "Microsoft 365"]
+featured: false
+send_newsletter: false
+draft: false
+---
+
+A customer service team spread across several sites in Europe. Multiple shared mailboxes, multiple languages, and very diverse requests coming in non-stop.
+
+When September hits, the system reaches its limits.
+
+
+---
+
+## 1. Back-to-school chaos and the idea of a single cockpit
+
+The problem isn't new, but it explodes in September:
+
+- **3 shared mailboxes** to handle incoming requests
+- **10 agents** who must coordinate to respond
+- **+1000 messages** piled up after the holidays
+
+Outlook does what it can. But between flags, personal folders, and categories that nobody applies the same way, tracking quickly becomes unreadable. Two agents reply to the same email. Others slip through the cracks.
+
+**My proposal**: A structured SharePoint list, where each message becomes a record. An agent assigns themselves a row in one click, and everyone sees who's handling what.
+
+> Email stays the entry channel, but management shifts to the SharePoint side.
+
+
+---
+
+## 2. The flow: Outlook → Power Automate → SharePoint
+
+The architecture rests on three building blocks:
+
+- **Outlook**: the source, the three shared mailboxes
+- **Power Automate**: the conductor that retrieves emails and transforms them
+- **SharePoint**: the destination, a custom list with JSON formatting
+
+The flow triggers each time a new email is received. It extracts the metadata (sender, subject, date, body), then pushes it into the list.
+
+> And that's where I added an AI Builder layer to enrich each record!
+
+- 📝 **Synthetic summary** of the email, to scan the essentials without opening it
+- 🌍 **Language detection**, useful when mailboxes receive multilingual messages
+- 😊 **Sentiment analysis**, to spot tense emails to handle as a priority
+
+The agent sees at a glance what's in their queue, without opening a single email to triage.
+
+---
+
+## 3. ⚠️ The watch point: AI can quickly get expensive
+
+This is the trap you need to see coming.
+
+Each AI Builder action in Power Automate **consumes credits**. At a reasonable volume, it's fine. On a mailbox that receives a lot of spam, or that takes hundreds of emails per day, the bill climbs fast.
+
+Before going to production:
+
+- **Estimate the real volume** over a typical week
+- **Check the licenses** for Power Automate Premium and the AI Builder capacity available
+- **Filter upstream** the irrelevant emails (newsletters, automated notifications) so they don't get passed to AI
+
+**AI is powerful, but not free.** Properly scoping the perimeter before deploying avoids a nasty surprise on the internal rebilling.
+
+---
+
+## 4. The result for the agents
+
+What concretely changed, on the user side:
+
+- They **no longer juggle** between three mailboxes open in parallel
+- They find all messages **already analyzed by AI** in a single SharePoint list
+- They **assign themselves messages in one click**, and everyone sees who's handling what
+
+
+
+
+---
+
+## What if we went further?
+
+The flow already covers the essentials, but I'm already thinking about a few avenues for evolution:
+
+- **A PowerApps application** to reply to emails directly from the app, without going back to Outlook. Agents stay in a single tool, end-to-end.
+- **A Power BI report** to manage the workload: email volume per day, average processing time, distribution per agent, overall sentiment of requests.
+
+At that stage, we no longer have a flow. **We have a true collaborative tool.**
+
+That's the whole logic of the Power Platform: start from a small concrete need, and grow the solution at the pace of usage.

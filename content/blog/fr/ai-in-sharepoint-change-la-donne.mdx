@@ -1,0 +1,122 @@
+---
+title: "Comment AI in SharePoint va changer la donne"
+date: "2026-04-24"
+category: "SharePoint"
+excerpt: "AI in SharePoint arrive en GA mi-juin 2026. Tour d'horizon des capacités réelles, des prérequis et des limites avant de s'y mettre."
+readingTime: 5
+tags: ["SharePoint", "Copilot", "Microsoft 365", "IA"]
+featured: false
+send_newsletter: false
+draft: true
+---
+
+> *"Tu peux me créer un site SharePoint pour notre projet RH ? Avec les bonnes pages, une bibliothèque propre, et une liste pour suivre les demandes ?"*
+
+La demande revient chaque semaine.
+
+Jusqu'ici, la réponse passait par un consultant, un chef de projet, ou un bon admin SharePoint. Désormais, elle peut venir directement de SharePoint lui-même.
+
+**AI in SharePoint** est en public preview depuis mars 2026. La **General Availability est annoncée entre mi-juin et mi-juillet 2026**. Voici ce que la fonctionnalité fait vraiment, et surtout ce qu'il faut anticiper avant de se jeter dessus.
+
+---
+
+## 1. Ce que fait concrètement AI in SharePoint
+
+AI in SharePoint, ce n'est pas juste "un Copilot de plus". C'est une couche d'IA intégrée nativement à la plateforme, qui agit sur plusieurs objets à la fois.
+
+Les capacités annoncées par Microsoft :
+
+- **Créer des sites** complets à partir d'une description en langage naturel
+- **Créer et éditer des pages** via un panneau IA dédié
+- **Générer des listes et des bibliothèques** avec leur structure de colonnes
+- **Enrichir les métadonnées** automatiquement à partir du contenu des fichiers
+- **Améliorer un site existant** : détection des liens cassés, pages obsolètes, suggestions de design
+- **Créer des agents SharePoint** ancrés sur un périmètre documentaire
+
+> **Ce n'est plus un assistant à la marge. C'est un partenaire de construction qui touche à la structure même du site.**
+
+---
+
+## 2. Créer un site en langage naturel, comment ça marche
+
+C'est la fonctionnalité la plus impressionnante. On décrit ce qu'on veut, SharePoint construit.
+
+Le flux en pratique :
+
+1. **On écrit un prompt** : *"Un site pour mon service RH avec une page d'accueil, une bibliothèque pour les politiques RH, une liste pour les demandes de congés, et une page FAQ."*
+2. **SharePoint propose un plan structuré** : arborescence du site, pages prévues, bibliothèques, listes, contenu de départ.
+3. **SharePoint pose des questions de clarification** si l'intention est ambiguë.
+4. **Le site est généré** une fois le plan validé.
+
+En coulisses, c'est le modèle **Claude d'Anthropic** qui orchestre le processus, via un raisonnement itératif qui mobilise des dizaines d'outils SharePoint.
+
+La différence avec le Copilot de SharePoint "classique" : on ne se contente plus d'éditer une page existante. **On passe de l'intention au site complet en une seule requête.**
+
+---
+
+## 3. Les autres briques AI intégrées à SharePoint
+
+Au-delà de la création de site, Microsoft pousse plusieurs capacités IA dans le même package.
+
+| Capacité | Ce que ça fait |
+|---|---|
+| **Création de pages par IA** | Un panneau dédié pour générer pages, sections, FAQ web parts via prompt |
+| **Organisation auto des bibliothèques** | Colonnes remplies automatiquement à partir du contenu des fichiers |
+| **Vues personnalisées** | Création de vues sur mesure via langage naturel |
+| **Amélioration de site** | Détection de liens cassés, pages à archiver, suggestions de design |
+| **Résumé et comparaison de fichiers** | Synthèses, comparatifs, FAQ générées depuis les documents |
+| **Agents SharePoint** | Création d'agents ancrés sur un site, une bibliothèque ou un dossier |
+
+Chaque brique s'appuie sur les permissions existantes du site. **L'IA ne voit que ce que l'utilisateur voit déjà.**
+
+---
+
+## 4. Prérequis, calendrier et limites à anticiper
+
+C'est la section à lire attentivement avant de promettre quoi que ce soit à un métier.
+
+### Le calendrier officiel
+
+- **Public Preview** : début mars 2026, finalisation fin avril 2026
+- **Targeted Release** : début mai à mi-mai 2026
+- **General Availability** : **mi-juin à mi-juillet 2026** (worldwide, GCC, GCC High, DoD)
+
+### Les prérequis non négociables
+
+- **Licence Microsoft 365 Copilot** obligatoire pour chaque utilisateur
+- **Opt-in du tenant ou du site** par l'administrateur IT
+- **Opt-in Anthropic** : selon la localisation, l'organisation doit autoriser Anthropic comme sous-traitant de Microsoft Online Services
+
+⚠️ Point de vigilance : **Microsoft a indiqué vouloir régler la question Anthropic avant la GA**, mais certains tenants (secteurs régulés, zones géographiques spécifiques) pourraient rester bloqués.
+
+### Les rôles qui comptent
+
+SharePoint distingue quatre niveaux d'accès aux capacités IA :
+
+- **Content Consumer** : poser des questions, résumer
+- **Content Creator** : créer pages et sections
+- **Site Manager** : maintenir la santé du site
+- **Content Manager** : organiser bibliothèques et workflows
+
+Ce découpage évite qu'un simple lecteur déclenche une création de site. Mais il implique aussi de **revoir les permissions** avant l'arrivée de la feature.
+
+### Les surfaces non supportées
+
+Attention, AI in SharePoint ne fonctionne pas partout :
+
+- ❌ SharePoint Home
+- ❌ Viva Connections
+- ❌ Sites SharePoint ouverts depuis Teams
+- ✅ Sites SharePoint Online modernes uniquement
+
+---
+
+## Ma conclusion
+
+AI in SharePoint, ce n'est pas un gadget. C'est un déplacement du point de friction d'un projet SharePoint : la création technique devient presque gratuite, **le cadrage métier devient le vrai sujet.**
+
+Trois constats à garder en tête :
+
+1. **La GA mi-juin 2026 est proche.** Autant se préparer maintenant : audit des licences Copilot, vérification de l'opt-in Anthropic, revue des rôles et permissions.
+2. **La question ne sera plus "comment créer un site"** mais "avec quelle structure, pour quels usages, avec quelles sources de vérité". Le métier devra arriver avec une intention claire, pas juste une demande.
+3. **Sans licence Copilot, pas d'accès.** Les organisations qui ont encore un déploiement Copilot partiel vont voir une fracture se créer entre les équipes qui bénéficient de l'IA et les autres.

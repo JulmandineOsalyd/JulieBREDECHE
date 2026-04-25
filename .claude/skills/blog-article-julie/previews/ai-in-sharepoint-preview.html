@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Preview — Comment AI in SharePoint va changer la donne</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f5f7; color: #1d1d1f; height: 100vh; overflow: hidden; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #fff; border-bottom: 1px solid #e5e5e7; font-size: 14px; }
+  .topbar .title { font-weight: 600; }
+  .topbar .stats { color: #666; font-size: 13px; }
+  .split { display: flex; height: calc(100vh - 50px); }
+  .pane { flex: 1; overflow-y: auto; }
+  .pane-left { background: #fff; padding: 40px 60px; }
+  .pane-right { background: #1e1e1e; display: flex; flex-direction: column; border-left: 1px solid #e5e5e7; }
+  .banner { background: #fff4e6; border: 1px solid #f0b97d; color: #663c00; padding: 10px 14px; font-size: 13px; line-height: 1.5; margin: 10px; border-radius: 6px; }
+  .toolbar { display: flex; gap: 8px; padding: 10px; background: #252526; border-bottom: 1px solid #333; }
+  .btn { padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; font-family: inherit; }
+  .btn-primary { background: #0078d4; color: white; }
+  .btn-primary:hover { background: #106ebe; }
+  .btn-secondary { background: #3c3c3c; color: #ccc; }
+  .btn-secondary:hover { background: #4a4a4a; }
+  textarea { flex: 1; width: 100%; background: #1e1e1e; color: #d4d4d4; border: none; padding: 16px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; line-height: 1.6; resize: none; outline: none; }
+  .article { max-width: 720px; margin: 0 auto; }
+  .article .meta { color: #666; font-size: 13px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .article h1 { font-size: 36px; line-height: 1.2; margin: 0 0 16px; font-weight: 700; }
+  .article .excerpt { font-size: 18px; color: #555; font-style: italic; margin-bottom: 32px; line-height: 1.5; }
+  .article h2 { font-size: 26px; font-weight: 700; margin: 40px 0 16px; line-height: 1.3; }
+  .article h3 { font-size: 20px; font-weight: 600; margin: 28px 0 12px; }
+  .article p { font-size: 17px; line-height: 1.7; margin: 0 0 16px; }
+  .article blockquote { border-left: 4px solid #0078d4; background: #f0f6fc; padding: 12px 20px; margin: 20px 0; font-style: italic; color: #333; }
+  .article blockquote p { margin: 8px 0; }
+  .article ul, .article ol { font-size: 17px; line-height: 1.7; padding-left: 24px; }
+  .article li { margin: 6px 0; }
+  .article code { background: #f3f3f3; padding: 2px 6px; border-radius: 4px; font-size: 15px; font-family: "SF Mono", Menlo, monospace; }
+  .article hr { border: none; border-top: 1px solid #e5e5e7; margin: 32px 0; }
+  .article table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+  .article th, .article td { border: 1px solid #e5e5e7; padding: 10px 14px; text-align: left; vertical-align: top; }
+  .article th { background: #f5f5f7; font-weight: 600; }
+  .article strong { font-weight: 600; }
+  .article em { font-style: italic; }
+  @media (max-width: 900px) {
+    .split { flex-direction: column; height: auto; }
+    .pane { height: 50vh; }
+    body { overflow: auto; height: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="title">📄 Comment AI in SharePoint va changer la donne</div>
+  <div class="stats" id="stats">Mots: — • Temps: — min</div>
+</div>
+<div class="split">
+  <div class="pane pane-left">
+    <div class="article" id="preview"></div>
+  </div>
+  <div class="pane pane-right">
+    <div class="banner">
+      💡 Avant de demander une modif à Claude dans le chat, clique sur <strong>"Copier MDX"</strong> et colle-le. Sinon tes éditions seront écrasées.
+    </div>
+    <div class="toolbar">
+      <button class="btn btn-primary" onclick="copyMdx()">📋 Copier MDX</button>
+      <button class="btn btn-secondary" onclick="resetMdx()">↺ Reset</button>
+    </div>
+    <textarea id="mdx" spellcheck="false"></textarea>
+  </div>
+</div>
+
+<script>
+const INITIAL_MDX = `---
+title: "Comment AI in SharePoint va changer la donne"
+date: "2026-04-24"
+category: "SharePoint"
+excerpt: "AI in SharePoint arrive en GA mi-juin 2026. Tour d'horizon des capacités réelles, des prérequis et des limites avant de s'y mettre."
+readingTime: 5
+tags: ["SharePoint", "Copilot", "Microsoft 365", "IA"]
+featured: false
+send_newsletter: false
+draft: true
+---
+
+> *"Tu peux me créer un site SharePoint pour notre projet RH ? Avec les bonnes pages, une bibliothèque propre, et une liste pour suivre les demandes ?"*
+
+La demande revient chaque semaine.
+
+Jusqu'ici, la réponse passait par un consultant, un chef de projet, ou un bon admin SharePoint. Désormais, elle peut venir directement de SharePoint lui-même.
+
+**AI in SharePoint** est en public preview depuis mars 2026. La **General Availability est annoncée entre mi-juin et mi-juillet 2026**. Voici ce que la fonctionnalité fait vraiment, et surtout ce qu'il faut anticiper avant de se jeter dessus.
+
+---
+
+## 1. Ce que fait concrètement AI in SharePoint
+
+AI in SharePoint, ce n'est pas juste "un Copilot de plus". C'est une couche d'IA intégrée nativement à la plateforme, qui agit sur plusieurs objets à la fois.
+
+Les capacités annoncées par Microsoft :
+
+- **Créer des sites** complets à partir d'une description en langage naturel
+- **Créer et éditer des pages** via un panneau IA dédié
+- **Générer des listes et des bibliothèques** avec leur structure de colonnes
+- **Enrichir les métadonnées** automatiquement à partir du contenu des fichiers
+- **Améliorer un site existant** : détection des liens cassés, pages obsolètes, suggestions de design
+- **Créer des agents SharePoint** ancrés sur un périmètre documentaire
+
+> **Ce n'est plus un assistant à la marge. C'est un partenaire de construction qui touche à la structure même du site.**
+
+---
+
+## 2. Créer un site en langage naturel, comment ça marche
+
+C'est la fonctionnalité la plus impressionnante. On décrit ce qu'on veut, SharePoint construit.
+
+Le flux en pratique :
+
+1. **On écrit un prompt** : *"Un site pour mon service RH avec une page d'accueil, une bibliothèque pour les politiques RH, une liste pour les demandes de congés, et une page FAQ."*
+2. **SharePoint propose un plan structuré** : arborescence du site, pages prévues, bibliothèques, listes, contenu de départ.
+3. **SharePoint pose des questions de clarification** si l'intention est ambiguë.
+4. **Le site est généré** une fois le plan validé.
+
+En coulisses, c'est le modèle **Claude d'Anthropic** qui orchestre le processus, via un raisonnement itératif qui mobilise des dizaines d'outils SharePoint.
+
+La différence avec le Copilot de SharePoint "classique" : on ne se contente plus d'éditer une page existante. **On passe de l'intention au site complet en une seule requête.**
+
+---
+
+## 3. Les autres briques AI intégrées à SharePoint
+
+Au-delà de la création de site, Microsoft pousse plusieurs capacités IA dans le même package.
+
+| Capacité | Ce que ça fait |
+|---|---|
+| **Création de pages par IA** | Un panneau dédié pour générer pages, sections, FAQ web parts via prompt |
+| **Organisation auto des bibliothèques** | Colonnes remplies automatiquement à partir du contenu des fichiers |
+| **Vues personnalisées** | Création de vues sur mesure via langage naturel |
+| **Amélioration de site** | Détection de liens cassés, pages à archiver, suggestions de design |
+| **Résumé et comparaison de fichiers** | Synthèses, comparatifs, FAQ générées depuis les documents |
+| **Agents SharePoint** | Création d'agents ancrés sur un site, une bibliothèque ou un dossier |
+
+Chaque brique s'appuie sur les permissions existantes du site. **L'IA ne voit que ce que l'utilisateur voit déjà.**
+
+---
+
+## 4. Prérequis, calendrier et limites à anticiper
+
+C'est la section à lire attentivement avant de promettre quoi que ce soit à un métier.
+
+### Le calendrier officiel
+
+- **Public Preview** : début mars 2026, finalisation fin avril 2026
+- **Targeted Release** : début mai à mi-mai 2026
+- **General Availability** : **mi-juin à mi-juillet 2026** (worldwide, GCC, GCC High, DoD)
+
+### Les prérequis non négociables
+
+- **Licence Microsoft 365 Copilot** obligatoire pour chaque utilisateur
+- **Opt-in du tenant ou du site** par l'administrateur IT
+- **Opt-in Anthropic** : selon la localisation, l'organisation doit autoriser Anthropic comme sous-traitant de Microsoft Online Services
+
+⚠️ Point de vigilance : **Microsoft a indiqué vouloir régler la question Anthropic avant la GA**, mais certains tenants (secteurs régulés, zones géographiques spécifiques) pourraient rester bloqués.
+
+### Les rôles qui comptent
+
+SharePoint distingue quatre niveaux d'accès aux capacités IA :
+
+- **Content Consumer** : poser des questions, résumer
+- **Content Creator** : créer pages et sections
+- **Site Manager** : maintenir la santé du site
+- **Content Manager** : organiser bibliothèques et workflows
+
+Ce découpage évite qu'un simple lecteur déclenche une création de site. Mais il implique aussi de **revoir les permissions** avant l'arrivée de la feature.
+
+### Les surfaces non supportées
+
+Attention, AI in SharePoint ne fonctionne pas partout :
+
+- ❌ SharePoint Home
+- ❌ Viva Connections
+- ❌ Sites SharePoint ouverts depuis Teams
+- ✅ Sites SharePoint Online modernes uniquement
+
+---
+
+## Ma conclusion
+
+AI in SharePoint, ce n'est pas un gadget. C'est un déplacement du point de friction d'un projet SharePoint : la création technique devient presque gratuite, **le cadrage métier devient le vrai sujet.**
+
+Trois constats à garder en tête :
+
+1. **La GA mi-juin 2026 est proche.** Autant se préparer maintenant : audit des licences Copilot, vérification de l'opt-in Anthropic, revue des rôles et permissions.
+2. **La question ne sera plus "comment créer un site"** mais "avec quelle structure, pour quels usages, avec quelles sources de vérité". Le métier devra arriver avec une intention claire, pas juste une demande.
+3. **Sans licence Copilot, pas d'accès.** Les organisations qui ont encore un déploiement Copilot partiel vont voir une fracture se créer entre les équipes qui bénéficient de l'IA et les autres.
+`;
+
+const textarea = document.getElementById('mdx');
+const preview = document.getElementById('preview');
+const stats = document.getElementById('stats');
+
+textarea.value = INITIAL_MDX;
+
+function render() {
+  const raw = textarea.value;
+  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  let frontmatter = {};
+  let body = raw;
+  if (match) {
+    try { frontmatter = jsyaml.load(match[1]) || {}; } catch (e) { frontmatter = {}; }
+    body = match[2];
+  }
+
+  const title = frontmatter.title || 'Sans titre';
+  const excerpt = frontmatter.excerpt || '';
+  const category = frontmatter.category || '';
+  const date = frontmatter.date || '';
+
+  const bodyHtml = marked.parse(body);
+
+  preview.innerHTML = `
+    <div class="meta">${category}${date ? ' • ' + date : ''}</div>
+    <h1>${title}</h1>
+    ${excerpt ? `<div class="excerpt">${excerpt}</div>` : ''}
+    ${bodyHtml}
+  `;
+
+  const words = body.replace(/[#*_>`\-|]/g, ' ').split(/\s+/).filter(w => w.length > 1).length;
+  const readTime = Math.ceil(words / 200);
+  stats.textContent = `Mots: ${words} • Temps: ${readTime} min`;
+}
+
+let debounce;
+textarea.addEventListener('input', () => {
+  clearTimeout(debounce);
+  debounce = setTimeout(render, 150);
+});
+
+function copyMdx() {
+  textarea.select();
+  document.execCommand('copy');
+  const btn = event.target;
+  const orig = btn.textContent;
+  btn.textContent = '✓ Copié !';
+  setTimeout(() => btn.textContent = orig, 1500);
+}
+
+function resetMdx() {
+  if (confirm('Restaurer la version initiale ? Tes modifications seront perdues.')) {
+    textarea.value = INITIAL_MDX;
+    render();
+  }
+}
+
+render();
+</script>
+</body>
+</html>
