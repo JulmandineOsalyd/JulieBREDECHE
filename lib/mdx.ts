@@ -10,6 +10,7 @@ export interface ArticleMeta {
   title: string
   date: string
   category: string
+  parentTag?: string
   excerpt: string
   readingTime: number
   tags?: string[]
@@ -50,6 +51,7 @@ export function getArticleBySlug(slug: string, locale: 'fr' | 'en' = 'fr'): Arti
       title: data.title ?? '',
       date: data.date ?? '',
       category: data.category ?? 'Général',
+      parentTag: data.parentTag,
       excerpt: data.excerpt ?? '',
       readingTime,
       tags: data.tags ?? [],
@@ -87,4 +89,26 @@ export function getRelatedArticles(
   return getAllArticlesMeta(locale)
     .filter((a) => a.slug !== currentSlug && a.category === category)
     .slice(0, limit)
+}
+
+export function getSeriesNeighbors(
+  currentSlug: string,
+  seriesCategory: string,
+  locale: 'fr' | 'en' = 'fr'
+): { prev: ArticleMeta | null; next: ArticleMeta | null; index: number; total: number } {
+  const episodes = getAllArticlesMeta(locale)
+    .filter((a) =>
+      Array.isArray(a.category) ? a.category.includes(seriesCategory) : a.category === seriesCategory
+    )
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+
+  const index = episodes.findIndex((a) => a.slug === currentSlug)
+  if (index === -1) return { prev: null, next: null, index: -1, total: episodes.length }
+
+  return {
+    prev: index > 0 ? episodes[index - 1] : null,
+    next: index < episodes.length - 1 ? episodes[index + 1] : null,
+    index,
+    total: episodes.length,
+  }
 }

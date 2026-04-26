@@ -8,9 +8,10 @@ import ReadingTime from './ReadingTime'
 
 interface ArticleCardProps {
   article: ArticleMeta
+  compact?: boolean
 }
 
-export default function ArticleCard({ article }: ArticleCardProps) {
+export default function ArticleCard({ article, compact = false }: ArticleCardProps) {
   const { t, locale } = useTranslation()
 
   const categoryDisplay = Array.isArray(article.category)
@@ -23,7 +24,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
     <Link
       href={`/blog/${article.slug}`}
       style={{ textDecoration: 'none', display: 'block' }}
-      className={`card${article.category === 'Copilot de A à Z' ? ' card-series' : ''}`}
+      className={`card${!compact && article.category === 'Copilot de A à Z' ? ' card-series' : ''}`}
     >
       <article style={{ padding: '1.5rem' }}>
         {/* Category badge */}
@@ -57,20 +58,22 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           {article.title}
         </h3>
 
-        <p
-          style={{
-            fontSize: '0.875rem',
-            color: 'var(--muted)',
-            lineHeight: 1.6,
-            marginBottom: '1rem',
-            display: '-webkit-box',
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-          }}
-        >
-          {article.excerpt}
-        </p>
+        {!compact && (
+          <p
+            style={{
+              fontSize: '0.875rem',
+              color: 'var(--muted)',
+              lineHeight: 1.6,
+              marginBottom: '1rem',
+              display: '-webkit-box',
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+            }}
+          >
+            {article.excerpt}
+          </p>
+        )}
 
         <div
           style={{

@@ -4,11 +4,10 @@ import { cookies } from 'next/headers'
 import Link from 'next/link'
 import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { getArticleBySlug, getAllArticlesMeta, getRelatedArticles } from '@/lib/mdx'
+import { getArticleBySlug, getAllArticlesMeta, getSeriesNeighbors } from '@/lib/mdx'
 import { formatDate } from '@/lib/utils'
 import ReadingProgress from '@/components/ReadingProgress'
 import ReadingTime from '@/components/ReadingTime'
-import ArticleCard from '@/components/ArticleCard'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkGfm from 'remark-gfm'
@@ -57,7 +56,8 @@ export default function ArticlePage({ params }: Props) {
   const article = getArticleBySlug(params.slug, locale)
   if (!article) notFound()
 
-  const related = getRelatedArticles(article.slug, article.category, locale)
+  const isSeries = article.category === 'Copilot de A à Z'
+  const seriesNav = isSeries ? getSeriesNeighbors(article.slug, 'Copilot de A à Z', locale) : null
 
   return (
     <>
@@ -75,7 +75,7 @@ export default function ArticlePage({ params }: Props) {
       </div>
 
       <div style={{ padding: '2.5rem 6% 5rem', background: '#ffffff' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 300px', gap: '4rem', alignItems: 'start' }} className="article-layout">
+        <div style={{ maxWidth: '820px', margin: '0 auto' }} className="article-layout">
           {/* Main content */}
           <article>
             {/* Header */}
@@ -123,44 +123,33 @@ export default function ArticlePage({ params }: Props) {
               />
             </div>
 
-          </article>
+            {/* Series navigation */}
+            {seriesNav && (seriesNav.prev || seriesNav.next) && (
+              <nav className="series-nav" aria-label={ui.blog.article.seriesNavTitle}>
+                <div className="series-nav-row">
+                  {seriesNav.prev ? (
+                    <Link href={`/blog/${seriesNav.prev.slug}`} className="series-nav-link series-nav-prev">
+                      <span className="series-nav-direction">← {ui.blog.article.seriesPrev}</span>
+                      <span className="series-nav-title">{seriesNav.prev.title}</span>
+                    </Link>
+                  ) : (
+                    <span className="series-nav-link series-nav-empty" aria-hidden="true" />
+                  )}
+                  {seriesNav.next ? (
+                    <Link href={`/blog/${seriesNav.next.slug}`} className="series-nav-link series-nav-next">
+                      <span className="series-nav-direction">{ui.blog.article.seriesNext} →</span>
+                      <span className="series-nav-title">{seriesNav.next.title}</span>
+                    </Link>
+                  ) : (
+                    <span className="series-nav-link series-nav-empty" aria-hidden="true" />
+                  )}
+                </div>
+              </nav>
+            )}
 
-          {/* Sidebar */}
-          <aside style={{ position: 'sticky', top: '80px' }}>
-            {/* Author card */}
-            <div className="card" style={{ padding: '1.25rem', marginBottom: '1.25rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                <div style={{ width: 40, height: 40, borderRadius: '50%', overflow: 'hidden', flexShrink: 0 }}>
-                  <Image src="/images/JBR.png" alt="Julie Bredeche" width={40} height={40} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
-                </div>
-                <div>
-                  <p style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--ink)', margin: 0 }}>Julie Bredeche</p>
-                  <p style={{ fontSize: '0.75rem', color: 'var(--muted)', margin: 0 }}>{ui.blog.article.authorRole}</p>
-                </div>
-              </div>
-              <p style={{ fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '0.75rem' }}>
-                {ui.blog.article.authorSpeciality}
-              </p>
-              <Link href="/a-propos" className="btn-outline" style={{ width: '100%', justifyContent: 'center', fontSize: '0.8rem' }}>
-                {ui.blog.article.learnMore}
-              </Link>
-            </div>
-          </aside>
+          </article>
         </div>
 
-        {/* Related articles */}
-        {related.length > 0 && (
-          <div style={{ maxWidth: '1200px', margin: '4rem auto 0' }}>
-            <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', marginBottom: '1.5rem' }}>
-              {ui.blog.article.relatedTitle}
-            </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }} className="related-grid">
-              {related.map((a) => (
-                <ArticleCard key={a.slug} article={a} />
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
     </>

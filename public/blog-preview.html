@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview — 4 options blog Julie Bredeche</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c1: #60c6ff;
+    --c2: #18b0e8;
+    --grad: linear-gradient(135deg, #5ceae8 0%, #18b0e8 45%, #0f5fad 100%);
+    --ink: #071828;
+    --muted: #4a6080;
+    --border: #cce4f5;
+    --bg: #ffffff;
+    --bg-soft: #f7fbff;
+    --serif: 'Lora', Georgia, serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--ink);
+    background: #eef4f9;
+    line-height: 1.5;
+  }
+  .switcher {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .switcher h1 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .switcher .opts { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .switcher button {
+    border: 1.5px solid var(--border);
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--ink);
+    transition: all 0.2s;
+  }
+  .switcher button.active {
+    background: var(--grad);
+    color: white;
+    border-color: transparent;
+  }
+  .switcher button:hover:not(.active) { border-color: var(--c2); }
+
+  .frame {
+    max-width: 1240px;
+    margin: 2rem auto;
+    background: white;
+    padding: 3.5rem 4rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(7,24,40,0.06);
+  }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .panel-intro {
+    background: linear-gradient(135deg, #f0faff 0%, #fff 100%);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--c2);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 2.5rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .panel-intro strong { color: var(--ink); }
+
+  /* Header commun */
+  .blog-header { margin-bottom: 2.5rem; }
+  .blog-header .label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--c2);
+    margin-bottom: 0.5rem;
+  }
+  .blog-header h2 {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+  .blog-header p { color: var(--muted); max-width: 600px; }
+
+  /* Filtres */
+  .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filters .chip {
+    border: 1.5px solid var(--border);
+    background: white;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .filters .chip.active { background: var(--grad); color: white; border-color: transparent; }
+  .filters .chip.serie {
+    border: 1.5px solid transparent;
+    background: linear-gradient(white, white) padding-box, var(--grad) border-box;
+  }
+  .filters .chip.serie .badge {
+    display: inline-block;
+    background: var(--grad);
+    color: white;
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+    font-size: 0.62rem;
+    font-weight: 800;
+    margin-right: 0.3rem;
+    vertical-align: middle;
+  }
+
+  /* ==================== OPTION 1 — Featured + liste dense ==================== */
+  .opt1-hero {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f0faff 0%, #ffffff 50%, #fff 100%);
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+    align-items: center;
+  }
+  .opt1-hero .visual {
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    background: var(--grad);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+    opacity: 0.9;
+  }
+  .opt1-hero .hero-cat {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--c2);
+    margin-bottom: 0.75rem;
+  }
+  .opt1-hero h3 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
+  .opt1-hero p { color: var(--muted); margin-bottom: 1rem; font-size: 0.95rem; }
+  .opt1-hero .meta { font-size: 0.8rem; color: var(--muted); }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .opt1-list { list-style: none; }
+  .opt1-list a {
+    display: grid;
+    grid-template-columns: 110px 90px 1fr 70px 24px;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.9rem 0.5rem;
+    border-bottom: 1px solid #eef4f9;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.15s;
+  }
+  .opt1-list a:hover { background: #f7fbff; padding-left: 1rem; }
+  .opt1-list .cat {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--c2);
+  }
+  .opt1-list .date { font-size: 0.78rem; color: var(--muted); }
+  .opt1-list .title { font-weight: 600; font-size: 0.95rem; }
+  .opt1-list .read { font-size: 0.75rem; color: var(--muted); text-align: right; }
+  .opt1-list .arrow { color: var(--c2); font-weight: 700; opacity: 0; transition: opacity 0.15s; }
+  .opt1-list a:hover .arrow { opacity: 1; }
+
+  /* ==================== OPTION 2 — Bento ==================== */
+  .opt2-bento {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 1rem;
+  }
+  .bento-card {
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  .bento-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(7,24,40,0.08); }
+  .bento-card .cat {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--c2);
+    margin-bottom: 0.5rem;
+  }
+  .bento-card h4 {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .bento-card .meta { font-size: 0.72rem; color: var(--muted); margin-top: 0.5rem; }
+
+  .bento-hero {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: var(--grad);
+    color: white;
+    border: none;
+    padding: 2rem;
+  }
+  .bento-hero .cat { color: rgba(255,255,255,0.85); }
+  .bento-hero h4 { color: white; font-size: 1.5rem; }
+  .bento-hero p { color: rgba(255,255,255,0.9); font-size: 0.85rem; margin-top: 0.5rem; }
+  .bento-hero .meta { color: rgba(255,255,255,0.8); }
+
+  .bento-serie {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #f0faff 0%, #ffffff 100%);
+    border: 1.5px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+  .bento-serie::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    padding: 1.5px;
+    background: var(--grad);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  .bento-serie .badge {
+    display: inline-block;
+    background: var(--grad);
+    color: white;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.6rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  .bento-serie .episodes {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: auto;
+  }
+  .bento-serie .ep {
+    flex: 1;
+    padding: 0.4rem;
+    background: white;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+
+  .bento-list {
+    grid-column: span 4;
+    background: #f7fbff;
+    padding: 1.25rem 1.5rem;
+  }
+  .bento-list-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem 2rem;
+  }
+  .bento-list-grid .row {
+    display: grid;
+    grid-template-columns: 90px 1fr 50px;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.4rem 0;
+    font-size: 0.85rem;
+    border-bottom: 1px dashed #d8e8f5;
+  }
+  .bento-list-grid .row .cat { color: var(--c2); font-weight: 700; font-size: 0.68rem; text-transform: uppercase; }
+  .bento-list-grid .row .read { color: var(--muted); font-size: 0.72rem; text-align: right; }
+
+  /* ==================== OPTION 3 — Recherche + groupement par année ==================== */
+  .opt3-search {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    align-items: center;
+  }
+  .opt3-search input {
+    flex: 1;
+    padding: 0.85rem 1.25rem;
+    border: 1.5px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.95rem;
+    background: #f7fbff;
+    outline: none;
+    font-family: inherit;
+  }
+  .opt3-search input:focus { border-color: var(--c2); background: white; }
+
+  .opt3-year {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 2rem 0 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .opt3-year .count { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 500; color: var(--muted); }
+
+  .opt3-list { list-style: none; }
+  .opt3-list a {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 1.5rem;
+    padding: 0.65rem 0.25rem;
+    border-bottom: 1px solid #f0f6fb;
+    text-decoration: none;
+    color: var(--ink);
+    align-items: baseline;
+    font-size: 0.9rem;
+  }
+  .opt3-list a:hover { background: #f7fbff; }
+  .opt3-list .date {
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  .opt3-list .meta { font-size: 0.75rem; color: var(--muted); }
+  .opt3-list .meta .cat { color: var(--c2); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* ==================== OPTION 4 — Hero + Série + Grille compacte ==================== */
+  .opt4-hero {
+    border-radius: 18px;
+    background: var(--grad);
+    color: white;
+    padding: 3rem 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .opt4-hero::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+  }
+  .opt4-hero .label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.9;
+    margin-bottom: 0.75rem;
+  }
+  .opt4-hero h3 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    max-width: 650px;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .opt4-hero p { max-width: 600px; opacity: 0.92; margin-bottom: 1.25rem; }
+  .opt4-hero .meta { font-size: 0.85rem; opacity: 0.85; }
+
+  .opt4-serie {
+    margin-bottom: 3rem;
+  }
+  .opt4-serie-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .opt4-serie-head h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .opt4-serie-head .badge {
+    background: var(--grad);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+  }
+  .opt4-serie-head a { color: var(--c2); font-weight: 600; font-size: 0.85rem; text-decoration: none; }
+
+  .opt4-serie-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.85rem;
+  }
+  .opt4-ep {
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--grad);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .opt4-ep::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    right: -30%;
+    width: 80%;
+    height: 180%;
+    background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .opt4-ep:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(15,95,173,0.25);
+  }
+  .opt4-ep .ep-num {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    color: white;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    opacity: 0.95;
+    position: relative;
+  }
+  .opt4-ep h4 {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+    color: white;
+    position: relative;
+  }
+  .opt4-ep .meta {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.85);
+    position: relative;
+  }
+
+  .opt4-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.85rem;
+  }
+  .opt4-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+  }
+  .opt4-card:hover {
+    border-color: var(--c2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(24,176,232,0.1);
+  }
+  .opt4-card .cat {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--c2);
+    margin-bottom: 0.5rem;
+  }
+  .opt4-card h4 {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    line-height: 1.35;
+    margin-bottom: 0.6rem;
+  }
+  .opt4-card .meta {
+    font-size: 0.72rem;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .opt4-grid-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+  }
+  .opt4-grid-title h3 { font-family: var(--serif); font-size: 1.4rem; }
+  .opt4-grid-title .filters-mini { font-size: 0.85rem; color: var(--muted); }
+
+  /* ==================== OPTION 5 — Combinée ==================== */
+  .archives-divider {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 4rem 0 2rem;
+  }
+  .archives-divider::before, .archives-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .archives-divider span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .opt5-search-bar {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+  }
+  .opt5-search-bar input {
+    flex: 1;
+    padding: 0.85rem 1.25rem;
+    border: 1.5px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.95rem;
+    background: #f7fbff;
+    outline: none;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .opt5-search-bar input:focus { border-color: var(--c2); background: white; box-shadow: 0 0 0 3px rgba(24,176,232,0.1); }
+  .opt5-search-bar .results {
+    font-size: 0.82rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .opt5-tag-group { margin-bottom: 0.5rem; border-bottom: 1px solid #eef4f9; }
+  .opt5-tag-group summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1rem 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+    user-select: none;
+  }
+  .opt5-tag-group summary::-webkit-details-marker { display: none; }
+  .opt5-tag-group summary::before {
+    content: "▸";
+    font-family: inherit;
+    color: var(--c2);
+    font-size: 0.85rem;
+    transition: transform 0.2s;
+  }
+  .opt5-tag-group[open] summary::before { transform: rotate(90deg); }
+  .opt5-tag-group summary .count {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--muted);
+    background: #f0f6fb;
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+  }
+  .opt5-tag-group summary:hover { background: #f7fbff; }
+  .opt5-tag-group ul { list-style: none; padding-bottom: 0.5rem; }
+  .opt5-tag-group ul a {
+    display: grid;
+    grid-template-columns: 80px 1fr 60px 24px;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.7rem 0.5rem 0.7rem 1.75rem;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 0.9rem;
+    border-radius: 6px;
+    transition: all 0.15s;
+  }
+  .opt5-tag-group ul a:hover { background: #f7fbff; }
+  .opt5-tag-group .date {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .opt5-tag-group .read { font-size: 0.75rem; color: var(--muted); text-align: right; }
+  .opt5-tag-group .arrow { color: var(--c2); font-weight: 700; opacity: 0; transition: opacity 0.15s; }
+  .opt5-tag-group ul a:hover .arrow { opacity: 1; }
+
+  .opt5-discover-section.dimmed { opacity: 0.25; pointer-events: none; transition: opacity 0.3s; }
+  .opt5-no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .frame { padding: 2rem 1.25rem; margin: 1rem; }
+    .opt1-hero { grid-template-columns: 1fr; }
+    .opt2-bento { grid-template-columns: repeat(2, 1fr); }
+    .bento-hero, .bento-serie, .bento-list { grid-column: span 2; }
+    .bento-list-grid { grid-template-columns: 1fr; }
+    .opt4-serie-track { grid-template-columns: repeat(2, 1fr); }
+    .opt4-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="switcher">
+  <h1>Preview blog · 4 options</h1>
+  <div class="opts">
+    <button onclick="show(1)">Option 1 — Featured + liste</button>
+    <button onclick="show(2)">Option 2 — Bento</button>
+    <button onclick="show(3)">Option 3 — Recherche + années</button>
+    <button onclick="show(4)">Option 4 — Hybride</button>
+    <button class="active" onclick="show(5)">Option 5 — Combinée ⭐</button>
+  </div>
+</div>
+
+<!-- ==================== OPTION 1 ==================== -->
+<div class="frame">
+  <div class="panel" data-opt="1">
+    <div class="panel-intro">
+      <strong>Option 1 · Featured + liste dense.</strong> Un hero pour le dernier article, le reste en lignes (catégorie · date · titre). On enlève l'excerpt qui alourdit. Pattern Lenny's Newsletter, Stripe Press, Vercel.
+    </div>
+
+    <div class="blog-header">
+      <p class="label">JOURNAL</p>
+      <h2>Articles &amp; retours d'expérience</h2>
+      <p>Méthodes, tutoriels et coulisses de mes projets SharePoint, Power Platform et Copilot.</p>
+    </div>
+
+    <div class="filters">
+      <span class="chip active">Tous</span>
+      <span class="chip serie"><span class="badge">SÉRIE</span>Copilot de A à Z</span>
+      <span class="chip">SharePoint</span>
+      <span class="chip">Power Automate</span>
+      <span class="chip">PowerApps</span>
+      <span class="chip">Copilot Studio</span>
+    </div>
+
+    <!-- Hero -->
+    <a href="#" style="text-decoration: none; color: inherit;">
+      <div class="opt1-hero">
+        <div class="visual">AI</div>
+        <div>
+          <p class="hero-cat">À LA UNE · SHAREPOINT</p>
+          <h3>Comment AI in SharePoint va changer la donne</h3>
+          <p>AI in SharePoint arrive en GA mi-juin 2026. Tour d'horizon des capacités réelles, des prérequis et des limites avant de s'y mettre.</p>
+          <p class="meta">24 avril 2026 · 5 min de lecture</p>
+        </div>
+      </div>
+    </a>
+
+    <h3 class="section-title">Récents</h3>
+    <ul class="opt1-list">
+      <li><a href="#"><span class="cat">Copilot · Série</span><span class="date">23 avr. 2026</span><span class="title">Créer un agent Copilot : 80% de cadrage métier, 20% de paramétrage</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Copilot · Série</span><span class="date">19 avr. 2026</span><span class="title">Comprendre Copilot Cowork en 3 minutes</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Power Automate</span><span class="date">06 avr. 2026</span><span class="title">Pourquoi l'IA ne me remplacera pas en tant qu'experte Power Automate</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">SharePoint</span><span class="date">17 mar. 2026</span><span class="title">Préparer SharePoint pour Copilot : les 2 astuces terrain que j'applique</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">SharePoint</span><span class="date">11 mar. 2026</span><span class="title">Zéro ticket de support OneDrive après migration ? Voici comment j'ai fait !</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Copilot · Série</span><span class="date">15 jan. 2026</span><span class="title">Peut-on créer des agents sans licence Copilot ?</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">SharePoint</span><span class="date">29 déc. 2025</span><span class="title">La synchronisation OneDrive : 3 points essentiels pour tout comprendre</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Copilot · Série</span><span class="date">10 déc. 2025</span><span class="title">Créez votre agent d'onboarding RH en 5 minutes avec Copilot Chat</span><span class="read">6 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Power Automate</span><span class="date">02 déc. 2025</span><span class="title">Votre flow tourne en boucle ? Les Trigger Conditions vont tout changer</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Power Automate</span><span class="date">24 nov. 2025</span><span class="title">Power Automate + AI Builder : centaines d'heures gagnées avec la lecture PDF</span><span class="read">6 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">SharePoint</span><span class="date">21 nov. 2025</span><span class="title">Microsoft Ignite 2025 : arrêtez de penser Intranet, pensez IA !</span><span class="read">3 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Copilot Studio</span><span class="date">12 nov. 2025</span><span class="title">Tout savoir sur le nouveau modèle de facturation de Copilot Studio</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Copilot Studio</span><span class="date">06 nov. 2025</span><span class="title">Comment l'IA a fait évoluer Power Virtual Agents vers Copilot Studio</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Copilot · Série</span><span class="date">25 oct. 2025</span><span class="title">Qu'est-ce qu'un Agent Copilot ?</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Power · Apps</span><span class="date">13 oct. 2025</span><span class="title">Ma méthode infaillible pour réussir mes projets Power Platform</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Power Automate</span><span class="date">05 oct. 2025</span><span class="title">5 erreurs à éviter quand on automatise un processus</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">SharePoint</span><span class="date">30 sep. 2025</span><span class="title">L'IA dans SharePoint va transformer votre gestion documentaire en 2025</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Copilot · Série</span><span class="date">24 sep. 2025</span><span class="title">Maîtriser les bases du prompting</span><span class="read">6 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Power Automate</span><span class="date">12 sep. 2025</span><span class="title">Boîtes mail partagées ingérables ? Voici le flow qui a sauvé leur rentrée</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Copilot · Série</span><span class="date">05 sep. 2025</span><span class="title">Adoption de Copilot : éviter l'essoufflement après le lancement</span><span class="read">7 min</span><span class="arrow">→</span></a></li>
+    </ul>
+  </div>
+
+  <!-- ==================== OPTION 2 ==================== -->
+  <div class="panel" data-opt="2">
+    <div class="panel-intro">
+      <strong>Option 2 · Bento mixte.</strong> 1 hero, 4 cartes moyennes, 1 bloc spécial pour la série, puis liste compacte 2 colonnes. Pattern Linear, Raycast, Arc — très "personal branding 2026". Tu as déjà <em>BentoGrid.tsx</em> donc le style existe dans ta DA.
+    </div>
+
+    <div class="blog-header">
+      <p class="label">JOURNAL</p>
+      <h2>Articles &amp; retours d'expérience</h2>
+      <p>Méthodes, tutoriels et coulisses de mes projets SharePoint, Power Platform et Copilot.</p>
+    </div>
+
+    <div class="filters">
+      <span class="chip active">Tous</span>
+      <span class="chip serie"><span class="badge">SÉRIE</span>Copilot de A à Z</span>
+      <span class="chip">SharePoint</span>
+      <span class="chip">Power Automate</span>
+      <span class="chip">PowerApps</span>
+      <span class="chip">Copilot Studio</span>
+    </div>
+
+    <div class="opt2-bento">
+      <div class="bento-card bento-hero">
+        <div>
+          <p class="cat">À LA UNE · SHAREPOINT</p>
+          <h4>Comment AI in SharePoint va changer la donne</h4>
+          <p>GA mi-juin 2026. Tour d'horizon des capacités réelles, prérequis et limites.</p>
+        </div>
+        <p class="meta">24 avr. 2026 · 5 min</p>
+      </div>
+
+      <div class="bento-card">
+        <div>
+          <p class="cat">Power Automate</p>
+          <h4>Pourquoi l'IA ne me remplacera pas en tant qu'experte Power Automate</h4>
+        </div>
+        <p class="meta">06 avr. · 5 min</p>
+      </div>
+
+      <div class="bento-card">
+        <div>
+          <p class="cat">SharePoint</p>
+          <h4>Préparer SharePoint pour Copilot : les 2 astuces terrain</h4>
+        </div>
+        <p class="meta">17 mar. · 5 min</p>
+      </div>
+
+      <div class="bento-card">
+        <div>
+          <p class="cat">SharePoint</p>
+          <h4>Zéro ticket OneDrive après migration ? Voici comment j'ai fait</h4>
+        </div>
+        <p class="meta">11 mar. · 4 min</p>
+      </div>
+
+      <div class="bento-card">
+        <div>
+          <p class="cat">Copilot Studio</p>
+          <h4>Tout savoir sur le nouveau modèle de facturation Copilot Studio</h4>
+        </div>
+        <p class="meta">12 nov. · 5 min</p>
+      </div>
+
+      <div class="bento-card bento-serie">
+        <div>
+          <span class="badge">SÉRIE EN COURS</span>
+          <h4 style="font-family: var(--serif); font-size: 1.05rem; margin-bottom: 0.5rem;">Copilot de A à Z</h4>
+          <p style="font-size: 0.78rem; color: var(--muted);">7 épisodes pour comprendre Copilot, du prompting au déploiement.</p>
+        </div>
+        <div class="episodes">
+          <div class="ep">Ép. 1</div>
+          <div class="ep">Ép. 2</div>
+          <div class="ep">Ép. 3</div>
+          <div class="ep">+4</div>
+        </div>
+      </div>
+
+      <div class="bento-card bento-list" style="grid-row: span 2;">
+        <h4 style="font-family: var(--serif); font-size: 1rem; margin-bottom: 0.75rem;">Tous les articles</h4>
+        <div class="bento-list-grid">
+          <div class="row"><span class="cat">Power Auto</span><span>Trigger Conditions vont tout changer</span><span class="read">5 min</span></div>
+          <div class="row"><span class="cat">Power Auto</span><span>AI Builder + lecture PDF</span><span class="read">6 min</span></div>
+          <div class="row"><span class="cat">SharePoint</span><span>Microsoft Ignite 2025 : pensez IA</span><span class="read">3 min</span></div>
+          <div class="row"><span class="cat">Copilot St.</span><span>Power Virtual Agents → Copilot Studio</span><span class="read">5 min</span></div>
+          <div class="row"><span class="cat">SharePoint</span><span>OneDrive : 3 points essentiels</span><span class="read">5 min</span></div>
+          <div class="row"><span class="cat">Power Apps</span><span>Ma méthode pour Power Platform</span><span class="read">5 min</span></div>
+          <div class="row"><span class="cat">Power Auto</span><span>5 erreurs en automatisation</span><span class="read">4 min</span></div>
+          <div class="row"><span class="cat">SharePoint</span><span>L'IA dans SharePoint en 2025</span><span class="read">4 min</span></div>
+          <div class="row"><span class="cat">Power Auto</span><span>Boîtes mail partagées : le flow</span><span class="read">4 min</span></div>
+          <div class="row"><span class="cat">Copilot</span><span>Adoption Copilot : éviter l'essoufflement</span><span class="read">7 min</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== OPTION 3 ==================== -->
+  <div class="panel" data-opt="3">
+    <div class="panel-intro">
+      <strong>Option 3 · Recherche + groupement par année.</strong> Densité maximale. Pattern Julian Shapiro, Maggie Appleton, Dan Abramov. Très "writer / blog technique" — peut-être un peu austère pour un positionnement consultante qui vend du conseil.
+    </div>
+
+    <div class="blog-header">
+      <p class="label">JOURNAL</p>
+      <h2>Tous les articles</h2>
+      <p>21 articles · SharePoint, Power Platform, Copilot.</p>
+    </div>
+
+    <div class="opt3-search">
+      <input type="text" placeholder="🔍  Rechercher un article…">
+    </div>
+
+    <div class="filters">
+      <span class="chip active">Tous</span>
+      <span class="chip serie"><span class="badge">SÉRIE</span>Copilot de A à Z</span>
+      <span class="chip">SharePoint</span>
+      <span class="chip">Power Automate</span>
+      <span class="chip">PowerApps</span>
+      <span class="chip">Copilot Studio</span>
+    </div>
+
+    <h3 class="opt3-year">2026 <span class="count">7 articles</span></h3>
+    <ul class="opt3-list">
+      <li><a href="#"><span class="date">Avr 24</span><span class="title">Comment AI in SharePoint va changer la donne</span><span class="meta"><span class="cat">SHAREPOINT</span> · 5 min</span></a></li>
+      <li><a href="#"><span class="date">Avr 23</span><span class="title">Créer un agent Copilot : 80% de cadrage métier, 20% de paramétrage</span><span class="meta"><span class="cat">SÉRIE</span> · 4 min</span></a></li>
+      <li><a href="#"><span class="date">Avr 19</span><span class="title">Comprendre Copilot Cowork en 3 minutes</span><span class="meta"><span class="cat">SÉRIE</span> · 5 min</span></a></li>
+      <li><a href="#"><span class="date">Avr 06</span><span class="title">Pourquoi l'IA ne me remplacera pas en tant qu'experte Power Automate</span><span class="meta"><span class="cat">POWER AUTOMATE</span> · 5 min</span></a></li>
+      <li><a href="#"><span class="date">Mar 17</span><span class="title">Préparer SharePoint pour Copilot : les 2 astuces terrain</span><span class="meta"><span class="cat">SHAREPOINT</span> · 5 min</span></a></li>
+      <li><a href="#"><span class="date">Mar 11</span><span class="title">Zéro ticket de support OneDrive après migration ? Voici comment j'ai fait</span><span class="meta"><span class="cat">SHAREPOINT</span> · 4 min</span></a></li>
+      <li><a href="#"><span class="date">Jan 15</span><span class="title">Peut-on créer des agents sans licence Copilot ?</span><span class="meta"><span class="cat">SÉRIE</span> · 4 min</span></a></li>
+    </ul>
+
+    <h3 class="opt3-year">2025 <span class="count">14 articles</span></h3>
+    <ul class="opt3-list">
+      <li><a href="#"><span class="date">Déc 29</span><span class="title">La synchronisation OneDrive : 3 points essentiels pour tout comprendre</span><span class="meta"><span class="cat">SHAREPOINT</span> · 5 min</span></a></li>
+      <li><a href="#"><span class="date">Déc 10</span><span class="title">Créez votre agent d'onboarding RH en 5 minutes avec Copilot Chat</span><span class="meta"><span class="cat">SÉRIE</span> · 6 min</span></a></li>
+      <li><a href="#"><span class="date">Déc 02</span><span class="title">Votre flow tourne en boucle ? Les Trigger Conditions vont tout changer</span><span class="meta"><span class="cat">POWER AUTOMATE</span> · 5 min</span></a></li>
+      <li><a href="#"><span class="date">Nov 24</span><span class="title">Power Automate + AI Builder : la lecture automatique de PDF</span><span class="meta"><span class="cat">POWER AUTOMATE</span> · 6 min</span></a></li>
+      <li><a href="#"><span class="date">Nov 21</span><span class="title">Microsoft Ignite 2025 : arrêtez de penser Intranet, pensez IA !</span><span class="meta"><span class="cat">SHAREPOINT</span> · 3 min</span></a></li>
+      <li><a href="#"><span class="date">Nov 12</span><span class="title">Tout savoir sur le nouveau modèle de facturation de Copilot Studio</span><span class="meta"><span class="cat">COPILOT STUDIO</span> · 5 min</span></a></li>
+      <li><a href="#"><span class="date">Nov 06</span><span class="title">Comment l'IA a fait évoluer Power Virtual Agents vers Copilot Studio</span><span class="meta"><span class="cat">COPILOT STUDIO</span> · 5 min</span></a></li>
+      <li><a href="#"><span class="date">Oct 25</span><span class="title">Qu'est-ce qu'un Agent Copilot ?</span><span class="meta"><span class="cat">SÉRIE</span> · 5 min</span></a></li>
+      <li><a href="#"><span class="date">Oct 13</span><span class="title">Ma méthode infaillible pour réussir mes projets Power Platform</span><span class="meta"><span class="cat">POWERAPPS</span> · 5 min</span></a></li>
+      <li><a href="#"><span class="date">Oct 05</span><span class="title">5 erreurs à éviter quand on automatise un processus</span><span class="meta"><span class="cat">POWER AUTOMATE</span> · 4 min</span></a></li>
+      <li><a href="#"><span class="date">Sep 30</span><span class="title">L'IA dans SharePoint va transformer votre gestion documentaire en 2025</span><span class="meta"><span class="cat">SHAREPOINT</span> · 4 min</span></a></li>
+      <li><a href="#"><span class="date">Sep 24</span><span class="title">Maîtriser les bases du prompting</span><span class="meta"><span class="cat">SÉRIE</span> · 6 min</span></a></li>
+      <li><a href="#"><span class="date">Sep 12</span><span class="title">Boîtes mail partagées ingérables ? Voici le flow qui a sauvé leur rentrée</span><span class="meta"><span class="cat">POWER AUTOMATE</span> · 4 min</span></a></li>
+      <li><a href="#"><span class="date">Sep 05</span><span class="title">Adoption de Copilot : éviter l'essoufflement après le lancement</span><span class="meta"><span class="cat">SÉRIE</span> · 7 min</span></a></li>
+    </ul>
+  </div>
+
+  <!-- ==================== OPTION 4 ==================== -->
+  <div class="panel" data-opt="4">
+    <div class="panel-intro">
+      <strong>Option 4 · Hybride (ma reco).</strong> Hero pleine largeur + bloc <em>Copilot de A à Z</em> mis en avant comme produit éditorial + <strong>liste dense pour tous les autres articles</strong>. 3 niveaux de hiérarchie, met en valeur ta série (asset stratégique).
+    </div>
+
+    <div class="blog-header">
+      <p class="label">JOURNAL</p>
+      <h2>Articles &amp; retours d'expérience</h2>
+      <p>Méthodes, tutoriels et coulisses de mes projets SharePoint, Power Platform et Copilot.</p>
+    </div>
+
+    <!-- Hero -->
+    <a href="#" style="text-decoration: none; color: inherit;">
+      <div class="opt4-hero">
+        <p class="label">DERNIER ARTICLE · SHAREPOINT</p>
+        <h3>Comment AI in SharePoint va changer la donne</h3>
+        <p>AI in SharePoint arrive en GA mi-juin 2026. Tour d'horizon des capacités réelles, des prérequis et des limites avant de s'y mettre.</p>
+        <p class="meta">24 avril 2026 · 5 min de lecture</p>
+      </div>
+    </a>
+
+    <!-- Série -->
+    <div class="opt4-serie">
+      <div class="opt4-serie-head">
+        <h3><span class="badge">SÉRIE</span> Copilot de A à Z</h3>
+        <a href="#">Voir les 7 épisodes →</a>
+      </div>
+      <div class="opt4-serie-track">
+        <div class="opt4-ep">
+          <p class="ep-num">01</p>
+          <h4>Adoption de Copilot : éviter l'essoufflement</h4>
+          <p class="meta">5 sep. · 7 min</p>
+        </div>
+        <div class="opt4-ep">
+          <p class="ep-num">02</p>
+          <h4>Maîtriser les bases du prompting</h4>
+          <p class="meta">24 sep. · 6 min</p>
+        </div>
+        <div class="opt4-ep">
+          <p class="ep-num">03</p>
+          <h4>Qu'est-ce qu'un Agent Copilot ?</h4>
+          <p class="meta">25 oct. · 5 min</p>
+        </div>
+        <div class="opt4-ep">
+          <p class="ep-num">04</p>
+          <h4>Créez votre agent d'onboarding en 5 min</h4>
+          <p class="meta">10 déc. · 6 min</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liste dense -->
+    <div class="opt4-grid-title">
+      <h3>Tous les articles</h3>
+      <div class="filters" style="margin-bottom: 0;">
+        <span class="chip active">Tous</span>
+        <span class="chip">SharePoint</span>
+        <span class="chip">Power Automate</span>
+        <span class="chip">Copilot Studio</span>
+      </div>
+    </div>
+
+    <ul class="opt1-list">
+      <li><a href="#"><span class="cat">Power Automate</span><span class="date">06 avr. 2026</span><span class="title">Pourquoi l'IA ne me remplacera pas en tant qu'experte Power Automate</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">SharePoint</span><span class="date">17 mar. 2026</span><span class="title">Préparer SharePoint pour Copilot : les 2 astuces terrain que j'applique</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">SharePoint</span><span class="date">11 mar. 2026</span><span class="title">Zéro ticket de support OneDrive après migration ? Voici comment j'ai fait !</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">SharePoint</span><span class="date">29 déc. 2025</span><span class="title">La synchronisation OneDrive : 3 points essentiels pour tout comprendre</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Power Automate</span><span class="date">02 déc. 2025</span><span class="title">Votre flow tourne en boucle ? Les Trigger Conditions vont tout changer</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Power Automate</span><span class="date">24 nov. 2025</span><span class="title">Power Automate + AI Builder : centaines d'heures gagnées avec la lecture PDF</span><span class="read">6 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">SharePoint</span><span class="date">21 nov. 2025</span><span class="title">Microsoft Ignite 2025 : arrêtez de penser Intranet, pensez IA !</span><span class="read">3 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Copilot Studio</span><span class="date">12 nov. 2025</span><span class="title">Tout savoir sur le nouveau modèle de facturation de Copilot Studio</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Copilot Studio</span><span class="date">06 nov. 2025</span><span class="title">Comment l'IA a fait évoluer Power Virtual Agents vers Copilot Studio</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Power · Apps</span><span class="date">13 oct. 2025</span><span class="title">Ma méthode infaillible pour réussir mes projets Power Platform</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Power Automate</span><span class="date">05 oct. 2025</span><span class="title">5 erreurs à éviter quand on automatise un processus</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">SharePoint</span><span class="date">30 sep. 2025</span><span class="title">L'IA dans SharePoint va transformer votre gestion documentaire en 2025</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+      <li><a href="#"><span class="cat">Power Automate</span><span class="date">12 sep. 2025</span><span class="title">Boîtes mail partagées ingérables ? Voici le flow qui a sauvé leur rentrée</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+    </ul>
+  </div>
+
+  <!-- ==================== OPTION 5 — COMBINÉE ==================== -->
+  <div class="panel active" data-opt="5">
+    <div class="panel-intro">
+      <strong>Option 5 · Combinée (sans hero).</strong> En haut, un mode <em>découverte</em> visuel (série + 6 dernières cards). En bas, un mode <em>exploration</em> avec recherche live et articles groupés par tag (collapsibles). Quand tu tapes dans la recherche, le bloc du haut se met en retrait pour laisser la place aux résultats.
+    </div>
+
+    <div class="blog-header">
+      <p class="label">JOURNAL</p>
+      <h2>Articles &amp; retours d'expérience</h2>
+      <p>Méthodes, tutoriels et coulisses de mes projets SharePoint, Power Platform et Copilot.</p>
+    </div>
+
+    <!-- ZONE DÉCOUVERTE -->
+    <div class="opt5-discover-section" id="discover">
+
+      <!-- Série -->
+      <div class="opt4-serie">
+        <div class="opt4-serie-head">
+          <h3><span class="badge">SÉRIE</span> Copilot de A à Z</h3>
+          <a href="#group-serie" onclick="openSerieGroup(event)">Voir les 7 épisodes →</a>
+        </div>
+        <div class="opt4-serie-track">
+          <div class="opt4-ep">
+            <p class="ep-num">01</p>
+            <h4>Adoption de Copilot : éviter l'essoufflement</h4>
+            <p class="meta">5 sep. · 7 min</p>
+          </div>
+          <div class="opt4-ep">
+            <p class="ep-num">02</p>
+            <h4>Maîtriser les bases du prompting</h4>
+            <p class="meta">24 sep. · 6 min</p>
+          </div>
+          <div class="opt4-ep">
+            <p class="ep-num">03</p>
+            <h4>Qu'est-ce qu'un Agent Copilot ?</h4>
+            <p class="meta">25 oct. · 5 min</p>
+          </div>
+          <div class="opt4-ep">
+            <p class="ep-num">04</p>
+            <h4>Créez votre agent d'onboarding en 5 min</h4>
+            <p class="meta">10 déc. · 6 min</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards récentes -->
+      <div class="opt4-grid-title">
+        <h3>Derniers articles</h3>
+      </div>
+      <div class="opt4-grid">
+        <div class="opt4-card">
+          <p class="cat">SharePoint</p>
+          <h4>Comment AI in SharePoint va changer la donne</h4>
+          <div class="meta"><span>24 avr. 2026</span><span>5 min</span></div>
+        </div>
+        <div class="opt4-card">
+          <p class="cat">Copilot · Série</p>
+          <h4>Créer un agent Copilot : 80% de cadrage métier, 20% de paramétrage</h4>
+          <div class="meta"><span>23 avr. 2026</span><span>4 min</span></div>
+        </div>
+        <div class="opt4-card">
+          <p class="cat">Copilot · Série</p>
+          <h4>Comprendre Copilot Cowork en 3 minutes</h4>
+          <div class="meta"><span>19 avr. 2026</span><span>5 min</span></div>
+        </div>
+        <div class="opt4-card">
+          <p class="cat">Power Automate</p>
+          <h4>Pourquoi l'IA ne me remplacera pas en tant qu'experte Power Automate</h4>
+          <div class="meta"><span>06 avr. 2026</span><span>5 min</span></div>
+        </div>
+        <div class="opt4-card">
+          <p class="cat">SharePoint</p>
+          <h4>Préparer SharePoint pour Copilot : les 2 astuces terrain</h4>
+          <div class="meta"><span>17 mar. 2026</span><span>5 min</span></div>
+        </div>
+        <div class="opt4-card">
+          <p class="cat">SharePoint</p>
+          <h4>Zéro ticket OneDrive après migration ? Voici comment j'ai fait</h4>
+          <div class="meta"><span>11 mar. 2026</span><span>4 min</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="archives-divider">
+      <span>Explorer toutes les archives</span>
+    </div>
+
+    <!-- ZONE EXPLORATION -->
+    <div class="opt5-search-bar">
+      <input type="text" id="opt5-search" placeholder="🔍  Rechercher un article — ex: OneDrive, agent, prompting…" oninput="filterOpt5(this.value)">
+      <span class="results" id="opt5-results">21 articles</span>
+    </div>
+
+    <p class="opt5-no-results" id="opt5-no-results">Aucun article ne correspond à ta recherche.</p>
+
+    <div id="opt5-tags">
+      <details class="opt5-tag-group" open>
+        <summary>SharePoint <span class="count">6 articles</span></summary>
+        <ul>
+          <li><a href="#"><span class="date">24 avr. 26</span><span class="title">Comment AI in SharePoint va changer la donne</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">17 mar. 26</span><span class="title">Préparer SharePoint pour Copilot : les 2 astuces terrain que j'applique</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">11 mar. 26</span><span class="title">Zéro ticket de support OneDrive après migration ? Voici comment j'ai fait !</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">29 déc. 25</span><span class="title">La synchronisation OneDrive : 3 points essentiels pour tout comprendre</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">21 nov. 25</span><span class="title">Microsoft Ignite 2025 : arrêtez de penser Intranet, pensez IA !</span><span class="read">3 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">30 sep. 25</span><span class="title">L'IA dans SharePoint va transformer votre gestion documentaire en 2025</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+        </ul>
+      </details>
+
+      <details class="opt5-tag-group">
+        <summary>Power Automate <span class="count">6 articles</span></summary>
+        <ul>
+          <li><a href="#"><span class="date">06 avr. 26</span><span class="title">Pourquoi l'IA ne me remplacera pas en tant qu'experte Power Automate</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">02 déc. 25</span><span class="title">Votre flow tourne en boucle ? Les Trigger Conditions vont tout changer</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">24 nov. 25</span><span class="title">Power Automate + AI Builder : la lecture automatique de PDF</span><span class="read">6 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">13 oct. 25</span><span class="title">Ma méthode infaillible pour réussir mes projets Power Platform</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">05 oct. 25</span><span class="title">5 erreurs à éviter quand on automatise un processus</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">12 sep. 25</span><span class="title">Boîtes mail partagées ingérables ? Voici le flow qui a sauvé leur rentrée</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+        </ul>
+      </details>
+
+      <details class="opt5-tag-group" id="group-serie">
+        <summary>Copilot de A à Z (Série) <span class="count">7 articles</span></summary>
+        <ul>
+          <li><a href="#"><span class="date">05 sep. 25</span><span class="title">Épisode 1 · Adoption de Copilot : éviter l'essoufflement après le lancement</span><span class="read">7 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">24 sep. 25</span><span class="title">Épisode 2 · Maîtriser les bases du prompting</span><span class="read">6 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">25 oct. 25</span><span class="title">Épisode 3 · Qu'est-ce qu'un Agent Copilot ?</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">10 déc. 25</span><span class="title">Épisode 4 · Créez votre agent d'onboarding RH en 5 minutes</span><span class="read">6 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">15 jan. 26</span><span class="title">Épisode 5 · Peut-on créer des agents sans licence Copilot ?</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">19 avr. 26</span><span class="title">Épisode 6 · Comprendre Copilot Cowork en 3 minutes</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">23 avr. 26</span><span class="title">Épisode 7 · Créer un agent Copilot : 80% de cadrage, 20% de paramétrage</span><span class="read">4 min</span><span class="arrow">→</span></a></li>
+        </ul>
+      </details>
+
+      <details class="opt5-tag-group">
+        <summary>Copilot Studio <span class="count">2 articles</span></summary>
+        <ul>
+          <li><a href="#"><span class="date">12 nov. 25</span><span class="title">Tout savoir sur le nouveau modèle de facturation de Copilot Studio</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+          <li><a href="#"><span class="date">06 nov. 25</span><span class="title">Comment l'IA a fait évoluer Power Virtual Agents vers Copilot Studio</span><span class="read">5 min</span><span class="arrow">→</span></a></li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</div>
+
+<script>
+function openSerieGroup(e) {
+  e.preventDefault();
+  const group = document.getElementById('group-serie');
+  if (!group) return;
+  group.setAttribute('open', '');
+  group.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Highlight visuel rapide pour signaler "tu es arrivé ici"
+  group.style.transition = 'background 0.4s';
+  group.style.background = 'rgba(24,176,232,0.08)';
+  setTimeout(() => { group.style.background = ''; }, 1200);
+}
+
+function filterOpt5(query) {
+  const q = query.trim().toLowerCase();
+  const discover = document.getElementById('discover');
+  const groups = document.querySelectorAll('#opt5-tags .opt5-tag-group');
+  const results = document.getElementById('opt5-results');
+  const noResults = document.getElementById('opt5-no-results');
+
+  // Quand l'user tape, le bloc découverte se met en retrait
+  if (q.length > 0) {
+    discover.classList.add('dimmed');
+  } else {
+    discover.classList.remove('dimmed');
+  }
+
+  let totalVisible = 0;
+
+  groups.forEach(group => {
+    const items = group.querySelectorAll('ul a');
+    let visibleInGroup = 0;
+    items.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      const match = q === '' || text.includes(q);
+      item.parentElement.style.display = match ? '' : 'none';
+      if (match) visibleInGroup++;
+    });
+
+    if (visibleInGroup === 0 && q !== '') {
+      group.style.display = 'none';
+    } else {
+      group.style.display = '';
+      // Auto-ouvre les groupes quand on cherche
+      if (q !== '') group.setAttribute('open', '');
+    }
+
+    const countEl = group.querySelector('.count');
+    if (q === '') {
+      const total = group.querySelectorAll('ul a').length;
+      countEl.textContent = total + ' articles';
+    } else {
+      countEl.textContent = visibleInGroup + ' résultat' + (visibleInGroup > 1 ? 's' : '');
+    }
+
+    totalVisible += visibleInGroup;
+  });
+
+  if (q === '') {
+    results.textContent = '21 articles';
+    noResults.style.display = 'none';
+  } else {
+    results.textContent = totalVisible + ' résultat' + (totalVisible > 1 ? 's' : '');
+    noResults.style.display = totalVisible === 0 ? 'block' : 'none';
+  }
+}
+
+function show(n) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`.panel[data-opt="${n}"]`).classList.add('active');
+  document.querySelectorAll('.switcher button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.switcher button')[n - 1].classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

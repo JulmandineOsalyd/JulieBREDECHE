@@ -12,7 +12,11 @@ interface BentoGridProps {
 
 export default function BentoGrid({ articles }: BentoGridProps) {
   const { t, locale } = useTranslation()
-  const [featured, ...rest] = articles
+  const featuredIndex = articles.findIndex((a) => a.featured)
+  const featured = featuredIndex >= 0 ? articles[featuredIndex] : articles[0]
+  const rest = featuredIndex >= 0
+    ? [...articles.slice(0, featuredIndex), ...articles.slice(featuredIndex + 1)]
+    : articles.slice(1)
   const others = rest.slice(0, 4)
 
   if (!featured) return null

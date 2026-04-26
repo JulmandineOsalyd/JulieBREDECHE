@@ -30,6 +30,8 @@ Poser maximum 3-4 questions pour clarifier :
 
 Si l'article fait partie de la série "Copilot de A à Z", demander le numéro d'épisode et vérifier la cohérence avec les épisodes précédents.
 
+**Identifier les articles connexes** : repérer dès le cadrage si l'article peut faire écho à des sujets déjà traités par Julie sur le blog (épisode précédent d'une série, concept déjà expliqué ailleurs, retour d'expérience proche). Les noter pour pouvoir les référencer à l'étape 3.
+
 ### Étape 2 — Proposer un plan (à valider)
 
 Produire un plan sous cette forme :
@@ -53,6 +55,14 @@ CONCLUSION : [angle de clôture : synthèse listée, punchline, ou "Ma conclusio
 ### Étape 3 — Rédiger section par section
 
 Écrire une section à la fois, en appliquant strictement les règles de voix et de formatage (voir plus bas). Laisser Julie valider/ajuster avant de passer à la suivante pour les articles longs, ou enchaîner si elle demande une V1 complète.
+
+**Liens internes vers d'autres articles du blog** : si le sujet s'y prête, insérer un lien Markdown vers un concept que Julie a probablement déjà traité (épisode précédent dans une série, notion abordée ailleurs, retour d'expérience connexe). Format avec slug à compléter par Julie :
+
+```markdown
+[Texte du lien](/blog/slug-a-completer)
+```
+
+Privilégier les liens **contextuels** (au fil du texte, là où le concept est mentionné), pas les "pour aller plus loin" en fin d'article. Maximum 2-3 liens internes par article pour rester naturel. Si un slug est connu avec certitude (ex: épisode précédent d'une série déjà rédigée), utiliser le slug réel ; sinon laisser `slug-a-completer` pour que Julie connecte ses articles à la relecture.
 
 ### Étape 4 — Prévisualisation HTML + MDX côte à côte (obligatoire)
 
@@ -260,30 +270,69 @@ Calquer exactement sur ce format :
 
 ```yaml
 ---
-title: "..."
+title: "[Titre éditorial accrocheur, peut conserver Épisode N • si série]"
+metaTitle: "[Mot-clé principal en tête, ≤ 60 caractères]"
+metaDescription: "[Orientée conversion, 150-160 caractères, distincte de l'excerpt]"
+slug: "[mots-cles-courts-sans-mots-de-liaison]"
+canonical: "https://juliebredeche.pro/blog/[slug]"
 date: "YYYY-MM-DD"
-category: "SharePoint" | "Copilot de A à Z" | "Power Automate" | "Power Platform" | "Audit & Conseil"
-excerpt: "Résumé d'une phrase, accrocheur, orienté bénéfice lecteur"
+category: "SharePoint" | "Copilot de A à Z" | "Power Automate" | "Power Platform" | "Copilot Studio" | "PowerApps" | "Audit & Conseil"
+parentTag: "Copilot"  # optionnel, pour les articles de série Copilot
+excerpt: "Résumé éditorial d'une phrase, accrocheur, orienté bénéfice lecteur"
 readingTime: 4
-tags: ["Tag1", "Tag2", "Tag3"]
+tags: ["Tag1", "Tag2", "Tag3", "Tag4"]
 featured: false
 send_newsletter: false
 draft: true
 ---
 ```
 
-Règles :
-- **`title`** : entre guillemets doubles, respecter les guillemets français si pertinent
+### Champs SEO (à GÉNÉRER pour chaque article)
+
+- **`metaTitle`** : ≤ 60 caractères. **Mot-clé principal au début**. **Sans** "Épisode N •" (le SEO préfère le mot-clé en tête, contrairement au `title` qui peut le conserver).
+- **`metaDescription`** : strictement entre **150 et 160 caractères**. Orientée conversion : verbe d'action, livrables concrets, persona ciblé si pertinent. Doit être **distincte** de l'`excerpt` (qui reste éditorial pour l'affichage blog).
+- **`slug`** : court, en minuscules, séparé par des tirets, sans mots de liaison ("le", "la", "de", "et", "pour", "the", "a", "of"). **Identique FR/EN**.
+- **`canonical`** : toujours `https://juliebredeche.pro/blog/[slug]`. **Pas de `/en/`** dans l'URL — le routing Next.js ne distingue pas la locale dans le path.
+
+### Champs édito (à conserver ou affiner)
+
+- **`title`** : entre guillemets doubles, respecter les guillemets français si pertinent. Peut conserver "Épisode N •" si série "Copilot de A à Z".
 - **`date`** : format ISO `YYYY-MM-DD`
-- **`category`** : **exactement** une des 5 valeurs ci-dessus, rien d'autre
-- **`excerpt`** : 1 phrase, pas deux. C'est ce qui apparaît sur la page d'accueil du blog
-- **`readingTime`** : estimer honnêtement (200 mots/min). **Cible : 4-5 min max**
-- **`tags`** : 3 à 5 tags, PascalCase pour les noms composés (ex. `"Microsoft 365"`), singuliers
-- **`featured`** : `true` uniquement si Julie le demande explicitement
+- **`category`** : **exactement** une des valeurs listées ci-dessus, rien d'autre
+- **`parentTag`** : optionnel. Utilisé pour les articles de série (ex: `"Copilot"` pour les articles "Copilot de A à Z" et Copilot Studio)
+- **`excerpt`** : 1 phrase éditoriale, pas deux. C'est ce qui apparaît sur la page d'accueil du blog. **Distinct du `metaDescription`** (qui sert au SEO).
+- **`readingTime`** : **mots du corps de l'article ÷ 300, arrondi à l'entier supérieur**. Compter uniquement le contenu après le frontmatter. Cible 2-4 min sur articles de 700-900 mots.
+- **`tags`** : **4 maximum**. Pas de doublons sémantiques (ex: éviter "IA" + "Copilot" si le sujet est Copilot ; éviter "Méthodologie" générique si "Cadrage projet" est plus précis). Privilégier les tags transactionnels/spécifiques aux génériques. PascalCase pour les noms composés (ex. `"Microsoft 365"`), singuliers.
+
+### Champs de publication (à PRÉSERVER tels quels)
+
+- **`featured`** : `false` par défaut. `true` uniquement si Julie le demande explicitement (met l'article en avant dans le BentoGrid)
 - **`send_newsletter`** : **toujours `false` par défaut**. Julie l'activera manuellement au moment de la publication
 - **`draft`** : **toujours `true` par défaut**. Julie passera à `false` uniquement au moment de la publication
 
 ⚠️ **Règle critique** : ne jamais livrer un article avec `draft: false` ou `send_newsletter: true`, même si l'article semble finalisé. Ces deux champs sont du ressort de Julie au moment de publier.
+
+### Workflow de génération du frontmatter
+
+1. Rédiger le corps de l'article
+2. **Compter les mots du corps** (hors frontmatter) → calculer `readingTime` = ⌈mots ÷ 300⌉
+3. Définir le **mot-clé principal SEO**
+4. Rédiger `metaTitle` (≤ 60 car., mot-clé en tête) puis `metaDescription` (150-160 car., orientée conversion)
+5. Vérifier les longueurs : `metaTitle` ≤ 60, `metaDescription` ∈ [150, 160]
+6. Vérifier que `tags` ≤ 4 sans doublon sémantique
+7. Pour la version EN : conserver le **même `slug` et `canonical`** que la VF
+
+### Exemple concret (référence)
+
+```yaml
+title: "Épisode 7 • Créer un agent Copilot : 80% de cadrage métier, 20% de paramétrage"
+metaTitle: "Créer un agent Copilot : méthode en 5 phases"
+metaDescription: "Méthodologie en 5 phases pour cadrer et déployer un agent Copilot déclaratif réussi : prérequis, sources, itérations, déploiement. Guide consultant M365."
+slug: "methodologie-cadrage-agent-copilot"
+canonical: "https://juliebredeche.pro/blog/methodologie-cadrage-agent-copilot"
+tags: ["Copilot", "Agents déclaratifs", "Cadrage projet", "Microsoft 365"]
+readingTime: 4
+```
 
 ## Longueur cible
 
@@ -344,7 +393,10 @@ En fin de section, une phrase-verdict courte en gras qui synthétise. Le lecteur
 - Identifier 1 mot-clé principal et 2-3 mots-clés secondaires avant de rédiger
 - Intégrer les termes **naturellement** dans le titre, le `<h2>` de la première section, l'excerpt, et au moins 2 fois dans le corps
 - **Pas de sur-optimisation** : si le mot-clé ne passe pas naturellement dans une phrase, ne pas le forcer
-- **Meta description** : 155 caractères max, doit contenir le mot-clé principal, promettre un bénéfice, donner envie de cliquer
+- **`metaTitle`** : ≤ 60 caractères, mot-clé principal au début, sans "Épisode N •"
+- **`metaDescription`** : strictement 150-160 caractères, orientée conversion, distincte de l'`excerpt`
+- **`slug`** : court, sans mots de liaison, identique FR/EN
+- **`canonical`** : `https://juliebredeche.pro/blog/[slug]`, identique FR/EN (pas de `/en/`)
 
 ## Règles de rigueur factuelle
 
@@ -368,7 +420,8 @@ Lire les fichiers suivants **selon le besoin** :
 - **Proposer un plan avant de rédiger.** Toujours.
 - **Prévisualiser en artifact HTML+MDX côte à côte avant de livrer le .mdx final.** Toujours.
 - **Demander le MDX actuel du textarea avant toute modification de l'article.** Non négociable — sinon risque d'écraser les édits de Julie.
-- **`draft: true` et `send_newsletter: false` dans le frontmatter.** Toujours.
+- **Frontmatter complet** : `metaTitle` (≤60), `metaDescription` (150-160), `slug`, `canonical`, `tags` (≤4), `readingTime` (mots÷300 arrondi sup.).
+- **`draft: true` et `send_newsletter: false`.** Toujours.
 - **1000 mots grand max, 4-5 min de lecture.** Jamais au-dessus.
 - **Phrases courtes (15-20 mots max), bullets dès que possible.** Les lecteurs scannent.
 - **Pas de tirets dans la ponctuation.** Jamais.
