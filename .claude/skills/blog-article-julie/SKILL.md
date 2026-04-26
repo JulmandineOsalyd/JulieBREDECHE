@@ -81,13 +81,25 @@ L'artifact doit contenir **deux panneaux côte à côte** :
 - Édition en temps réel : quand Julie modifie le texte, l'aperçu gauche se met à jour
 - Police monospace, taille lisible, numérotation des lignes optionnelle
 
-**Contraintes techniques de l'artifact** :
-- HTML autonome dans un seul fichier (pas de dépendances externes nécessitant un serveur)
-- Utiliser un parseur Markdown côté client (ex. `marked` via CDN) + petits regex pour gérer les composants MDX custom
-- Gestion des tableaux avec `<ul><li>` imbriqués dans les cellules (pattern "Qui fait quoi") : le HTML inline doit être rendu tel quel
-- Bouton **"Copier le MDX"** en haut du panneau droit (très visible, couleur contrastée)
-- Compteur de mots et temps de lecture estimé en bas
-- **Bandeau permanent** en haut du panneau droit qui rappelle : *"💡 Avant toute modif demandée à Claude, clique sur 'Copier le MDX' et colle-le dans le chat"*
+**Construction de l'artifact — utiliser le template** :
+
+⚠️ **Ne jamais regénérer l'artifact from scratch.** Un template HTML complet et testé existe à `templates/preview-template.html`. Il calque déjà le design réel du blog (palette `--c2`/`--c3`/`--ink`, police Lora pour les titres, tableaux à gradient bleu, séparateurs `hr` avec point central, blockquote bordure `--c2`). Workflow :
+
+1. **Lire** le fichier `templates/preview-template.html`
+2. **Remplacer** les deux placeholders :
+   - `{{TITLE}}` → titre de l'article (utilisé dans `<title>` et la topbar)
+   - `{{INITIAL_MDX}}` → MDX complet (frontmatter + corps), avec **échappement des backticks** (`` ` `` → `` \` ``) et des `${` (→ `\${`) puisque le contenu est inséré dans une template literal JavaScript
+3. **Produire l'artifact** avec le HTML résultant
+
+Le template embarque déjà :
+- Parseur Markdown (`marked` via CDN) + parseur YAML (`js-yaml` via CDN)
+- Bouton "Copier MDX" (bleu `--c2`) + bouton "Reset"
+- Compteur de mots et temps de lecture (mots ÷ 300, arrondi sup.)
+- Bandeau d'avertissement permanent
+- Édition temps réel avec debounce 150ms
+- Échappement HTML du frontmatter parsé
+- Formatage de la date en français
+- Layout responsive mobile
 
 Après création de l'artifact, dire à Julie **exactement ceci** (ne pas reformuler) :
 
@@ -411,8 +423,9 @@ Lire les fichiers suivants **selon le besoin** :
 
 - **`references/voice-patterns.md`** — Ouvertures, transitions, formules récurrentes de Julie. Consulter en priorité pour rédiger intro et conclusion
 - **`references/mdx-components.md`** — Composants MDX et patterns de tableaux disponibles. Consulter avant de poser des balises HTML ou des tableaux complexes dans l'article
-- **`references/preview-artifact.md`** — Spécification de l'artifact HTML de prévisualisation (étape 4 du workflow). Consulter à chaque article avant de construire la preview
-- **`templates/article-base.mdx`** — Squelette vide prêt à remplir. Utile quand Julie veut démarrer from scratch
+- **`templates/preview-template.html`** — Template HTML complet de la prévisualisation (étape 4). À cloner et remplir avec `{{TITLE}}` et `{{INITIAL_MDX}}`. **Ne jamais regénérer from scratch.**
+- **`references/preview-artifact.md`** — Spécification de l'artifact HTML (référence en cas de doute sur le comportement attendu)
+- **`templates/article-base.mdx`** — Squelette de frontmatter + structure d'article. Utile quand Julie veut démarrer from scratch
 - **`examples/`** — Deux articles validés (OneDrive et Cowork) qui incarnent le style. Consulter en cas de doute sur le ton ou le formatage
 
 ## Rappels finaux
