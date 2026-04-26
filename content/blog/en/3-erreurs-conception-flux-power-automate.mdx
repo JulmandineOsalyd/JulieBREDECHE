@@ -1,0 +1,91 @@
+---
+title: "Power Automate: 3 mistakes that make your flows unreadable (and how to avoid them)"
+metaTitle: "Power Automate: 3 design mistakes to avoid"
+metaDescription: "Poorly named actions, no error handling, nested conditions: 3 classic traps that make your Power Automate flows unreadable, and how to avoid them."
+slug: "3-erreurs-conception-flux-power-automate"
+canonical: "https://juliebredeche.pro/blog/3-erreurs-conception-flux-power-automate"
+date: "2025-10-19"
+category: "Power Automate"
+excerpt: "Three mistakes show up in most of the Power Automate flows I'm asked to update."
+readingTime: 3
+tags: ["Power Automate", "Best Practices", "Power Platform", "Maintenance"]
+featured: false
+send_newsletter: false
+draft: true
+---
+
+Someone hands me a flow to update. I open it, and I run into "Apply to each 4", "Compose 5", no error handling.
+
+Here are three mistakes that come up too often, and my recommendations to avoid them.
+
+---
+
+## Mistake #1: Poorly named actions
+
+`Apply to each 4`, `Compose 5`, `Condition 2`. What do these actions do? Nobody knows. Not even the person who built the flow three months earlier.
+
+Once the flow gets complex, it's impossible to find your way around. And if a colleague has to take it over, it's even worse.
+
+**Best practice: apply a shared naming rule across all your flows.**
+
+- **Keep the original action name**: leave `Apply to each` or `Compose` so the action type stays obvious at a glance
+- **Summarize what the action does** in two or three words max, using **camelCase** for the descriptive part: `documentFound`, `fileMoved`
+
+Concretely, `Apply to each 4` becomes `Apply to each - documentFound`. You instantly understand what the loop is processing.
+
+<div className="prose-article70"><img src="/images/blog/PA-Erreur1.png" alt="Power Automate action renamed Apply to each documentFound" /></div><br/>
+
+---
+
+## Mistake #2: No error handling
+
+An HTTP call fails. A piece of data is missing. The flow stops. Without warning.
+
+Without error handling, you discover bugs after the fact. And it's often the end user who notices first.
+
+**Best practice: use the "Run after" settings combined with an automatic notification action** (Teams, email, or both).
+
+Concretely, you add a notification action right after the critical step. On that action, you configure **Run after** so it triggers in every failure case:
+
+- ❌ &nbsp; **Is successful**: unchecked (otherwise you get notified on every successful run)
+- ✅ &nbsp; **Has timed out**: checked
+- ✅ &nbsp; **Is skipped**: checked
+- ✅ &nbsp; **Has failed**: checked
+
+<div className="prose-article70"><img src="/images/blog/PA-Erreur2.png" alt="Power Automate Run after configuration with error notification" /></div><br/>
+
+The end user no longer sees the bug before you do. The flow fails, you get notified, and you can fix it before the incident escalates.
+
+---
+
+## Mistake #3: Too many nested conditions
+
+If A, then B. Unless C. But only if D. That's not a flow anymore, it's an epic.
+
+The flow becomes unreadable, and maintenance becomes nearly impossible.
+
+**Best practice: break the complexity with three levers.**
+
+- **Logical expressions**: replace three nested conditions with a single `if(and(...), ..., ...)` expression in a `Compose` action
+- **The Switch action**: a Switch is far more readable than a cascade of `Condition` blocks
+- **Splitting into multiple flows**: when the logic stays heavy, extract part of it into one or several child flows. [Trigger Conditions](/blog/trigger-conditions-power-automate) can also help!
+
+For a per-file-type treatment, for example, a Switch on `documentType` with a Case for each value (`wordFile`, `excelFile`, `Default`) is a better fit than three stacked `If` conditions.
+
+<div className="prose-article70"><img src="/images/blog/PA-Erreur3.png" alt="Switch documentType action with Case wordFile excelFile Default" /></div><br/>
+
+> **If your flow looks like a Christmas tree with ten `If` branches, it needs to be rethought, not extended.**
+
+---
+
+## My takeaway
+
+A well-designed flow is a flow you can understand at a glance.
+
+Three observations that come up in most of the audits I run:
+
+1. Naming actions takes a few seconds at design time, and saves hours of maintenance later.
+2. Without automatic failure notifications, the end user ends up being your monitoring system.
+3. A flow nobody can read is a flow nobody will dare to evolve.
+
+Design the flow for whoever will pick it up six months from now. That person could very well be you.

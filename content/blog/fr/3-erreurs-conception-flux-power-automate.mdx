@@ -1,0 +1,91 @@
+---
+title: "Power Automate : 3 erreurs qui rendent vos flux illisibles (et comment les éviter)"
+metaTitle: "Power Automate : 3 erreurs de conception à éviter"
+metaDescription: "Actions mal nommées, aucune gestion d'erreur, conditions imbriquées : 3 pièges classiques qui rendent vos flux Power Automate illisibles, et comment les éviter."
+slug: "3-erreurs-conception-flux-power-automate"
+canonical: "https://juliebredeche.pro/blog/3-erreurs-conception-flux-power-automate"
+date: "2025-10-19"
+category: "Power Automate"
+excerpt: "Trois erreurs reviennent dans la majorité des flux Power Automate qu'on me demande de faire évoluer."
+readingTime: 3
+tags: ["Power Automate", "Bonnes pratiques", "Power Platform", "Maintenance"]
+featured: false
+send_newsletter: false
+draft: true
+---
+
+On me confie un flux à faire évoluer. Je l'ouvre et je tombe sur "Apply to each 4", "Compose 5", aucune gestion d'erreur.
+
+Voici trois erreurs qui reviennent trop souvent et mes recommandations pour les éviter.
+
+---
+
+## Erreur #1 : Des actions mal nommées
+
+`Apply to each 4`, `Compose 5`, `Condition 2`. À quoi servent ces actions ? Personne ne le sait. Pas même celui qui a construit le flux trois mois plus tôt.
+
+Quand le flux devient complexe, impossible de s'y retrouver. Et si un collègue doit le reprendre, c'est encore pire.
+
+**La bonne pratique : appliquer une règle de nommage commune à tous les flux.**
+
+- **Conserver le nom de l'action initial** : on garde `Apply to each` ou `Compose` pour identifier le type d'action en un coup d'œil
+- **Résumer ce que fait l'action** en deux ou trois mots maximum en respectant la **nomenclature camelCase** pour la partie descriptive : `documentFound`, `fileMoved`
+
+Concrètement, `Apply to each 4` devient `Apply to each - documentFound`. On comprend immédiatement ce que la boucle traite.
+
+<div className="prose-article70"><img src="/images/blog/PA-Erreur1.png" alt="Action Power Automate renommée Apply to each documentFound" /></div><br/>
+
+---
+
+## Erreur #2 : Aucune gestion d'erreur
+
+Un appel HTTP échoue. Une donnée est manquante. Le flux s'arrête. Sans prévenir.
+
+Sans gestion d'erreur, on découvre les bugs après coup. Et souvent, c'est l'utilisateur final qui s'en rend compte avant nous.
+
+**La bonne pratique : utiliser les conditions "Run after" avec une action de notification automatique** (Teams, mail, ou les deux).
+
+Concrètement, on ajoute une action de notification après l'action critique. Sur cette action, on configure le **Run after** pour qu'elle se déclenche dans tous les cas d'échec :
+
+- ❌ &nbsp; **Is successful** : décoché (sinon on est notifié à chaque exécution réussie)
+- ✅ &nbsp; **Has timed out** : coché
+- ✅ &nbsp; **Is skipped** : coché
+- ✅ &nbsp; **Has failed** : coché
+
+<div className="prose-article70"><img src="/images/blog/PA-Erreur2.png" alt="Configuration Run after Power Automate avec notification d'erreur" /></div><br/>
+
+L'utilisateur final ne voit plus jamais le bug avant vous. Le flux échoue, vous êtes notifié, et il est possible de le corriger avant que l'incident remonte.
+
+---
+
+## Erreur #3 : Trop de conditions imbriquées
+
+Si A, alors B. Sauf si C. Mais seulement si D. Ce n'est plus un flux, c'est une épopée.
+
+Le flux devient illisible et la maintenance, quasi impossible.
+
+**La bonne pratique : casser la complexité avec trois leviers.**
+
+- **Les expressions logiques** : remplacer trois conditions imbriquées par une seule expression `if(and(...), ..., ...)` directement dans une action `Compose`
+- **L'action Switch** : un Switch est beaucoup plus lisible qu'une cascade de `Condition`
+- **Le découpage en plusieurs flux** : si la logique reste lourde, on extrait une partie dans un ou plusieurs flux enfants. Les [Trigger Conditions](/blog/trigger-conditions-power-automate) peuvent aussi aider !
+
+Pour un traitement par type de fichier, par exemple, le Switch sur `documentType` avec un Case par valeur (`wordFile`, `excelFile`, `Default`) remplace avantageusement trois conditions `If` empilées.
+
+<div className="prose-article70"><img src="/images/blog/PA-Erreur3.png" alt="Action Switch documentType avec Case wordFile excelFile Default" /></div><br/>
+
+> **Si votre flux ressemble à un sapin de Noël avec dix branches `If`, c'est qu'il faut le repenser, pas le rallonger.**
+
+---
+
+## Ma conclusion
+
+Un flux bien conçu, c'est un flux que l'on comprend au premier coup d'œil.
+
+Trois constats qui reviennent dans la majorité des audits que je fais :
+
+1. Le nommage des actions prend quelques secondes à la conception, et peut faire gagner des heures en maintenance.
+2. Sans notification automatique en cas d'échec, c'est l'utilisateur final qui devient votre dispositif de monitoring.
+3. Un flux qu'on n'arrive pas à relire est un flux qu'on n'osera pas faire évoluer.
+
+Penser le flux pour celui qui le reprendra dans six mois. Ça peut très bien être vous.

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Preview — Power Automate : 3 erreurs qui rendent vos flux illisibles</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<style>
+  :root {
+    --c1: #60c6ff;
+    --c2: #18b0e8;
+    --c3: #0e4c89;
+    --grad: linear-gradient(135deg, #5ceae8 0%, #18b0e8 45%, #0f5fad 100%);
+    --ink: #071828;
+    --muted: #4a6080;
+    --border: #cce4f5;
+    --off: #f0f8ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background: #f5f5f7;
+    color: var(--ink);
+    height: 100vh;
+    overflow: hidden;
+  }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .topbar .title { font-weight: 600; color: var(--ink); }
+  .topbar .stats { color: var(--muted); font-size: 13px; }
+  .split { display: flex; height: calc(100vh - 50px); }
+  .pane { flex: 1; overflow-y: auto; }
+  .pane-left { background: #ffffff; padding: 56px 60px; }
+  .pane-right { background: #1e1e1e; display: flex; flex-direction: column; border-left: 1px solid var(--border); }
+  .banner {
+    background: #fff4e6;
+    border: 1px solid #f0b97d;
+    color: #663c00;
+    padding: 10px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 10px;
+    border-radius: 6px;
+  }
+  .toolbar {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    background: #252526;
+    border-bottom: 1px solid #333;
+  }
+  .btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+  }
+  .btn-primary { background: var(--c2); color: white; }
+  .btn-primary:hover { background: var(--c3); }
+  .btn-secondary { background: #3c3c3c; color: #ccc; }
+  .btn-secondary:hover { background: #4a4a4a; }
+  textarea {
+    flex: 1;
+    width: 100%;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    border: none;
+    padding: 16px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+  }
+
+  .article { max-width: 720px; margin: 0 auto; }
+  .article .meta {
+    color: var(--c2);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .article h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    margin: 0 0 1rem;
+  }
+  .article .excerpt {
+    font-size: 1.15rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.55;
+  }
+  .article .date {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .article h2 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 2.5rem 0 1rem;
+    line-height: 1.3;
+  }
+  .article h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 2rem 0 0.75rem;
+  }
+  .article p {
+    margin: 0 0 1.25rem;
+    line-height: 1.75;
+    color: #1e3a5f;
+    font-size: 1rem;
+  }
+  .article ul {
+    list-style-type: disc;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .article ol {
+    list-style-type: decimal;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .article li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+    color: #1e3a5f;
+  }
+  .article strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .article em { font-style: italic; }
+  .article a {
+    color: var(--c3);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .article a:hover { color: var(--c2); }
+  .article blockquote {
+    border-left: 3px solid var(--c2);
+    padding-left: 1.25rem;
+    font-style: italic;
+    color: var(--muted);
+    margin: 1.5rem 0;
+  }
+  .article blockquote p { color: var(--muted); }
+  .article code {
+    background: var(--off);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.88em;
+    color: var(--c3);
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+  .article pre {
+    background: var(--ink);
+    color: var(--c1);
+    padding: 1.25rem;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+  .article pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+  .article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+  }
+  .article hr {
+    border: none;
+    margin: 2.5rem 0;
+    height: 1px;
+    position: relative;
+    overflow: visible;
+    background: linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  }
+  .article hr::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--grad);
+    box-shadow: 0 0 0 3px white, 0 0 0 4px var(--c2);
+  }
+
+  @media (max-width: 900px) {
+    .split { flex-direction: column; height: auto; }
+    .pane { height: auto; }
+    .pane-left { padding: 32px 24px; }
+    body { overflow: auto; height: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="title">📄 Power Automate : 3 erreurs qui rendent vos flux illisibles</div>
+  <div class="stats" id="stats">Mots: — • Temps: — min</div>
+</div>
+<div class="split">
+  <div class="pane pane-left">
+    <div class="article" id="preview"></div>
+  </div>
+  <div class="pane pane-right">
+    <div class="banner">
+      💡 Avant de demander une modif à Claude dans le chat, clique sur <strong>"Copier MDX"</strong> et colle-le. Sinon tes éditions seront écrasées.
+    </div>
+    <div class="toolbar">
+      <button class="btn btn-primary" onclick="copyMdx(event)">📋 Copier MDX</button>
+      <button class="btn btn-secondary" onclick="resetMdx()">↺ Reset</button>
+    </div>
+    <textarea id="mdx" spellcheck="false"></textarea>
+  </div>
+</div>
+
+<script id="initial-mdx" type="text/plain">---
+title: "Power Automate : 3 erreurs qui rendent vos flux illisibles (et comment les éviter)"
+metaTitle: "Power Automate : 3 erreurs de conception à éviter"
+metaDescription: "Actions mal nommées, aucune gestion d'erreur, conditions imbriquées : 3 pièges classiques qui rendent vos flux Power Automate illisibles, et comment les éviter."
+slug: "3-erreurs-conception-flux-power-automate"
+canonical: "https://juliebredeche.pro/blog/3-erreurs-conception-flux-power-automate"
+date: "2025-10-19"
+category: "Power Automate"
+excerpt: "Trois erreurs reviennent dans la majorité des flux Power Automate qu'on me demande de faire évoluer."
+readingTime: 3
+tags: ["Power Automate", "Bonnes pratiques", "Power Platform", "Maintenance"]
+featured: false
+send_newsletter: false
+draft: true
+---
+
+On me confie un flux à faire évoluer. Je l'ouvre et je tombe sur "Apply to each 4", "Compose 5", aucune gestion d'erreur.
+
+Voici trois erreurs qui reviennent trop souvent et mes recommandations pour les éviter.
+
+---
+
+## Erreur #1 : Des actions mal nommées
+
+`Apply to each 4`, `Compose 5`, `Condition 2`. À quoi servent ces actions ? Personne ne le sait. Pas même celui qui a construit le flux trois mois plus tôt.
+
+Quand le flux devient complexe, impossible de s'y retrouver. Et si un collègue doit le reprendre, c'est encore pire.
+
+**La bonne pratique : appliquer une règle de nommage commune à tous les flux.**
+
+- **Conserver le nom de l'action initial** : on garde `Apply to each` ou `Compose` pour identifier le type d'action en un coup d'œil
+- **Résumer ce que fait l'action** en deux ou trois mots maximum en respectant la **nomenclature camelCase** pour la partie descriptive : `documentFound`, `fileMoved`
+
+Concrètement, `Apply to each 4` devient `Apply to each - documentFound`. On comprend immédiatement ce que la boucle traite.
+
+<div className="prose-article70"><img src="/images/blog/PA-Erreur1.png" alt="Action Power Automate renommée Apply to each documentFound" /></div><br/>
+
+---
+
+## Erreur #2 : Aucune gestion d'erreur
+
+Un appel HTTP échoue. Une donnée est manquante. Le flux s'arrête. Sans prévenir.
+
+Sans gestion d'erreur, on découvre les bugs après coup. Et souvent, c'est l'utilisateur final qui s'en rend compte avant nous.
+
+**La bonne pratique : utiliser les conditions "Run after" avec une action de notification automatique** (Teams, mail, ou les deux).
+
+Concrètement, on ajoute une action de notification après l'action critique. Sur cette action, on configure le **Run after** pour qu'elle se déclenche dans tous les cas d'échec :
+
+- ❌ &nbsp; **Is successful** : décoché (sinon on est notifié à chaque exécution réussie)
+- ✅ &nbsp; **Has timed out** : coché
+- ✅ &nbsp; **Is skipped** : coché
+- ✅ &nbsp; **Has failed** : coché
+
+<div className="prose-article70"><img src="/images/blog/PA-Erreur2.png" alt="Configuration Run after Power Automate avec notification d'erreur" /></div><br/>
+
+L'utilisateur final ne voit plus jamais le bug avant vous. Le flux échoue, vous êtes notifié, et il est possible de le corriger avant que l'incident remonte.
+
+---
+
+## Erreur #3 : Trop de conditions imbriquées
+
+Si A, alors B. Sauf si C. Mais seulement si D. Ce n'est plus un flux, c'est une épopée.
+
+Le flux devient illisible et la maintenance, quasi impossible.
+
+**La bonne pratique : casser la complexité avec trois leviers.**
+
+- **Les expressions logiques** : remplacer trois conditions imbriquées par une seule expression `if(and(...), ..., ...)` directement dans une action `Compose`
+- **L'action Switch** : un Switch est beaucoup plus lisible qu'une cascade de `Condition`
+- **Le découpage en plusieurs flux** : si la logique reste lourde, on extrait une partie dans un ou plusieurs flux enfants. Les [Trigger Conditions](/blog/trigger-conditions-power-automate) peuvent aussi aider !
+
+Pour un traitement par type de fichier, par exemple, le Switch sur `documentType` avec un Case par valeur (`wordFile`, `excelFile`, `Default`) remplace avantageusement trois conditions `If` empilées.
+
+<div className="prose-article70"><img src="/images/blog/PA-Erreur3.png" alt="Action Switch documentType avec Case wordFile excelFile Default" /></div><br/>
+
+> **Si votre flux ressemble à un sapin de Noël avec dix branches `If`, c'est qu'il faut le repenser, pas le rallonger.**
+
+---
+
+## Ma conclusion
+
+Un flux bien conçu, c'est un flux que l'on comprend au premier coup d'œil.
+
+Trois constats qui reviennent dans la majorité des audits que je fais :
+
+1. Le nommage des actions prend quelques secondes à la conception, et peut faire gagner des heures en maintenance.
+2. Sans notification automatique en cas d'échec, c'est l'utilisateur final qui devient votre dispositif de monitoring.
+3. Un flux qu'on n'arrive pas à relire est un flux qu'on n'osera pas faire évoluer.
+
+Penser le flux pour celui qui le reprendra dans six mois. Ça peut très bien être vous.
+</script>
+
+<script>
+const INITIAL_MDX = document.getElementById('initial-mdx').textContent;
+const LOCAL_IMAGE_PREFIX = '../../../../public';
+
+const textarea = document.getElementById('mdx');
+const preview = document.getElementById('preview');
+const stats = document.getElementById('stats');
+
+textarea.value = INITIAL_MDX;
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, s => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[s]));
+}
+
+function formatDateFr(iso) {
+  if (!iso) return '';
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  } catch (e) { return iso; }
+}
+
+function rewriteLocalImages(html) {
+  return html.replace(/(<img[^>]*\ssrc=")(\/[^"]+)(")/g, function (m, p1, src, p3) {
+    return p1 + LOCAL_IMAGE_PREFIX + src + p3;
+  });
+}
+
+function render() {
+  const raw = textarea.value;
+  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  let frontmatter = {};
+  let body = raw;
+  if (match) {
+    try { frontmatter = jsyaml.load(match[1]) || {}; } catch (e) { frontmatter = {}; }
+    body = match[2];
+  }
+
+  const title = frontmatter.title || 'Sans titre';
+  const excerpt = frontmatter.excerpt || '';
+  const category = Array.isArray(frontmatter.category)
+    ? frontmatter.category.join(' · ')
+    : (frontmatter.category || '');
+  const date = formatDateFr(frontmatter.date);
+
+  let bodyHtml = marked.parse(body);
+  bodyHtml = rewriteLocalImages(bodyHtml);
+
+  let html = '';
+  if (category) html += '<div class="meta">' + escapeHtml(category) + '</div>';
+  html += '<h1>' + escapeHtml(title) + '</h1>';
+  if (excerpt) html += '<div class="excerpt">' + escapeHtml(excerpt) + '</div>';
+  if (date) html += '<div class="date">' + escapeHtml(date) + '</div>';
+  html += bodyHtml;
+  preview.innerHTML = html;
+
+  const words = body.replace(/[#*_>`\-|]/g, ' ').split(/\s+/).filter(w => w.length > 1).length;
+  const readTime = Math.ceil(words / 300);
+  stats.textContent = 'Mots: ' + words + ' • Temps: ' + readTime + ' min';
+}
+
+let debounce;
+textarea.addEventListener('input', function () {
+  clearTimeout(debounce);
+  debounce = setTimeout(render, 150);
+});
+
+function copyMdx(e) {
+  textarea.select();
+  document.execCommand('copy');
+  const btn = e.currentTarget;
+  const orig = btn.textContent;
+  btn.textContent = '✓ Copié !';
+  setTimeout(function () { btn.textContent = orig; }, 1500);
+}
+
+function resetMdx() {
+  if (confirm('Restaurer la version initiale ? Tes modifications seront perdues.')) {
+    textarea.value = INITIAL_MDX;
+    render();
+  }
+}
+
+render();
+</script>
+</body>
+</html>
