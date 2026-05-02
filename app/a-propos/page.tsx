@@ -2,12 +2,13 @@ import type { Metadata } from 'next'
 import AboutContent from './AboutContent'
 
 export const metadata: Metadata = {
-  title: 'A propos — Julie BREDECHE',
+  title: 'Mon parcours - Julie BREDECHE, consultante M365',
   description:
-    'Consultante Microsoft 365 indépendante depuis 5 ans. Spécialiste SharePoint, Power Platform et Copilot Studio. Découvrez mon parcours et mes valeurs.',
+    'Consultante SharePoint et Power Platform depuis plus de 10 ans. Découvrez mon parcours, ma méthode de travail et les valeurs qui guident mes projets.',
   openGraph: {
-    title: 'A propos — Julie BREDECHE',
-    description: 'Consultante Microsoft 365 indépendante depuis 6 ans.',
+    title: 'Mon parcours - Julie BREDECHE, consultante M365',
+    description:
+      'Consultante SharePoint et Power Platform depuis plus de 10 ans. Découvrez mon parcours, ma méthode de travail et les valeurs qui guident mes projets.',
     url: 'https://juliebredeche.pro/a-propos',
     type: 'profile',
   },

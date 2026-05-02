@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { subscribeToNewsletter } from './newsletter'
 import { useTranslation } from '@/lib/i18n'
 
@@ -66,7 +67,7 @@ export default function NewsletterBar() {
         ) : (
           <form
             onSubmit={handleSubmit}
-            style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}
+            style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'flex-end' }}
             aria-label={n.ariaLabel}
           >
             {/* Honeypot */}
@@ -108,10 +109,18 @@ export default function NewsletterBar() {
               {status === 'loading' ? n.subscribing : n.subscribe}
             </button>
             {status === 'error' && (
-              <p style={{ width: '100%', margin: '0.25rem 0 0', color: 'rgba(255,200,200,1)', fontSize: '0.82rem' }}>
+              <p style={{ width: '100%', margin: '0.25rem 0 0', color: 'rgba(255,200,200,1)', fontSize: '0.82rem', textAlign: 'right' }}>
                 {n.error}
               </p>
             )}
+            <p style={{ width: '100%', margin: '0.3rem 0 0', color: 'rgba(255,255,255,0.8)', fontSize: '0.7rem', lineHeight: 1.4, textAlign: 'right' }}>
+              {n.consentBefore}
+              <br />
+              <Link href="/mentions-legales" style={{ color: 'white', textDecoration: 'underline' }}>
+                {n.consentLink}
+              </Link>
+              .
+            </p>
           </form>
         )}
       </div>

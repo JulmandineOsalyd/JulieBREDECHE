@@ -95,11 +95,88 @@ export const fr = {
     error: '❌ Une erreur est survenue, réessayez.',
     ariaLabel: "Formulaire d'abonnement newsletter",
     emailLabel: 'Adresse email',
+    consentBefore: 'En vous abonnant, vous acceptez de recevoir mes articles par email.',
+    consentLink: 'Politique de confidentialité',
   },
 
   footer: {
-    tagline: 'Consultante Microsoft 365 · SharePoint · Power Platform · Copilot Studio',
     linkedinLabel: 'Profil LinkedIn de Julie Bredeche',
+    legal: 'Mentions légales',
+  },
+
+  legal: {
+    pageTitle: 'Mentions légales & Confidentialité',
+    intro: "Cette page regroupe les informations légales relatives à l'éditeur du site juliebredeche.pro et la politique de protection des données personnelles.",
+    updatedLabel: 'Dernière mise à jour',
+    updatedDate: '1er mai 2026',
+
+    legalSection: {
+      title: 'Mentions légales',
+      editor: {
+        title: 'Éditeur du site',
+        body: "Le site juliebredeche.pro est édité par Osalyd Consulting, EURL au capital social variable, immatriculée au Registre du Commerce et des Sociétés de Paris sous le numéro SIRET 889 809 646 00033. Siège social : 8 rue Clavel, 75019 Paris, France. TVA non applicable, article 293 B du CGI. Contact : julie.bredeche@osalydconsulting.com.",
+      },
+      director: {
+        title: 'Directrice de la publication',
+        body: 'Julie Bredeche, gérante de Osalyd Consulting.',
+      },
+      host: {
+        title: 'Hébergeur',
+        body: "Le site est hébergé par Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis. Site web : vercel.com.",
+      },
+      ip: {
+        title: 'Propriété intellectuelle',
+        body: "L'ensemble des contenus présents sur ce site (textes, images, logos, articles de blog) est la propriété exclusive de Julie Bredeche / Osalyd Consulting, sauf mention contraire. Toute reproduction, diffusion ou réutilisation, totale ou partielle, sans autorisation écrite préalable est interdite.",
+      },
+    },
+
+    privacySection: {
+      title: 'Politique de confidentialité',
+      controller: {
+        title: 'Responsable de traitement',
+        body: "Osalyd Consulting (coordonnées ci-dessus) est responsable des traitements de données personnelles effectués via ce site. Pour toute question relative à vos données, contactez julie.bredeche@osalydconsulting.com.",
+      },
+      data: {
+        title: 'Données collectées et finalités',
+        intro: 'Ce site collecte uniquement les données strictement nécessaires aux services proposés :',
+        items: [
+          'Formulaire de contact : nom, email et message, pour répondre à votre demande (base légale : exécution de mesures précontractuelles, art. 6.1.b RGPD).',
+          "Formulaire newsletter : adresse email, pour vous envoyer les nouveaux articles du blog (base légale : consentement, art. 6.1.a RGPD).",
+          'Statistiques de fréquentation : données techniques anonymisées (pages vues, type d\'appareil, pays) via Vercel Web Analytics, sans cookie ni identifiant persistant (base légale : intérêt légitime, art. 6.1.f RGPD).',
+        ],
+      },
+      cookies: {
+        title: 'Cookies',
+        body: "Ce site utilise un seul cookie technique nommé locale, qui mémorise votre langue préférée (français ou anglais). Ce cookie est strictement nécessaire au fonctionnement du site et ne nécessite pas de consentement préalable (article 82 de la loi Informatique et Libertés). Aucun cookie publicitaire ou de mesure d'audience tiers n'est déposé.",
+      },
+      retention: {
+        title: 'Durée de conservation',
+        items: [
+          'Demandes via le formulaire de contact : 3 ans après le dernier échange.',
+          'Abonnés newsletter : jusqu\'à la désinscription, ou 3 ans d\'inactivité.',
+          'Statistiques agrégées : 25 mois maximum.',
+        ],
+      },
+      processors: {
+        title: 'Sous-traitants',
+        intro: 'Vos données peuvent être traitées par les prestataires suivants, encadrés par des accords de traitement conformes au RGPD :',
+        items: [
+          'Vercel Inc. (États-Unis) : hébergement du site et statistiques anonymisées. Transfert encadré par les Clauses Contractuelles Types de la Commission européenne.',
+          'Resend, Inc. (États-Unis) : envoi des emails du formulaire de contact et gestion de la liste newsletter. Transfert encadré par les Clauses Contractuelles Types.',
+        ],
+      },
+      rights: {
+        title: 'Vos droits',
+        intro: "Conformément au RGPD et à la loi Informatique et Libertés, vous disposez des droits suivants sur vos données personnelles :",
+        items: [
+          "Droit d'accès, de rectification et d'effacement",
+          "Droit d'opposition et de limitation du traitement",
+          'Droit à la portabilité de vos données',
+          'Droit de retirer votre consentement à tout moment',
+        ],
+        contact: 'Pour exercer ces droits, écrivez à julie.bredeche@osalydconsulting.com. Vous disposez également du droit d\'introduire une réclamation auprès de la CNIL (cnil.fr).',
+      },
+    },
   },
 
   about: {

@@ -2,12 +2,13 @@ import type { Metadata } from 'next'
 import ContactContent from './ContactContent'
 
 export const metadata: Metadata = {
-  title: 'Contact — Julie Bredeche',
+  title: 'Me contacter — Julie BREDECHE, consultante M365',
   description:
-    'Vous avez un projet Microsoft 365 ? Contactez Julie Bredeche, consultante SharePoint, Power Platform et Copilot Studio. Réponse sous 24h.',
+    'Un projet SharePoint, Power Platform ou Copilot Studio ? Contactez-moi pour échanger sur votre besoin. Réponse sous 24h.',
   openGraph: {
-    title: 'Contact — Julie Bredeche',
-    description: 'Contactez Julie Bredeche pour vos projets Microsoft 365.',
+    title: 'Me contacter — Julie BREDECHE, consultante M365',
+    description:
+      'Un projet SharePoint, Power Platform ou Copilot Studio ? Contactez-moi pour échanger sur votre besoin. Réponse sous 24h.',
     url: 'https://juliebredeche.pro/contact',
     type: 'website',
   },

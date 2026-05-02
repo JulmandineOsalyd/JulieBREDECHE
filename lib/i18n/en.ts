@@ -97,11 +97,88 @@ export const en: Translations = {
     error: '❌ An error occurred, please try again.',
     ariaLabel: 'Newsletter subscription form',
     emailLabel: 'Email address',
+    consentBefore: 'By subscribing, you agree to receive my articles by email.',
+    consentLink: 'Privacy policy',
   },
 
   footer: {
-    tagline: 'Microsoft 365 Consultant · SharePoint · Power Platform · Copilot Studio',
     linkedinLabel: "Julie Bredeche's LinkedIn Profile",
+    legal: 'Legal notice',
+  },
+
+  legal: {
+    pageTitle: 'Legal notice & Privacy policy',
+    intro: 'This page provides legal information about the publisher of juliebredeche.pro and our personal data protection policy.',
+    updatedLabel: 'Last updated',
+    updatedDate: 'May 1, 2026',
+
+    legalSection: {
+      title: 'Legal notice',
+      editor: {
+        title: 'Site publisher',
+        body: 'The juliebredeche.pro website is published by Osalyd Consulting, an EURL (single-member limited liability company) with variable share capital, registered with the Paris Trade and Companies Register under SIRET number 889 809 646 00033. Registered office: 8 rue Clavel, 75019 Paris, France. VAT not applicable, Article 293 B of the French General Tax Code. Contact: julie.bredeche@osalydconsulting.com.',
+      },
+      director: {
+        title: 'Publication director',
+        body: 'Julie Bredeche, manager of Osalyd Consulting.',
+      },
+      host: {
+        title: 'Hosting provider',
+        body: 'The site is hosted by Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, United States. Website: vercel.com.',
+      },
+      ip: {
+        title: 'Intellectual property',
+        body: 'All content on this site (text, images, logos, blog articles) is the exclusive property of Julie Bredeche / Osalyd Consulting unless otherwise stated. Any reproduction, distribution or reuse, in whole or in part, without prior written authorization is prohibited.',
+      },
+    },
+
+    privacySection: {
+      title: 'Privacy policy',
+      controller: {
+        title: 'Data controller',
+        body: 'Osalyd Consulting (contact details above) is the controller of personal data processed via this site. For any question regarding your data, contact julie.bredeche@osalydconsulting.com.',
+      },
+      data: {
+        title: 'Data collected and purposes',
+        intro: 'This site only collects data strictly necessary for the services offered:',
+        items: [
+          'Contact form: name, email and message, to respond to your request (legal basis: pre-contractual measures, art. 6.1.b GDPR).',
+          'Newsletter form: email address, to send you new blog articles (legal basis: consent, art. 6.1.a GDPR).',
+          'Traffic statistics: anonymised technical data (pages viewed, device type, country) via Vercel Web Analytics, without cookies or persistent identifiers (legal basis: legitimate interest, art. 6.1.f GDPR).',
+        ],
+      },
+      cookies: {
+        title: 'Cookies',
+        body: 'This site uses a single technical cookie named locale, which stores your preferred language (French or English). This cookie is strictly necessary for the site to function and does not require prior consent (Article 82 of the French Data Protection Act). No third-party advertising or analytics cookies are placed.',
+      },
+      retention: {
+        title: 'Data retention',
+        items: [
+          'Contact form requests: 3 years after the last exchange.',
+          'Newsletter subscribers: until unsubscription, or 3 years of inactivity.',
+          'Aggregated statistics: 25 months maximum.',
+        ],
+      },
+      processors: {
+        title: 'Processors',
+        intro: 'Your data may be processed by the following providers, governed by GDPR-compliant data processing agreements:',
+        items: [
+          'Vercel Inc. (United States): site hosting and anonymised analytics. Transfer governed by the European Commission Standard Contractual Clauses.',
+          'Resend, Inc. (United States): contact form emails and newsletter list management. Transfer governed by the Standard Contractual Clauses.',
+        ],
+      },
+      rights: {
+        title: 'Your rights',
+        intro: 'Under the GDPR and the French Data Protection Act, you have the following rights over your personal data:',
+        items: [
+          'Right of access, rectification and erasure',
+          'Right to object and restrict processing',
+          'Right to data portability',
+          'Right to withdraw your consent at any time',
+        ],
+        contact: 'To exercise these rights, write to julie.bredeche@osalydconsulting.com. You also have the right to lodge a complaint with the CNIL (French data protection authority, cnil.fr).',
+      },
+    },
   },
 
   about: {

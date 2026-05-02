@@ -2,12 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'OneDrive Path Checker — Outil gratuit | Julie Bredeche',
+  title: 'OneDrive Path Checker — Chemins de fichiers trop longs',
   description:
-    'Outil gratuit pour diagnostiquer les chemins de fichiers OneDrive trop longs. Évitez les erreurs de synchronisation dues aux noms de fichiers dépassant 260 caractères.',
+    'Détectez les chemins OneDrive >260 caractères qui bloquent la synchronisation. Analyse 100% locale, export CSV, remédiation intégrée.',
   openGraph: {
-    title: 'OneDrive Path Checker — Outil gratuit',
-    description: 'Diagnostiquez les chemins OneDrive trop longs et évitez les erreurs de synchronisation.',
+    title: 'OneDrive Path Checker — Chemins de fichiers trop longs',
+    description:
+      'Détectez les chemins OneDrive >260 caractères qui bloquent la synchronisation. Analyse 100% locale, export CSV, remédiation intégrée.',
     url: 'https://juliebredeche.pro/outils/onedrive-path-checker',
     type: 'website',
   },

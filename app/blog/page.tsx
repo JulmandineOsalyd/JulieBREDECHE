@@ -4,12 +4,13 @@ import { getAllArticlesMeta } from '@/lib/mdx'
 import BlogList from './BlogList'
 
 export const metadata: Metadata = {
-  title: 'Blog — Julie Bredeche',
+  title: 'Blog Microsoft 365 — SharePoint, Power Platform, Copilot',
   description:
-    'Articles sur SharePoint, Power Automate, Copilot Studio et PowerApps. Conseils pratiques pour tirer le meilleur parti de Microsoft 365.',
+    "Articles, retours d'expérience et conseils pratiques sur SharePoint, Power Automate, PowerApps et Copilot Studio par une consultante indépendante.",
   openGraph: {
-    title: 'Blog — Julie Bredeche',
-    description: 'Articles SharePoint, Power Platform et Copilot Studio.',
+    title: 'Blog Microsoft 365 — SharePoint, Power Platform, Copilot',
+    description:
+      "Articles, retours d'expérience et conseils pratiques sur SharePoint, Power Automate, PowerApps et Copilot Studio par une consultante indépendante.",
     url: 'https://juliebredeche.pro/blog',
     type: 'website',
   },

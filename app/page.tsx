@@ -6,13 +6,13 @@ import OffresSection from '@/components/OffresSection'
 import { getAllArticlesMeta } from '@/lib/mdx'
 
 export const metadata: Metadata = {
-  title: 'Julie Bredeche — Consultante SharePoint & Copilot Studio',
+  title: 'Julie BREDECHE — Consultante SharePoint & Power Platform',
   description:
-    'Consultante Microsoft 365 indépendante : SharePoint, Power Platform, Copilot Studio. Applications sur mesure, automatisations et agents IA pour votre entreprise.',
+    'Consultante Microsoft 365 indépendante. SharePoint, Power Platform, Copilot Studio. Projets sur mesure pour TPE, PME et grands comptes.',
   openGraph: {
-    title: 'Julie Bredeche — Consultante SharePoint & Copilot Studio',
+    title: 'Julie BREDECHE — Consultante SharePoint & Power Platform',
     description:
-      'Consultante Microsoft 365 indépendante : SharePoint, Power Platform, Copilot Studio.',
+      'Consultante Microsoft 365 indépendante. SharePoint, Power Platform, Copilot Studio. Projets sur mesure pour TPE, PME et grands comptes.',
     url: 'https://juliebredeche.pro',
     type: 'website',
   },

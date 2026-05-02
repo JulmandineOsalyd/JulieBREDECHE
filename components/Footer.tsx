@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useTranslation } from '@/lib/i18n'
 
 export default function Footer() {
@@ -43,9 +44,17 @@ export default function Footer() {
           </svg>
           LinkedIn
         </a>
-        <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-          {t.footer.tagline}
-        </span>
+        <Link
+          href="/mentions-legales"
+          style={{
+            fontSize: '0.8rem',
+            color: 'var(--muted)',
+            textDecoration: 'none',
+            transition: 'color 0.2s ease',
+          }}
+        >
+          {t.footer.legal}
+        </Link>
       </div>
     </footer>
   )
