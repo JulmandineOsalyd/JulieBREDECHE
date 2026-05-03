@@ -1,7 +1,6 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
-import { useRouter } from 'next/navigation'
 import { fr } from './fr'
 import { en } from './en'
 
@@ -24,7 +23,6 @@ const LanguageContext = createContext<LanguageContextValue>({
 
 export function LanguageProvider({ children, initialLocale = 'fr' }: { children: ReactNode; initialLocale?: Locale }) {
   const [locale, setLocaleState] = useState<Locale>(initialLocale)
-  const router = useRouter()
 
   useEffect(() => {
     // 1. Check localStorage first
@@ -48,7 +46,6 @@ export function LanguageProvider({ children, initialLocale = 'fr' }: { children:
     localStorage.setItem('locale', newLocale)
     document.cookie = `locale=${newLocale}; path=/; max-age=31536000`
     document.documentElement.lang = newLocale
-    router.refresh()
   }
 
   return (

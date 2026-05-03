@@ -8,7 +8,7 @@ export function formatDate(dateString: string, locale: 'fr' | 'en' = 'fr'): stri
 }
 
 export function calculateReadingTime(content: string): number {
-  const wordsPerMinute = 200
+  const wordsPerMinute = 150
   const words = content.trim().split(/\s+/).length
   return Math.ceil(words / wordsPerMinute)
 }

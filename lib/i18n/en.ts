@@ -46,18 +46,18 @@ export const en: Translations = {
     },
     coaching: {
       title: 'Power Automate Coaching',
-      description: 'Upskill on Power Automate with personalised one-on-one guidance.',
+      description: 'I help you level up on Power Automate, working on your real-world cases.',
       bullets: [
-        '1:1 video sessions',
-        'Hands-on practice with your existing flows',
+        '1:1 video sessions of 1.5 to 2 hours',
+        'Review of your existing flows',
         'Best practices and anti-patterns',
-        'Tailored programme for your skill level',
+        'Design and governance methodology',
       ],
     },
     main: {
-      title: 'Power Platform Solutions',
+      title: 'PowerApps, Power Automate & Copilot Solutions',
       description:
-        'Design and development of custom business solutions with Microsoft 365: from requirements analysis to production deployment.',
+        'I design and develop custom business applications, automations and conversational agents for your organisation.',
       methodLinkLabel: 'my method',
       bullets: [
         'Custom PowerApps applications',
@@ -70,7 +70,7 @@ export const en: Translations = {
     audit: {
       title: 'SharePoint Audit',
       description:
-        'In-depth analysis of your SharePoint environment to get the most out of it.',
+        'I run a complete diagnostic of your SharePoint environment to give you a clear picture and a concrete action plan.',
       bullets: [
         'Site architecture analysis',
         'Rights and permissions assessment',
@@ -245,53 +245,110 @@ export const en: Translations = {
         after: ', at every stage of your project',
       },
       description:
-        'Solution design, coaching, audit: everything you need to get the most from Microsoft 365, wherever you are in your journey.',
+        "I support business and IT leaders on human-scale projects: one process, one team, a clearly defined scope. Whether you're an SME or a department within a large group, the challenge is the same: deliver a functional, scalable and easily maintainable solution.",
     },
     offer1: {
       badge: 'Main offer',
       title: 'PowerApps, Power Automate Solutions & Copilot Agents',
-      p1: 'I design and develop custom business applications, intelligent automations and conversational agents for your organisation. From scoping to production deployment, through to adoption.',
-      p2: 'Average workload: <strong>20 to 30 days</strong> for a complete solution.',
-      cta: "Let's talk about your project",
-      bullets: [
-        'Custom PowerApps applications',
-        'UI design and user experience (UX)',
-        'Simple and advanced Power Automate flows',
-        'Copilot Studio agents connected to your environment',
-        'SharePoint Online portals: intranet, extranet, project spaces',
-        'Functional administrator training',
-        'Technical and functional documentation included',
-        'Monthly maintenance package (support, minor updates)',
-      ],
-    },
-    coaching: {
-      badge: 'Coaching',
-      title: 'Power Automate Coaching',
       description:
-        'Upskill on Power Automate with personalised guidance. Ideal for IT teams who want to become self-sufficient on the platform, or business teams looking to automate repetitive tasks.',
-      bullets: [
-        '1:1 video sessions',
-        'Hands-on practice with your existing flows',
-        'Best practices, anti-patterns',
-        'Tailored programme for your skill level',
+        'I design and develop custom <strong>business applications</strong>, <strong>automations</strong> and <strong>conversational agents</strong> for your organisation. From scoping to production deployment, through to adoption by your teams.',
+      forWhomLabel: 'Who is it for?',
+      forWhom:
+        'Business or IT departments looking to digitise an existing process or create a new one, without going through a third-party vendor or launching a large cross-functional programme.',
+      formatLabel: 'Format',
+      format:
+        'Time-and-materials or fixed-price engagement, remote with occasional on-site visits if needed.',
+      deliverables: [
+        {
+          title: 'Design & development',
+          text: 'PowerApps applications, Power Automate flows (simple and advanced), Copilot Studio agents connected to your environment, SharePoint Online portals (intranet, extranet, project spaces)',
+        },
+        {
+          title: 'Design & user experience',
+          text: 'Polished UI, tested user journeys, wireframes validated upfront',
+        },
+        {
+          title: 'Production deployment & adoption',
+          text: 'End-to-end testing, progressive rollout, training for functional administrators',
+        },
+        {
+          title: 'Post-delivery support',
+          text: 'Complete technical and functional documentation, optional monthly maintenance package (bug fixes, minor updates)',
+        },
       ],
-      cta: 'Request a coaching session',
+      cta: "Let's talk about your project",
+      methodLink: 'See my method ↓',
     },
     audit: {
       badge: 'Audit & Advisory',
       title: 'SharePoint Audit',
       description:
-        'Your SharePoint environment has grown over time, and with it, increasingly complex management. I carry out a complete diagnostic of your architecture, permissions and usage to give you a clear picture of the current state and a concrete action plan to get the most out of it.',
-      bullets: [
-        'Site architecture analysis',
-        'Rights and permissions assessment',
-        'Metadata management optimisation',
-        'Search schema management',
+        'Your SharePoint environment has grown over time, and with it, increasingly complex management. I carry out a complete diagnostic of your architecture, permissions and usage to give you a clear picture of the current state and a concrete action plan.',
+      forWhomLabel: 'Who is it for?',
+      forWhom:
+        'Organisations facing governance, search or permissions issues on SharePoint, or preparing a migration.',
+      formatLabel: 'Format',
+      format: 'Short engagement, remote, with read access to your tenant.',
+      analyzeLabel: 'What I analyse.',
+      analyze: [
+        'Site and navigation architecture',
+        'Rights and permissions (inheritance, external sharing, orphaned access)',
+        'Metadata management and content types',
+        'Search schema and result relevance',
+        'Volume, inactive sites, archiving opportunities',
+      ],
+      deliverablesLabel: 'Deliverables',
+      deliverables: [
+        {
+          title: 'A complete audit report',
+          text: 'with current state, identified pain points, risks and recommendations',
+        },
+        {
+          title: 'An optimised architecture diagram',
+          text: 'understandable by both your IT teams and business stakeholders',
+        },
+        {
+          title: 'A prioritised action plan',
+          text: 'with effort estimates for each action',
+        },
       ],
       cta: 'Request an audit',
     },
+    coaching: {
+      badge: 'Coaching',
+      title: 'Power Automate Coaching',
+      description:
+        "I help you level up on Power Automate, working on your real-world cases. Ideal for IT teams who want to become self-sufficient on the platform, or business teams looking to automate repetitive tasks without relying on an external provider for every flow.",
+      forWhomLabel: 'Who is it for?',
+      forWhom:
+        'IT teams, citizen developers, or business users who have already taken their first steps with Power Automate.',
+      formatLabel: 'Format',
+      format: [
+        '1:1 video sessions of 1.5 to 2 hours, individually or in packs',
+        'Each session has a goal defined upfront (unblock a specific issue, level up on a topic, review an existing flow)',
+        'Work on your real-world cases and review of your existing flows (best practices, anti-patterns, optimisation)',
+        'Sharing of my design and governance methodology',
+      ],
+      cta: 'Request a coaching session',
+    },
+    testimonials: {
+      label: 'Testimonials',
+      title: 'They trusted me',
+      items: [
+        {
+          quote: "Julie is a brilliant consultant, combining technical skills with operational and project management capacities. Her strong knowledge related to SharePoint Online and OneDrive products helped us to put in place efficient delivery activities, as well as technical standards and process to be used at the Group level. She's also concerned by user experience and quality of service. In addition, she's a very enthusiastic and flexible person, with whom it is very pleasant to work.",
+          author: 'Benoît Lassalle',
+          role: 'Head of IT and Digital for US multi-energy Trading affiliates, TotalEnergies',
+        },
+        {
+          quote: "Beyond her excellent command of SharePoint and Power Automate, Julie demonstrates real professionalism and a strong ability to adapt in a constantly evolving business context. Her rigour, curiosity and creativity are undeniable assets that have greatly contributed to the success of our projects. I highly recommend Julie for any demanding mission requiring technical expertise combined with a functional, methodical and innovative approach.",
+          author: 'Arnaud Chaloine',
+          role: 'Project Lead, Groupama Centre-Atlantique',
+        },
+      ],
+    },
     method: {
-      label: 'How I work',
+      label: 'Methodology',
       title: 'My 6-step method',
       readMore: 'Read the full article on my method →',
       steps: [
@@ -351,13 +408,6 @@ export const en: Translations = {
           text: 'No content read, no data sent',
         },
       ],
-    },
-    cta: {
-      title: 'Ready to get started?',
-      description:
-        'Describe your project in a few lines. I will reply within 24 hours with a discovery call proposal (30 min, free).',
-      contact: 'Contact me →',
-      linkedin: 'Contact me on LinkedIn',
     },
   },
 

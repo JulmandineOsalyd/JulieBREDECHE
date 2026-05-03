@@ -510,6 +510,7 @@ h1, h2, h3 {
   .offre-inner { grid-template-columns: 1fr !important; }
   .offre-grid { grid-template-columns: 1fr !important; }
   .method-grid { grid-template-columns: 1fr !important; }
+  .testimonials-grid { grid-template-columns: 1fr !important; }
 }
 
 /* Footer */

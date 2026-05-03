@@ -28,74 +28,83 @@ export default function ServicesContent() {
         </div>
       </section>
 
-      {/* Offre 1 — Développement */}
+      {/* Offre principale — Solutions PowerApps, Power Automate & Agents Copilot */}
       <section className="py-12 px-[6%] bg-[var(--off)] border-t border-[var(--border)]">
         <div className="max-w-[1200px] mx-auto">
-          <div className="grid grid-cols-2 gap-12 items-start offre-grid">
-            <div>
-              <span className="inline-block bg-grad text-white text-[0.72rem] font-bold py-1 px-3 rounded-full uppercase tracking-tight mb-4">
-                {s.offer1.badge}
-              </span>
-              <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[1.6rem] text-[var(--ink)] leading-tight mb-4">
-                {s.offer1.title}
-              </h2>
-              <p className="text-[0.975rem] text-[var(--muted)] leading-[1.75] mb-5">
-                {s.offer1.p1}
-              </p>
-              <p
-                className="text-[0.975rem] text-[var(--muted)] leading-[1.75] mb-7"
-                // SAFETY: content is static i18n strings
-                dangerouslySetInnerHTML={{ __html: s.offer1.p2 }}
-              />
-              <Link href="#contact" className="btn-primary">{s.offer1.cta}</Link>
-            </div>
-            <div className="offre-list-col">
-              <ul className="list-none p-0 m-0 flex flex-col gap-3">
-                {s.offer1.bullets.map((item) => (
-                  <li key={item} className="flex items-start gap-[0.65rem]">
-                    <span className="w-5 h-5 rounded-full bg-grad flex items-center justify-center shrink-0 mt-px">
-                      <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                        <path d="M2 6l3 3 5-5" stroke="white" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </span>
-                    <span className="text-sm text-[var(--ink)] leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
+          <div className="card p-10 bg-white offre-card-main">
+            <div className="grid grid-cols-2 gap-12 items-start offre-grid">
+              {/* Colonne gauche : intro + Pour qui / Format / Charge */}
+              <div>
+                <span className="inline-block bg-grad text-white text-[0.72rem] font-bold py-1 px-3 rounded-full uppercase tracking-tight mb-4">
+                  {s.offer1.badge}
+                </span>
+                <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[1.7rem] text-[var(--ink)] leading-tight mb-4">
+                  {s.offer1.title}
+                </h2>
+                <p
+                  className="text-[0.975rem] text-[var(--muted)] leading-[1.75] mb-6"
+                  // SAFETY: content is static i18n strings
+                  dangerouslySetInnerHTML={{ __html: s.offer1.description }}
+                />
+
+                <dl className="m-0 flex flex-col gap-4">
+                  <div>
+                    <dt className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-1">
+                      {s.offer1.forWhomLabel}
+                    </dt>
+                    <dd className="text-sm text-[var(--ink)] leading-relaxed m-0">
+                      {s.offer1.forWhom}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-1">
+                      {s.offer1.formatLabel}
+                    </dt>
+                    <dd className="text-sm text-[var(--ink)] leading-relaxed m-0">
+                      {s.offer1.format}
+                    </dd>
+                  </div>
+                </dl>
+
+                <div className="mt-8">
+                  <Link href="/contact" className="btn-primary">{s.offer1.cta}</Link>
+                </div>
+              </div>
+
+              {/* Colonne droite : livrables (4 catégories en bullets cochés) */}
+              <div className="lg:pt-[2.75rem]">
+                <ul className="list-none p-0 m-0 flex flex-col gap-4">
+                  {(s.offer1.deliverables as unknown as { title: string; text: string }[]).map(({ title, text }) => (
+                    <li key={title} className="flex items-start gap-3">
+                      <span className="w-5 h-5 rounded-full bg-grad flex items-center justify-center shrink-0 mt-0.5">
+                        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                          <path d="M2 6l3 3 5-5" stroke="white" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
+                      <div>
+                        <div className="font-bold text-[0.95rem] text-[var(--ink)] mb-0.5 leading-snug">{title}</div>
+                        <p className="text-sm text-[var(--muted)] leading-relaxed m-0">{text}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 text-center">
+                  <a href="#methode" className="text-sm font-bold text-[var(--c3)] hover:text-[var(--c2)] transition-colors">
+                    {s.offer1.methodLink}
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Offre 2 & 3 */}
+      {/* Audit SharePoint + Coaching Power Automate (côte à côte, format carte) */}
       <section className="py-12 px-[6%] bg-white">
         <div className="max-w-[1200px] mx-auto grid grid-cols-2 gap-6 offre-grid">
-          {/* Coaching */}
-          <div className="card p-8 bg-white">
-            <span className="inline-block bg-[var(--off)] border border-[var(--border)] rounded-full text-[0.72rem] font-bold py-[0.2rem] px-[0.65rem] text-[var(--c3)] uppercase tracking-tight mb-4">
-              {s.coaching.badge}
-            </span>
-            <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[1.4rem] text-[var(--ink)] leading-tight mb-3">
-              {s.coaching.title}
-            </h2>
-            <p className="text-sm text-[var(--muted)] leading-relaxed mb-5">
-              {s.coaching.description}
-            </p>
-            <ul className="list-none p-0 mb-6 flex flex-col gap-2">
-              {(s.coaching.bullets).map((b) => (
-                <li key={b} className="flex items-start gap-2 text-sm text-[var(--ink)]">
-                  <span className="text-[var(--c2)] font-bold shrink-0">·</span>{b}
-                </li>
-              ))}
-            </ul>
-            <Link href="#contact" className="btn-outline w-full justify-center">
-              {s.coaching.cta}
-            </Link>
-          </div>
-
-          {/* Audit */}
-          <div className="card p-8 bg-white">
-            <span className="inline-block bg-[var(--off)] border border-[var(--border)] rounded-full text-[0.72rem] font-bold py-[0.2rem] px-[0.65rem] text-[var(--c3)] uppercase tracking-tight mb-4">
+          {/* Audit SharePoint */}
+          <div className="card p-8 bg-white flex flex-col">
+            <span className="inline-block bg-[var(--off)] border border-[var(--border)] rounded-full text-[0.72rem] font-bold py-[0.2rem] px-[0.65rem] text-[var(--c3)] uppercase tracking-tight mb-4 self-start">
               {s.audit.badge}
             </span>
             <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[1.4rem] text-[var(--ink)] leading-tight mb-3">
@@ -104,22 +113,153 @@ export default function ServicesContent() {
             <p className="text-sm text-[var(--muted)] leading-relaxed mb-5">
               {s.audit.description}
             </p>
-            <ul className="list-none p-0 mb-6 flex flex-col gap-2">
-              {(s.audit.bullets).map((b) => (
-                <li key={b} className="flex items-start gap-2 text-sm text-[var(--ink)]">
-                  <span className="text-[var(--c2)] font-bold shrink-0">·</span>{b}
+
+            <dl className="m-0 mb-5 flex flex-col gap-3">
+              <div>
+                <dt className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-1">
+                  {s.audit.forWhomLabel}
+                </dt>
+                <dd className="text-sm text-[var(--ink)] leading-relaxed m-0">
+                  {s.audit.forWhom}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-1">
+                  {s.audit.formatLabel}
+                </dt>
+                <dd className="text-sm text-[var(--ink)] leading-relaxed m-0">
+                  {s.audit.format}
+                </dd>
+              </div>
+            </dl>
+
+            <div className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-2">
+              {s.audit.deliverablesLabel}
+            </div>
+            <ul className="list-none p-0 m-0 mb-6 flex flex-col gap-2.5">
+              {(s.audit.deliverables as unknown as { title: string; text: string }[]).map(({ title, text }) => (
+                <li key={title} className="flex items-start gap-3 text-sm leading-relaxed">
+                  <span className="w-5 h-5 rounded-full bg-grad flex items-center justify-center shrink-0 mt-0.5">
+                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <path d="M2 6l3 3 5-5" stroke="white" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span><strong className="text-[var(--ink)]">{title}</strong> <span className="text-[var(--muted)]">{text}</span></span>
                 </li>
               ))}
             </ul>
-            <Link href="#contact" className="btn-outline w-full justify-center">
+
+            <Link href="/contact" className="btn-outline w-full justify-center mt-auto">
               {s.audit.cta}
+            </Link>
+          </div>
+
+          {/* Coaching Power Automate */}
+          <div className="card p-8 bg-white flex flex-col">
+            <span className="inline-block bg-[var(--off)] border border-[var(--border)] rounded-full text-[0.72rem] font-bold py-[0.2rem] px-[0.65rem] text-[var(--c3)] uppercase tracking-tight mb-4 self-start">
+              {s.coaching.badge}
+            </span>
+            <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[1.4rem] text-[var(--ink)] leading-tight mb-3">
+              {s.coaching.title}
+            </h2>
+            <p className="text-sm text-[var(--muted)] leading-relaxed mb-5">
+              {s.coaching.description}
+            </p>
+
+            <dl className="m-0 mb-5 flex flex-col gap-3">
+              <div>
+                <dt className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-1">
+                  {s.coaching.forWhomLabel}
+                </dt>
+                <dd className="text-sm text-[var(--ink)] leading-relaxed m-0">
+                  {s.coaching.forWhom}
+                </dd>
+              </div>
+            </dl>
+
+            <div className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-2">
+              {s.coaching.formatLabel}
+            </div>
+            {(() => {
+              const items = s.coaching.format as unknown as string[]
+              const [first, ...rest] = items
+              return (
+                <>
+                  {first && (
+                    <p className="text-sm font-bold text-[var(--ink)] leading-relaxed mb-3">
+                      {first}
+                    </p>
+                  )}
+                  <ul className="list-none p-0 m-0 mb-6 flex flex-col gap-3">
+                    {rest.map((b) => (
+                      <li key={b} className="flex items-start gap-3 text-sm text-[var(--ink)] leading-relaxed">
+                        <span className="w-5 h-5 rounded-full bg-grad flex items-center justify-center shrink-0 mt-0.5">
+                          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                            <path d="M2 6l3 3 5-5" stroke="white" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )
+            })()}
+
+            <Link href="/contact" className="btn-outline w-full justify-center mt-auto">
+              {s.coaching.cta}
             </Link>
           </div>
         </div>
       </section>
 
+      {/* Témoignages */}
+      <section className="py-16 px-[6%] bg-[var(--off)] border-t border-[var(--border)]">
+        <div className="max-w-[1100px] mx-auto">
+          <div className="text-center mb-10">
+            <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-2">
+              {s.testimonials.label}
+            </p>
+            <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(1.6rem,3vw,2rem)] text-[var(--ink)] m-0">
+              {s.testimonials.title}
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 gap-6 testimonials-grid">
+            {(s.testimonials.items as unknown as { quote: string; author: string; role: string }[]).map((item, i) => (
+              <div key={i} className="card p-7 bg-white relative">
+                <svg
+                  className="absolute top-5 left-5 opacity-30"
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="var(--c2)"
+                  aria-hidden="true"
+                >
+                  <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+                </svg>
+                {item.quote ? (
+                  <>
+                    <p className="text-[0.95rem] text-[var(--ink)] leading-[1.75] italic mb-4 mt-8">
+                      “{item.quote}”
+                    </p>
+                    <div className="text-sm font-bold text-[var(--ink)]">{item.author}</div>
+                    {item.role && (
+                      <div className="text-xs text-[var(--muted)] mt-0.5">{item.role}</div>
+                    )}
+                  </>
+                ) : (
+                  <p className="text-sm text-[var(--muted)] italic m-0 mt-8">
+                    Témoignage à venir
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Ma méthode */}
-      <section className="py-16 px-[6%] bg-[var(--off)]">
+      <section id="methode" className="py-16 px-[6%] bg-white scroll-mt-24">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-12">
             <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-2">
@@ -131,7 +271,7 @@ export default function ServicesContent() {
           </div>
           <div className="grid grid-cols-3 gap-5 method-grid">
             {(s.method.steps as unknown as { n: string; title: string; text: string }[]).map(({ n, title, text }) => (
-              <div key={n} className="card p-6 bg-white relative overflow-hidden">
+              <div key={n} className="card p-6 bg-[var(--off)] relative overflow-hidden">
                 <div className="absolute top-4 right-4 font-[var(--font-lora),Georgia,serif] font-extrabold text-[2.5rem] text-[rgba(24,176,232,0.1)] leading-none">{n}</div>
                 <div className="font-[var(--font-lora),Georgia,serif] font-bold text-base text-[var(--ink)] mb-2">{title}</div>
                 <p className="text-sm text-[var(--muted)] leading-relaxed m-0">{text}</p>
@@ -139,7 +279,7 @@ export default function ServicesContent() {
             ))}
           </div>
           <div className="text-center mt-8">
-            <Link href="/blog/methode-infaillible-projets-power-platform" className="btn-outline inline-flex gap-2 items-center">
+            <Link href="/blog/methode-projet-power-platform" className="btn-outline inline-flex gap-2 items-center">
               {s.method.readMore}
             </Link>
           </div>
@@ -147,7 +287,7 @@ export default function ServicesContent() {
       </section>
 
       {/* Outil — OneDrive Path Checker */}
-      <section className="py-16 px-[6%] bg-white border-t border-[var(--border)]">
+      <section className="py-16 px-[6%] bg-[var(--off)] border-t border-[var(--border)]">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-10">
             <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-2">
@@ -195,8 +335,8 @@ export default function ServicesContent() {
                   <svg key="3" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0110 0v4" /></svg>,
                 ]
                 return (
-                  <div key={title} className="card p-5 bg-[var(--off)]">
-                    <div className="w-10 h-10 rounded-[10px] bg-white flex items-center justify-center mb-2 border border-[var(--border)]">{icons[i]}</div>
+                  <div key={title} className="card p-5 bg-white">
+                    <div className="w-10 h-10 rounded-[10px] bg-[var(--off)] flex items-center justify-center mb-2 border border-[var(--border)]">{icons[i]}</div>
                     <div className="font-bold text-sm text-[var(--ink)] mb-1">{title}</div>
                     <p className="text-xs text-[var(--muted)] leading-normal m-0">{text}</p>
                   </div>
@@ -207,26 +347,6 @@ export default function ServicesContent() {
         </div>
       </section>
 
-      {/* CTA contact */}
-      <section id="contact" className="py-20 px-[6%] bg-[var(--off)] text-center">
-        <div className="max-w-[560px] mx-auto">
-          <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(1.5rem,3vw,2rem)] text-[var(--ink)] mb-4">
-            {s.cta.title}
-          </h2>
-          <p className="text-[var(--muted)] text-base leading-relaxed mb-8">
-            {s.cta.description}
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Link href="/contact" className="btn-primary">
-              {s.cta.contact}
-            </Link>
-            <a href="https://linkedin.com/in/juliebredeche" target="_blank" rel="noopener noreferrer" className="btn-outline">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
-              {s.cta.linkedin}
-            </a>
-          </div>
-        </div>
-      </section>
     </>
   )
 }
