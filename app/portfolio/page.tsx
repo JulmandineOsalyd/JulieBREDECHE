@@ -156,7 +156,7 @@ export default function PortfolioPage() {
         >
           <div
             onClick={e => e.stopPropagation()}
-            className="animate-fadeUp bg-white rounded-2xl w-full max-w-[720px] max-h-[95vh] overflow-hidden flex flex-col"
+            className="animate-fadeUp bg-white rounded-2xl w-full max-w-[880px] max-h-[95vh] overflow-hidden flex flex-col"
           >
             {/* HEADER */}
             <div className="bg-[#0f2744] px-7 pt-6 pb-5 rounded-t-2xl shrink-0">
@@ -200,45 +200,74 @@ export default function PortfolioPage() {
                     </div>
                   ))}
                 </div>
-                <p className="text-[11px] text-[#7aa8c4] text-center mt-[10px] tracking-wide">
-                  {p.captures(screenshotUrls[open].length)}
-                </p>
               </div>
 
               <div className="px-7 pb-6">
-                {/* Problématique */}
+                {/* Avant / Après (fusion problem + benefits, sans label de section) */}
                 <div className="py-[22px] border-b border-[#f0f3f7]">
-                  <SectionLabel text={p.sections.problem} />
-                  <div className="flex flex-col gap-[6px]">
-                    {(project.problem).map((line, i) => (
-                      <div key={i} className="flex items-start gap-2 text-sm text-[#2d3a4a] leading-8">
-                        <span className="w-[6px] h-[6px] rounded-full bg-[#4a9fd4] shrink-0 mt-[10px] inline-block" />
-                        <span dangerouslySetInnerHTML={{ __html: md(line) }} />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-[14px]">
+                    {/* Avant */}
+                    <div className="bg-[#f4f6fa] border border-[#e4eaf3] rounded-[10px] p-4">
+                      <div className="text-[10px] font-semibold tracking-[0.12em] uppercase text-[#6e7d92] mb-3">
+                        Avant
                       </div>
-                    ))}
+                      <ul className="flex flex-col gap-[10px] m-0 p-0 list-none">
+                        {(project.problem).map((line, i) => (
+                          <li key={i} className="flex items-start gap-[10px] text-[13px] text-[#2d3a4a] leading-[1.55]">
+                            <span className="w-[18px] h-[18px] rounded-full bg-[#dde3ec] flex items-center justify-center text-[11px] text-[#6e7d92] shrink-0 mt-[1px]">✕</span>
+                            <span dangerouslySetInnerHTML={{ __html: md(line) }} />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    {/* Après */}
+                    <div className="bg-[#eef5fc] border border-[#cfe2f3] rounded-[10px] p-4">
+                      <div className="text-[10px] font-semibold tracking-[0.12em] uppercase text-[#2a7db5] mb-3">
+                        Après
+                      </div>
+                      <ul className="flex flex-col gap-[10px] m-0 p-0 list-none">
+                        {(project.benefits).map((b, i) => (
+                          <li key={i} className="flex items-start gap-[10px] text-[13px] text-[#2d3a4a] leading-[1.55]">
+                            <span className="w-[18px] h-[18px] rounded-full bg-[#cfe2f3] flex items-center justify-center text-[11px] text-[#2a7db5] shrink-0 mt-[1px]">✓</span>
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
 
-                {/* Contexte */}
+                {/* Contexte (inline) */}
                 <div className="py-[22px] border-b border-[#f0f3f7]">
                   <SectionLabel text={p.sections.context} />
-                  <div className="flex flex-wrap gap-2">
+                  <p className="text-[13px] text-[#4a5a70] leading-[1.7] m-0 inline-flex flex-wrap items-center gap-x-[10px] gap-y-[4px]">
                     {(project.users).map((u, i) => (
-                      <div key={i} className="text-[13px] text-[#2d3a4a] bg-[#f4f7fb] border border-[#e4eaf3] rounded-lg py-2 px-[14px]">{u}</div>
+                      <span key={i} className="inline-flex items-center gap-x-[10px]">
+                        <span className="text-[#0f2744]">{u}</span>
+                        {i < project.users.length - 1 ? <span className="text-[#4a9fd4] text-[18px] font-bold leading-none">·</span> : null}
+                      </span>
                     ))}
+                  </p>
+                </div>
+
+                {/* Solution (encart dégradé) */}
+                <div className="py-[22px] border-b border-[#f0f3f7]">
+                  <SectionLabel text={p.sections.solution} />
+                  <div
+                    className="rounded-r-[10px] py-4 px-[18px] border-l-[4px] border-l-[#4a9fd4]"
+                    style={{ background: 'linear-gradient(135deg, #f7fbff 0%, #eef5fc 100%)' }}
+                  >
+                    <div
+                      className="text-sm text-[#2d3a4a] leading-[1.75] [&_strong]:text-[#0f2744]"
+                      dangerouslySetInnerHTML={{ __html: md(project.solution) }}
+                    />
                   </div>
                 </div>
 
-                {/* Solution */}
-                <div className="py-[22px] border-b border-[#f0f3f7]">
-                  <SectionLabel text={p.sections.solution} />
-                  <div className="text-sm text-[#2d3a4a] leading-[1.75]" dangerouslySetInnerHTML={{ __html: md(project.solution) }} />
-                </div>
-
-                {/* Fonctionnalités */}
+                {/* Fonctionnalités (2 colonnes) */}
                 <div className="py-[22px] border-b border-[#f0f3f7]">
                   <SectionLabel text={p.sections.features} />
-                  <div className="flex flex-col gap-[10px]">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-[14px]">
                     {(project.features).map((f, i) => (
                       <div key={i} className="flex items-start gap-3 text-[13.5px] text-[#2d3a4a] leading-relaxed">
                         <div className="w-[18px] h-[18px] rounded-full bg-[#deeef9] border border-[#a8cfe8] flex items-center justify-center text-[10px] text-[#2a7db5] shrink-0 mt-px">✓</div>
@@ -248,48 +277,18 @@ export default function PortfolioPage() {
                   </div>
                 </div>
 
-                {/* Bénéfices */}
-                <div className="py-[22px] border-b border-[#f0f3f7]">
-                  <SectionLabel text={p.sections.benefits} />
-                  <div className="flex flex-col gap-2">
-                    {(project.benefits).map((b, i) => (
-                      <div key={i} className="text-[13.5px] text-[#2d3a4a] leading-relaxed bg-[#f8fbff] border border-[#e4edf7] border-l-[3px] border-l-[#4a9fd4] rounded-r-lg py-[10px] px-[14px]">
-                        {b}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Témoignage (conditionnel) */}
-                {(() => {
-                  const testimonial = (project as unknown as {
-                    testimonial?: { quote: string; author: string; role: string; company?: string }
-                  }).testimonial
-                  if (!testimonial) return null
-                  return (
-                    <div className="py-[22px] border-b border-[#f0f3f7]">
-                      <SectionLabel text={p.sections.testimonial} />
-                      <figure className="bg-[#f4f7fb] border border-[#e4eaf3] border-l-[3px] border-l-[#0f2744] rounded-r-lg py-4 px-5">
-                        <blockquote className="text-[13.5px] italic text-[#2d3a4a] leading-relaxed m-0 before:content-['“'] before:mr-[2px] before:text-[#4a9fd4] after:content-['”'] after:ml-[2px] after:text-[#4a9fd4]">
-                          {testimonial.quote}
-                        </blockquote>
-                        <figcaption className="mt-3 text-[12px] text-[#5a6a7e] not-italic">
-                          — <span className="font-semibold text-[#2d3a4a]">{testimonial.author}</span>, {testimonial.role}
-                          {testimonial.company ? <span className="text-[#7a8ea4]"> · {testimonial.company}</span> : null}
-                        </figcaption>
-                      </figure>
-                    </div>
-                  )
-                })()}
-
                 {/* ROI */}
                 <div className="py-[22px]">
                   <SectionLabel text={p.sections.roi} />
                   <div className="grid grid-cols-3 gap-[10px]">
                     {(project.roi as unknown as { val: string; label: string }[]).map((r, i) => (
-                      <div key={i} className="bg-[#f4f7fb] border border-[#e4eaf3] rounded-[10px] py-[14px] px-3 text-center">
-                        <div className="font-[var(--font-dm-serif),Georgia,serif] text-[26px] text-[#0f2744] font-normal leading-none mb-[6px]">{r.val}</div>
-                        <div className="text-[11px] text-[#7a8ea4] leading-snug">{r.label}</div>
+                      <div
+                        key={i}
+                        className="border border-[#bcdcf3] rounded-[10px] py-[18px] px-3 text-center"
+                        style={{ background: 'linear-gradient(135deg, #e8f2fa 0%, #dceefb 100%)' }}
+                      >
+                        <div className="font-[var(--font-dm-serif),Georgia,serif] text-[30px] text-[#0f5fad] font-normal leading-none mb-[6px]">{r.val}</div>
+                        <div className="text-[11px] text-[#5a7a9b] leading-snug font-medium">{r.label}</div>
                       </div>
                     ))}
                   </div>
