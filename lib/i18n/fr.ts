@@ -484,9 +484,8 @@ export const fr = {
   portfolio: {
     label: 'Projets réalisés',
     title: 'Portfolio',
-    comingSoon: "D'autres cas d'usage arrivent prochainement.",
     description: 'Une sélection de projets représentatifs réalisés pour des clients de secteurs variés.',
-    viewProject: 'Voir le projet →',
+    viewProject: 'Voir le cas complet →',
     captures: (n: number) => `${n} Captures (cliquer pour agrandir)`,
     prev: '← Précédent',
     next: 'Suivant →',
@@ -497,12 +496,15 @@ export const fr = {
       solution: 'Solution mise en place',
       features: 'Fonctionnalités clés',
       benefits: 'Bénéfices utilisateurs',
+      testimonial: 'Témoignage',
       roi: 'Valeur business (ROI)',
     },
     projects: [
       {
-        title: 'Application de réservation de voyages',
+        title: 'Réservations centralisées, délai de traitement divisé par 3',
         sector: 'Éducation',
+        teaser: "Remplacer un circuit de réservations géré par mail par une app mobile avec workflow de validation et suivi comptable.",
+        keyMetric: { val: '÷3', label: 'Délai de traitement' },
         screenshots: [
           { title: "1. Page d'accueil de l'application" },
           { title: '2. Formulaire de réservation – Étape 1' },
@@ -540,8 +542,10 @@ export const fr = {
         ],
       },
       {
-        title: 'Extraction automatique de N° de commande sur des factures PDF',
+        title: 'Extraire les n° de commande de milliers de factures, automatiquement',
         sector: 'Pharmaceutique',
+        teaser: "Automatiser via OCR la lecture de PDF entrants pour résorber un backlog de 10 000 factures et fluidifier le flux courant.",
+        keyMetric: { val: '−90%', label: 'Temps manuel éliminé' },
         screenshots: [
           { title: '1. Récupération du contenu du PDF' },
           { title: '2. Lecture OCR du PDF' },
@@ -577,8 +581,10 @@ export const fr = {
         ],
       },
       {
-        title: 'Classement automatisé des contrats vers une Contrathèque',
+        title: 'Centraliser les contrats et les retrouver en quelques secondes',
         sector: 'Achats',
+        teaser: "Mettre fin à la dispersion des contrats finalisés et anticiper les renouvellements grâce à des alertes Teams automatiques.",
+        keyMetric: { val: '0', label: 'Contrat oublié' },
         screenshots: [
           { title: "1. Bouton d'envoi vers la contrathèque" },
           { title: '2. Formulaire de saisie des métadonnées' },

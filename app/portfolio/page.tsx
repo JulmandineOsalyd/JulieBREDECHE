@@ -95,15 +95,9 @@ export default function PortfolioPage() {
           <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-3">
             {p.label}
           </p>
-          <h1 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.8rem)] text-[var(--ink)] leading-tight mb-4">
+          <h1 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.8rem)] text-[var(--ink)] leading-tight mb-5">
             {p.title}
           </h1>
-          <div className="inline-flex items-center gap-[0.45rem] bg-[linear-gradient(135deg,rgba(77,255,214,0.12)_0%,rgba(24,176,232,0.12)_100%)] border border-[rgba(24,176,232,0.3)] rounded-full py-[0.3rem] px-[0.9rem] mb-5">
-            <span className="w-[7px] h-[7px] rounded-full bg-grad inline-block shrink-0" />
-            <span className="text-xs font-semibold gradient-text">
-              {p.comingSoon}
-            </span>
-          </div>
           <p className="text-base text-[var(--muted)] leading-[1.75]">
             {p.description}
           </p>
@@ -122,12 +116,23 @@ export default function PortfolioPage() {
               <span className="text-[2rem] font-extrabold font-[var(--font-lora),Georgia,serif] gradient-text leading-none">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-base text-[var(--ink)] leading-snug m-0">
-                {proj.title}
-              </h2>
               <span className="self-start text-[0.68rem] font-bold text-white bg-[var(--c3)] border border-[rgba(14,76,137,0.18)] rounded-full py-[0.15rem] px-[0.6rem] uppercase tracking-tight">
                 {proj.sector}
               </span>
+              <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-base text-[var(--ink)] leading-snug m-0">
+                {proj.title}
+              </h2>
+              <p className="text-[13px] text-[var(--muted)] leading-relaxed m-0">
+                {proj.teaser}
+              </p>
+              <div className="bg-[#f4f7fb] border border-[#e4eaf3] rounded-[10px] py-3 px-3 text-center">
+                <div className="font-[var(--font-dm-serif),Georgia,serif] text-[22px] text-[#0f2744] font-normal leading-none mb-[4px]">
+                  {proj.keyMetric.val}
+                </div>
+                <div className="text-[11px] text-[#7a8ea4] leading-snug">
+                  {proj.keyMetric.label}
+                </div>
+              </div>
               <div className="flex flex-wrap gap-[0.35rem] mt-auto pt-2 border-t border-[var(--border)]">
                 {projectTechs[i].map(tech => (
                   <span key={tech} className="text-[0.7rem] font-bold text-[var(--c3)] bg-[var(--off)] border border-[var(--border)] rounded-md py-[0.15rem] px-2">
@@ -254,6 +259,28 @@ export default function PortfolioPage() {
                     ))}
                   </div>
                 </div>
+
+                {/* Témoignage (conditionnel) */}
+                {(() => {
+                  const testimonial = (project as unknown as {
+                    testimonial?: { quote: string; author: string; role: string; company?: string }
+                  }).testimonial
+                  if (!testimonial) return null
+                  return (
+                    <div className="py-[22px] border-b border-[#f0f3f7]">
+                      <SectionLabel text={p.sections.testimonial} />
+                      <figure className="bg-[#f4f7fb] border border-[#e4eaf3] border-l-[3px] border-l-[#0f2744] rounded-r-lg py-4 px-5">
+                        <blockquote className="text-[13.5px] italic text-[#2d3a4a] leading-relaxed m-0 before:content-['“'] before:mr-[2px] before:text-[#4a9fd4] after:content-['”'] after:ml-[2px] after:text-[#4a9fd4]">
+                          {testimonial.quote}
+                        </blockquote>
+                        <figcaption className="mt-3 text-[12px] text-[#5a6a7e] not-italic">
+                          — <span className="font-semibold text-[#2d3a4a]">{testimonial.author}</span>, {testimonial.role}
+                          {testimonial.company ? <span className="text-[#7a8ea4]"> · {testimonial.company}</span> : null}
+                        </figcaption>
+                      </figure>
+                    </div>
+                  )
+                })()}
 
                 {/* ROI */}
                 <div className="py-[22px]">

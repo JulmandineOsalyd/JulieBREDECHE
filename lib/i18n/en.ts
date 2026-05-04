@@ -485,9 +485,8 @@ export const en: Translations = {
   portfolio: {
     label: 'Completed projects',
     title: 'Portfolio',
-    comingSoon: 'More case studies coming soon.',
     description: 'A selection of representative projects completed for clients across various industries.',
-    viewProject: 'View project →',
+    viewProject: 'View full case →',
     captures: (n: number) => `${n} Screenshots (click to enlarge)`,
     prev: '← Previous',
     next: 'Next →',
@@ -498,12 +497,15 @@ export const en: Translations = {
       solution: 'Solution implemented',
       features: 'Key features',
       benefits: 'User benefits',
+      testimonial: 'Testimonial',
       roi: 'Business value (ROI)',
     },
     projects: [
       {
-        title: 'Travel booking application',
+        title: 'Centralised bookings, processing time cut by 3',
         sector: 'Education',
+        teaser: 'Replacing an email-driven booking workflow with a mobile app featuring validation flow and accounting tracking.',
+        keyMetric: { val: '÷3', label: 'Processing time' },
         screenshots: [
           { title: '1. Application home page' },
           { title: '2. Booking form – Step 1' },
@@ -541,8 +543,10 @@ export const en: Translations = {
         ],
       },
       {
-        title: 'Automatic extraction of order numbers from PDF invoices',
+        title: 'Extracting order numbers from thousands of invoices, automatically',
         sector: 'Pharmaceutical',
+        teaser: 'Automating OCR reading of incoming PDFs to clear a 10,000-invoice backlog and streamline the ongoing flow.',
+        keyMetric: { val: '−90%', label: 'Manual time eliminated' },
         screenshots: [
           { title: '1. PDF content retrieval' },
           { title: '2. OCR reading of the PDF' },
@@ -578,8 +582,10 @@ export const en: Translations = {
         ],
       },
       {
-        title: 'Automated contract filing into a Contract Repository',
+        title: 'Centralising contracts and finding them in seconds',
         sector: 'Procurement',
+        teaser: 'Ending the scattering of finalised contracts and anticipating renewals with automatic Teams alerts.',
+        keyMetric: { val: '0', label: 'Forgotten contract' },
         screenshots: [
           { title: '1. Send to repository button' },
           { title: '2. Metadata entry form' },
