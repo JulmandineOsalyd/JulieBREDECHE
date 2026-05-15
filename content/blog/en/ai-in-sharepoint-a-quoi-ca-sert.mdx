@@ -1,0 +1,103 @@
+---
+title: "'AI in SharePoint': what does it actually do?"
+metaTitle: "AI in SharePoint: capabilities, prerequisites and governance"
+metaDescription: "Site creation, document summarization, agents, permissions, licensing: understand what AI in SharePoint really enables before rolling it out."
+slug: "ai-in-sharepoint-what-it-does"
+canonical: "https://juliebredeche.pro/blog/ai-in-sharepoint-change-la-donne"
+date: "2026-05-18"
+category: "SharePoint"
+excerpt: "Knowledge agents get all the attention, but AI in SharePoint goes much further. This article walks you through what the feature actually does and what it implies for permissions and governance."
+readingTime: 7
+tags: ["SharePoint", "Copilot", "Microsoft 365", "AI"]
+featured: true
+send_newsletter: false
+draft: false
+---
+
+Microsoft has communicated heavily about **knowledge agents** over the past few months. They are now part of a broader ecosystem: **AI in SharePoint**.
+
+In public preview since March 2026, **general availability is announced between mid-June and mid-July 2026**. Here is what the feature really does, and above all what you need to anticipate!
+
+---
+
+## 1. What AI in SharePoint Concretely Does
+
+AI in SharePoint is not just another Copilot feature.
+
+It is a layer of AI natively integrated into SharePoint, capable of acting at several levels.
+
+| Capability | Scope | What it does |
+|---|---|---|
+| **Create a site** | Site | Generates a complete site (pages, libraries, lists, starter content) from a prompt |
+| **Improve a site** | Site | Detects broken links and pages to archive, suggests content |
+| **Organize libraries** | Library | Automatically fills metadata based on the library's content |
+| **Create views** | Library | Creates custom views via natural language |
+| **Configure rules** | Library | Configures SharePoint rules on libraries |
+| **Create and edit pages** | Page | Creates, restructures and enriches site pages |
+| **Summarize and compare** | Document | Summarizes and compares documents within a library |
+| **Ask a question** | Page / Document | Answers targeted questions on the content of a page or a document |
+| **SharePoint agents** | Site / Library / Folder | Creates agents scoped to a site, a library or a folder |
+
+Each building block relies on the site's existing permissions. **The AI only sees what the user already sees.**
+
+
+---
+
+## 2. Creating a SharePoint Site in Natural Language: How Does It Work?
+
+This is the most impressive feature. You describe what you want, SharePoint builds it.
+
+The flow in practice:
+
+1. **You write a prompt**: *"I want to create a site for my HR department with a homepage, a library for HR policies, a list for leave requests, and an FAQ page."*
+2. **SharePoint suggests a structured plan**: site architecture, planned pages, libraries, lists, starter content.
+3. **I refine my request based on the proposed architecture** if I want to add or remove items.
+4. **The site is generated** once the structure is validated.
+
+![Creating a SharePoint site with AI using natural language](/images/blog/Create-SP-site-AI.gif)
+
+>Behind the scenes, LLM-based models (including partnerships with Anthropic in some cases) orchestrate the process, through iterative reasoning that mobilizes dozens of SharePoint APIs.
+
+---
+
+## 3. Who Can Do What: Permissions to Anticipate
+
+This is probably the most sensitive topic on the governance side. The actions available with AI in SharePoint depend first and foremost on permissions:
+
+| SharePoint Permission | Possible actions with AI |
+|---|---|
+| **Visitors** | <ul><li>Ask a question or summarize a page or a document</li><li>Create an FAQ from a set of files</li></ul> |
+| **Members** | All **visitor** actions, plus:<ul><li>Create or edit a page with AI</li><li>Create an FAQ component (web part)</li><li>Apply "smart" metadata</li><li>Configure alerts</li><li>Create views</li></ul> |
+| **Owners** | All **member** actions, plus:<ul><li>Launch "Improve this site": fix broken links, archive obsolete pages, receive design suggestions</li></ul> |
+
+⚠️ A simple site visitor with a Copilot license can use AI in SharePoint (summaries, questions on content). **Managing permissions becomes a key point!**
+
+On that topic, I recommend reading my article: 🔗[Preparing SharePoint for Copilot: The 2 Field Tips I Always Apply](https://www.juliebredeche.pro/blog/preparer-sharepoint-copilot).
+
+
+---
+
+## 4. The Non-Negotiable Prerequisites
+
+### IT Admin Side
+
+The administrator must first enable the **tenant or site opt-in** to allow AI in SharePoint capabilities to roll out. On top of this first opt-in comes an **Anthropic opt-in**: depending on the organization's location, Anthropic must be explicitly authorized as a subprocessor of Microsoft Online Services.
+
+The complete deployment procedure is detailed in the 🔗 [official Microsoft documentation "Get started with AI in SharePoint"](https://learn.microsoft.com/en-us/sharepoint/ai-in-sharepoint-get-started).
+
+### Copilot Licensing Side
+
+Every user who wants to use AI features must have a **Microsoft 365 Copilot license**.
+
+No middle ground: without the license, no AI capability appears in SharePoint, even if your tenant is ready.
+
+
+---
+
+## My Takeaway
+
+Three points to keep in mind:
+
+1. **The question will no longer be "how do I create a site" but "what do I put in it".** AI takes care of the technical side. The business will need to come in with a clear intent and defined sources of truth, not just a request.
+2. **As long as Copilot rollout remains partial, the reach of AI in SharePoint will too.** A divide will emerge between equipped collaborators and the rest.
+3. **Without proper permission management, the risk is real.** AI only sees what the user already sees: a poorly partitioned site can expose, via summaries and FAQs, content that should never have circulated.

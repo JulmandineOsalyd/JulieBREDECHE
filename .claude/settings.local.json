@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Start-Process \"c:\\\\Users\\\\julie\\\\Documents\\\\JulieBREDECHE\\\\.preview\\\\ai-in-sharepoint-change-la-donne.preview.html\")",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(taskkill /F /PID 23656)",
+      "Bash(exist .next rmdir /s /q .next)"
+    ]
+  }
+}

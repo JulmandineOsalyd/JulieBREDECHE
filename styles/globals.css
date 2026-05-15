@@ -615,7 +615,9 @@ h1, h2, h3 {
 .prose-article video { max-width: 100%; height: auto; }
 .prose-article pre { max-width: 100%; white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; }
 .prose-article pre code { white-space: pre-wrap; word-break: break-word; }
-.prose-article table { width: 100%; table-layout: fixed; }
+.prose-article table { width: 100%; table-layout: auto; }
+.prose-article table th,
+.prose-article table td { width: auto; white-space: normal; }
 .prose-article th,
 .prose-article td { overflow-wrap: anywhere; word-break: break-word; }
 

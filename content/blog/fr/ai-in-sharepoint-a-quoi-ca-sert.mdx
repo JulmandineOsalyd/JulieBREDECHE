@@ -1,0 +1,103 @@
+---
+title: "'IA dans SharePoint' : à quoi ça sert concrètement ?"
+metaTitle: "IA dans SharePoint : capacités, prérequis et gouvernance"
+metaDescription: "Création de sites, résumé de documents, agents, permissions, licences : comprendre ce que l’IA dans SharePoint permet vraiment avant son déploiement."
+slug: "ai-in-sharepoint-a-quoi-ca-sert"
+canonical: "https://juliebredeche.pro/blog/ai-in-sharepoint-change-la-donne"
+date: "2026-05-18"
+category: "SharePoint"
+excerpt: "On parle beaucoup des knowledge agents, mais l’IA dans SharePoint va plus loin. Cet article vous aide à comprendre ce que la fonctionnalité fait concrètement et ce qu’elle implique côté permissions et gouvernance."
+readingTime: 7
+tags: ["SharePoint", "Copilot", "Microsoft 365", "IA"]
+featured: true
+send_newsletter: false
+draft: false
+---
+
+Microsoft a beaucoup communiqué sur les **knowledge agents** ces derniers mois. Ils font désormais partie d'un écosystème plus large : **IA dans SharePoint**.
+
+En public preview depuis mars 2026, la **disponibilité générale est annoncée entre mi-juin et mi-juillet 2026**. Voici ce que la fonctionnalité fait vraiment, et surtout ce qu'il faut anticiper !
+
+---
+
+## 1. Ce que fait concrètement IA dans SharePoint
+
+IA dans SharePoint, ce n'est pas juste une fonctionnalité Copilot de plus. 
+
+C'est une couche d'IA intégrée nativement à SharePoint, qui peut agir à plusieurs niveaux.
+
+| Capacité | Périmètre | Ce que ça fait |
+|---|---|---|
+| **Créer un site** | Site | Génère un site complet (pages, bibliothèques, listes, contenu de départ) à partir d'un prompt |
+| **Améliorer un site** | Site | Détecte les liens cassés et pages à archiver, suggère du contenu |
+| **Organiser des bibliothèques** | Bibliothèque | Renseigne automatiquement des métadonnées à partir du contenu de la bibliothèque |
+| **Créer des vues** | Bibliothèque | Crée des vues sur mesure via langage naturel |
+| **Configurer des règles** | Bibliothèque | Configure des règles SharePoint sur les bibliothèques |
+| **Créer et éditer des pages** | Page | Crée, restructure et enrichit des pages de site|
+| **Résumer et comparer** | Document | Résume et compare les documents d'une bibliothèque |
+| **Poser une question** | Page / Document | Répond à des questions ciblées sur le contenu d'une page ou d'un document |
+| **Agents SharePoint** | Site / Bibliothèque / Dossier | Crée des agents ciblés sur un site, une bibliothèque ou un dossier |
+
+Chaque brique s'appuie sur les permissions existantes du site. **L'IA ne voit que ce que l'utilisateur voit déjà.**
+
+
+---
+
+## 2. Créer un site SharePoint en langage naturel, comment ça marche ?
+
+C'est la fonctionnalité la plus impressionnante. On décrit ce qu'on veut, SharePoint construit.
+
+Le flux en pratique :
+
+1. **On écrit un prompt** : *"Je veux créer un site pour mon service RH avec une page d'accueil, une bibliothèque pour les politiques RH, une liste pour les demandes de congés, et une page FAQ."*
+2. **SharePoint propose un plan structuré** : arborescence du site, pages prévues, bibliothèques, listes, contenu de départ.
+3. **Je clarifie mon besoin en fonction de l'arborescence proposée** si je veux ajouter ou supprimer des éléments.
+4. **Le site est généré** une fois la structure validée.
+
+![Création d'un site SharePoint avec l'IA en langage naturel](/images/blog/Create-SP-site-AI.gif)
+
+>En coulisses, des modèles de type LLM (incluant des partenariats avec Anthropic selon les cas) orchestrent le processus, via un raisonnement itératif qui mobilise des dizaines d'API SharePoint.
+
+---
+
+## 3. Qui peut faire quoi : les permissions à anticiper
+
+C'est probablement le sujet le plus sensible côté gouvernance. Les actions disponibles de l'IA dans SharePoint dépendent avant tout des permissions :
+
+| Permission SharePoint | Actions possibles avec l'IA |
+|---|---|
+| **Visiteurs** | <ul><li>Poser une question ou résumer une page ou un document</li><li>Créer une FAQ à partir d'un ensemble de fichier</li></ul> |
+| **Membres** | Toutes les actions des **visiteurs**, et :<ul><li>Créer ou éditer une page avec l'IA</li><li>Créer un composant FAQ (web part)</li><li>Appliquer des métadonnées 'intelligentes"</li><li>Configurer des alertes</li><li>Créer des vues</li></ul> |
+| **Propriétaires** | Toutes les actions des **membres**, et :<ul><li>Lancer "Améliorer ce site" : corriger les liens cassés, archiver les pages obsolètes, recevoir des suggestions de design</li></ul> |
+
+⚠️ Un simple visiteur de site ayant une licence Copilot peut utiliser l'IA dans SharePoint (résumés, questions sur du contenu). **La gestion des droits devient un point clé !**
+
+À ce sujet, je vous recommande la lecture de mon article : 🔗[Préparer SharePoint pour Copilot : les 2 astuces terrain que j'applique systématiquement](https://www.juliebredeche.pro/blog/preparer-sharepoint-copilot).
+
+
+---
+
+## 4. Les prérequis non négociables
+
+### Côté admin IT
+
+L'administrateur doit d'abord activer **l'opt-in du tenant ou du site** pour autoriser l'arrivée des capacités IA dans SharePoint. À ce premier opt-in s'ajoute un **opt-in Anthropic** : selon la localisation de l'organisation, il faut autoriser explicitement Anthropic comme sous-traitant de Microsoft Online Services.
+
+La procédure complète de déploiement est détaillée dans la 🔗 [Documentation Microsoft officielle "Prise en main de l'IA dans SharePoint"](https://learn.microsoft.com/fr-fr/sharepoint/ai-in-sharepoint-get-started).
+
+### Côté licences Copilot
+
+Chaque utilisateur qui veut utiliser les fonctionnalités IA doit disposer d'une **licence Microsoft 365 Copilot**.
+
+Pas de demi-mesure : sans la licence, aucune capacité IA n'apparaît dans SharePoint, même si votre tenant est prêt.
+
+
+---
+
+## Ma conclusion
+
+Trois constats à garder en tête :
+
+1. **La question ne sera plus "comment créer un site" mais "qu'est-ce que je mets dedans".** L'IA prend en charge la technique. Le métier devra arriver avec une intention claire et des sources de vérité définies, pas juste une demande.
+2. **Tant que le déploiement Copilot reste partiel, la portée de l'IA dans SharePoint l'est aussi.** Une fracture va se créer entre les collaborateurs équipés et les autres.
+3. **Sans maîtrise des permissions, le risque est réel.** L'IA ne voit que ce que l'utilisateur voit déjà : mal cloisonné, un site peut exposer via résumés et FAQ du contenu qui n'aurait jamais dû circuler.
