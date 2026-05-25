@@ -186,7 +186,22 @@ export const en: Translations = {
     role: 'Microsoft 365 Consultant',
     speciality:
       'SharePoint and Power Platform specialist for over 10 years, I support business teams in <b>modernising their collaborative tools</b>, <b>automating processes</b> and <b>effectively structuring content</b>, leveraging Microsoft 365 solutions.',
-    certif: 'Microsoft Certified: Power Platform Solution Architect Expert',
+    certif: 'Power Platform Solution Architect Expert',
+    certificationsTitle: 'My certifications',
+    certifications: [
+      {
+        label: 'Power Platform Solution Architect Expert',
+        src: '/images/MSCertif.png',
+        alt: 'Power Platform Solution Architect Expert',
+        href: 'https://learn.microsoft.com/en-us/users/juliebredeche-7611/credentials/c3637ace7f120052',
+      },
+      {
+        label: 'AI Business Professional',
+        src: '/images/AB730Badge.svg',
+        alt: 'AI Business Professional',
+        href: 'https://learn.microsoft.com/en-us/users/juliebredeche-7611/credentials/a69d5837ffab5c04',
+      },
+    ],
     journeyTitle: 'My Journey',
     journey: [
       'My adventure with Microsoft 365 began in 2014, when I took part in deploying the largest SharePoint intranet for a major energy group. I was immediately drawn to the power and endless possibilities of SharePoint! I quickly specialised in process automation with SharePoint Designer and Nintex, before Power Automate arrived.',

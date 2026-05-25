@@ -184,7 +184,22 @@ export const fr = {
     role: 'Consultante Microsoft 365',
     speciality:
       "Spécialiste SharePoint et Power Platform depuis plus de 10 ans, j'accompagne les directions métiers dans la <b>modernisation de leurs outils collaboratifs</b>, l'<b>automatisation de processus</b> et la <b>structuration efficace des contenus,</b> en m'appuyant sur les solutions Microsoft 365.",
-    certif: 'Certifiée Microsoft : Power Platform Solution Architect Expert',
+    certif: 'Power Platform Solution Architect Expert',
+    certificationsTitle: 'Mes certifications',
+    certifications: [
+      {
+        label: 'Power Platform Solution Architect Expert',
+        src: '/images/MSCertif.png',
+        alt: 'Power Platform Solution Architect Expert',
+        href: 'https://learn.microsoft.com/fr-fr/users/juliebredeche-7611/credentials/c3637ace7f120052',
+      },
+      {
+        label: 'AI Business Professional',
+        src: '/images/AB730Badge.svg',
+        alt: 'AI Business Professional',
+        href: 'https://learn.microsoft.com/fr-fr/users/juliebredeche-7611/credentials/a69d5837ffab5c04',
+      },
+    ],
     journeyTitle: 'Mon parcours',
     journey: [
       "Mon aventure avec Microsoft 365 a débuté en 2014, en participant au déploiement du plus gros intranet SharePoint pour un grand groupe de l'énergie. J'ai immédiatement été attirée par la puissance et les possibilités infinies de SharePoint ! Très vite, je me suis spécialisée dans l'automatisation de processus avec SharePoint Designer et Nintex, avant l'arrivée de Power Automate.",
