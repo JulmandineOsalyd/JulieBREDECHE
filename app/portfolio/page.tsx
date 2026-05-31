@@ -34,15 +34,22 @@ const screenshotUrls = [
     '/portfolio/Contratheque/Contratheque-Classement.png',
     '/portfolio/Contratheque/Contratheque-Recherche.png',
   ],
+  [
+    '/portfolio/GED/GED-Home.png',
+    '/portfolio/GED/GED-SubmitDoc.png',
+    '/portfolio/GED/GED-ApproveDoc.png',
+    '/portfolio/GED/GED-PowellSearch.png',
+  ],
 ]
 
 const projectTechs = [
   ['PowerApps', 'Power Automate', 'SharePoint', 'Outlook'],
   ['Power Automate', 'AI Builder', 'SharePoint'],
   ['SharePoint', 'Power Automate', 'Forms', 'Teams'],
+  ['SharePoint', 'Power Automate', 'PowerApps', 'Powell Intranet'],
 ]
 
-const projectMainTools = ['PowerApps', 'Power Automate', 'Power Automate']
+const projectMainTools = ['PowerApps', 'Power Automate', 'Power Automate', 'SharePoint']
 
 // SAFETY: only used with static i18n strings — sanitize with DOMPurify if dynamic content is ever passed
 function md(text: string): string {
@@ -229,7 +236,7 @@ export default function PortfolioPage() {
                         {(project.benefits).map((b, i) => (
                           <li key={i} className="flex items-start gap-[10px] text-[13px] text-[#2d3a4a] leading-[1.55]">
                             <span className="w-[18px] h-[18px] rounded-full bg-[#cfe2f3] flex items-center justify-center text-[11px] text-[#2a7db5] shrink-0 mt-[1px]">✓</span>
-                            <span>{b}</span>
+                            <span dangerouslySetInnerHTML={{ __html: b.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                           </li>
                         ))}
                       </ul>
@@ -344,13 +351,14 @@ export default function PortfolioPage() {
             </button>
           </div>
 
-          <div onClick={e => e.stopPropagation()} className="flex-1 w-full max-w-[860px] flex flex-col items-center justify-center min-h-0 relative">
+          <div onClick={e => e.stopPropagation()} className="flex-1 w-full max-w-[860px] flex items-center justify-center min-h-0">
             <Image
               src={screenshotUrls[open][lbIndex]}
               alt={project.screenshots[lbIndex]?.title ?? ''}
-              fill
+              width={860}
+              height={600}
               sizes="(max-width: 860px) 100vw, 860px"
-              className="object-contain rounded-[20px] shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
+              className="max-h-full w-auto max-w-full object-contain rounded-[15px] shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
             />
           </div>
 

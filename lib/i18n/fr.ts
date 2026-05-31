@@ -634,6 +634,49 @@ export const fr = {
           { val: '0', label: 'Contrats oubliés' },
         ],
       },
+      {
+        title: 'GED Qualité : 33 sites industriels, zéro document obsolète',
+        sector: 'Industrie',
+        teaser: 'Déployer une GED Qualité unifiée pour harmoniser la gestion documentaire de 33 sites industriels et 3 000 collaborateurs.',
+        keyMetric: { val: '< 2 min', label: 'Pour retrouver un document Qualité' },
+        screenshots: [
+          { title: "1. Page d'accueil de l'app de dépôt et validation de documents" },
+          { title: "2. Écran de dépôt d'un document" },
+          { title: '3. Écran de validation d\'un document' },
+          { title: '4. Recherche Powell dans la GED' },
+        ],
+        problem: [
+          "Documents Qualité stockés sur **serveur de fichiers** sans métadonnée ni versionning.",
+          "**Versions obsolètes** en circulation sur les sites de production.",
+          "Conformité **ISO 50 001** et réglementations EHS non garanties.",
+        ],
+        users: [
+          '3 500 collaborateurs, 33 sites industriels en France',
+          'Opérateurs terrain : lecteurs',
+          'Équipes Qualité et EHS : rédacteurs, valideurs locaux, valideurs groupe',
+          'Direction Qualité groupe : approbateurs finaux',
+        ],
+        solution:
+          "**GED Qualité sur Microsoft 365** avec SharePoint comme référentiel central, Power Automate pour les circuits d'approbation et Power Apps pour l'interface de dépôt des documents.",
+        features: [
+          "**Interface Power Apps** dédiée au dépôt et validation de documents, connectée au back-office SharePoint",
+          "**Référentiel centralisé** avec métadonnées obligatoires, vues filtrées par site ou thème",
+          "**Workflow d'approbation** avec un circuit de validationmulti-sites et multi-niveaux",
+          "**Vérification des documents existants** au moment du dépôt pour éviter les doublons",
+          "**Moteur de recherche Powell** intégré pour une recherche rapide et pertinente",
+          "Flux de révision des documents automatisé avec des rappels programmés"
+        ],
+        benefits: [
+          "Document trouvé en moins de 2 minutes avec la **recherche et les métadonnées**",
+          "Seule la **dernière version** à jour est accessible, plus de doublons ni de versions obsolètes",
+          "**Historique des versions%% et des approbations accessibles en cas d'audit",
+        ],
+        roi: [
+          { val: '< 2 min', label: 'Recherche d\'un document Qualité' },
+          { val: '0', label: 'Document obsolète en circulation' },
+          { val: '100%', label: 'Traçabilité versions et approbations' },
+        ],
+      },
     ],
   },
 

@@ -635,6 +635,49 @@ export const en: Translations = {
           { val: '0', label: 'Forgotten contracts' },
         ],
       },
+      {
+        title: 'Quality DMS : 33 industrial sites, zero obsolete document',
+        sector: 'Industry',
+        teaser: 'Deploying a unified Quality DMS to harmonise document management across 33 industrial sites and 3,000 employees.',
+        keyMetric: { val: '< 2 min', label: 'To find a Quality document' },
+        screenshots: [
+          { title: '1. Document submission and validation interface home page' },
+          { title: '2. Document submission screen' },
+          { title: '3. Document validation screen' },
+          { title: '4. Powell search in the DMS' },
+        ],
+        problem: [
+          'Quality documents stored on a **file server** with no metadata or versioning.',
+          '**Obsolete versions** circulating on production sites.',
+          '**ISO 50001** compliance and EHS regulations not guaranteed.',
+        ],
+        users: [
+          '3,500 employees across 33 industrial sites in France',
+          'Field operators: readers',
+          'Quality and EHS teams: authors, local approvers, group approvers',
+          'Group Quality Director: final approvers',
+        ],
+        solution:
+          '**Quality DMS on Microsoft 365** with SharePoint as the central repository, Power Automate for approval workflows, and Power Apps as the document submission interface.',
+        features: [
+          '**Power Apps interface** dedicated to document submission and validation, connected to the SharePoint back-end',
+          '**Centralised repository** with mandatory metadata and views filtered by site or topic',
+          '**Approval workflow** with a multi-site, multi-level validation circuit',
+          '**Duplicate check** at submission time to prevent redundant documents',
+          '**Powell search engine** integrated for fast and relevant search',
+          'Automated document review cycle with scheduled reminders',
+        ],
+        benefits: [
+          'Document found in under 2 minutes using **search and metadata**',
+          'Only the **latest version** is accessible — no duplicates or obsolete documents',
+          '**Version history** and approvals accessible for any audit',
+        ],
+        roi: [
+          { val: '< 2 min', label: 'Quality document retrieval' },
+          { val: '0', label: 'Obsolete document in circulation' },
+          { val: '100%', label: 'Version and approval traceability' },
+        ],
+      },
     ],
   },
 
