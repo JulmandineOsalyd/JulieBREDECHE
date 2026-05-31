@@ -14,6 +14,18 @@ const dmSerifDisplay = DM_Serif_Display({
 
 const screenshotUrls = [
   [
+    '/portfolio/GED/GED-Home.png',
+    '/portfolio/GED/GED-SubmitDoc.png',
+    '/portfolio/GED/GED-ApproveDoc.png',
+    '/portfolio/GED/GED-PowellSearch.png',
+  ],
+  [
+    '/portfolio/LecturePDF/0.png',
+    '/portfolio/LecturePDF/1.png',
+    '/portfolio/LecturePDF/2.png',
+    '/portfolio/LecturePDF/3.png',
+  ],
+  [
     '/portfolio/MyBooking/MyBooking-Home.png',
     '/portfolio/MyBooking/MyBooking-Form1.png',
     '/portfolio/MyBooking/MyBooking-Form2.png',
@@ -23,33 +35,21 @@ const screenshotUrls = [
     '/portfolio/MyBooking/MyBooking-BackOffice.png',
   ],
   [
-    '/portfolio/LecturePDF/0.png',
-    '/portfolio/LecturePDF/1.png',
-    '/portfolio/LecturePDF/2.png',
-    '/portfolio/LecturePDF/3.png',
-  ],
-  [
     '/portfolio/Contratheque/Contratheque-BoutonEnvoi.png',
     '/portfolio/Contratheque/Contratheque-Form.png',
     '/portfolio/Contratheque/Contratheque-Classement.png',
     '/portfolio/Contratheque/Contratheque-Recherche.png',
   ],
-  [
-    '/portfolio/GED/GED-Home.png',
-    '/portfolio/GED/GED-SubmitDoc.png',
-    '/portfolio/GED/GED-ApproveDoc.png',
-    '/portfolio/GED/GED-PowellSearch.png',
-  ],
 ]
 
 const projectTechs = [
-  ['PowerApps', 'Power Automate', 'SharePoint', 'Outlook'],
-  ['Power Automate', 'AI Builder', 'SharePoint'],
-  ['SharePoint', 'Power Automate', 'Forms', 'Teams'],
   ['SharePoint', 'Power Automate', 'PowerApps', 'Powell Intranet'],
+  ['Power Automate', 'AI Builder', 'SharePoint'],
+  ['PowerApps', 'Power Automate', 'SharePoint', 'Outlook'],
+  ['SharePoint', 'Power Automate', 'Forms', 'Teams'],
 ]
 
-const projectMainTools = ['PowerApps', 'Power Automate', 'Power Automate', 'SharePoint']
+const projectMainTools = ['SharePoint', 'Power Automate', 'PowerApps', 'Power Automate']
 
 // SAFETY: only used with static i18n strings — sanitize with DOMPurify if dynamic content is ever passed
 function md(text: string): string {
