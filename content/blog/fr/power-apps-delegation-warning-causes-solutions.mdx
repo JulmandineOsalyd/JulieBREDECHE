@@ -1,0 +1,152 @@
+---
+title: "Pourquoi ignorer un délégation warning dans Power Apps peut mettre votre projet en danger"
+metaTitle: "Power Apps delegation warning : causes et solution"
+metaDescription: "Power Apps delegation warning : limites à 2 000 enregistrements, causes fréquentes et 3 solutions pour éviter la perte silencieuse de données en production."
+slug: "power-apps-delegation-warning-causes-solutions"
+canonical: "https://juliebredeche.pro/blog/power-apps-delegation-warning-causes-solutions"
+date: "2026-06-02"
+category: "PowerApps"
+excerpt: "Beaucoup d'applications Power Apps tournent avec des données incomplètes sans que personne ne s'en aperçoive. Le delegation warning en est souvent la cause."
+readingTime: 4
+tags: ["Power Apps", "Delegation", "Dataverse", "Power Platform"]
+featured: false
+send_newsletter: false
+draft: false
+---
+
+L'application fonctionne bien, les données s'affichent pendant les tests, on passe en production.
+
+Quelques semaines passent et un utilisateur remonte : *"Il me manque des données."* Ou pire : personne ne remarque rien, et des décisions sont prises sur des données tronquées.
+
+En cause dans la majorité des cas : un **delegation warning** ignoré depuis le début du projet.
+
+---
+
+## Le délégation warning signalé par PowerApps
+
+Quand Power Apps affiche *"Delegation warning. The highlighted part of this formula may not work correctly on large data sets"*, ce n'est pas un avertissement théorique.
+
+C'est Power Apps qui indique que **la formule ne peut pas être exécutée par la source de données** : les enregistrements sont rapatriés localement, et la formule est appliquée côté client, sur un volume plafonné.
+
+Côté client, des limites s'appliquent :
+
+- **500 enregistrements** récupérés par défaut
+- Maximum configurable : **2 000**
+- Tout ce qui dépasse : **ignoré**
+
+> **Si votre source de données contient 5 000 lignes ? Power Apps n'en voit que 2 000 au mieux.**
+
+Quand la délégation fonctionne, Power Apps transmet la formule directement à la source de données, qui l'exécute côté serveur sans limite de volume.
+
+---
+
+## Pourquoi ignorer cet avertissement est risqué ?
+
+Le vrai piège : **ce n'est pas une erreur visible**. L'application fonctionne. Elle affiche des données. Il n'est pas évident de détecter qu'il en manque.
+
+Quelques symptômes courants :
+
+- Seuls les enregistrements les plus récents apparaissent
+- Un filtre affiche des résultats différents de façon aléatoire
+- Les résultats varient selon les utilisateurs
+
+⚠️ **Au-delà de 2 000 lignes dans la source de données, l'application renvoie des résultats incomplets. Sans le signaler.**
+
+---
+
+## Les causes les plus fréquentes
+
+### 1. Des fonctions non délégables
+
+Certaines fonctions ne peuvent pas être déléguées à la source de données :
+
+- `Search()` (pour la plupart des connecteurs)
+- `CountIf()`
+- `If()` à l'intérieur d'un `Filter()`
+- L'opérateur `in`
+
+Exemple problématique : `Filter(Employes, "Julie" in Nom)`
+
+Ce filtre contraint Power Apps à rapatrier l'ensemble des enregistrements avant de filtrer.
+
+### 2. SharePoint utilisé comme base de données
+
+SharePoint présente des limites de délégation plus strictes que Dataverse ou SQL. Beaucoup d'opérations ne passent pas : `StartsWith()` sur certains types de colonnes, tri sur colonnes calculées...
+
+SharePoint est conçu pour stocker des documents et des listes de taille raisonnable, pas pour des filtres complexes sur des milliers de lignes.
+
+### 3. La formule Search() sur de grands volumes
+
+`Search()` est l'une des fonctions les plus utilisées, et l'une des plus problématiques sur les grands jeux de données.
+
+`Search(Employes, TextInput1.Text, "Nom")`
+
+Cette fonction n'est pas délégable sur la plupart des connecteurs. Elle déclenche systématiquement un warning dès que le volume dépasse la limite des 2 000 éléments.
+
+---
+
+## 3 solutions de contournement, de la plus simple à la plus structurelle
+
+### Solution 1 • Remplacer Search() par Filter() avec StartsWith()
+
+Au lieu de : `Search(Employes, TextInput1.Text, "Nom")`
+
+Utiliser : `Filter(Employes, StartsWith(Nom, TextInput1.Text))`
+
+⚠️ `StartsWith()` est délégable dans Dataverse, mais uniquement sur les colonnes de type "texte simple" dans SharePoint.
+
+### Solution 2 • Filtrer côté source, pas dans Power Apps
+
+L'objectif : ne pas laisser Power Apps faire le travail de filtrage.
+
+- **Dataverse** : créer des vues filtrées, les exposer à l'application
+- **SharePoint** : indexer les colonnes utilisées dans les filtres, créer des vues pré-filtrées
+
+Power Apps consomme des données déjà optimisées. Il ne les trie pas.
+
+### Solution 3 • Utiliser les collections avec un filtre délégable en amont
+
+`ClearCollect()` seul ne résout rien : la collection est soumise à la limite des 2 000 enregistrements au moment du chargement.
+
+La bonne approche : **pré-filtrer côté serveur avant de charger la collection.**
+
+`ClearCollect(colDonnees, Filter(Employes, Statut = "Actif"))`
+
+Le filtre est exécuté par le serveur. La collection ne charge que les enregistrements correspondants, sans toucher à la limite. Toutes les formules appliquées ensuite à la collection fonctionnent sans restriction.
+
+Trois conditions pour que ça fonctionne :
+
+- Le filtre porte sur une **colonne indexée**
+- L'opérateur est délégable (`=`, `<`, `>`, `StartsWith` selon la source)
+- La colonne n'est pas calculée
+
+> **C'est la seule approche avec collections qui ne tronque pas les données.**
+
+---
+
+## Comment identifier ce qui est délégable
+
+Power Apps intègre des indicateurs visuels dans l'éditeur de formules :
+
+- **Soulignement bleu simple** : délégable
+- **Soulignement bleu double** : partiellement délégable
+- **Icône d'avertissement** : non délégable
+
+Deux réflexes complémentaires :
+
+- **Survoler le warning** : Power Apps indique quelle partie de la formule pose problème
+- **Tester avec un volume réel** : 50 enregistrements de test ne révèlent rien. 3 000 enregistrements, oui.
+
+La documentation Microsoft liste les fonctions délégables connecteur par connecteur. À consulter avant de coder un filtre : [Fonctions et opérations délégables Power Apps pour SharePoint](https://learn.microsoft.com/fr-fr/power-apps/maker/canvas-apps/connections/connection-sharepoint-online#power-apps-delegable-functions-and-operations-for-sharepoint).
+
+---
+
+## Ma conclusion
+
+Un delegation warning n'est pas un message à ignorer. C'est Power Apps qui indique que l'application risque de ne pas fonctionner à l'échelle.
+
+Trois constats que je retrouve régulièrement en mission :
+
+1. **Les delegation warnings ignorés en développement deviennent des bugs en production** : les jeux de test sont trop petits pour révéler le problème. Tester avec des volumes réels dès le départ est indispensable.
+2. **Le choix de la source de données est une décision d'architecture** : SharePoint pour quelques centaines de lignes, Dataverse dès que le volume monte.
+3. **La délégation n'est pas un bug Power Apps** : c'est une contrainte de conception. La contourner sans la comprendre, c'est déplacer le problème, pas le résoudre.

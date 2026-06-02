@@ -1,0 +1,152 @@
+---
+title: "Why Ignoring a Delegation Warning in Power Apps Can Jeopardize Your Project"
+metaTitle: "Power Apps delegation warning: causes and solutions"
+metaDescription: "Power Apps delegation warning: 2,000-record limit, common causes, and 3 solutions to prevent silent data loss in production."
+slug: "power-apps-delegation-warning-causes-solutions"
+canonical: "https://juliebredeche.pro/blog/power-apps-delegation-warning-causes-solutions"
+date: "2026-06-02"
+category: "PowerApps"
+excerpt: "Many Power Apps applications run on incomplete data without anyone noticing. The delegation warning is often the cause."
+readingTime: 4
+tags: ["Power Apps", "Delegation", "Dataverse", "Power Platform"]
+featured: false
+send_newsletter: false
+draft: false
+---
+
+The application works fine, data displays correctly during testing, and the project goes live.
+
+A few weeks later, a user reports: *"Some of my data is missing."* Or worse: no one notices, and decisions are being made on incomplete data.
+
+The root cause, in most cases: a **delegation warning** ignored from the very beginning of the project.
+
+---
+
+## The Delegation Warning in Power Apps
+
+When Power Apps displays *"Delegation warning. The highlighted part of this formula may not work correctly on large data sets"*, this is not a theoretical notice.
+
+It means **the formula cannot be processed by the data source**: records are retrieved locally, and the formula is applied client-side, on a capped volume.
+
+On the client side, limits apply:
+
+- **500 records** retrieved by default
+- Configurable maximum: **2,000**
+- Everything beyond that: **ignored**
+
+> **If your data source contains 5,000 rows, Power Apps sees at most 2,000.**
+
+When delegation works correctly, Power Apps sends the formula directly to the data source, which processes it server-side with no volume limit.
+
+---
+
+## Why Ignoring This Warning Is Risky
+
+The real trap: **this is not a visible error**. The application works. It displays data. There is no obvious sign that records are missing.
+
+Common symptoms:
+
+- Only the most recent records appear
+- A filter returns inconsistent results
+- Results vary between users
+
+⚠️ **Beyond 2,000 rows in the data source, the application returns incomplete results — with no error message.**
+
+---
+
+## The Most Common Causes
+
+### 1. Non-delegable functions
+
+Some functions cannot be delegated to the data source:
+
+- `Search()` (for most connectors)
+- `CountIf()`
+- `If()` inside a `Filter()`
+- The `in` operator
+
+Problematic example: `Filter(Employees, "Julie" in Name)`
+
+This filter forces Power Apps to retrieve all records before filtering.
+
+### 2. SharePoint used as an application database
+
+SharePoint has stricter delegation limits than Dataverse or SQL. Many operations are not supported: `StartsWith()` on certain column types, sorting on calculated columns...
+
+SharePoint is designed to store documents and reasonably sized lists — not for complex filters on thousands of rows.
+
+### 3. The Search() function on large datasets
+
+`Search()` is one of the most commonly used functions, and one of the most problematic on large datasets.
+
+`Search(Employees, TextInput1.Text, "Name")`
+
+This function is not delegable on most connectors. It systematically triggers a warning as soon as the volume exceeds the 2,000-record limit.
+
+---
+
+## 3 Workarounds, From Simplest to Most Structural
+
+### Solution 1 • Replace Search() with Filter() and StartsWith()
+
+Instead of: `Search(Employees, TextInput1.Text, "Name")`
+
+Use: `Filter(Employees, StartsWith(Name, TextInput1.Text))`
+
+⚠️ `StartsWith()` is delegable in Dataverse, but only on single-line text columns in SharePoint.
+
+### Solution 2 • Filter at the source, not in Power Apps
+
+The goal: avoid letting Power Apps handle filtering.
+
+- **Dataverse**: create filtered views and expose them to the application
+- **SharePoint**: index the columns used in filters, create pre-filtered views
+
+Power Apps should consume already-optimized data, not sort through it.
+
+### Solution 3 • Use collections with a delegable filter upstream
+
+`ClearCollect()` alone solves nothing: the collection is still subject to the 2,000-record limit at load time.
+
+The right approach: **pre-filter server-side before loading the collection.**
+
+`ClearCollect(colData, Filter(Employees, Status = "Active"))`
+
+The filter is executed by the server. The collection only loads the matching records, with no limit applied. All formulas applied to the collection afterwards work without restriction.
+
+Three conditions for this to work:
+
+- The filter targets an **indexed column**
+- The operator is delegable (`=`, `<`, `>`, `StartsWith` depending on the source)
+- The column is not calculated
+
+> **This is the only collection-based approach that does not truncate data.**
+
+---
+
+## How to Identify What Is Delegable
+
+Power Apps includes visual indicators directly in the formula editor:
+
+- **Single blue underline**: delegable
+- **Double blue underline**: partially delegable
+- **Warning icon**: not delegable
+
+Two additional habits to adopt:
+
+- **Hover over the warning**: Power Apps identifies which part of the formula is causing the issue
+- **Test with real data volumes**: 50 test records reveal nothing. 3,000 records do.
+
+Microsoft documentation lists delegable functions connector by connector. Consult it before writing a filter: [Power Apps delegable functions and operations for SharePoint](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/connections/connection-sharepoint-online#power-apps-delegable-functions-and-operations-for-sharepoint).
+
+---
+
+## My Conclusion
+
+A delegation warning is not a message to dismiss. It is Power Apps signaling that the application may not scale.
+
+Three observations I consistently encounter in the field:
+
+1. **Delegation warnings ignored during development become bugs in production**: test datasets are too small to surface the problem. Testing with real data volumes from the start is essential.
+2. **Data source selection is an architectural decision**: SharePoint for a few hundred rows, Dataverse once the volume grows.
+3. **Delegation is not a Power Apps bug**: it is a design constraint. Working around it without understanding it only moves the problem — it does not solve it.
