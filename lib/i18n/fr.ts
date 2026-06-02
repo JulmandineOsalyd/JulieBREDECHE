@@ -53,12 +53,12 @@ export const fr = {
       ],
     },
     main: {
-      title: 'Solutions PowerApps, Power Automate & Copilot',
+      title: 'Solutions Power Apps, Power Automate & Copilot',
       description:
         "Je conçois et développe des applications métier, des automatisations et des agents conversationnels sur mesure pour votre organisation.",
       methodLinkLabel: 'ma méthode',
       bullets: [
-        'Applications PowerApps sur mesure',
+        'Applications Power Apps sur mesure',
         'Automatisations Power Automate',
         'Agents Copilot Studio',
         'Formations et documentation',
@@ -262,7 +262,7 @@ export const fr = {
     },
     offer1: {
       badge: 'Offre principale',
-      title: 'Solutions PowerApps, Power Automate & Agents Copilot',
+      title: 'Solutions Power Apps, Power Automate & Agents Copilot',
       description:
         'Je conçois et développe des <strong>applications métier</strong>, des <strong>automatisations</strong> et des <strong>agents conversationnels</strong> sur mesure pour votre organisation. Du cadrage à la mise en production, jusqu’à l’adoption par vos équipes.',
       forWhomLabel: 'Pour qui ?',
@@ -274,7 +274,7 @@ export const fr = {
       deliverables: [
         {
           title: 'Conception & développement',
-          text: 'Applications PowerApps, flux Power Automate (simples et avancés), agents Copilot Studio connectés à votre environnement, portails SharePoint Online (intranet, extranet, espaces projet)',
+          text: 'Applications Power Apps, flux Power Automate (simples et avancés), agents Copilot Studio connectés à votre environnement, portails SharePoint Online (intranet, extranet, espaces projet)',
         },
         {
           title: 'Design & expérience utilisateur',

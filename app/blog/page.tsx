@@ -6,11 +6,11 @@ import BlogList from './BlogList'
 export const metadata: Metadata = {
   title: 'Blog Microsoft 365 — SharePoint, Power Platform, Copilot',
   description:
-    "Articles, retours d'expérience et conseils pratiques sur SharePoint, Power Automate, PowerApps et Copilot Studio par une consultante indépendante.",
+    "Articles, retours d'expérience et conseils pratiques sur SharePoint, Power Automate, Power Apps et Copilot Studio par une consultante indépendante.",
   openGraph: {
     title: 'Blog Microsoft 365 — SharePoint, Power Platform, Copilot',
     description:
-      "Articles, retours d'expérience et conseils pratiques sur SharePoint, Power Automate, PowerApps et Copilot Studio par une consultante indépendante.",
+      "Articles, retours d'expérience et conseils pratiques sur SharePoint, Power Automate, Power Apps et Copilot Studio par une consultante indépendante.",
     url: 'https://juliebredeche.pro/blog',
     type: 'website',
   },

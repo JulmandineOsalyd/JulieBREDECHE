@@ -28,7 +28,7 @@ export default function ServicesContent() {
         </div>
       </section>
 
-      {/* Offre principale — Solutions PowerApps, Power Automate & Agents Copilot */}
+      {/* Offre principale — Solutions Power Apps, Power Automate & Agents Copilot */}
       <section className="py-12 px-[6%] bg-[var(--off)] border-t border-[var(--border)]">
         <div className="max-w-[1200px] mx-auto">
           <div className="card p-10 bg-white offre-card-main">

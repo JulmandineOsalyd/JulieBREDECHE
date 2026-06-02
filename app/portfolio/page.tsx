@@ -43,13 +43,13 @@ const screenshotUrls = [
 ]
 
 const projectTechs = [
-  ['SharePoint', 'Power Automate', 'PowerApps', 'Powell Intranet'],
+  ['SharePoint', 'Power Automate', 'Power Apps', 'Powell Intranet'],
   ['Power Automate', 'AI Builder', 'SharePoint'],
-  ['PowerApps', 'Power Automate', 'SharePoint', 'Outlook'],
+  ['Power Apps', 'Power Automate', 'SharePoint', 'Outlook'],
   ['SharePoint', 'Power Automate', 'Forms', 'Teams'],
 ]
 
-const projectMainTools = ['SharePoint', 'Power Automate', 'PowerApps', 'Power Automate']
+const projectMainTools = ['SharePoint', 'Power Automate', 'Power Apps', 'Power Automate']
 
 // SAFETY: only used with static i18n strings — sanitize with DOMPurify if dynamic content is ever passed
 function md(text: string): string {

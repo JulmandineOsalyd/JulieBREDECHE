@@ -55,12 +55,12 @@ export const en: Translations = {
       ],
     },
     main: {
-      title: 'PowerApps, Power Automate & Copilot Solutions',
+      title: 'Power Apps, Power Automate & Copilot Solutions',
       description:
         'I design and develop custom business applications, automations and conversational agents for your organisation.',
       methodLinkLabel: 'my method',
       bullets: [
-        'Custom PowerApps applications',
+        'Custom Power Apps applications',
         'Power Automate automations',
         'Copilot Studio agents',
         'Training and documentation',
@@ -264,7 +264,7 @@ export const en: Translations = {
     },
     offer1: {
       badge: 'Main offer',
-      title: 'PowerApps, Power Automate Solutions & Copilot Agents',
+      title: 'Power Apps, Power Automate Solutions & Copilot Agents',
       description:
         'I design and develop custom <strong>business applications</strong>, <strong>automations</strong> and <strong>conversational agents</strong> for your organisation. From scoping to production deployment, through to adoption by your teams.',
       forWhomLabel: 'Who is it for?',
@@ -276,7 +276,7 @@ export const en: Translations = {
       deliverables: [
         {
           title: 'Design & development',
-          text: 'PowerApps applications, Power Automate flows (simple and advanced), Copilot Studio agents connected to your environment, SharePoint Online portals (intranet, extranet, project spaces)',
+          text: 'Power Apps applications, Power Automate flows (simple and advanced), Copilot Studio agents connected to your environment, SharePoint Online portals (intranet, extranet, project spaces)',
         },
         {
           title: 'Design & user experience',

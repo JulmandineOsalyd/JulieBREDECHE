@@ -12,7 +12,7 @@ const RECENT_LIMIT = 3
 
 // Ordre des sections dans les archives. Une section regroupe les articles
 // dont category OU parentTag matche le nom.
-const SECTIONS = ['SharePoint', 'Power Automate', 'PowerApps', 'Copilot'] as const
+const SECTIONS = ['SharePoint', 'Power Automate', 'Power Apps', 'Copilot'] as const
 
 function hasCategory(article: ArticleMeta, cat: string): boolean {
   return Array.isArray(article.category)
