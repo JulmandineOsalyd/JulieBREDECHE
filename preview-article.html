@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Preview — SharePoint ou Power Apps ? La grille de décision pour ne pas se tromper</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<style>
+  :root {
+    --c1: #60c6ff;
+    --c2: #18b0e8;
+    --c3: #0e4c89;
+    --grad: linear-gradient(135deg, #5ceae8 0%, #18b0e8 45%, #0f5fad 100%);
+    --ink: #071828;
+    --muted: #4a6080;
+    --border: #cce4f5;
+    --off: #f0f8ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background: #f5f5f7;
+    color: var(--ink);
+    height: 100vh;
+    overflow: hidden;
+  }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .topbar .title { font-weight: 600; color: var(--ink); }
+  .topbar .stats { color: var(--muted); font-size: 13px; }
+  .split { display: flex; height: calc(100vh - 50px); }
+  .pane { flex: 1; overflow-y: auto; }
+  .pane-left { background: #ffffff; padding: 56px 60px; }
+  .pane-right { background: #1e1e1e; display: flex; flex-direction: column; border-left: 1px solid var(--border); }
+  .banner {
+    background: #fff4e6;
+    border: 1px solid #f0b97d;
+    color: #663c00;
+    padding: 10px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 10px;
+    border-radius: 6px;
+  }
+  .toolbar {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    background: #252526;
+    border-bottom: 1px solid #333;
+  }
+  .btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+  }
+  .btn-primary { background: var(--c2); color: white; }
+  .btn-primary:hover { background: var(--c3); }
+  .btn-secondary { background: #3c3c3c; color: #ccc; }
+  .btn-secondary:hover { background: #4a4a4a; }
+  textarea {
+    flex: 1;
+    width: 100%;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    border: none;
+    padding: 16px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+  }
+  .article { max-width: 720px; margin: 0 auto; }
+  .article .meta {
+    color: var(--c2);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .article h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    margin: 0 0 1rem;
+  }
+  .article .excerpt {
+    font-size: 1.15rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.55;
+  }
+  .article .date {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .article h2 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 2.5rem 0 1rem;
+    line-height: 1.3;
+  }
+  .article h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 2rem 0 0.75rem;
+  }
+  .article p {
+    margin: 0 0 1.25rem;
+    line-height: 1.75;
+    color: #1e3a5f;
+    font-size: 1rem;
+  }
+  .article ul {
+    list-style-type: disc;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .article ol {
+    list-style-type: decimal;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .article li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+    color: #1e3a5f;
+  }
+  .article strong { color: var(--ink); font-weight: 700; }
+  .article em { font-style: italic; }
+  .article a { color: var(--c3); text-decoration: underline; text-underline-offset: 3px; }
+  .article a:hover { color: var(--c2); }
+  .article blockquote {
+    border-left: 3px solid var(--c2);
+    padding-left: 1.25rem;
+    font-style: italic;
+    color: var(--muted);
+    margin: 1.5rem 0;
+  }
+  .article blockquote p { color: var(--muted); }
+  .article code {
+    background: var(--off);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.88em;
+    color: var(--c3);
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+  .article pre {
+    background: var(--ink);
+    color: var(--c1);
+    padding: 1.25rem;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+  .article pre code { background: transparent; color: inherit; padding: 0; }
+  .article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.75rem 0;
+    font-size: 0.875rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .article thead tr {
+    background: linear-gradient(135deg, #60c6ff 0%, #18b0e8 45%, #0f5fad 100%);
+  }
+  .article thead th {
+    padding: 0.85rem 1.1rem;
+    text-align: left;
+    font-weight: 700;
+    color: white;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .article thead th strong { color: white; }
+  .article tbody tr { border-top: 1px solid var(--border); transition: background 0.15s ease; }
+  .article tbody tr:nth-child(even) { background: var(--off); }
+  .article tbody tr:hover { background: rgba(24, 176, 232, 0.06); }
+  .article tbody td {
+    padding: 0.8rem 1.1rem;
+    color: #1e3a5f;
+    line-height: 1.55;
+    vertical-align: top;
+  }
+  .article tbody td:first-child { font-weight: 700; color: var(--ink); }
+  .article hr {
+    border: none;
+    margin: 2.5rem 0;
+    height: 1px;
+    position: relative;
+    overflow: visible;
+    background: linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  }
+  .article hr::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--grad);
+    box-shadow: 0 0 0 3px white, 0 0 0 4px var(--c2);
+  }
+  @media (max-width: 900px) {
+    .split { flex-direction: column; height: auto; }
+    .pane { height: auto; }
+    .pane-left { padding: 32px 24px; }
+    body { overflow: auto; height: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="title">📄 SharePoint ou Power Apps ? La grille de décision pour ne pas se tromper</div>
+  <div class="stats" id="stats">Mots: — • Temps: — min</div>
+</div>
+<div class="split">
+  <div class="pane pane-left">
+    <div class="article" id="preview"></div>
+  </div>
+  <div class="pane pane-right">
+    <div class="banner">
+      💡 Avant de demander une modif à Claude dans le chat, clique sur <strong>"Copier MDX"</strong> et colle-le. Sinon tes éditions seront écrasées.
+    </div>
+    <div class="toolbar">
+      <button class="btn btn-primary" onclick="copyMdx(event)">📋 Copier MDX</button>
+      <button class="btn btn-secondary" onclick="resetMdx()">↺ Reset</button>
+    </div>
+    <textarea id="mdx" spellcheck="false"></textarea>
+  </div>
+</div>
+
+<script>
+const INITIAL_MDX = `---
+title: "SharePoint ou Power Apps ? La grille de décision pour ne pas se tromper"
+metaTitle: "SharePoint ou Power Apps : comment choisir pour digitaliser un processus"
+metaDescription: "Formulaire, liste, dashboard : SharePoint ou Power Apps ? La grille de décision terrain pour choisir le bon outil sans se tromper dès le cadrage."
+slug: "sharepoint-ou-power-apps-grille-de-decision"
+canonical: "https://juliebredeche.pro/blog/sharepoint-ou-power-apps-grille-de-decision"
+date: "2026-06-04"
+category: "PowerApps"
+excerpt: "SharePoint ou Power Apps pour digitaliser votre processus ? La grille de décision pour trancher sans regretter six mois plus tard."
+readingTime: 4
+tags: ["Power Apps", "SharePoint", "Digitalisation", "Microsoft 365"]
+featured: false
+send_newsletter: false
+draft: true
+---
+
+*"On voudrait digitaliser notre processus de validation des achats. On a déjà SharePoint, ça suffit non ?"*
+
+La question revient souvent. Et la réponse honnête, c'est : ça dépend.
+
+Pas seulement du formulaire. De l'ensemble : comment les données sont saisies, comment elles sont suivies, comment les équipes les consultent au quotidien.
+
+---
+
+## Ce que SharePoint couvre nativement
+
+SharePoint, c'est bien plus qu'un formulaire. Une liste SharePoint donne accès à trois briques sans rien développer :
+
+- **Formulaire de saisie** : colonnes configurables, types de champs variés (choix, date, personne, nombre)
+- **Liste de suivi** : toutes les entrées visibles, filtrables, triables, avec des vues personnalisées par équipe
+- **Intégration de flux Power Automate** : lancement de flux Power Automate à la modification d'un élément de liste
+
+C'est inclus dans vos licences Microsoft 365. Seulement du paramétrage, et pas de coût de licence supplémentaire.
+
+> **Pour beaucoup de processus internes simples, SharePoint est la bonne réponse.**
+
+---
+
+## Ce que Power Apps apporte en plus
+
+Power Apps, c'est une application à part entière. On sort du formulaire pour entrer dans une vraie logique applicative.
+
+Ce que Power Apps permet que SharePoint ne fait pas proprement :
+
+- **Formulaire conditionnel** : afficher ou masquer des champs selon les réponses, bloquer la soumission selon des règles métier
+- **Navigation multi-écrans** : un écran de saisie, un écran de validation, un écran de consultation, avec une UX pensée pour chaque profil
+- **Données multi-sources** : connecter plusieurs listes SharePoint, une base Dataverse, un ERP, un fichier Excel en même temps
+- **Dashboard avancé** : galeries filtrables, graphiques dynamiques, indicateurs calculés en temps réel
+- **Mobile natif** : une application pensée pour le smartphone, pas un formulaire web adapté à contrecœur
+
+⚠️ Power Apps est inclus dans certaines licences Microsoft 365, mais pas toutes. Dès qu'on utilise Dataverse ou des connecteurs premium, une licence dédiée devient nécessaire.
+
+---
+
+## La grille de décision
+
+| Besoin | SharePoint | Power Apps |
+|---|---|---|
+| Formulaire simple, champs fixes | ✅ &nbsp; Natif | ❌ &nbsp; Surdimensionné |
+| Liste de suivi avec vues filtrées | ✅ &nbsp; Natif | ✅ &nbsp; Possible |
+| Dashboard de pilotage basique | ✅ &nbsp; Suffisant | ✅ &nbsp; Plus puissant |
+| Champs conditionnels (affichage selon réponse) | ⚠️ &nbsp; Très limité | ✅ &nbsp; Natif |
+| Règles de validation métier complexes | ❌ &nbsp; Non | ✅ &nbsp; Natif |
+| Navigation multi-écrans par profil | ❌ &nbsp; Non | ✅ &nbsp; Natif |
+| Données issues de plusieurs sources | ❌ &nbsp; Difficile | ✅ &nbsp; Conçu pour ça |
+| Usage mobile confortable | ⚠️ &nbsp; Passable | ✅ &nbsp; Natif |
+| Utilisateurs internes avec licence M365 | ✅ &nbsp; Inclus | ✅ &nbsp; Souvent inclus |
+| Accès utilisateurs externes | ✅ &nbsp; Possible | ⚠️ &nbsp; Licence spécifique |
+
+---
+
+## Quand rester sur SharePoint pour éviter des licences supplémentaires
+
+C'est un arbitrage que les décideurs oublient souvent de poser au bon moment.
+
+Trois situations où SharePoint reste le bon choix, même si Power Apps semblerait plus confortable :
+
+- **Tous les utilisateurs sont internes** et le processus est simple : SharePoint couvre le besoin sans surcoût ni surcharge projet
+- **Pas d'accès externe prévu** : dès qu'un prestataire ou un client doit accéder à l'application, vérifier les licences avant de choisir Power Apps
+- **Besoin ponctuel ou peu critique** : pour un processus utilisé deux fois par an, une liste SharePoint bien configurée est largement suffisante
+
+> **Avant de choisir, vérifiez quelles licences Power Apps sont déjà incluses dans votre contrat Microsoft 365. La réponse change souvent tout.**
+
+---
+
+## Ma conclusion
+
+La vraie question n'est pas "SharePoint ou Power Apps ?". C'est "qu'est-ce que mon processus demande vraiment, de bout en bout ?"
+
+Trois constats qui reviennent en mission :
+
+1. **On sous-estime SharePoint** : une liste bien configurée avec les bonnes vues couvre 80% des besoins de suivi sans aucun développement.
+2. **On sur-dimensionne Power Apps** : on lance une application complète pour un besoin qui aurait été couvert en deux heures avec une liste SharePoint.
+3. **La grille de décision se pose dès le cadrage** : pas après avoir commencé à développer.`;
+
+const textarea = document.getElementById('mdx');
+const preview = document.getElementById('preview');
+const stats = document.getElementById('stats');
+
+textarea.value = INITIAL_MDX;
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, s => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[s]));
+}
+
+function formatDateFr(iso) {
+  if (!iso) return '';
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  } catch { return iso; }
+}
+
+function render() {
+  const raw = textarea.value;
+  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  let frontmatter = {};
+  let body = raw;
+  if (match) {
+    try { frontmatter = jsyaml.load(match[1]) || {}; } catch (e) { frontmatter = {}; }
+    body = match[2];
+  }
+
+  const title = frontmatter.title || 'Sans titre';
+  const excerpt = frontmatter.excerpt || '';
+  const category = Array.isArray(frontmatter.category)
+    ? frontmatter.category.join(' · ')
+    : (frontmatter.category || '');
+  const date = formatDateFr(frontmatter.date);
+
+  const bodyHtml = marked.parse(body);
+
+  preview.innerHTML = `
+    ${category ? `<div class="meta">${escapeHtml(category)}</div>` : ''}
+    <h1>${escapeHtml(title)}</h1>
+    ${excerpt ? `<div class="excerpt">${escapeHtml(excerpt)}</div>` : ''}
+    ${date ? `<div class="date">${escapeHtml(date)}</div>` : ''}
+    ${bodyHtml}
+  `;
+
+  const words = body.replace(/[#*_>`\-|]/g, ' ').split(/\s+/).filter(w => w.length > 1).length;
+  const readTime = Math.ceil(words / 300);
+  stats.textContent = `Mots: ${words} • Temps: ${readTime} min`;
+}
+
+let debounce;
+textarea.addEventListener('input', () => {
+  clearTimeout(debounce);
+  debounce = setTimeout(render, 150);
+});
+
+function copyMdx(e) {
+  textarea.select();
+  document.execCommand('copy');
+  const btn = e.currentTarget;
+  const orig = btn.textContent;
+  btn.textContent = '✓ Copié !';
+  setTimeout(() => btn.textContent = orig, 1500);
+}
+
+function resetMdx() {
+  if (confirm('Restaurer la version initiale ? Tes modifications seront perdues.')) {
+    textarea.value = INITIAL_MDX;
+    render();
+  }
+}
+
+render();
+</script>
+</body>
+</html>

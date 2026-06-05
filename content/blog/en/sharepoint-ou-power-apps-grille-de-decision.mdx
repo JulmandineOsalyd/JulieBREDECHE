@@ -1,0 +1,82 @@
+---
+title: "SharePoint or Power Apps? The decision framework to get it right"
+metaTitle: "SharePoint or Power Apps: how to choose for your process digitalization"
+metaDescription: "Form, list, dashboard: SharePoint or Power Apps? The field-tested decision framework to pick the right tool from the start, before you build anything."
+slug: "sharepoint-ou-power-apps-grille-de-decision"
+canonical: "https://juliebredeche.pro/blog/sharepoint-ou-power-apps-grille-de-decision"
+date: "2026-06-04"
+category: "PowerApps"
+excerpt: "SharePoint or Power Apps to digitalize your process? The decision framework to choose without regretting it six months later."
+readingTime: 4
+tags: ["Power Apps", "SharePoint", "Digitalization", "Microsoft 365"]
+featured: false
+send_newsletter: false
+draft: false
+---
+
+*"We'd like to digitalize our travel booking process. We already have SharePoint — is that enough?"*
+
+That's a request I handled for one of my clients last year.
+
+How will data be entered? How will requests be tracked? How will approval workflows be triggered? Those three questions guided my choice. Here's the framework I've been using ever since.
+
+---
+
+## What SharePoint covers natively
+
+SharePoint is much more than a form. A SharePoint list gives you three building blocks with no development at all:
+
+- **Data entry form**: configurable columns, varied field types (choice, date, person, number)
+- **Tracking list**: all entries visible, filterable, sortable, with custom views per team
+- **Power Automate flow integration**: every addition or change in the list can trigger an automated flow
+
+All of this is included in your Microsoft 365 licenses — no extra licensing cost.
+
+> **For many simple internal processes, SharePoint is the right answer.**
+
+---
+
+## What Power Apps adds on top
+
+With Power Apps, you move beyond simple forms and data lists into real application logic:
+
+- **Conditional form**: show or hide fields based on user profiles, block submission based on business rules
+- **Multi-screen navigation**: a submission screen, a validation screen, a consultation screen — each UX tailored to a specific profile
+- **Multiple data sources**: connect several SharePoint lists, a Dataverse database, an ERP, an Excel file — all at once
+- **Advanced dashboard**: filterable galleries, instant search, real-time calculated indicators
+- **Actions connected to Power Automate**: trigger a flow in one click from within the app
+
+⚠️ Power Apps is included in all Microsoft 365 licenses. Dataverse and premium connectors require an additional license.
+
+---
+
+## My decision framework
+
+| Need | SharePoint | Power Apps |
+|---|---|---|
+| Simple data entry form | ✅ &nbsp; Yes | ✅ &nbsp; Yes |
+| Form with calculations and conditional fields | ❌ &nbsp; No | ✅ &nbsp; Yes |
+| Multi-screen form | ❌ &nbsp; No | ✅ &nbsp; Yes |
+| Form with advanced validation rules | ❌ &nbsp; No | ✅ &nbsp; Yes |
+| Tracking list with filtered views | ✅ &nbsp; Yes | ✅ &nbsp; Yes |
+| Advanced dashboard filtered by profile | ❌ &nbsp; No | ✅ &nbsp; Yes |
+| Trigger a Power Automate flow | ✅ &nbsp; Yes | ✅ &nbsp; Yes |
+| Button to manually trigger a flow | ⚠️ &nbsp; Limited | ✅ &nbsp; Yes |
+| Action management by profile | ⚠️ &nbsp; Limited | ✅ &nbsp; Yes |
+| Connect to multiple data sources | ❌ &nbsp; No | ✅ &nbsp; Yes |
+| Custom branding and layout | ⚠️ &nbsp; Limited | ✅ &nbsp; Yes |
+| Optimized mobile experience | ⚠️ &nbsp; Limited | ✅ &nbsp; Yes |
+| Guest access (outside the organization) | ✅ &nbsp; Yes | ⚠️ &nbsp; Limited |
+
+---
+
+## My conclusion
+
+The real question isn't "SharePoint or Power Apps?" — it's "what does my process actually need, end to end?"
+
+Four findings that come up regularly on projects:
+
+1. **The decision framework belongs at the scoping stage**: not after you've already started building.
+2. **SharePoint is underestimated**: a well-configured list with the right views covers the majority of tracking needs — with zero development.
+3. **Power Apps is over-engineered**: teams launch a full application when an advanced Power Apps form would have done the job, with SharePoint handling the back-end list.
+4. **External access and connections are critical checkpoints**: they involve paid Power Apps licenses that need to be factored in from day one.

@@ -1,0 +1,82 @@
+---
+title: "SharePoint ou Power Apps ? La grille de décision pour ne pas se tromper"
+metaTitle: "SharePoint ou Power Apps : comment choisir pour digitaliser un processus"
+metaDescription: "Formulaire, liste, dashboard : SharePoint ou Power Apps ? La grille de décision terrain pour choisir le bon outil sans se tromper dès le cadrage."
+slug: "sharepoint-ou-power-apps-grille-de-decision"
+canonical: "https://juliebredeche.pro/blog/sharepoint-ou-power-apps-grille-de-decision"
+date: "2026-06-04"
+category: "PowerApps"
+excerpt: "SharePoint ou Power Apps pour digitaliser votre processus ? La grille de décision pour trancher sans regretter six mois plus tard."
+readingTime: 4
+tags: ["Power Apps", "SharePoint", "Digitalisation", "Microsoft 365"]
+featured: false
+send_newsletter: false
+draft: false
+---
+
+*"On voudrait digitaliser notre processus de réservations de voyages. On a déjà SharePoint, ça suffit non ?"*
+
+C'est une demande que j'ai traitée chez un de mes clients l'année dernière.
+
+Comment les données seront saisies ? Comment suivre les demandes ? Comment lancer les flux de validation ? Ces trois questions ont orienté mon choix. Voici la grille que j'utilise depuis.
+
+---
+
+## Ce que SharePoint couvre nativement
+
+SharePoint, c'est bien plus qu'un formulaire. Une liste SharePoint donne accès à trois briques sans rien développer :
+
+- **Formulaire de saisie** : colonnes configurables, types de champs variés (choix, date, personne, nombre)
+- **Liste de suivi** : toutes les entrées visibles, filtrables, triables, avec des vues personnalisées par équipe
+- **Intégration de flux Power Automate** : chaque ajout ou modification dans la liste peut déclencher un flux automatisé
+
+Tout cela est inclus dans vos licences Microsoft 365, pas de coût de licence supplémentaire.
+
+> **Pour beaucoup de processus internes simples, SharePoint est la bonne réponse.**
+
+---
+
+## Ce que Power Apps apporte en plus
+
+Avec Power Apps, on sort du simple formulaire et des listes de données pour entrer dans une vraie logique applicative :
+
+- **Formulaire conditionnel** : afficher ou masquer des champs selon les profils utilisateurs, bloquer la soumission selon des règles métier
+- **Navigation multi-écrans** : un écran de saisie, un écran de validation, un écran de consultation, avec une UX pensée pour chaque profil
+- **Plusieurs sources de données** : connecter plusieurs listes SharePoint, une base Dataverse, un ERP, un fichier Excel en même temps
+- **Dashboard avancé** : galeries filtrables, recherche instantanée, indicateurs calculés en temps réel
+- **Actions connectées à Power Automate** : déclencher un flux en un clic depuis l'application
+
+⚠️ Power Apps est inclus dans toutes les licences Microsoft 365. Dataverse et les connecteurs premium nécessitent une licence supplémentaire.
+
+---
+
+## Ma grille de décision
+
+| Besoin | SharePoint | Power Apps |
+|---|---|---|
+| Formulaire de saisie simple| ✅ &nbsp; Oui | ✅ &nbsp; Oui |
+| Formulaire avec calculs et champs conditionnels| ❌ &nbsp; Non | ✅ &nbsp; Oui |
+| Formulaire multi-écrans | ❌ &nbsp; Non | ✅ &nbsp; Oui |
+| Formulaire avec des règles de validation avancées | ❌ &nbsp; Non | ✅ &nbsp; Oui |
+| Liste de suivi avec vues filtrées | ✅ &nbsp; Oui | ✅ &nbsp; Oui |
+| Dashboard avancé filtré par profil | ❌ &nbsp; Non | ✅ &nbsp; Oui |
+| Déclenchement de flux Power Automate | ✅ &nbsp; Oui | ✅ &nbsp; Oui |
+| Bouton pour déclencher un flux manuellement | ⚠️ &nbsp; Limité | ✅ &nbsp; Oui |
+| Gestion des actions par profil | ⚠️ &nbsp; Limité | ✅ &nbsp; Oui |
+| Connexion à plusieurs sources de données | ❌ &nbsp; Non | ✅ &nbsp; Oui |
+| Mise en page aux couleurs de l'entreprise | ⚠️ &nbsp; Limité| ✅ &nbsp; Oui |
+| Usage mobile optimisé | ⚠️ &nbsp; Limité | ✅ &nbsp; Oui |
+| Accès invités (hors organisation) | ✅ &nbsp; Oui | ⚠️ &nbsp; Limité |
+
+---
+
+## Ma conclusion
+
+La vraie question n'est pas "SharePoint ou Power Apps ?", mais plutôt "qu'est-ce que mon processus demande vraiment, de bout en bout ?"
+
+Quatre constats qui reviennent en mission :
+
+1. **La grille de décision se pose dès le cadrage du besoin** : pas après avoir commencé à développer.
+2. **On sous-estime SharePoint** : une liste bien configurée avec les bonnes vues couvre la majorité des besoins de suivi sans aucun développement.
+3. **On sur-dimensionne Power Apps** : on lance une application complète alors qu'un formulaire Power Apps avancé aurait suffi, la liste SharePoint gérant le suivi derrière.
+4. **Les accès et connexions externes sont des points critiques** : cela implique des licences Power Apps payantes à anticiper dès le cadrage.
