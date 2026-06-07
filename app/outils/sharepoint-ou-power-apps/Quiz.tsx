@@ -196,7 +196,7 @@ export default function Quiz() {
                 marginBottom: '0.75rem',
               }}
             >
-              Points d'attention
+              Points d&apos;attention
             </h3>
             <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               {result.tips.map((tip, i) => (
@@ -212,7 +212,7 @@ export default function Quiz() {
         {/* Actions */}
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <Link href="/blog/sharepoint-ou-power-apps-grille-de-decision" className="btn-primary">
-            Lire l'article complet →
+            Lire l&apos;article complet →
           </Link>
           <button
             onClick={reset}

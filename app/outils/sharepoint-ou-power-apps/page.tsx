@@ -68,7 +68,7 @@ export default function SharePointOuPowerAppsPage() {
               margin: '0 auto 2rem',
             }}
           >
-            6 questions sur votre processus, et vous obtenez une recommandation adaptée à votre situation — avec les points d'attention à ne pas rater.
+            6 questions sur votre processus, et vous obtenez une recommandation adaptée à votre situation — avec les points d&apos;attention à ne pas rater.
           </p>
           <a href="#quiz" className="btn-primary">
             Démarrer le quiz ↓
