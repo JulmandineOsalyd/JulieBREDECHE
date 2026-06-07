@@ -5,7 +5,7 @@ metaDescription: "Formulaire, liste, dashboard : SharePoint ou Power Apps ? La g
 slug: "sharepoint-ou-power-apps-grille-de-decision"
 canonical: "https://juliebredeche.pro/blog/sharepoint-ou-power-apps-grille-de-decision"
 date: "2026-06-04"
-category: "PowerApps"
+category: "Power Apps"
 excerpt: "SharePoint ou Power Apps pour digitaliser votre processus ? La grille de décision pour trancher sans regretter six mois plus tard."
 readingTime: 4
 tags: ["Power Apps", "SharePoint", "Digitalisation", "Microsoft 365"]
@@ -46,25 +46,47 @@ Avec Power Apps, on sort du simple formulaire et des listes de données pour ent
 - **Dashboard avancé** : galeries filtrables, recherche instantanée, indicateurs calculés en temps réel
 - **Actions connectées à Power Automate** : déclencher un flux en un clic depuis l'application
 
-⚠️ Power Apps est inclus dans toutes les licences Microsoft 365. Dataverse et les connecteurs premium nécessitent une licence supplémentaire.
+> **⚠️ Note technique importante :** si vous choisissez Power Apps avec SharePoint, vous devez impérativement maîtriser la délégation. Sans cela, votre application ne pourra traiter que les 2 000 premières lignes de votre liste, ce qui peut entraîner des pertes de données visibles pour l'utilisateur final. J'explique le phénomène en détail dans mon article sur le [delegation warning dans Power Apps](/blog/power-apps-delegation-warning-causes-solutions).
 
 ---
 
 ## Ma grille de décision
 
+### 🖊️ Saisie de données
+
 | Besoin | SharePoint | Power Apps |
 |---|---|---|
-| Formulaire de saisie simple| ✅ &nbsp; Oui | ✅ &nbsp; Oui |
-| Formulaire avec calculs et champs conditionnels| ❌ &nbsp; Non | ✅ &nbsp; Oui |
-| Formulaire multi-écrans | ❌ &nbsp; Non | ✅ &nbsp; Oui |
-| Formulaire avec des règles de validation avancées | ❌ &nbsp; Non | ✅ &nbsp; Oui |
+| Formulaire de saisie simple | ✅ &nbsp; Oui | ✅ &nbsp; Oui |
+| Champs conditionnels et calculs | ❌ &nbsp; Non | ✅ &nbsp; Oui |
+| Règles de validation avancées | ❌ &nbsp; Non | ✅ &nbsp; Oui |
+| Parcours multi-écrans | ❌ &nbsp; Non | ✅ &nbsp; Oui |
+
+### 📊 Suivi et visualisation
+
+| Besoin | SharePoint | Power Apps |
+|---|---|---|
 | Liste de suivi avec vues filtrées | ✅ &nbsp; Oui | ✅ &nbsp; Oui |
 | Dashboard avancé filtré par profil | ❌ &nbsp; Non | ✅ &nbsp; Oui |
-| Déclenchement de flux Power Automate | ✅ &nbsp; Oui | ✅ &nbsp; Oui |
+
+### ⚙️ Automatisation et actions
+
+| Besoin | SharePoint | Power Apps |
+|---|---|---|
+| Déclenchement automatique d'un flux Power Automate | ✅ &nbsp; Oui | ✅ &nbsp; Oui |
 | Bouton pour déclencher un flux manuellement | ⚠️ &nbsp; Limité | ✅ &nbsp; Oui |
-| Gestion des actions par profil | ⚠️ &nbsp; Limité | ✅ &nbsp; Oui |
+| Actions différenciées par profil | ⚠️ &nbsp; Limité | ✅ &nbsp; Oui |
+
+### 🔗 Données et intégration
+
+| Besoin | SharePoint | Power Apps |
+|---|---|---|
 | Connexion à plusieurs sources de données | ❌ &nbsp; Non | ✅ &nbsp; Oui |
-| Mise en page aux couleurs de l'entreprise | ⚠️ &nbsp; Limité| ✅ &nbsp; Oui |
+
+### 🎨 Expérience et accès
+
+| Besoin | SharePoint | Power Apps |
+|---|---|---|
+| Mise en page aux couleurs de l'entreprise | ⚠️ &nbsp; Limité | ✅ &nbsp; Oui |
 | Usage mobile optimisé | ⚠️ &nbsp; Limité | ✅ &nbsp; Oui |
 | Accès invités (hors organisation) | ✅ &nbsp; Oui | ⚠️ &nbsp; Limité |
 

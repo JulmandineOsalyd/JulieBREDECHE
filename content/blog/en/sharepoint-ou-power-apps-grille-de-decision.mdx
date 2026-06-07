@@ -5,7 +5,7 @@ metaDescription: "Form, list, dashboard: SharePoint or Power Apps? The field-tes
 slug: "sharepoint-ou-power-apps-grille-de-decision"
 canonical: "https://juliebredeche.pro/blog/sharepoint-ou-power-apps-grille-de-decision"
 date: "2026-06-04"
-category: "PowerApps"
+category: "Power Apps"
 excerpt: "SharePoint or Power Apps to digitalize your process? The decision framework to choose without regretting it six months later."
 readingTime: 4
 tags: ["Power Apps", "SharePoint", "Digitalization", "Microsoft 365"]
@@ -48,22 +48,46 @@ With Power Apps, you move beyond simple forms and data lists into real applicati
 
 ⚠️ Power Apps is included in all Microsoft 365 licenses. Dataverse and premium connectors require an additional license.
 
+> **⚠️ Important technical caveat:** if you choose Power Apps with SharePoint, mastering delegation is non-negotiable. Without it, your app can only process the first 2,000 rows of your list — which can cause data loss that's visible to the end user. I explain the issue in detail in my article on the [delegation warning in Power Apps](/blog/power-apps-delegation-warning-causes-solutions).
+
 ---
 
 ## My decision framework
 
+### 🖊️ Data entry
+
 | Need | SharePoint | Power Apps |
 |---|---|---|
 | Simple data entry form | ✅ &nbsp; Yes | ✅ &nbsp; Yes |
-| Form with calculations and conditional fields | ❌ &nbsp; No | ✅ &nbsp; Yes |
-| Multi-screen form | ❌ &nbsp; No | ✅ &nbsp; Yes |
-| Form with advanced validation rules | ❌ &nbsp; No | ✅ &nbsp; Yes |
+| Conditional fields and calculations | ❌ &nbsp; No | ✅ &nbsp; Yes |
+| Advanced validation rules | ❌ &nbsp; No | ✅ &nbsp; Yes |
+| Multi-screen journey | ❌ &nbsp; No | ✅ &nbsp; Yes |
+
+### 📊 Tracking and visualization
+
+| Need | SharePoint | Power Apps |
+|---|---|---|
 | Tracking list with filtered views | ✅ &nbsp; Yes | ✅ &nbsp; Yes |
 | Advanced dashboard filtered by profile | ❌ &nbsp; No | ✅ &nbsp; Yes |
-| Trigger a Power Automate flow | ✅ &nbsp; Yes | ✅ &nbsp; Yes |
+
+### ⚙️ Automation and actions
+
+| Need | SharePoint | Power Apps |
+|---|---|---|
+| Automatic Power Automate flow trigger | ✅ &nbsp; Yes | ✅ &nbsp; Yes |
 | Button to manually trigger a flow | ⚠️ &nbsp; Limited | ✅ &nbsp; Yes |
-| Action management by profile | ⚠️ &nbsp; Limited | ✅ &nbsp; Yes |
+| Profile-based action management | ⚠️ &nbsp; Limited | ✅ &nbsp; Yes |
+
+### 🔗 Data and integration
+
+| Need | SharePoint | Power Apps |
+|---|---|---|
 | Connect to multiple data sources | ❌ &nbsp; No | ✅ &nbsp; Yes |
+
+### 🎨 Experience and access
+
+| Need | SharePoint | Power Apps |
+|---|---|---|
 | Custom branding and layout | ⚠️ &nbsp; Limited | ✅ &nbsp; Yes |
 | Optimized mobile experience | ⚠️ &nbsp; Limited | ✅ &nbsp; Yes |
 | Guest access (outside the organization) | ✅ &nbsp; Yes | ⚠️ &nbsp; Limited |
