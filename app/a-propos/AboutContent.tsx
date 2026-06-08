@@ -86,26 +86,66 @@ export default function AboutContent() {
             {a.certificationsTitle}
           </h2>
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-            {a.certifications.map((c) => (
-              <a
-                key={c.href}
-                href={c.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', textDecoration: 'none', background: 'linear-gradient(160deg, #f0f8ff 0%, #e6f4fd 100%)', borderRadius: '20px', border: '1px solid var(--border)', padding: '2rem 2.5rem', flex: '1 1 280px', maxWidth: '360px' }}
-              >
-                <Image
-                  src={c.src}
-                  alt={c.alt}
-                  width={130}
-                  height={130}
-                  style={{ objectFit: 'contain' }}
-                />
-                <span style={{ fontSize: '0.95rem', color: 'var(--c3)', fontWeight: 600, lineHeight: 1.5, textAlign: 'center' }}>
-                  <u>{c.label}</u>
-                </span>
-              </a>
-            ))}
+            {a.certifications.map((c) =>
+              'badges' in c && c.badges ? (
+                <div
+                  key={c.href}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem', background: 'linear-gradient(160deg, #f0f8ff 0%, #e6f4fd 100%)', borderRadius: '20px', border: '1px solid var(--border)', padding: '2rem 2.5rem', flex: '1 1 280px', maxWidth: '360px' }}
+                >
+                  <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+                    {c.badges.map((b) => (
+                      <a
+                        key={b.href}
+                        href={b.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={b.alt}
+                      >
+                        <Image
+                          src={b.src}
+                          alt={b.alt}
+                          width={120}
+                          height={120}
+                          style={{ objectFit: 'contain' }}
+                        />
+                      </a>
+                    ))}
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                    {c.badges.map((b) => (
+                      <a
+                        key={b.href}
+                        href={b.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ fontSize: '0.95rem', color: 'var(--c3)', fontWeight: 600, lineHeight: 1.5, textAlign: 'center', textDecoration: 'none' }}
+                      >
+                        <u>{b.label}</u>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <a
+                  key={c.href}
+                  href={c.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', textDecoration: 'none', background: 'linear-gradient(160deg, #f0f8ff 0%, #e6f4fd 100%)', borderRadius: '20px', border: '1px solid var(--border)', padding: '2rem 2.5rem', flex: '1 1 280px', maxWidth: '360px' }}
+                >
+                  <Image
+                    src={c.src}
+                    alt={c.alt}
+                    width={130}
+                    height={130}
+                    style={{ objectFit: 'contain' }}
+                  />
+                  <span style={{ fontSize: '0.95rem', color: 'var(--c3)', fontWeight: 600, lineHeight: 1.5, textAlign: 'center' }}>
+                    <u>{c.label}</u>
+                  </span>
+                </a>
+              )
+            )}
           </div>
         </div>
       </section>

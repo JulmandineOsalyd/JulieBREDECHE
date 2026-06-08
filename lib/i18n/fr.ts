@@ -198,6 +198,20 @@ export const fr = {
         src: '/images/AB730Badge.svg',
         alt: 'AI Business Professional',
         href: 'https://learn.microsoft.com/fr-fr/users/juliebredeche-7611/credentials/a69d5837ffab5c04',
+        badges: [
+          {
+            label: 'AI Business Professional',
+            src: '/images/AB730Badge.svg',
+            alt: 'AI Business Professional',
+            href: 'https://learn.microsoft.com/fr-fr/users/juliebredeche-7611/credentials/a69d5837ffab5c04',
+          },
+          {
+            label: 'AI Transformation Leader',
+            src: '/images/AB731Badge.svg',
+            alt: 'AI Transformation Leader',
+            href: 'https://learn.microsoft.com/fr-fr/users/juliebredeche-7611/credentials/77079bd37a6f2acd',
+          },
+        ],
       },
     ],
     journeyTitle: 'Mon parcours',
