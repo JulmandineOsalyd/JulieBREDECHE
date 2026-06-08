@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Preview — J'ai passé la certification Microsoft AB-731</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<style>
+  :root {
+    --c1: #60c6ff;
+    --c2: #18b0e8;
+    --c3: #0e4c89;
+    --grad: linear-gradient(135deg, #5ceae8 0%, #18b0e8 45%, #0f5fad 100%);
+    --ink: #071828;
+    --muted: #4a6080;
+    --border: #cce4f5;
+    --off: #f0f8ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background: #f5f5f7;
+    color: var(--ink);
+    height: 100vh;
+    overflow: hidden;
+  }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .topbar .title { font-weight: 600; color: var(--ink); }
+  .topbar .stats { color: var(--muted); font-size: 13px; }
+  .split { display: flex; height: calc(100vh - 50px); }
+  .pane { flex: 1; overflow-y: auto; }
+  .pane-left { background: #ffffff; padding: 56px 60px; }
+  .pane-right { background: #1e1e1e; display: flex; flex-direction: column; border-left: 1px solid var(--border); }
+  .banner {
+    background: #fff4e6;
+    border: 1px solid #f0b97d;
+    color: #663c00;
+    padding: 10px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 10px;
+    border-radius: 6px;
+  }
+  .toolbar {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    background: #252526;
+    border-bottom: 1px solid #333;
+  }
+  .btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+  }
+  .btn-primary { background: var(--c2); color: white; }
+  .btn-primary:hover { background: var(--c3); }
+  .btn-secondary { background: #3c3c3c; color: #ccc; }
+  .btn-secondary:hover { background: #4a4a4a; }
+  textarea {
+    flex: 1;
+    width: 100%;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    border: none;
+    padding: 16px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+  }
+
+  /* Article — calque sur .prose-article du blog */
+  .article { max-width: 720px; margin: 0 auto; }
+  .article .meta {
+    color: var(--c2);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .article h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    margin: 0 0 1rem;
+  }
+  .article .excerpt {
+    font-size: 1.15rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.55;
+  }
+  .article .date {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .article h2 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 2.5rem 0 1rem;
+    line-height: 1.3;
+  }
+  .article h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 2rem 0 0.75rem;
+  }
+  .article p {
+    margin: 0 0 1.25rem;
+    line-height: 1.75;
+    color: #1e3a5f;
+    font-size: 1rem;
+  }
+  .article ul {
+    list-style-type: disc;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .article ol {
+    list-style-type: decimal;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .article li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+    color: #1e3a5f;
+  }
+  .article strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .article em { font-style: italic; }
+  .article a {
+    color: var(--c3);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .article a:hover { color: var(--c2); }
+  .article blockquote {
+    border-left: 3px solid var(--c2);
+    padding-left: 1.25rem;
+    font-style: italic;
+    color: var(--muted);
+    margin: 1.5rem 0;
+  }
+  .article blockquote p { color: var(--muted); }
+  .article code {
+    background: var(--off);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.88em;
+    color: var(--c3);
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+  .article pre {
+    background: var(--ink);
+    color: var(--c1);
+    padding: 1.25rem;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+  .article pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+  .article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.75rem 0;
+    font-size: 0.875rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .article thead tr {
+    background: linear-gradient(135deg, #60c6ff 0%, #18b0e8 45%, #0f5fad 100%);
+  }
+  .article thead th {
+    padding: 0.85rem 1.1rem;
+    text-align: left;
+    font-weight: 700;
+    color: white;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .article thead th strong { color: white; }
+  .article tbody tr {
+    border-top: 1px solid var(--border);
+    transition: background 0.15s ease;
+  }
+  .article tbody tr:nth-child(even) { background: var(--off); }
+  .article tbody tr:hover { background: rgba(24, 176, 232, 0.06); }
+  .article tbody td {
+    padding: 0.8rem 1.1rem;
+    color: #1e3a5f;
+    line-height: 1.55;
+    vertical-align: top;
+  }
+  .article tbody td:first-child {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .article hr {
+    border: none;
+    margin: 2.5rem 0;
+    height: 1px;
+    position: relative;
+    overflow: visible;
+    background: linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  }
+  .article hr::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--grad);
+    box-shadow: 0 0 0 3px white, 0 0 0 4px var(--c2);
+  }
+
+  @media (max-width: 900px) {
+    .split { flex-direction: column; height: auto; }
+    .pane { height: auto; }
+    .pane-left { padding: 32px 24px; }
+    body { overflow: auto; height: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="title">📄 J'ai passé la certification Microsoft AB-731</div>
+  <div class="stats" id="stats">Mots: — • Temps: — min</div>
+</div>
+<div class="split">
+  <div class="pane pane-left">
+    <div class="article" id="preview"></div>
+  </div>
+  <div class="pane pane-right">
+    <div class="banner">
+      💡 Avant de demander une modif à Claude dans le chat, clique sur <strong>"Copier MDX"</strong> et colle-le. Sinon tes éditions seront écrasées.
+    </div>
+    <div class="toolbar">
+      <button class="btn btn-primary" onclick="copyMdx(event)">📋 Copier MDX</button>
+      <button class="btn btn-secondary" onclick="resetMdx()">↺ Reset</button>
+    </div>
+    <textarea id="mdx" spellcheck="false"></textarea>
+  </div>
+</div>
+
+<script type="text/plain" id="initial-mdx">
+---
+title: "J'ai passé la certification Microsoft AB-731 et je suis désormais une AI Transformation Leader"
+metaTitle: "Certification AB-731 : ce qu'elle apprend vraiment sur l'IA Microsoft"
+metaDescription: "Retour d'expérience sur la certification Microsoft AB-731 : catalogue outils, IA responsable, FinOps et gouvernance. Ce que tout décideur M365 doit retenir."
+slug: "certification-ab-731-ai-transformation-leader"
+canonical: "https://juliebredeche.pro/blog/certification-ab-731-ai-transformation-leader"
+date: "2026-06-08"
+category: "Copilot"
+parentTag: "Copilot"
+excerpt: "Ce que la certification AB-731 structure vraiment dans la tête d'un décideur qui pilote l'adoption de l'IA Microsoft."
+readingTime: 3
+tags: ["Copilot", "Microsoft 365", "IA responsable", "Gouvernance"]
+featured: false
+send_newsletter: false
+draft: true
+---
+
+L'AB-731 n'est pas une certification pour développeurs. Elle cible les **décideurs** qui pilotent l'adoption de l'IA dans leur organisation. Contrairement à l'AB-730 (AI Business Professional), elle vise à comprendre *quand*, *pourquoi* et *avec quel outil* utiliser l'IA.
+
+Voici les grands piliers qu'elle structure dans la tête.
+
+---
+
+## 1. Comprendre les types d'IA et ce qu'est (vraiment) l'IA générative
+
+Le tout premier réflexe que la certification installe : **distinguer les familles d'IA**.
+
+- **IA générative** : crée du contenu *nouveau et original* (texte, images, code, audio) en apprenant des motifs statistiques.
+- **IA prédictive** : analyse des données historiques pour *prévoir* (ex. prévision de la demande, churn client).
+- **IA descriptive / prescriptive** : analyse et recommande.
+
+La nuance centrale revient sans cesse : générer ≠ prévoir ≠ classifier. Prévoir les ventes du prochain trimestre, c'est de la prédictive. Rédiger une description produit, c'est de la générative. Cette grille de lecture est la base de presque toutes les questions de cas pratique.
+
+---
+
+## 2. Le vocabulaire fondamental de l'IA générative
+
+La certification s'assure qu'on maîtrise un socle de concepts clés :
+
+| Concept | Ce qu'il faut retenir |
+| --- | --- |
+| **Grounding (ancrage)** | Ancrer les réponses dans des sources de données *vérifiées* de l'entreprise pour réduire les hallucinations. N'« garantit » jamais une exactitude à 100 %. |
+| **RAG** (Retrieval Augmented Generation) | Connecte un LLM à une base de connaissances externe *au moment de la requête*, **sans réentraînement**. Idéal pour des données propriétaires fréquemment mises à jour. |
+| **Prompt engineering** | Concevoir des instructions claires, contextuelles, avec exemples. Agit à l'inférence, *pas* sur l'entraînement du modèle. |
+| **Pré-entraîné vs. fine-tuné** | Le pré-entraîné apprend du langage général. Le fine-tuné est adapté à un domaine précis. |
+| **Hallucination** | Sortie réaliste mais factuellement fausse (l'examen parle parfois de « model inaccuracy »). |
+| **Tokens** | L'unité de facturation des modèles. Les tokens de sortie coûtent plus cher que ceux d'entrée. |
+
+---
+
+## 3. Le catalogue d'outils Microsoft (le cœur de l'examen)
+
+Une **part énorme** des questions consiste à choisir le bon outil pour le bon cas d'usage. C'est sans doute l'apport le plus concret de la certification.
+
+### Plateformes de développement
+
+- **Microsoft Foundry** : plateforme unifiée *pour développeurs et data professionals* pour construire, personnaliser, évaluer et gouverner des solutions IA de bout en bout. Nécessite un abonnement Azure (pas une licence Copilot).
+- **Azure Machine Learning** : entraîner des modèles *prédictifs* sur données historiques (prévision de demande, churn) via AutoML.
+
+### Services Azure AI (savoir les départager est crucial)
+
+- **Azure Document Intelligence** : extraire des données structurées de formulaires/factures (OCR + structuration JSON).
+- **Azure Vision** : analyse d'images, détection de défauts, OCR sur labels. ⚠️ Ne permet **pas** de *générer* des images : c'est de l'analyse, pas de la génération.
+- **Azure Language** : sentiment, NER (personnes/lieux/entreprises), détection et masquage de PII, traduction, résumé.
+- **Azure Speech** : transcription et analyse d'enregistrements audio.
+- **Azure AI Search** : recherche sémantique/vectorielle sur de grands corpus, knowledge mining.
+
+### Écosystème Copilot
+
+- **Microsoft 365 Copilot** : assistant intégré aux apps M365 (Word, Excel, Outlook...), s'appuie sur **Microsoft Graph** (emails, fichiers, réunions, chats du tenant). Hérite des politiques de sécurité existantes.
+- **Microsoft Copilot Studio** : créer des **agents conversationnels personnalisés** low-code (ex. bot RH), connectés aux données métier.
+- **Microsoft 365 Copilot connectors** (via Microsoft Graph) : indexer des sources de données externes / LOB.
+- Agents intégrés : **Analyst** (insights sur données structurées) et **Researcher** (raisonnement multi-étapes sur web + données org).
+
+### Construire, acheter ou étendre ?
+
+Un réflexe de décision que la certification ancre fortement :
+
+- **Acheter (buy)** : adopter une solution prête à l'emploi comme Microsoft 365 Copilot. Le plus rapide à déployer quand le besoin est couvert par les capacités natives.
+- **Étendre (extend)** : enrichir Copilot via le Microsoft 365 Copilot extensibility framework (agents Copilot Studio, connecteurs Graph vers des sources LOB). Quand on veut brancher ses données métier sans repartir de zéro.
+- **Construire (build)** : développer une solution sur mesure avec Microsoft Foundry. Réservé aux cas où aucune brique existante ne répond au besoin.
+
+> **Pour un profil décideur, cette grille est précieuse : elle évite le réflexe « on développe tout » et oriente vers l'option la moins coûteuse et la plus rapide à délivrer de la valeur.**
+
+---
+
+## 4. Le modèle économique (FinOps de l'IA)
+
+La certification veille à ce qu'on comprenne **comment l'IA est facturée** et comment optimiser les coûts :
+
+- Facturation **au token** (entrée + sortie).
+- **Standard (On-Demand)** : pay-as-you-go, idéal pour un PoC qui démarre petit.
+- **Provisioned (PTUs)** : débit réservé.
+- **Batch API** : -50 % sur les tokens, gros volumes non urgents (cible de traitement sous 24 h).
+
+Leviers d'optimisation : **changer pour un modèle plus petit** + **optimiser les prompts** (réduire les tokens), plutôt que du fine-tuning coûteux.
+
+---
+
+## 5. L'IA responsable (Responsible AI) — un pilier transversal
+
+C'est l'un des apports les plus marquants. La certification ancre les **6 principes Microsoft de l'IA responsable** :
+
+1. **Fairness (équité)** : éviter les biais (ex. rejeter tous les candidats > 60 ans = violation).
+2. **Reliability & Safety (fiabilité et sécurité)**.
+3. **Privacy & Security (confidentialité)** : anonymisation, moindre privilège, protection des PII.
+4. **Inclusiveness (inclusivité)** : accessible à toutes les capacités.
+5. **Transparency (transparence)** : expliquer les décisions (ex. justifier un refus de prêt).
+6. **Accountability (responsabilité)** : l'humain reste l'autorité finale. Pas de décision 100 % autonome.
+
+Les filtres de contenu, les disclaimers ("vous parlez à une IA") et les tests de fairness reviennent comme bonnes pratiques.
+
+---
+
+## 6. Gouvernance et adoption de l'IA en entreprise
+
+Un volet stratégique et organisationnel :
+
+- **Conseil de gouvernance de l'IA (AI council)** : organe transverse (légal, direction, métiers) qui aligne l'IA sur la stratégie, assure l'oversight responsable et coordonne. *Pas* de l'opérationnel quotidien.
+- **Barrières à l'adoption** : manque de confiance, données de mauvaise qualité (souvent citée comme l'une des principales causes d'échec des projets IA), approche « techno d'abord », silos.
+- **Programme de champions** : pairs qui évangélisent, partagent des prompts et identifient les cas d'usage. Meilleur levier pour passer à l'échelle.
+- **Gouvernance des données** : classification, contrôle d'accès, Microsoft Purview, moindre privilège (Zero Trust).
+
+---
+
+## Ma conclusion
+
+La certification AB-731 ne fait pas de vous un ingénieur IA. Elle vous donne **quatre compétences clés** pour piloter l'IA dans une organisation :
+
+1. **Cadrer un besoin** : choisir entre IA générative, prédictive ou un service cognitif spécialisé.
+2. **Mapper le bon outil Microsoft** sur chaque cas d'usage métier (c'est environ 40 % de l'enjeu).
+3. **Raisonner coût et licences** : tokens, modèles de pricing, licences Copilot add-on.
+4. **Déployer de façon responsable et gouvernée** : 6 principes RAI, conseil de gouvernance, adoption.
+
+> **L'AB-731 forme le « traducteur » entre les capacités de l'IA Microsoft et les besoins réels du business. Un profil de plus en plus recherché.**
+</script>
+
+<script>
+const INITIAL_MDX = document.getElementById('initial-mdx').textContent.trim();
+
+const textarea = document.getElementById('mdx');
+const preview = document.getElementById('preview');
+const stats = document.getElementById('stats');
+
+textarea.value = INITIAL_MDX;
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, s => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[s]));
+}
+
+function formatDateFr(iso) {
+  if (!iso) return '';
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  } catch { return iso; }
+}
+
+function render() {
+  const raw = textarea.value;
+  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  let frontmatter = {};
+  let body = raw;
+  if (match) {
+    try { frontmatter = jsyaml.load(match[1]) || {}; } catch (e) { frontmatter = {}; }
+    body = match[2];
+  }
+
+  const title = frontmatter.title || 'Sans titre';
+  const excerpt = frontmatter.excerpt || '';
+  const category = Array.isArray(frontmatter.category)
+    ? frontmatter.category.join(' · ')
+    : (frontmatter.category || '');
+  const date = formatDateFr(frontmatter.date);
+
+  const bodyHtml = marked.parse(body);
+
+  preview.innerHTML = `
+    ${category ? `<div class="meta">${escapeHtml(category)}</div>` : ''}
+    <h1>${escapeHtml(title)}</h1>
+    ${excerpt ? `<div class="excerpt">${escapeHtml(excerpt)}</div>` : ''}
+    ${date ? `<div class="date">${escapeHtml(date)}</div>` : ''}
+    ${bodyHtml}
+  `;
+
+  const words = body.replace(/[#*_>`\-|]/g, ' ').split(/\s+/).filter(w => w.length > 1).length;
+  const readTime = Math.ceil(words / 300);
+  stats.textContent = `Mots: ${words} • Temps: ${readTime} min`;
+}
+
+let debounce;
+textarea.addEventListener('input', () => {
+  clearTimeout(debounce);
+  debounce = setTimeout(render, 150);
+});
+
+function copyMdx(e) {
+  textarea.select();
+  document.execCommand('copy');
+  const btn = e.currentTarget;
+  const orig = btn.textContent;
+  btn.textContent = '✓ Copié !';
+  setTimeout(() => btn.textContent = orig, 1500);
+}
+
+function resetMdx() {
+  if (confirm('Restaurer la version initiale ? Tes modifications seront perdues.')) {
+    textarea.value = INITIAL_MDX;
+    render();
+  }
+}
+
+render();
+</script>
+</body>
+</html>
