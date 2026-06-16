@@ -1,0 +1,103 @@
+---
+title: "Certification AB-731 : j'ai rejoint le club des AI Transformation Leaders"
+metaTitle: "Certification AB-731 : ce qu'elle apprend vraiment sur l'IA Microsoft"
+metaDescription: "Retour d'expérience sur la certification Microsoft AB-731 : catalogue des outils, IA responsable et gouvernance. Ce que tout décideur M365 doit retenir."
+slug: "certification-ab-731-ai-transformation-leader"
+canonical: "https://juliebredeche.pro/blog/certification-ab-731-ai-transformation-leader"
+date: "2026-06-08"
+category: "Copilot"
+parentTag: "Copilot"
+excerpt: "Ce que la certification AB-731 structure dans la tête d'un décideur qui pilote l'adoption de l'IA Microsoft."
+readingTime: 3
+tags: ["Copilot", "Microsoft 365", "IA responsable", "Gouvernance"]
+featured: false
+send_newsletter: false
+draft: true
+---
+
+L'AB-731 n'est pas une certification pour développeurs. Elle cible les **décideurs** qui pilotent l'adoption de l'IA dans leur organisation. Contrairement à l'AB-730 (AI Business Professional), elle vise à comprendre *quand*, *pourquoi* et *avec quel outil* utiliser l'IA.
+
+Voici les grands piliers qu'elle structure dans la tête.
+
+---
+
+## 1. Comprendre les types d'IA et ce qu'est l'IA générative
+
+Le tout premier réflexe que la certification installe : **distinguer les familles d'IA**.
+
+- **IA descriptive** : analyse les données passées pour *comprendre* ce qui s'est passé ➡️ *"Que s'est-il passé ?"*
+- **IA prédictive** : anticipe des événements futurs à partir de données historiques ➡️ *"Que va-t-il se passer ?"*
+- **IA prescriptive** : recommande des actions pour optimiser un résultat ➡️ *"Que faut-il faire ?"*
+- **IA générative** : crée du contenu *nouveau et original* (texte, images, code, audio) ➡️ *"Que peut-on créer ?"*
+
+L'IA générative est la plus récente de ces quatre familles. Elle a basculé dans le grand public avec l'arrivée de ChatGPT fin 2022. C'est elle qui alimente aujourd'hui la majorité des usages Copilot dans Microsoft 365.
+
+---
+
+## 2. Le vocabulaire fondamental de l'IA générative
+
+La certification s'assure qu'on maîtrise un socle de concepts clés :
+
+| Concept | Ce qu'il faut retenir |
+| --- | --- |
+| **Grounding (Ancrage)** | Ancrer les réponses dans des sources *vérifiées* de l'entreprise pour réduire les hallucinations. Ne garantit pas une exactitude à 100 %. |
+| **RAG** (Retrieval Augmented Generation) | Connecte un modèle à une base de connaissances externe *au moment de la requête*, sans entraînement de modèle. C'est le concept clé derrière Microsoft 365 Copilot : il puise dans les données du tenant via Microsoft Graph. |
+| **Prompt engineering** | L'art de formuler des instructions précises pour obtenir de meilleures réponses. Pas besoin de toucher au modèle : tout se joue dans la façon de poser la question. |
+| **Modèle pré-entraîné vs. fine-tuné** | Le pré-entraîné est généraliste (comprend le langage). Le fine-tuné est spécialisé sur un domaine précis, plus coûteux, pas toujours nécessaire. |
+
+---
+
+## 3. Le catalogue d'outils IA Microsoft
+
+Une **part énorme** des questions consiste à choisir le bon outil pour le bon cas d'usage. C'est sans doute l'apport le plus concret de la certification.
+
+### Plateformes de développement
+
+- **Microsoft Foundry** : plateforme unifiée *pour développeurs et data professionals* pour construire, personnaliser, évaluer et gouverner des solutions IA de bout en bout. Nécessite un abonnement Azure (pas une licence Copilot).
+- **Azure Machine Learning** : entraîner des modèles *prédictifs* sur données historiques (prévision de demande, churn) via AutoML.
+
+### Services Azure AI (savoir les départager est crucial)
+
+- **Azure Document Intelligence** : extraire des données structurées de formulaires/factures (OCR + structuration JSON).
+- **Azure Vision** : analyse d'images, détection de défauts, OCR sur labels. ⚠️ Ne permet **pas** de *générer* des images : c'est de l'analyse, pas de la génération.
+- **Azure Language** : sentiment, NER (personnes/lieux/entreprises), détection et masquage de PII, traduction, résumé.
+- **Azure Speech** : transcription et analyse d'enregistrements audio.
+- **Azure AI Search** : recherche sémantique/vectorielle sur de grands corpus, knowledge mining.
+
+### Écosystème Copilot
+
+- **Microsoft 365 Copilot** : assistant intégré aux apps M365 (Word, Excel, Outlook...), s'appuie sur **Microsoft Graph** (emails, fichiers, réunions, chats du tenant). Hérite des politiques de sécurité existantes.
+- **Microsoft Copilot Studio** : créer des **agents conversationnels personnalisés** low-code (ex. bot RH), connectés aux données métier.
+- **Microsoft 365 Copilot connectors** (via Microsoft Graph) : indexer des sources de données externes / LOB.
+- Agents intégrés : **Analyst** (insights sur données structurées) et **Researcher** (raisonnement multi-étapes sur web + données org).
+
+---
+
+## 4. Quelle solution IA pour quel besoin ?
+
+![Choisir entre acheter, étendre ou construire une solution IA Microsoft](/images/blog/AB731-Outil-Besoin-IA.png)
+
+> **Pour un profil décideur, cette grille est précieuse : elle évite le réflexe « on développe tout » et oriente vers l'option la moins coûteuse et la plus rapide à délivrer de la valeur.**
+
+---
+
+## 5. Gouvernance et adoption de l'IA en entreprise
+
+Un volet stratégique et organisationnel :
+
+- **Gouvernance des données** : classification, contrôle d'accès, Microsoft Purview, moindre privilège (Zero Trust). Le prérequis avant tout déploiement IA.
+- **Conseil de gouvernance de l'IA (AI council)** : organe transverse (légal, direction, métiers) qui aligne l'IA sur la stratégie et assure l'oversight responsable. *Pas* de l'opérationnel quotidien.
+- **Barrières à l'adoption** : manque de confiance, données de mauvaise qualité (souvent la principale cause d'échec), approche « techno d'abord », silos organisationnels.
+- **Programme de champions** : pairs qui évangélisent, partagent des prompts et identifient les cas d'usage. Meilleur levier pour passer à l'échelle.
+
+---
+
+## Ma conclusion
+
+Trois constats que je retiens de ces apprentissages :
+
+1. **L'IA générative n'est qu'une famille parmi quatre** : avant de parler Copilot, savoir situer de quoi on parle change tout dans une conversation avec un décideur.
+2. **Le bon outil pour le bon besoin** : Microsoft Foundry, Azure AI, Copilot Studio... chaque brique a sa logique. Les confondre peut coûter cher.
+3. **Les données d'abord** : sans gouvernance des données, aucune initiative IA ne tient dans la durée.
+
+> **Le vrai profil recherché aujourd'hui, ce n'est pas le développeur IA. C'est celui qui sait traduire les capacités de l'IA Microsoft en décisions business.**

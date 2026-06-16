@@ -5,7 +5,13 @@
       "Bash(npm run *)",
       "Bash(npm install *)",
       "Bash(taskkill /F /PID 23656)",
-      "Bash(exist .next rmdir /s /q .next)"
+      "Bash(exist .next rmdir /s /q .next)",
+      "Bash(open \"/Users/julie/Documents/JulieBREDECHE/TEMPLATES/Template - Slide 1.svg\")",
+      "Bash(open \"/Users/julie/Documents/JulieBREDECHE/TEMPLATES/Template - Derniere Slide.svg\")",
+      "Bash(python3 -c \"import cairosvg; cairosvg.svg2png\\(url='TEMPLATES/Template - Slide 1.svg', write_to='/tmp/slide1_full.png', output_width=900, output_height=1125\\)\")",
+      "Bash(cat)",
+      "Bash(open /tmp/view_svg.html)",
+      "Bash(python3 *)"
     ]
   }
 }
