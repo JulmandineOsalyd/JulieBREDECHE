@@ -11,7 +11,20 @@
       "Bash(python3 -c \"import cairosvg; cairosvg.svg2png\\(url='TEMPLATES/Template - Slide 1.svg', write_to='/tmp/slide1_full.png', output_width=900, output_height=1125\\)\")",
       "Bash(cat)",
       "Bash(open /tmp/view_svg.html)",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "PowerShell(npm run dev)",
+      "PowerShell(npm install)",
+      "mcp__claude_ai_Microsoft_Learn__microsoft_docs_search",
+      "Bash(cmd.exe /c start chrome \"http://localhost:3000/blog/certification-ab-731-ai-transformation-leader\")",
+      "Bash(cmd.exe /c 'start chrome \"http://localhost:3000/blog/certification-ab-731-ai-transformation-leader\"')",
+      "PowerShell(Get-Process node -ErrorAction SilentlyContinue)",
+      "PowerShell(Stop-Process -Force)",
+      "PowerShell(\"node stopped\")",
+      "Bash(rm -rf .next/cache)",
+      "Bash(npx next *)",
+      "Bash(echo \"started, pid $!\")",
+      "Bash(curl -s -o /tmp/page.html -w \"%{http_code}\" http://localhost:3000/blog/certification-ab-731-ai-transformation-leader)",
+      "Read(//tmp/**)"
     ]
   }
 }

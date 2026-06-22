@@ -39,7 +39,7 @@ Lire `.claude/agent-memory/seo-reviewer/MEMORY.md` en début de session. Y consi
 - **`date`** : présente et exacte — ne jamais modifier sans changement substantiel du contenu
 - **`category`** : exactement l'une des valeurs valides
 
-Catégories valides : `SharePoint` · `Copilot de A à Z` · `Power Automate` · `Power Platform` · `Copilot Studio` · `PowerApps` · `Audit & Conseil`
+Catégories valides : `SharePoint` · `Copilot de A à Z` · `Power Automate` · `Power Apps` · `Copilot Studio` · `Copilot` · 
 
 ### 2. Contenu SEO
 

@@ -253,7 +253,7 @@ h1, h2, h3 {
   font-weight: 700;
 }
 .prose-article a {
-  color: var(--c3);
+  color: var(--c1);
   text-decoration: underline;
   text-underline-offset: 3px;
 }

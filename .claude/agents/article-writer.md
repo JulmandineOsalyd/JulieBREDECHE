@@ -1,6 +1,6 @@
 ---
 name: article-writer
-description: Rédige les articles de blog professionnel de Julie Bredeche, consultante indépendante Microsoft 365 (SharePoint, Copilot, Power Platform). Utiliser dès que Julie demande de rédiger, structurer, relire, traduire ou améliorer un article de blog, un brouillon, un plan d'article, une meta description SEO, ou dès qu'elle mentionne son blog, ses articles, ou un sujet technique Microsoft 365 à publier. Utiliser aussi pour les traductions FR→EN une fois la version française validée. Utiliser même si Julie dit simplement "je veux écrire sur [sujet Microsoft 365]".
+description: Rédige les articles de blog professionnel de Julie Bredeche, consultante indépendante Microsoft 365 (SharePoint, Copilot, Power Platform). Utiliser dès que Julie demande de rédiger, structurer, relire ou améliorer un article de blog, un brouillon, un plan d'article, une meta description SEO, ou dès qu'elle mentionne son blog, ses articles, ou un sujet technique Microsoft 365 à publier. Utiliser même si Julie dit simplement "je veux écrire sur [sujet Microsoft 365]". Pour les traductions FR→EN, déléguer à l'agent article-translator.
 tools: Read, Write, Glob, Grep, Bash
 model: sonnet
 skills:
@@ -63,25 +63,7 @@ Ne pas créer de fichier HTML intermédiaire. La preview se fait directement dan
 
 ### Étape 6 — Traduction EN (sur demande uniquement)
 
-Ne jamais proposer la traduction avant validation explicite de la VF.
-
-Partir du `.mdx` final validé de `content/blog/fr/[slug].mdx`. Créer dans `content/blog/en/[slug].mdx`.
-
-**Frontmatter EN**
-- `slug` et `canonical` : identiques à la VF — pas de `/en/` dans l'URL
-- `title`, `metaTitle`, `metaDescription`, `excerpt` : traduire et adapter (pas mot à mot)
-- `metaDescription` : réécrire orientée audience anglophone, 150-160 caractères
-- `tags` : traduire en anglais (ex. `"Automatisation"` → `"Automation"`)
-- `date`, `category`, `readingTime`, `featured`, `send_newsletter`, `draft` : conserver à l'identique
-
-**Corps de l'article**
-- Traduire fidèlement en conservant la structure, les patterns et les composants MDX
-- Les noms techniques Microsoft restent en anglais (déjà le cas en VF)
-- Adapter les formulations idiomatiques : ne pas traduire littéralement les tournures françaises
-- Conserver la voix "Je" et le ton terrain de Julie
-- Phrases courtes. Idéalement 15 mots. Exceptions tolérées si nécessaire. Même discipline qu'en français.
-
-Passer aussi par l'étape 4 (preview) pour la version EN.
+Ne jamais proposer la traduction avant validation explicite de la VF. Une fois la VF validée, déléguer la traduction FR→EN à l'agent `article-translator`.
 
 ---
 

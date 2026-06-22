@@ -1,0 +1,1 @@
+- [Pas de tirets dans la prose](no-dashes-in-prose.md) — Julie interdit « — » et « - » comme ponctuation dans ses articles (perçu comme écriture IA)
