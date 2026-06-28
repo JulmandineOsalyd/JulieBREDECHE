@@ -691,6 +691,47 @@ export const fr = {
           { val: '0', label: 'Contrats oubliés' },
         ],
       },
+      {
+        title: 'Reporting automatisé, 30 min gagnées par jour',
+        sector: 'Conseil',
+        teaser: 'Analyser automatiquement les emails envoyés et l\'agenda du jour pour générer un rapport d\'activité automatisé',
+        keyMetric: { val: '30 min', label: 'Gagnées par jour sur le reporting' },
+        screenshots: [
+          { title: '1. Vue calendrier SharePoint avec les événements générés automatiquement' },
+          { title: '2. Vue liste SharePoint avec les données de présence extractibles' },
+          { title: '3. Extrait du flux Power Automate – étape AI Builder' },
+        ],
+        problem: [
+          'Un **reporting** quotidien **chronophage**.',
+          'En cas d\'oubli, certains jours devaient être reportés a posteriori.',
+          '**Informer régulièrement le client** des jours d\'absence.',
+          'Une **multitude de mails** stockés par le client pour suivre l\'activité du prestataire.',
+        ],
+        users: [
+          '1 consultante indépendante en mission à 3,5 jours par semaine',
+          '1 client ayant besoin d\'un reporting quotidien et d\'une visibilité sur les jours travaillés',
+        ],
+        solution:
+          'Chaque soir, un **flux Power Automate** analyse l\'agenda Outlook et les mails envoyés, puis génère automatiquement un rapport d\'activité dans un **calendrier SharePoint** partagé avec le client.',
+        features: [
+          'Les **jours de présence et d\'absence** sont détectés automatiquement depuis l\'agenda Outlook',
+          'Un événement est créé dans le **calendrier SharePoint** pour chaque jour de présence',
+          'Les mails envoyés sont analysés par **AI Builder** pour produire une synthèse d\'activité',
+          'La synthèse est automatiquement intégrée dans l\'**événement de calendrier** du jour',
+          'Le client peut **exporter en Excel** l\'historique complet de l\'activité à tout moment',
+        ],
+        benefits: [
+          '**Aucune saisie manuelle** en fin de journée',
+          'Une **source de vérité unique** consultable en temps réel par le client',
+          'Mise à jour automatique des journées d\'absence',
+          'Un **export Excel à la demande** pour comparaison des données de facturation',
+        ],
+        roi: [
+          { val: '30 min/j', label: 'Économisées sur le reporting' },
+          { val: 'Ø', label: 'Reporting manquant' },
+          { val: '1 source', label: 'De vérité partagée avec le client' },
+        ],
+      },
     ],
   },
 

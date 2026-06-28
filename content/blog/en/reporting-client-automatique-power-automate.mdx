@@ -1,0 +1,107 @@
+---
+title: "I no longer fill in a single activity report. A Power Automate flow does it for me."
+metaTitle: "Automated client reporting with Power Automate"
+metaDescription: "Automate your client reporting with Power Automate and AI Builder: email analysis, SharePoint updates every evening, zero manual input. 20 minutes saved per day."
+slug: "reporting-client-automatique-power-automate"
+canonical: "https://juliebredeche.pro/blog/reporting-client-automatique-power-automate"
+date: "2026-06-28"
+category: "Power Automate"
+excerpt: "Client transparency without the effort: how I connected Power Automate to my emails and calendar so my activity report generates itself, every evening."
+readingTime: 3
+tags: ["Power Automate", "AI Builder", "SharePoint", "Reporting"]
+featured: true
+send_newsletter: false
+draft: false
+---
+
+I often work independently at client sites. But **that independence is earned through transparency**.
+
+What I needed: a visible record of my activity, shared with the client, without having to produce it manually every day. Not to reassure them, but so they never had reason to doubt.
+
+How did I automate my daily activity reporting without changing anything about the way I work? That is what this article is about.
+
+---
+
+## 1. The centrepiece: a SharePoint calendar
+
+I started by creating a SharePoint list with a calendar view, shared with my client. They can see my days on site and a detailed log of my activity, day by day.
+
+![SharePoint calendar view with daily activity events](/images/blog/daily-reporting-calendar.png)
+
+SharePoint also lets you display the same calendar as a list. My client can **export the full history to Excel** in two clicks, directly from SharePoint. Useful at the end of an engagement to consolidate a summary or handle invoicing.
+
+![SharePoint calendar in list view, exportable to Excel](/images/blog/daily-reporting-list-view-blog.png)
+
+
+
+---
+
+## 2. The trigger: every evening, the flow runs
+
+My Power Automate flow starts on a scheduled trigger. Every evening at 8 PM.
+
+The flow first checks whether I have any absences in my Outlook calendar. If none are recorded, an event is automatically created in the shared SharePoint calendar.
+
+> **My flow works because I already have calendar discipline.** Beyond meetings, I also block out my working time slots in my calendar. My calendar reflects what I actually do during the day.
+
+This is something I see constantly in my engagements: automating a process that does not yet exist does not create the process. See my article: [The 5 mistakes to avoid when automating your processes](/blog/5-erreurs-automatisation-processus).
+
+---
+
+## 3. AI Builder reads my emails and produces a summary
+
+If I am present on a given day, the flow pulls from two sources:
+
+- My **Outlook calendar events** for that day.
+- The **preview of emails** I sent during the day.
+
+This information is aggregated and sent to **AI Builder** via the "**Run a prompt**" action. I provide a structured prompt: the day's dynamic data as input, a clear instruction, and the expected output format.
+
+<img src="/images/blog/daily-reporting-prompt-blog.png" alt="AI Builder prompt configuration inside the Power Automate flow" style={{width: '30%'}} />
+
+
+The prompt looks something like this:
+
+```
+You are the reporting assistant for a Microsoft 365 consultant. Based on [dynamic content retrieved by Power Automate], write a summary of my daily activity in 5 to 6 bullet points. Use a professional and factual tone.
+```
+The flow then updates my event in the calendar with the summary produced by AI Builder.
+
+*Note: AI Builder in Power Automate can also read structured PDFs. I cover that in another article if you want to go further: [Power Automate + AI Builder: automatic PDF reading](/blog/extraire-donnees-pdf-power-automate-ai-builder).*
+
+---
+
+## 4. How my client can use the daily reporting
+
+The client does not have to do anything to make it work. They open the SharePoint list and can:
+
+- View a summary of my activities for a specific day
+- Browse the history across several weeks
+- Export to Excel for their own tracking needs
+- Share the view with other members of their team
+
+**They do not need to email me to find out where things stand.** The answer is already there.
+
+On my side, I have not changed anything about the way I work. I keep sending emails and maintaining my calendar. The flow reads what I do, and I save valuable time.
+
+---
+
+## 5. The essential prerequisites
+
+This automation rests on two conditions:
+
+1. **A task management process already in place.** I use my calendar to block out working time, Teams for quick communications, and email for important topics. Without that discipline, the flow has nothing to work with.
+
+2. **A Copilot Studio licence or AI Builder credits.** AI Builder consumes credits each time the prompt runs. If you are unsure about your licensing situation, I explain the billing model in detail in this article: [Everything you need to know about the new Copilot Studio billing model](/blog/modele-facturation-copilot-studio).
+
+---
+
+## My conclusion
+
+This flow **saves me at least 20 minutes a day**. Often more, on the days I would have forgotten to do my reporting and needed to piece it back together a few days later.
+
+I can replicate the same setup for each of my clients. Each client has their own SharePoint calendar shared with me, and can follow my activity.
+
+And the effect on the client relationship is real. This shared calendar addresses the client's need for visibility, without them ever having to ask for it.
+
+> **Independence is earned, and it has to be visible**. A calendar that updates itself is proof that I am moving forward without anyone needing to prompt me.

@@ -692,6 +692,47 @@ export const en: Translations = {
           { val: '0', label: 'Forgotten contracts' },
         ],
       },
+      {
+        title: 'Automated activity reporting, 30 minutes saved every day',
+        sector: 'Consulting',
+        teaser: 'Automatically analyse sent emails and the day\'s calendar events to generate a daily activity report with no manual input.',
+        keyMetric: { val: '30 min', label: 'Saved per day on reporting' },
+        screenshots: [
+          { title: '1. SharePoint calendar view with automatically generated events' },
+          { title: '2. SharePoint list view with extractable presence data' },
+          { title: '3. Power Automate flow extract – AI Builder step' },
+        ],
+        problem: [
+          'A **time-consuming** daily **reporting** routine.',
+          'When forgotten, some days had to be logged retrospectively.',
+          '**Keeping the client regularly informed** of days off.',
+          'A **stream of emails** stored by the client to track the consultant\'s activity.',
+        ],
+        users: [
+          '1 independent consultant working 3.5 days per week on-site',
+          '1 client needing daily activity reporting and visibility on days worked',
+        ],
+        solution:
+          'Each evening, a **Power Automate flow** analyses the Outlook calendar and sent emails, then automatically generates an activity report in a **SharePoint calendar** shared with the client.',
+        features: [
+          '**Presence and absence days** are detected automatically from the Outlook calendar',
+          'An event is created in the **SharePoint calendar** for each day of presence',
+          'Sent emails are analysed by **AI Builder** to produce an activity summary',
+          'The summary is automatically added to the **calendar event** for that day',
+          'The client can **export to Excel** the full activity history at any time',
+        ],
+        benefits: [
+          '**No manual entry** at the end of the day',
+          'A **single source of truth** accessible in real time by the client',
+          'Automatic update of absence days',
+          'An **on-demand Excel export** for billing data comparison',
+        ],
+        roi: [
+          { val: '30 min/d', label: 'Saved on reporting' },
+          { val: 'Ø', label: 'Missing report' },
+          { val: '1 source', label: 'Of truth shared with the client' },
+        ],
+      },
     ],
   },
 

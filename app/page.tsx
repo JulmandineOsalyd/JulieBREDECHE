@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { cookies } from 'next/headers'
 import HeroHome from '@/components/HeroHome'
 import BentoGrid from '@/components/BentoGrid'
 import OffresSection from '@/components/OffresSection'
@@ -19,14 +18,13 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
-  const cookieStore = cookies()
-  const locale = (cookieStore.get('locale')?.value ?? 'fr') as 'fr' | 'en'
-  const articles = getAllArticlesMeta(locale)
+  const articlesFr = getAllArticlesMeta('fr')
+  const articlesEn = getAllArticlesMeta('en')
 
   return (
     <>
-      <HeroHome lastArticle={articles[0]} />
-      <BentoGrid articles={articles} />
+      <HeroHome />
+      <BentoGrid articlesFr={articlesFr} articlesEn={articlesEn} />
       <OffresSection />
     </>
   )

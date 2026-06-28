@@ -7,11 +7,13 @@ import { useTranslation } from '@/lib/i18n'
 import ReadingTime from './ReadingTime'
 
 interface BentoGridProps {
-  articles: ArticleMeta[]
+  articlesFr: ArticleMeta[]
+  articlesEn: ArticleMeta[]
 }
 
-export default function BentoGrid({ articles }: BentoGridProps) {
+export default function BentoGrid({ articlesFr = [], articlesEn = [] }: BentoGridProps) {
   const { t, locale } = useTranslation()
+  const articles = locale === 'en' ? articlesEn : articlesFr
   const featuredIndex = articles.findIndex((a) => a.featured)
   const featured = featuredIndex >= 0 ? articles[featuredIndex] : articles[0]
   const rest = featuredIndex >= 0

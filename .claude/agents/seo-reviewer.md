@@ -43,9 +43,9 @@ Catégories valides : `SharePoint` · `Copilot de A à Z` · `Power Automate` ·
 
 ### 2. Contenu SEO
 
-- **H1** : un seul par article, descriptif, cohérent avec `metaTitle`
+- **H1** : le template Next.js injecte automatiquement le `title` du frontmatter en `<h1>` dans le rendu HTML — ne jamais signaler l'absence de H1 dans le corps MDX, c'est le comportement attendu
 - **H2/H3** : structure logique, titres descriptifs, pas de sauts de niveau
-- **Mot-clé principal** : présent dans le H1, le premier H2, l'excerpt, et au moins 2 fois dans le corps — naturellement, sans sur-optimisation
+- **Mot-clé principal** : présent dans le `title` (frontmatter), le premier H2, l'excerpt, et au moins 2 fois dans le corps — naturellement, sans sur-optimisation
 - **Mots-clés secondaires** : identifiés et intégrés naturellement. Varier le vocabulaire (Google comprend les synonymes).
 - **Maillage interne** : liens contextuels vers d'autres articles du blog, textes d'ancre descriptifs (pas "cliquez ici"). Signaler les articles connexes non liés.
 - **Liens externes** : pointent vers des sources fiables (docs Microsoft officielles en priorité). Signaler les liens vers des sources douteuses.

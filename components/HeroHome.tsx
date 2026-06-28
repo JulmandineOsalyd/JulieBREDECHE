@@ -2,12 +2,11 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import type { ArticleMeta } from '@/lib/mdx'
 import { useTranslation } from '@/lib/i18n'
 
 const clients = ['TotalEnergies', 'PwC', 'Sacem', 'BPI France', 'Groupama', 'Medtronic', 'PMU', 'Candriam']
 
-export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta }) {
+export default function HeroHome() {
   const { t } = useTranslation()
 
   const stats = [
