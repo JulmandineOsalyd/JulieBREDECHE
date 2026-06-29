@@ -1,0 +1,107 @@
+---
+title: "Je ne remplis plus aucun rapport d'activité. Un flux Power Automate le fait à ma place."
+metaTitle: "Reporting client automatique avec Power Automate"
+metaDescription: "Automatisez votre reporting client avec Power Automate et AI Builder : analyse de mails, mise à jour SharePoint chaque soir, zéro saisie manuelle. 20 minutes gagnées par jour."
+slug: "reporting-client-automatique-power-automate"
+canonical: "https://juliebredeche.pro/blog/reporting-client-automatique-power-automate"
+date: "2026-06-28"
+category: "Power Automate"
+excerpt: "Transparence client sans effort : comment j'ai connecté Power Automate sur mes mails et mon agenda pour que mon reporting se génère tout seul, chaque soir."
+readingTime: 3
+tags: ["Power Automate", "AI Builder", "SharePoint", "Reporting"]
+featured: true
+send_newsletter: false
+draft: true
+---
+
+Je travaille souvent en autonomie chez mes clients. Mais **cette autonomie, elle s'acquiert par de la transparence**.
+
+Ce qu'il me fallait : une trace visible de mon activité, partagée avec le client, sans avoir à la produire manuellement chaque jour. Pas pour le rassurer, mais pour qu'il n'ait jamais à douter.
+
+ Comment j'ai automatisé mon reporting d'activité quotidien sans rien changer à ma façon de travailler ? C'est ce que j'explique dans cet article.
+
+---
+
+## 1. La pièce centrale du dispositif : un calendrier SharePoint
+
+J'ai d'abord créé une liste SharePoint avec une vue calendrier, partagée avec mon client. Il peut y consulter mes jours de présence ainsi que le suivi détaillé de mon activité jour par jour.
+
+![Vue calendrier SharePoint avec les événements d'activité quotidiens](/images/blog/daily-reporting-calendar.png)
+
+SharePoint permet aussi d'afficher ce calendrier en vue liste. Mon client peut **exporter l'historique complet en Excel** en deux clics, directement depuis SharePoint. Utile en fin de mission pour consolider un récapitulatif ou gérer la facturation.
+
+![Vue liste du calendrier SharePoint, extractible en Excel](/images/blog/daily-reporting-list-view-blog.png)
+
+
+
+---
+
+## 2. Le déclencheur : chaque soir, mon flux se lance
+
+Mon flux Power Automate démarre via un déclencheur planifié. Tous les soirs à 20h.
+
+Le flux commence par contrôler s'il y a des absences dans mon agenda Outlook. Si aucune absence n'est indiquée, un événement est automatiquement créé dans le calendrier partagé sur SharePoint.
+
+> **Mon flux fonctionne bien parce que j'ai déjà une discipline d'agenda.** En plus de mes réunions, je bloque aussi dans mon agenda mes plages de travail. Mon agenda reflète ce que je fais réellement dans la journée.
+
+C'est un point que j'observe très souvent dans mes missions: automatiser un processus qui n'existe pas encore ne crée pas le processus. Voir mon article : [Les 5 erreurs à éviter pour réussir son automatisation](/blog/5-erreurs-automatisation-processus). 
+
+---
+
+## 3. AI Builder lit mes mails et en produit une synthèse
+
+Si je suis présente ce jour-là, le flux récupère deux sources :
+
+- Les **événements Outlook** du jour dans mon agenda.
+- La **preview des mails** envoyés dans la journée.
+
+Ces informations sont agrégées pour être transmises à **AI Builder** via l'action "**Run a prompt**". Je fournis un prompt structuré : les données dynamiques du jour en entrée, une consigne claire et le format attendu.
+
+<img src="/images/blog/daily-reporting-prompt-blog.png" alt="Configuration du prompt AI Builder dans le flux Power Automate" style={{width: '30%'}} />
+
+
+Le prompt ressemble à ceci :
+
+```
+Tu es l'assistant de reporting d'une consultante Microsoft 365. À partir de [Contenu dynamique récupéré par Power Automate], rédige un résumé de mon activité quotidien en 5 à 6 bullet points. Utilise un ton professionnel et factuel. 
+```
+Le flux met ensuite à jour mon événement dans le calendrier, avec la synthèse réalisée par AI Builder.
+
+*Note : AI Builder dans Power Automate peut aussi lire des PDF structurés. J'en parle dans cet autre article si vous voulez aller plus loin : [Power Automate + AI Builder : lecture automatique de PDF](/blog/extraire-donnees-pdf-power-automate-ai-builder).*
+
+---
+
+## 4. Comment mon client peut exploiter mon reporting quotidien
+
+Le client n'a rien à faire pour que ça fonctionne. Il ouvre la liste SharePoint et peut : 
+
+- Consulter la synthèse de mes activités sur une journée spécifique
+- Parcourir l'historique sur plusieurs semaines
+- Faire un export en Excel pour ses propres besoins de suivi
+- Partager la vue avec d'autres membres de son équipe
+
+**Il n'a pas à m'envoyer un mail pour savoir où j'en suis.** La réponse est déjà là.
+
+De mon côté, je n'ai rien modifié dans ma façon de travailler. Je continue à envoyer des mails, à tenir mon agenda. Le flux lit ce que je fais, et je gagne un temps précieux.
+
+---
+
+## 5. Les prérequis indispensables
+
+Cette automatisation repose sur deux conditions :
+
+1. **Un process de gestion de mes tâches déjà en place.** J'utilise mon agenda pour bloquer mes plages de travail, Teams pour les communications rapides, et les mails pour les sujets importants. Sans cette discipline, le flux n'a pas de matière à exploiter.
+
+2. **Une licence Copilot Studio ou des crédits AI Builder.** AI Builder consomme des crédits à chaque exécution du prompt. Si vous n'êtes pas sûr de votre situation de licences, j'explique le modèle de facturation en détail dans cet article : [Tout savoir sur le nouveau modèle de facturation de Copilot Studio](/blog/modele-facturation-copilot-studio).
+
+---
+
+## Ma conclusion
+
+Ce flux me **fait gagner au moins 20 minutes par jour**. Et souvent plus, lorsque j'ai oublié de faire mon reporting, et que je dois me replonger dedans quelques jours plus tard.
+
+Je peux reproduire le même dispositif pour chacun de mes clients. Chaque client a son calendrier SharePoint partagé avec moi et peut suivre mon activité.
+
+Et le résultat sur la relation client est réel. Ce calendrier partagé répond au besoin de suivi du client, sans même qu'il ait à le demander.
+
+> **L'autonomie se mérite, et elle se montre**. Un calendrier qui se met à jour tout seul, c'est la preuve que j'avance sans qu'on ait besoin de me le demander.
