@@ -63,7 +63,44 @@ Ces informations sont agrégées pour être transmises à **AI Builder** via l'a
 Le prompt ressemble à ceci :
 
 ```
-Tu es l'assistant de reporting d'une consultante Microsoft 365. À partir de [Contenu dynamique récupéré par Power Automate], rédige un résumé de mon activité quotidien en 5 à 6 bullet points. Utilise un ton professionnel et factuel. 
+À partir des activités récupérées dans mon agenda et mes mails envoyés du jour, génère une liste de bullet points de mon activité professionnelle du jour.
+
+DIRECTIONS À IDENTIFIER : DEPT-A, DEPT-B, DEPT-C, ou "Projet" si aucune direction ne peut être identifiée avec certitude.
+
+COMMENT IDENTIFIER LA DIRECTION :
+- Nom du site SharePoint ou du Teams concerné
+- Mots-clés explicites dans l'objet du mail ou le titre de l'événement (ex: "DEPT-B", "Direction Exemple B")
+- Interlocuteur connu associé à une direction : [à compléter avec ta table de correspondance, ex: J.Martin → DEPT-B, etc.]
+- Si aucun signal fiable n'est trouvé, utiliser "Projet"
+
+INTERLOCUTEUR :
+- Si un interlocuteur clé est identifié pour une activité (destinataire principal d'un mail, organisateur ou participant principal d'une réunion), l'intégrer naturellement dans la description du bullet (ex: "... pour présentation à J.Martin", "... suite à échange avec L.Dupuis")
+- Ne jamais inventer un nom si aucun interlocuteur clair n'est identifié
+
+RÈGLES D'EXCLUSION :
+- Exclure les événements à caractère personnel (rendez-vous perso, non liés au travail)
+
+GESTION DES DOUBLONS :
+- Si un événement calendrier et un mail envoyé décrivent la même activité, ne produire qu'un seul bullet point
+- En cas d'information différente entre les deux sources, privilégier le mail envoyé (plus détaillé et écrit par moi)
+
+GRANULARITÉ :
+- Un bullet point par action/sujet distinct, même si plusieurs bullets concernent la même direction
+- Ne pas fusionner des sujets différents en un seul bullet, même s'ils sont liés à la même direction/au même projet
+
+STYLE D'ÉCRITURE :
+- Forme nominale uniquement (ex: "Finalisation de...", "Paramétrage de...", "Rédaction de..."), jamais de verbes conjugués
+- Phrases courtes et factuelles
+
+ORDRE : classer les bullets par direction (ordre alphabétique), puis par ordre chronologique au sein d'une même direction.
+
+FORMAT DE SORTIE :
+- Uniquement les bullet points, sans introduction ni conclusion
+- Format : "- DIRECTION : Description de l'activité"
+- Si aucune activité professionnelle n'est identifiée sur la journée, répondre uniquement : "Aucune activité professionnelle identifiée aujourd'hui."
+
+Exemple de format attendu :
+"- DEPT-B : Finalisation chiffrage + ajout dimensions ROI pour présentation à J.Martin"
 ```
 Le flux met ensuite à jour mon événement dans le calendrier, avec la synthèse réalisée par AI Builder.
 

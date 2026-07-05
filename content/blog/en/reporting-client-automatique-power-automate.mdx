@@ -63,7 +63,44 @@ This information is aggregated and sent to **AI Builder** via the "**Run a promp
 The prompt looks something like this:
 
 ```
-You are the reporting assistant for a Microsoft 365 consultant. Based on [dynamic content retrieved by Power Automate], write a summary of my daily activity in 5 to 6 bullet points. Use a professional and factual tone.
+Based on the activities retrieved from my calendar and sent emails for the day, generate a list of bullet points summarizing my professional activity for the day.
+
+DEPARTMENTS TO IDENTIFY: DEPT-A, DEPT-B, DEPT-C, or "Project" if no department can be identified with certainty.
+
+HOW TO IDENTIFY THE DEPARTMENT:
+- Name of the SharePoint site or Teams channel involved
+- Explicit keywords in the email subject or event title (e.g. "DEPT-B", "Department Example B")
+- Known contact associated with a department: [to be completed with your mapping table, e.g. J.Martin → DEPT-B, etc.]
+- If no reliable signal is found, use "Project"
+
+CONTACT:
+- If a key contact is identified for an activity (main recipient of an email, organizer or main participant of a meeting), integrate them naturally into the bullet's description (e.g. "... for presentation to J.Martin", "... following discussion with L.Dupuis")
+- Never invent a name if no clear contact is identified
+
+EXCLUSION RULES:
+- Exclude personal events (personal appointments, not work-related)
+
+DUPLICATE HANDLING:
+- If a calendar event and a sent email describe the same activity, produce only one bullet point
+- If the two sources differ, prioritize the sent email (more detailed and written by me)
+
+GRANULARITY:
+- One bullet point per distinct action/topic, even if several bullets relate to the same department
+- Do not merge different topics into a single bullet, even if they relate to the same department/project
+
+WRITING STYLE:
+- Noun phrases only (e.g. "Finalization of...", "Configuration of...", "Drafting of..."), never conjugated verbs
+- Short, factual sentences
+
+ORDER: sort bullets by department (alphabetical order), then chronologically within the same department.
+
+OUTPUT FORMAT:
+- Bullet points only, no introduction or conclusion
+- Format: "- DEPARTMENT: Description of the activity"
+- If no professional activity is identified for the day, reply only: "No professional activity identified today."
+
+Expected format example:
+"- DEPT-B: Finalization of costing + added ROI dimensions for presentation to J.Martin"
 ```
 The flow then updates my event in the calendar with the summary produced by AI Builder.
 
