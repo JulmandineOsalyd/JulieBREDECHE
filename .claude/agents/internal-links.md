@@ -37,6 +37,7 @@ Tu identifies les opportunités de liens internes dans un article de Julie Brede
 | power-virtual-agents-copilot-studio | Comment l'IA a fait évoluer Power Virtual Agents vers Copilot Studio | Évolution PVA → Copilot Studio | Copilot Studio, IA générative |
 | preparer-sharepoint-copilot | Préparer SharePoint pour Copilot : 2 astuces terrain | SharePoint + Copilot, gouvernance données | SharePoint, Copilot, Gouvernance |
 | sharepoint-ou-power-apps-grille-de-decision | SharePoint ou Power Apps ? La grille de décision | Choix SharePoint vs Power Apps | Power Apps, SharePoint |
+| stockage-sharepoint-sature-leviers | Stockage SharePoint saturé : les 3 leviers à actionner avant d'acheter plus d'espace | Gouvernance stockage SharePoint | SharePoint, Gouvernance, PowerShell, Stockage |
 | synchronisation-onedrive | La synchronisation OneDrive : 3 points essentiels | Comprendre OneDrive Sync | OneDrive, SharePoint |
 | trigger-conditions-power-automate | Votre flow tourne en boucle ? Les Trigger Conditions | Trigger conditions Power Automate | Power Automate, Automatisation |
 | zero-tickets-onedrive-apres-migration | Zéro ticket OneDrive après migration : comment j'ai fait | Migration OneDrive, support IT | OneDrive, SharePoint, Migration |

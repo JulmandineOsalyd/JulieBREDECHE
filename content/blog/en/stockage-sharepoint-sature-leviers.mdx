@@ -1,0 +1,133 @@
+---
+title: "SharePoint storage full: 3 levers to pull before buying more space"
+metaTitle: "SharePoint storage full: 3 levers before you buy more"
+metaDescription: "Is your Microsoft 365 tenant overflowing? Here's why SharePoint storage explodes, and 3 concrete levers to pull, from simplest to most structural."
+slug: "stockage-sharepoint-sature-leviers"
+canonical: "https://juliebredeche.pro/blog/stockage-sharepoint-sature-leviers"
+date: "2026-08-27"
+category: "SharePoint"
+parentTag: "SharePoint"
+excerpt: "Before buying extra storage, there are 3 concrete levers to take back control of a saturated SharePoint tenant."
+readingTime: 4
+tags: ["SharePoint", "Governance", "PowerShell", "Storage"]
+featured: true
+send_newsletter: false
+draft: false
+---
+
+With almost every client, I see the same issue. SharePoint storage quota is dangerously close to its limit.
+
+⚠️ **Once the storage quota is exceeded, the tenant switches to read only mode. No more creating or editing, only viewing and deleting.**
+
+Three combined mechanisms usually explain the storage explosion:
+
+- **File versioning**: every edit creates a new version. A PowerPoint file can quickly reach 20 GB.
+- **Large files**: training videos and high resolution scans weigh far more than standard office documents.
+- **Inactive sites**: project finished, site forgotten, but still there accumulating content.
+
+The first instinct is to buy more space. But the problem will come back fast if no real fix is put in place.
+
+---
+
+## How is SharePoint storage calculated?
+
+Before acting, a benchmark. SharePoint storage runs on a shared pool, not site by site.
+
+The official formula: **1 TB base per organization, plus 10 GB per eligible license purchased** (Business, Enterprise, etc.). A tenant with 100 licensed users therefore has 1 TB + 1 TB (100 x 10 GB), so **2 TB in total**.
+
+![SharePoint storage quota calculation in the Microsoft 365 admin center](/images/blog/stockage-sharepoint-storage-quota.png)
+
+This storage pool is shared across all SharePoint sites in the tenant. Users' OneDrive quotas are individual, separate from this SharePoint pool: 1 TB on average depending on the license.
+
+**Three quick levers let you take back control of your SharePoint storage.**
+
+---
+
+## 1. Switch to manual storage quota management
+
+In automatic mode, a single site can absorb a large share of the pool with no safeguard. <a href="https://learn.microsoft.com/en-us/sharepoint/manage-site-collection-storage-limits" target="_blank" rel="noopener noreferrer">Switching to Manual mode</a> in the SharePoint admin center changes the game.
+
+![Storage management mode setting in the SharePoint admin center](/images/blog/stockage-sharepoint-storage-management.png)
+
+New sites then get a default quota set by the organization, not a theoretical 25 TB ceiling. **25 to 100 GB is usually enough for a standard collaborative site**, to adjust for heavier document or media libraries.
+
+The switch happens in two steps.
+
+- **Set the standard for new sites**: an initial quota suited to everyday usage.
+- **Review existing sites**: export the list of sites and their consumption, then apply consistent caps.
+
+⚠️ This lever does not reduce storage already consumed, it caps future growth. Once in manual mode, it becomes an ongoing governance topic: monitoring alerts, handling extension requests.
+
+---
+
+## 2. Limit versioning and clean up version history
+
+This is very often the lever that recovers the most storage.
+
+### Set versioning upstream
+
+Many SharePoint libraries keep 500 versions of a document by default. Reducing that number to 50 or 100 versions already covers most rollback needs.
+
+![Setting the number of versions kept in a SharePoint library](/images/blog/stockage-sharepoint-versionning.png)
+
+Microsoft also offers an interesting alternative: <a href="https://learn.microsoft.com/en-us/sharepoint/plan-version-storage#determine-default-version-limits-for-new-document-libraries-in-your-organization" target="_blank" rel="noopener noreferrer">automatic version limits</a>. Instead of a fixed number, the algorithm trims the least useful intermediate versions itself, while keeping a complete recent history. A real topic, which I will cover in more detail in an upcoming article.
+
+### Clean up the history already accumulated
+
+Changing this setting does not delete versions already stored. A retroactive cleanup is needed: a PowerShell script that scans libraries, finds and deletes versions beyond a certain threshold.
+
+⚠️ **The step that worries users the most. Deleting versions means deleting history.**
+
+Three precautions before running anything.
+
+- **Communicate before, never after.** Warn the teams involved that older versions will disappear, and why.
+- **Keep a record of what gets deleted.** A detailed log (file, number of versions deleted, date) answers any question raised later.
+- **Test on a pilot site.** Run the cleanup on a single site before rolling it out tenant wide.
+
+---
+
+## 3. Archive or delete inactive and oversized sites
+
+An inactive site is not necessarily a useless site: closed project folders, contractual archives... It is a candidate for review, not a site to delete by default.
+
+In most tenants I audit, a small number of sites hold most of the storage consumed. Three signals to build the review list:
+
+- **Storage consumed:** prioritize the largest sites, which give a fast and effective win.
+- **No recent activity:** 6 to 12 months without activity, a starting point to adjust based on the business.
+- **Orphaned sites:** a site with no owner is a strong signal: no one will ever confirm whether to keep it, or its retention obligations.
+
+The next step is to keep, archive, or delete these sites, based on the owner's answer and the applicable retention rules.
+
+---
+
+## Going further: thinking about storage as an ongoing effort
+
+The levers above clean up what already exists and buy some time. It becomes essential to **put real governance in place** so you don't get overwhelmed again.
+
+### Automate retention for inactive sites
+
+Retention and lifecycle rules on SharePoint sites let you act continuously, without repeated manual work. They rely on site age, lack of activity, or the absence of an active owner.
+
+<a href="https://learn.microsoft.com/en-us/sharepoint/inactive-site-policy" target="_blank" rel="noopener noreferrer">SharePoint Advanced Management (SAM)</a> can automate the process of detecting inactive sites. But it comes with an added cost, and requires Microsoft 365 Archive to already be in place.
+
+### Set up an archiving solution
+
+Having an archiving solution removes the reluctance to delete: content is not lost, only moved to cheaper storage, and can be reactivated if needed.
+
+<a href="https://learn.microsoft.com/en-us/microsoft-365/archive/archive-overview" target="_blank" rel="noopener noreferrer">Microsoft 365 Archive</a> offers cold storage 75% cheaper than active storage. This extra cost only applies once the tenant's total storage exceeds the quota already included. Metadata, permissions, and versions are preserved during archiving.
+
+Other solutions, internal or third party, can fill the same role. What matters is having an archiving tool in place before launching a large scale cleanup policy.
+
+### Think about the lifecycle of workspaces from day one
+
+A workspace should have a lifespan planned from the moment it is created: predefined workspace types, a clear naming policy, a mandatory review date. This kind of governance assumes, upstream, automated provisioning of SharePoint sites and Teams teams.
+
+⚠️ These levers require upfront governance work, driven together with IT and business teams. Not quick wins, an investment that saves you from writing this same article again next year.
+
+---
+
+## My takeaway
+
+Buying more storage without understanding what consumes it just delays the problem. It doesn't solve it.
+
+These levers reflect what I see most often with my clients, not an exhaustive list. You could go further still: raising awareness among staff about data retention under GDPR, or routing certain file types, media, technical exports, to dedicated storage solutions.
