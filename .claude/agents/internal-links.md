@@ -28,6 +28,7 @@ Tu identifies les opportunités de liens internes dans un article de Julie Brede
 | expert-power-automate-vs-ia-copilot | Pourquoi l'IA ne me remplacera pas en tant qu'experte Power Automate | Expertise vs IA générative | Power Automate, Copilot |
 | extraire-donnees-pdf-power-automate-ai-builder | Power Automate + AI Builder : lecture automatique de PDF | Extraction données PDF, AI Builder | Power Automate, AI Builder |
 | guide-prompting-microsoft-copilot | Épisode 2 • Maîtriser les bases du prompting | Prompting Copilot | Copilot, Prompt |
+| enjeux-gouvernance-power-platform | Power Platform : 4 enjeux de gouvernance à l'ère des citizen developers | Gouvernance Power Platform, citizen developers, shadow IT | Power Platform, Gouvernance, Citizen Developer |
 | ia-sharepoint-gestion-documentaire | L'IA dans SharePoint va transformer votre gestion documentaire | SharePoint Premium, Knowledge Agents | SharePoint, Copilot, IA |
 | methode-projet-power-platform | Ma méthode infaillible pour réussir mes projets Power Platform | Méthode projet Power Platform | Power Apps, Power Automate, Méthode |
 | methodologie-cadrage-agent-copilot | Épisode 7 • Créer un agent Copilot : 80% cadrage métier | Méthodologie cadrage agent | Copilot, Agents, Cadrage projet |

@@ -1,0 +1,92 @@
+---
+title: "Power Platform: Governance Challenges in the Age of Citizen Developers"
+metaTitle: "Power Platform Governance Challenges and Citizen Developers"
+metaDescription: "Business teams are now developers, and Power Platform governance can't follow classic IT rules. Discover the 4 challenges your IT department must anticipate."
+slug: "enjeux-gouvernance-power-platform"
+canonical: "https://juliebredeche.pro/blog/enjeux-gouvernance-power-platform"
+date: "2026-10-05"
+category: ["Power Apps","Power Automate"]
+excerpt: "Visibility, security, capacity, technical debt: the 4 challenges IT teams can no longer ignore now that business teams build their own apps."
+readingTime: 3
+tags: ["Power Platform", "Governance", "Citizen Developer"]
+featured: true
+send_newsletter: false
+draft: false
+---
+
+Someone builds an automation to save time. It works well, and their whole team uses it every day. Then that person leaves the company, and the automation stops working.
+
+This happens more often than you would think. The IT department had never heard of this "tool", even though an entire team depended on it.
+
+---
+
+## 1. Power Platform Without Governance Is an Open Playground
+
+By default, Power Platform is open: any user with a Microsoft 365 license can create apps and flows, unless the company puts restrictions in place.
+
+Without a framework, I often see the same things:
+
+- Power Automate flows pile up in the default environment
+- Automations run with **personal credentials**
+- Nothing is documented and the IT department doesn't know these tools exist
+
+> **The problem isn't that business teams create automations. It's that nobody knows what they have created.**
+
+---
+
+## 2. A New Paradigm: Business Teams Become "Developers"
+
+With Power Platform, **citizen developers** are emerging. These are operational teams who know the need better than anyone. They build fast and no longer depend on the IT department.
+
+But this is not classic IT governance. The table shows the gap:
+
+| | Traditional IT project management | Citizen developer project |
+|---|---|---|
+| Who builds | IT, on request | Business teams, on their own |
+| Lead time | Weeks or months | Immediate, no waiting queue |
+| Validation | Before going live | Often none |
+| Owner | An identified team | A single person |
+
+Business teams build fast, alone and without validation. The question is what the IT department needs to control, without stopping business teams from taking initiative.
+
+---
+
+## 3. New Challenges to Master
+
+I see four major challenges linked to the rise of Power Platform and citizen developers.
+
+### Challenge 01: Avoid Shadow IT
+
+How do you get **visibility into what citizen developers create**, without taking away their autonomy? A ban would only move usage out of the IT department's sight.
+
+### Challenge 02: Limit Security Gaps
+
+Flows can be connected to critical systems without any security review. Without a DLP policy or clear rules, **a poorly configured flow can expose sensitive data**.
+
+### Challenge 03: Control Capacity and Copilot Credits
+
+What citizen developers create gradually consumes Dataverse storage, which is shared across the whole tenant. AI also adds a consumption of **Copilot credits** (see [Copilot Studio billing](/blog/modele-facturation-copilot-studio)). Without monitoring, the IT department risks restrictions or an unexpected bill.
+
+### Challenge 04: Reduce Technical Debt
+
+Critical apps are built quickly, without documentation, and sometimes rely on a single citizen developer. When that person leaves the company, nobody knows how to maintain them and **the business ends up paying the price**.
+
+---
+
+## 4. Points of Caution for the IT Department
+
+Before building anything, here are five traps to avoid:
+
+- **Stepping in too late**, when many apps already exist and catching up becomes expensive
+- **Choosing to block**, because shadow IT then moves out of the IT department's view
+- **Neglecting citizen developer training**, because without explanations, nobody knows what is allowed
+- **Leaving monitoring aside**, when governance is something you define over time
+- **Underestimating Copilot Studio**, whose agents create new usage and call for dedicated rules, on top of those for apps and flows
+
+---
+
+## My Conclusion
+
+Citizen developers bring speed and autonomy, but without a framework these strengths become risks for the IT department. Before choosing tools, the first decision is to determine who owns the framework and the support for business teams.
+
+In my next article, I will present the 5 pillars that answer this.
