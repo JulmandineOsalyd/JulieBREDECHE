@@ -25,7 +25,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Julie BREDECHE — Consultante SharePoint & Power Platform',
+    default: 'Julie BREDECHE | Consultante SharePoint & Power Platform',
     template: '%s | Julie Bredeche',
   },
   icons: {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     'Consultante Microsoft 365 indépendante. SharePoint, Power Platform, Copilot Studio. Projets sur mesure pour PME et grands comptes.',
   metadataBase: new URL('https://juliebredeche.pro'),
   openGraph: {
-    title: 'Julie BREDECHE — Consultante SharePoint & Power Platform',
+    title: 'Julie BREDECHE | Consultante SharePoint & Power Platform',
     description:
       'Consultante Microsoft 365 indépendante. SharePoint, Power Platform, Copilot Studio. Projets sur mesure pour PME et grands comptes.',
     url: 'https://juliebredeche.pro',
@@ -48,13 +48,13 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Julie BREDECHE — Consultante SharePoint & Power Platform',
+        alt: 'Julie BREDECHE | Consultante SharePoint & Power Platform',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Julie BREDECHE — Consultante SharePoint & Power Platform',
+    title: 'Julie BREDECHE | Consultante SharePoint & Power Platform',
     description:
       'Consultante Microsoft 365 indépendante. SharePoint, Power Platform, Copilot Studio. Projets sur mesure pour PME et grands comptes.',
     images: ['/og-image.png'],

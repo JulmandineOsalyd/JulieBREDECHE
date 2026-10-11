@@ -3,32 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useTranslation } from '@/lib/i18n'
-
-const approachIcons = [
-  // Conception sur-mesure
-  (
-    <svg key="icon-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 20h9" />
-      <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
-    </svg>
-  ),
-  // Valeur ajoutée
-  (
-    <svg key="icon-1" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-    </svg>
-  ),
-  // Périmètre d'intervention
-  (
-    <svg key="icon-2" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" />
-      <circle cx="12" cy="12" r="6" />
-      <circle cx="12" cy="12" r="2" />
-    </svg>
-  ),
-]
-
-const iconColors = ['var(--c3)', 'var(--c2)', '#4dffd6']
+import { clients } from '@/lib/clients'
 
 export default function AboutContent() {
   const { t } = useTranslation()
@@ -151,7 +126,7 @@ export default function AboutContent() {
       </section>
 
       {/* Biographie */}
-      <section style={{ padding: '3rem 6%', background: 'var(--off)' }}>
+      <section style={{ padding: '3rem 6%', background: '#ffffff' }}>
         <div style={{ maxWidth: '760px', margin: '0 auto' }}>
           <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '1.5rem', textAlign: 'center' }}>
             {a.journeyTitle}
@@ -164,46 +139,53 @@ export default function AboutContent() {
         </div>
       </section>
 
-      {/* Mon Approche */}
-      <section style={{ padding: '4rem 6%', background: '#ffffff' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      {/* Ils m'ont fait confiance */}
+      <section style={{ padding: '4rem 6%', background: 'var(--off)' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
-            {a.approachTitle}
+            {a.clientsTitle}
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }} className="valeurs-grid">
-            {a.approach.map(({ title, items }, idx) => (
-              <div key={title} className="card" style={{ padding: '1.75rem' }}>
-                <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink)', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span style={{ color: iconColors[idx], flexShrink: 0 }}>{approachIcons[idx]}</span>
-                  {title}
-                </h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  {items.map((item) => (
-                    <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.55 }}>
-                      <span style={{ color: 'var(--c2)', fontWeight: 700, flexShrink: 0 }}>·</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', justifyContent: 'center' }}>
+            {clients.map((c) => (
+              <span
+                key={c}
+                style={{
+                  fontSize: '0.95rem',
+                  fontWeight: 600,
+                  color: 'var(--c3)',
+                  background: '#ffffff',
+                  border: '1px solid var(--border)',
+                  borderRadius: '10px',
+                  padding: '0.45rem 1rem',
+                }}
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 gap-6 testimonials-grid" style={{ marginTop: '2.5rem' }}>
+            {a.testimonials.map((item, i) => (
+              <div key={i} className="card p-6 bg-white relative">
+                <svg
+                  className="absolute top-4 left-4 opacity-30"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="var(--c2)"
+                  aria-hidden="true"
+                >
+                  <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+                </svg>
+                <p className="text-[0.85rem] text-[var(--ink)] leading-[1.65] italic mb-3 mt-6">
+                  “{item.quote}”
+                </p>
+                <div className="text-[0.8rem] font-bold text-[var(--ink)]">{item.author}</div>
+                <div className="text-[0.72rem] text-[var(--muted)] mt-0.5">{item.role}</div>
               </div>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* CTA */}
-      <section style={{ padding: '4rem 6%', background: '#ffffff', textAlign: 'center' }}>
-        <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '1rem' }}>
-          {a.cta.titlePre}{' '}
-          <span style={{ background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-            Microsoft 365
-          </span>
-          {a.cta.titlePost ? ` ${a.cta.titlePost}` : ''}
-        </h2>
-        <p style={{ color: 'var(--muted)', fontSize: '1rem', marginBottom: '1.75rem' }}>
-          {a.cta.description}
-        </p>
-        <Link href="/contact" className="btn-primary">{a.cta.button}</Link>
       </section>
     </>
   )

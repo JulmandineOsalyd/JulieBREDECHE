@@ -459,6 +459,19 @@ h1, h2, h3 {
 .nav-link.active {
   color: var(--c3);
 }
+.nav-link.nav-link-tools {
+  color: var(--c3);
+  font-weight: 700;
+  background: rgba(24, 176, 232, 0.12);
+  padding: 0.3rem 0.8rem;
+  border-radius: 99px;
+}
+.nav-link.nav-link-tools::after { display: none; }
+.nav-link.nav-link-tools:hover,
+.nav-link.nav-link-tools.active {
+  background: rgba(24, 176, 232, 0.22);
+  color: var(--c3);
+}
 
 /* Focus visible */
 *:focus-visible {
@@ -929,6 +942,7 @@ h1, h2, h3 {
   transition: opacity 0.15s;
 }
 .tag-list a:hover .tag-list-arrow { opacity: 1; }
+.tag-list-compact a { grid-template-columns: 110px 1fr 24px; }
 
 @media (max-width: 768px) {
   .serie-track > .serie-card { flex: 0 0 80%; }

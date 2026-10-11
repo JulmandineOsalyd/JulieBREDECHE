@@ -5,11 +5,11 @@ import OffresSection from '@/components/OffresSection'
 import { getAllArticlesMeta } from '@/lib/mdx'
 
 export const metadata: Metadata = {
-  title: 'Julie BREDECHE — Consultante SharePoint & Power Platform',
+  title: { absolute: 'Julie BREDECHE | Consultante SharePoint & Power Platform' },
   description:
     'Consultante Microsoft 365 indépendante. SharePoint, Power Platform, Copilot Studio. Projets sur mesure pour PME et grands comptes.',
   openGraph: {
-    title: 'Julie BREDECHE — Consultante SharePoint & Power Platform',
+    title: 'Julie BREDECHE | Consultante SharePoint & Power Platform',
     description:
       'Consultante Microsoft 365 indépendante. SharePoint, Power Platform, Copilot Studio. Projets sur mesure pour PME et grands comptes.',
     url: 'https://juliebredeche.pro',

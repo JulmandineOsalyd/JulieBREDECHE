@@ -12,7 +12,7 @@ const RECENT_LIMIT = 3
 
 // Ordre des sections dans les archives. Une section regroupe les articles
 // dont category OU parentTag matche le nom.
-const SECTIONS = ['SharePoint', 'Power Automate', 'Power Apps', 'Copilot'] as const
+const SECTIONS = ['SharePoint', 'OneDrive', 'Power Automate', 'Power Apps', 'Copilot'] as const
 
 function hasCategory(article: ArticleMeta, cat: string): boolean {
   return Array.isArray(article.category)
@@ -213,10 +213,8 @@ export default function BlogList({ articles }: { articles: ArticleMeta[] }) {
         </section>
       </div>
 
-      {/* DIVIDER */}
-      <div className="archives-divider">
-        <span>{t.blog.archivesDivider}</span>
-      </div>
+      {/* TITRE ARCHIVES */}
+      <h2 className="recent-title" style={{ marginTop: '4rem' }}>{t.blog.archivesTitle}</h2>
 
       {/* SEARCH + ARCHIVES */}
       <div className="search-bar">
@@ -265,12 +263,11 @@ export default function BlogList({ articles }: { articles: ArticleMeta[] }) {
                   <span className="tag-name">{group.section}</span>
                   <span className="tag-count">{t.blog.tagCount(group.articles.length)}</span>
                 </summary>
-                <ul className="tag-list">
+                <ul className="tag-list tag-list-compact">
                   {group.articles.map((a) => (
                     <li key={a.slug}>
                       <Link href={`/blog/${a.slug}`}>
                         <span className="tag-list-date">{formatDate(a.date, locale)}</span>
-                        <span className="tag-list-subtag">{categoryLabel(a)}</span>
                         <span className="tag-list-title">{a.title}</span>
                         <span className="tag-list-arrow" aria-hidden="true">→</span>
                       </Link>

@@ -5,6 +5,7 @@ export const fr = {
     blog: 'Blog',
     services: 'Services',
     portfolio: 'Portfolio',
+    tools: 'Outils',
     contact: 'Me contacter',
     homeLabel: 'Julie BREDECHE — Accueil',
     openMenu: 'Ouvrir le menu',
@@ -25,11 +26,7 @@ export const fr = {
     cta2: 'Lire mes articles ↓',
     clients: "Ils m'ont fait confiance :",
     cardSubtitle: 'Consultante indépendante',
-    stats: {
-      experience: "ans d'expérience",
-      clients: 'clients',
-      satisfaction: 'de satisfaction',
-    },
+    cardExperience: "ans d'expérience",
   },
 
   offers: {
@@ -219,47 +216,21 @@ export const fr = {
       "Mon aventure avec Microsoft 365 a débuté en 2014, en participant au déploiement du plus gros intranet SharePoint pour un grand groupe de l'énergie. J'ai immédiatement été attirée par la puissance et les possibilités infinies de SharePoint ! Très vite, je me suis spécialisée dans l'automatisation de processus avec SharePoint Designer et Nintex, avant l'arrivée de Power Automate.",
       "Après avoir intégré une ESN spécialisée autour des outils Microsoft 365 et réalisé des missions pour plusieurs grands comptes, j'ai créé Osalyd Consulting en 2020. Cette liberté entrepreneuriale m'a permis de me concentrer sur mes domaines d'excellence : SharePoint et la Power Platform.",
       "Le fossé entre ce que la technologie peut faire et ce que les équipes savent en faire reste important. C'est là que je fais la différence, transformer des besoins métiers en solutions concrètes intégrées dans l'écosystème M365.",
-      "Issue d'une formation en école de commerce, j'ai un background qui me permet de dialoguer naturellement avec les métiers. Mon appétence naturelle pour la technique m'a permis de maîtriser en profondeur les technologies Microsoft 365 que je déploie.",
+      "Issue d'une école de commerce, je parle le langage des métiers et je traduis rapidement leurs besoins en solutions concrètes. Mon goût pour la technique m'a permis de maîtriser en profondeur les technologies Microsoft 365.",
     ],
-    approachTitle: 'Mon Approche',
-    approach: [
+    clientsTitle: "Ils m'ont fait confiance",
+    testimonials: [
       {
-        title: 'Conception sur-mesure',
-        items: [
-          'Écoute des enjeux métiers',
-          'Cadrage précis des besoins',
-          'Architecture adaptée',
-          'Solutions évolutives',
-          'Prototype fonctionnel',
-        ],
+        quote: "Julie est une consultante brillante, qui combine compétences techniques et capacités opérationnelles et de gestion de projet. Sa solide expertise sur SharePoint Online et OneDrive nous a permis de mettre en place des activités de delivery efficaces, ainsi que des standards techniques et des processus utilisés au niveau du Groupe. Elle est aussi attentive à l'expérience utilisateur et à la qualité de service. C'est par ailleurs une personne très enthousiaste et flexible, avec qui il est très agréable de travailler.",
+        author: 'Benoît LASSALLE',
+        role: 'Head of IT for US multi-energy Trading affiliates, TotalEnergies',
       },
       {
-        title: 'Valeur ajoutée',
-        items: [
-          'Double compétence tech/métiers',
-          'Discours accessible aux non-techniques',
-          'Arbitrage technique & budget',
-          'Rigueur méthodologique',
-          'Expertise SharePoint/Power Platform',
-        ],
-      },
-      {
-        title: "Périmètre d'intervention",
-        items: [
-          'Pilotage de bout en bout',
-          'Architecture de solution',
-          'Développement et design',
-          'Optimisation des process',
-          'Accompagnement au changement',
-        ],
+        quote: "Au-delà de son excellente maîtrise de SharePoint et Power Automate, Julie fait preuve d'un réel professionnalisme et d'une grande capacité d'adaptation dans un contexte métier en constante évolution. Sa rigueur, sa curiosité et sa créativité sont des atouts indéniables qui ont grandement contribué à la réussite de nos projets. Je recommande vivement Julie pour toute mission exigeante, nécessitant une expertise technique conjuguée à une approche à la fois fonctionnelle, méthodique et innovante.",
+        author: 'Arnaud Chaloine',
+        role: 'Pilote Projet, Groupama Centre-Atlantique',
       },
     ],
-    cta: {
-      titlePre: 'Vous avez un projet',
-      titlePost: '?',
-      description: 'Discutons de vos besoins et voyons comment je peux vous aider.',
-      button: 'Me contacter',
-    },
     linkedin: 'LinkedIn',
   },
 
@@ -358,22 +329,6 @@ export const fr = {
       ],
       cta: 'Demander un coaching',
     },
-    testimonials: {
-      label: 'Témoignages',
-      title: "Ils m'ont fait confiance",
-      items: [
-        {
-          quote: "Julie est une consultante brillante, qui combine compétences techniques et capacités opérationnelles et de gestion de projet. Sa solide expertise sur SharePoint Online et OneDrive nous a permis de mettre en place des activités de delivery efficaces, ainsi que des standards techniques et des processus utilisés au niveau du Groupe. Elle est aussi attentive à l'expérience utilisateur et à la qualité de service. C'est par ailleurs une personne très enthousiaste et flexible, avec qui il est très agréable de travailler.",
-          author: 'Benoît LASSALLE',
-          role: 'Head of IT for US multi-energy Trading affiliates, TotalEnergies',
-        },
-        {
-          quote: "Au-delà de son excellente maîtrise de SharePoint et Power Automate, Julie fait preuve d'un réel professionnalisme et d'une grande capacité d'adaptation dans un contexte métier en constante évolution. Sa rigueur, sa curiosité et sa créativité sont des atouts indéniables qui ont grandement contribué à la réussite de nos projets. Je recommande vivement Julie pour toute mission exigeante, nécessitant une expertise technique conjuguée à une approche à la fois fonctionnelle, méthodique et innovante.",
-          author: 'Arnaud Chaloine',
-          role: 'Pilote Projet, Groupama Centre-Atlantique',
-        },
-      ],
-    },
     method: {
       label: 'Méthodologie',
       title: 'Ma méthode en 6 étapes',
@@ -382,60 +337,59 @@ export const fr = {
         {
           n: '01',
           title: 'Comprendre le besoin',
-          text: "Avant de parler solution, je pose les bonnes questions : combien d'utilisateurs, quelle volumétrie, des externes ? Cela valide la faisabilité technique et identifie les contraintes dès le départ.",
+          text: 'Les bonnes questions avant de parler solution.',
         },
         {
           n: '02',
           title: 'Cadrer et chiffrer',
-          text: "J'identifie les fonctionnalités clés par parcours utilisateur, puis je chiffre. La plupart de mes projets représentent 20 à 30 jours de prestation au total.",
+          text: 'Fonctionnalités clés par parcours, chiffrage clair.',
         },
         {
           n: '03',
           title: 'Schématiser et valider',
-          text: 'Je schématise les processus et crée des maquettes directement dans Power Apps. Résultat : le client comprend la logique, précise ses besoins et je sais dans quel ordre avancer.',
+          text: 'Schémas et maquettes Power Apps pour valider la logique.',
         },
         {
           n: '04',
           title: 'Développer en agilité',
-          text: "Dès qu'une fonctionnalité est prête, je la présente et laisse le client la tester pendant que je poursuis. Si de nouveaux besoins émergent, on arbitre ensemble sans dépasser le chiffrage.",
+          text: 'Démos régulières, arbitrages ensemble sans dépasser le chiffrage.',
         },
         {
           n: '05',
           title: 'Tester et déployer',
-          text: 'Tests de bout en bout, utilisateurs pilotes, cahier de tests si les règles de gestion sont complexes. Documentation technico-fonctionnelle complète livrée avec le projet.',
+          text: 'Tests, utilisateurs pilotes et documentation livrée.',
         },
         {
           n: '06',
           title: 'Maintenir et faire évoluer',
-          text: 'Gestion des erreurs, reporting des incidents, et forfait annuel optionnel couvrant la correction des anomalies et les petites évolutions.',
+          text: 'Suivi des incidents et forfait annuel optionnel.',
         },
       ],
     },
-    tool: {
-      label: 'Side project',
-      title: 'OneDrive Path Checker',
-      p1: "Développé pour mes missions de migration SharePoint, cet outil <strong>détecte les chemins de fichiers trop longs</strong> avant qu'ils ne causent des erreurs de synchronisation OneDrive.",
-      p2: 'Disponible sur le <strong>Microsoft Store</strong>.',
-      cta: "Découvrir l'outil →",
-      features: [
-        {
-          title: 'En 3 minutes, sans PowerShell',
-          text: 'Sans script, sans droits admin',
-        },
-        {
-          title: 'Détecte les 2 limites critiques',
-          text: 'Migrations SharePoint (>400) et sync OneDrive (>255 caractères)',
-        },
-        {
-          title: 'Remédiation et exports intégrés',
-          text: 'Renommez directement ou exportez en Excel / PDF',
-        },
-        {
-          title: '100% local & sécurisé',
-          text: 'Aucun contenu lu, aucune donnée envoyée',
-        },
-      ],
+    realisations: {
+      text: 'Envie de voir ce que ça donne en pratique ?',
+      cta: 'Voir mes réalisations →',
     },
+  },
+
+  tools: {
+    label: 'Ressources gratuites',
+    title: 'Outils',
+    description: 'Deux outils gratuits nés de mes missions SharePoint et Power Platform.',
+    items: [
+      {
+        title: 'OneDrive Path Checker',
+        text: "Détecte les chemins de fichiers trop longs avant qu'ils ne bloquent la synchronisation OneDrive. Disponible sur le Microsoft Store.",
+        cta: "Découvrir l'outil →",
+        href: '/outils/onedrive-path-checker',
+      },
+      {
+        title: 'SharePoint ou Power Apps ?',
+        text: 'Un quiz de 6 questions pour savoir quelle solution convient à votre processus.',
+        cta: 'Faire le quiz →',
+        href: '/outils/sharepoint-ou-power-apps',
+      },
+    ],
   },
 
   contact: {
@@ -491,8 +445,8 @@ export const fr = {
     serieIntro: 'La série pour comprendre Copilot, du prompting au déploiement.',
     serieViewAll: (_n: number) => `Voir tous les épisodes →`,
     recentTitle: 'Derniers articles',
-    archivesDivider: 'Explorer toutes les archives',
-    searchPlaceholder: 'Rechercher un article — ex: OneDrive, agent, prompting…',
+    archivesTitle: 'Archives',
+    searchPlaceholder: 'Rechercher un article...',
     searchCount: (n: number) => (n > 1 ? `${n} articles` : `${n} article`),
     searchResults: (n: number) => (n > 1 ? `${n} résultats` : `${n} résultat`),
     searchEmpty: 'Aucun article ne correspond à ta recherche.',

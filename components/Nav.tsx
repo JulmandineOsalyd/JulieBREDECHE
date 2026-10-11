@@ -17,6 +17,7 @@ export default function Nav() {
     { href: '/blog', label: t.nav.blog },
     { href: '/services', label: t.nav.services },
     { href: '/portfolio', label: t.nav.portfolio },
+    { href: '/outils', label: t.nav.tools, highlight: true },
   ]
 
   return (
@@ -78,13 +79,13 @@ export default function Nav() {
           style={{ gap: '1.75rem', alignItems: 'center' }}
           className="hidden md:flex"
         >
-          {links.map(({ href, label }) => {
+          {links.map(({ href, label, highlight }) => {
             const active = pathname === href || (href !== '/' && pathname.startsWith(href))
             return (
               <Link
                 key={href}
                 href={href}
-                className={`nav-link${active ? ' active' : ''}`}
+                className={`nav-link${highlight ? ' nav-link-tools' : ''}${active ? ' active' : ''}`}
               >
                 {label}
               </Link>
@@ -183,7 +184,7 @@ export default function Nav() {
           }}
           className="md:hidden animate-fadeUp"
         >
-          {links.map(({ href, label }) => {
+          {links.map(({ href, label, highlight }) => {
             const active = pathname === href || (href !== '/' && pathname.startsWith(href))
             return (
               <Link
@@ -192,8 +193,8 @@ export default function Nav() {
                 onClick={() => setMenuOpen(false)}
                 style={{
                   padding: '0.6rem 0',
-                  fontWeight: active ? 700 : 500,
-                  color: active ? 'var(--c3)' : 'var(--ink)',
+                  fontWeight: active || highlight ? 700 : 500,
+                  color: highlight ? 'var(--c2)' : active ? 'var(--c3)' : 'var(--ink)',
                   textDecoration: 'none',
                   borderBottom: '1px solid var(--border)',
                   fontSize: '0.95rem',
