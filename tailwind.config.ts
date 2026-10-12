@@ -23,7 +23,7 @@ const config: Config = {
         sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'brand-grad': 'linear-gradient(135deg, #60c6ff 0%, #18b0e8 45%, #0f5fad 100%)',
+        'brand-grad': 'linear-gradient(135deg, #1ab8ec 0%, #0f5fad 100%)',
       },
       borderRadius: {
         '2xl': '16px',
