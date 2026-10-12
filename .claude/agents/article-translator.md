@@ -64,6 +64,16 @@ Pour prévisualiser la version EN, déléguer à l'agent `preview-article` avec 
 
 ---
 
+## Google Analytics
+
+Le tag Google Analytics (`G-94QFTSRYL9`) est injecté sur toutes les pages par `app/layout.tsx`, y compris sur les articles EN.
+
+- Ne jamais ajouter le script `gtag.js` ni `gtag('config', ...)` dans un `.mdx` traduit.
+- Ne jamais ajouter une balise `<script>` ou `<Script>` dans le corps de l'article : le tag serait chargé deux fois.
+- Si la VF contient déjà un de ces éléments par erreur, le signaler à Julie au lieu de le recopier.
+
+---
+
 ## Rappels finaux
 
 - **Jamais de traduction avant validation de la VF.** Non négociable.

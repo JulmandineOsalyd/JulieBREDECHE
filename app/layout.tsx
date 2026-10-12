@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import type { ReactNode } from 'react'
 import { cookies } from 'next/headers'
 import { Lora, Plus_Jakarta_Sans } from 'next/font/google'
+import Script from 'next/script'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import NewsletterBar from '@/components/NewsletterBar'
@@ -76,6 +77,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang={locale} className={`${lora.variable} ${plusJakartaSans.variable}`}>
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-94QFTSRYL9"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-94QFTSRYL9');
+          `}
+        </Script>
         <LanguageProvider initialLocale={locale}>
           <Nav />
           <main>{children}</main>

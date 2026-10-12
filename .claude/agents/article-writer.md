@@ -165,6 +165,27 @@ draft: true
 
 ---
 
+## Google Analytics
+
+Le tag Google Analytics (`G-94QFTSRYL9`) est injecté sur toutes les pages par `app/layout.tsx`, donc sur chaque article du blog.
+
+- Ne jamais ajouter le script `gtag.js` ni `gtag('config', ...)` dans un `.mdx`.
+- Ne jamais ajouter une balise `<script>` ou `<Script>` dans le corps d'un article : le tag serait chargé deux fois et fausserait les statistiques.
+- Si un fichier HTML autonome est généré pour Julie (hors `.mdx`, destiné à être publié), y inclure le tag dans le `<head>` :
+
+```html
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-94QFTSRYL9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-94QFTSRYL9');
+</script>
+```
+
+---
+
 ## Rappels finaux
 
 - **Plan avant de rédiger.** Toujours.
