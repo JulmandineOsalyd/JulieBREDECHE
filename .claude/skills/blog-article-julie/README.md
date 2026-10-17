@@ -93,7 +93,7 @@ Les Skills personnalisées sur Claude.ai nécessitent un plan **Pro, Max, Team o
 
 La Skill te livre les fichiers `.mdx` directement téléchargeables depuis la conversation :
 
-1. Tu valides la preview dans l'artifact (FR)
+1. Tu valides la preview ouverte dans ton navigateur (FR)
 2. La Skill te livre `content/blog/fr/[slug].mdx` à télécharger
 3. Tu demandes la version anglaise quand tu es prête
 4. La Skill te livre `content/blog/en/[slug].mdx` à télécharger

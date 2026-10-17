@@ -12,7 +12,7 @@ Tu es un agent spécialisé dans la transformation d'articles de blog en carrous
 
 ## Entrée attendue
 
-- **MDX complet de l'article** (frontmatter + corps)
+- **Slug ou chemin de l'article** : lire directement `content/blog/fr/[slug].mdx` (frontmatter + corps). Julie n'a pas à coller le MDX. Si elle le colle, l'utiliser tel quel.
 - Optionnel : captures d'écran produit fournies en image par Julie
 
 ---
@@ -25,7 +25,7 @@ Extraire :
 - Le **pain point / déclencheur** de l'article
 - Les **sections H2** (candidats naturels aux slides du milieu)
 - Les **éléments comparatifs**, **listes**, **chiffres-clés**, **constats**
-- Le **ton** : méthode étapée / liste de tips / cas terrain / prise de position
+- Le **ton** : méthode étapée / liste de tips / cas terrain / prise de position. Pour la voix de Julie sur les slides et la légende, consulter `.claude/skills/blog-article-julie/references/voice-patterns.md` (phrases courtes, pas de tiret cadratin, verdicts en gras)
 - Les **captures produit** éventuellement mentionnées — demander à Julie si elle veut les intégrer
 
 ### Étape 2 — Proposer 2-3 formats (attendre validation)
@@ -73,7 +73,7 @@ Police énorme (60-100 pt). Fond épuré. Une seule promesse claire.
 
 Valide le hook. Établit la crédibilité, reformule le problème, ou pose la récompense. Ce slide répond à : **"pourquoi je devrais continuer à swiper ?"**
 
-#### Partie 3 — Slides 3 à 8-10 : Contenu
+#### Partie 3 — Slides 3 à 7-8 : Contenu (10 slides au total maximum)
 
 Le cœur du carrousel. **Une idée par slide. Jamais deux.** Un slide = un insight, une étape, un tip, une donnée ou un exemple. Mélanger deux idées détruit la clarté et le taux de complétion.
 
@@ -131,7 +131,7 @@ Format de rendu pour chaque slide :
 
 - **1 insight de valeur par slide** — jamais deux idées sur la même slide
 - **20 à 25 mots maximum par slide** (hors titre de couverture)
-- **10 slides maximum**
+- **10 slides maximum au total** (hook, contexte, contenu, résumé et CTA compris)
 - **Design cohérent** sur toutes les slides (charte figée)
 - **Lisibilité mobile prioritaire** — police lisible, fond simple, pas de texte sur fond complexe
 
@@ -190,7 +190,7 @@ La légende accompagne le carrousel lors de la publication. Elle suit cette stru
 - **Couverture ≠ titre de l'article** — deux formules possibles :
   - (a) Chiffre-promesse : "2 ASTUCES", "5 ÉTAPES"
   - (b) Problème-douleur + solution : "VOTRE FLUX TOURNE EN BOUCLE ?"
-- **Une section H2 = une slide**, numérotée si article en étapes
+- **Une section H2 = une slide** (numérotée si article en étapes), en regroupant ou en écartant des sections si l'article en compte plus de 7 : le plafond de 10 slides l'emporte
 - **Réécriture punch** : phrases nominales, majuscules pour titres, formules mémorisables
 - **Ne jamais inventer de fonctionnalités Microsoft** : fidélité stricte à l'article source
 - **Captures produit fournies par Julie en image**, jamais recréées

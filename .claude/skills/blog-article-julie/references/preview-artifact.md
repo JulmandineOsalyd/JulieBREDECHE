@@ -1,10 +1,10 @@
-# Prévisualisation MDX — Spécification de l'artifact
+# Prévisualisation MDX — Spécification du fichier de preview
 
-Document de référence pour construire l'artifact HTML de prévisualisation à l'étape 4 du workflow.
+Document de référence pour construire le fichier HTML de prévisualisation à l'étape 4 du workflow.
 
 ## Principe
 
-L'artifact permet à Julie de **relire son article dans un rendu proche de la publication** tout en gardant la possibilité d'**éditer le MDX source** dans le même écran. C'est une étape de validation qui évite les allers-retours entre le chat et son éditeur de code.
+Le fichier permet à Julie de **relire son article dans un rendu proche de la publication** tout en gardant la possibilité d'**éditer le MDX source** dans le même écran. C'est une étape de validation qui évite les allers-retours entre le chat et son éditeur de code.
 
 ## Layout
 
@@ -73,15 +73,15 @@ Le parseur doit donc :
 
 Si un composant MDX custom réapparaît dans le futur (CTA réactivé, ou nouveau composant), la spec devra être mise à jour avant de gérer son rendu.
 
-## Restrictions techniques (artifact Claude)
+## Restrictions techniques (fichier autonome)
 
-- **Pas de `localStorage`, `sessionStorage`** ni aucune autre API de stockage navigateur (non supporté dans les artifacts)
-- **Pas de balise `<form>`** dans les artifacts React
+- **Pas de `localStorage`, `sessionStorage`** ni aucune autre API de stockage navigateur
+- **Pas de balise `<form>`** : utiliser des boutons avec gestionnaires d'événements
 - **Tout en un seul fichier HTML** : CSS inline dans `<style>`, JS inline dans `<script>`
 
 ## Contenu initial du textarea
 
-Au chargement de l'artifact, le textarea contient le MDX complet de l'article (frontmatter + corps) que Claude vient de rédiger. Julie peut directement éditer à partir de là.
+Au chargement du fichier, le textarea contient le MDX complet de l'article (frontmatter + corps) que Claude vient de rédiger. Julie peut directement éditer à partir de là.
 
 ## Ce qu'on ne cherche PAS à faire
 

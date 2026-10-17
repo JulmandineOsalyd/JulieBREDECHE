@@ -170,3 +170,32 @@ Ne jamais produire ces formulations dans un article de Julie :
 - **Gras stratégique** sur les verdicts, jamais sur les mots-clés SEO
 - **Tableaux de synthèse** quand on compare 2-3 outils ou versions
 - **Dates explicites** ("À ce jour, avril 2026") quand on parle de disponibilité produit
+
+## Constats sur les 26 articles publiés (22 août 2025 → 8 juin 2026)
+
+Mesures faites sur tous les `.mdx` de `content/blog/fr/`. À relire avant de rédiger : elles décrivent ce que Julie publie réellement, pas seulement ce que les règles prescrivent.
+
+### Ce qui est stable (à garder)
+
+- **Phrases courtes** : moyenne de 8 à 12 mots par segment, 0 à 3 phrases de plus de 25 mots par article, sur les 26 articles.
+- **Zéro tiret cadratin ou demi-cadratin** : 2 occurrences sur 26 articles.
+- **Gras sur les verdicts**, blockquotes (1 à 7 par article), tableaux dès que l'article compare.
+
+### Ce qui a évolué (écrire comme les articles récents)
+
+| Aspect | Articles 2025 (16) | Articles 2026 (10) |
+|---|---|---|
+| Ouverture | Souvent une définition ou un constat marché ("Un prompt est...", "En 2025, Microsoft intègre...") | Situation terrain, citation-brief client ou phrase nominale (cowork, cadrage, grille de décision, zéro ticket) |
+| Conclusion | `## Conclusion` générique (8) ou titre libre | `## Ma conclusion` avec 2-3 constats numérotés en gras (7 sur 10) |
+| Voix ("je", "mon", "ma", "j'") | Présente dans 11 articles sur 16 | Présente dans 10 articles sur 10 |
+| Fin de série | Teaser en gras ("Dans le prochain article...") sur les épisodes 2, 3 et 4 | Plus de teaser sur les épisodes 5 à 7 |
+
+### Écarts entre règles et pratique (à arbitrer par Julie)
+
+- **Longueur** : médiane de 590 mots, seulement 9 articles sur 26 au-dessus de 700 mots. La cible a été ramenée à 500-800 (arbitrage du 2026-10-17). 1 article dépasse 1000 mots (cadrage d'agent, 1038).
+- **Liens internes** : 2 articles sur 26 seulement en ont un. La règle est devenue "1 à 3 liens, selon la pertinence" (arbitrage du 2026-10-17).
+- **metaTitle** : 2 articles récents dépassent 60 caractères (grille de décision 72, AB-731 69).
+- **metaDescription** : 3 articles sous 150 caractères (145, 146, 149).
+- **readingTime** : 6 articles sur 26 divergent de mots ÷ 300 (ex. `ai-in-sharepoint-a-quoi-ca-sert` déclare 7 min pour 795 mots).
+- **Adresse au lecteur** : le vouvoiement domine ("vous", "votre" dans 21 articles sur 26). Le tutoiement n'apparaît que dans des citations de dialogue (brief client, exemple de prompt), jamais pour s'adresser au lecteur. Règle à inscrire : vouvoyer le lecteur, tutoyer seulement dans une citation.
+- **Catégorie** : un article porte deux catégories en liste (`methode-projet-power-platform`), règle assouplie : 1 ou 2 valeurs (arbitrage du 2026-10-17).
