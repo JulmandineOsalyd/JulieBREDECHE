@@ -474,9 +474,21 @@ export const en: Translations = {
     prev: '← Previous',
     next: 'Next →',
     close: 'Close',
+    listTitle: 'Use cases',
+    listAriaLabel: 'List of use cases',
+    back: 'All use cases',
+    sectorLabel: 'Industry',
+    technologiesLabel: 'Technologies',
+    before: 'Before',
+    after: 'After',
+    ctaTitle: 'A similar project?',
+    ctaButton: 'Contact me',
     sections: {
       problem: 'Business challenge',
-      context: 'Context and users',
+      context: 'Context',
+      video: 'The solution on video',
+      screenshots: 'The solution in pictures',
+      beforeAfter: 'Before / after',
       solution: 'Solution implemented',
       features: 'Key features',
       benefits: 'User benefits',
@@ -487,7 +499,10 @@ export const en: Translations = {
       {
         title: 'Quality DMS : 33 industrial sites, zero obsolete document',
         sector: 'Industry',
-        teaser: 'Deploying a unified Quality DMS to harmonise document management across 33 industrial sites and 3,000 employees.',
+        slug: 'ged-qualite',
+        technologies: ['SharePoint', 'Power Automate', 'Power Apps', 'Powell'],
+        context: 'Deploying a unified Quality DMS to harmonise document management across **33 industrial sites** and **3,500 employees**.',
+        teaser: 'Deploying a unified Quality DMS to harmonise document management across 33 industrial sites and 3,500 employees.',
         keyMetric: { val: '< 2 min', label: 'To find a Quality document' },
         screenshots: [
           { title: '1. Document submission and validation interface home page' },
@@ -501,10 +516,10 @@ export const en: Translations = {
           '**ISO 50001** compliance and EHS regulations not guaranteed.',
         ],
         users: [
-          '3,500 employees across 33 industrial sites in France',
-          'Field operators: readers',
-          'Quality and EHS teams: authors, local approvers, group approvers',
-          'Group Quality Director: final approvers',
+          '**Field operators**: readers',
+          '**Quality and EHS teams**: authors, local approvers, group approvers',
+          '**Group Quality Director**: final approvers',
+          '**33 industrial sites** in France',
         ],
         solution:
           '**Quality DMS on Microsoft 365** with SharePoint as the central repository, Power Automate for approval workflows, and Power Apps as the document submission interface.',
@@ -530,6 +545,9 @@ export const en: Translations = {
       {
         title: 'Extracting order numbers from thousands of invoices, automatically',
         sector: 'Pharmaceutical',
+        slug: 'extraction-factures-ocr',
+        technologies: ['Power Automate', 'AI Builder', 'SharePoint'],
+        context: 'Clearing a backlog of **10,000 PDF invoices** whose order numbers were extracted by hand, then streamlining the ongoing flow.',
         teaser: 'Automating OCR reading of incoming PDFs to clear a 10,000-invoice backlog and streamline the ongoing flow.',
         keyMetric: { val: '−90%', label: 'Manual time eliminated' },
         screenshots: [
@@ -569,6 +587,9 @@ export const en: Translations = {
       {
         title: 'Centralised bookings, processing time cut by 3',
         sector: 'Education',
+        slug: 'reservations-centralisees',
+        technologies: ['Power Apps', 'Power Automate', 'SharePoint', 'Outlook'],
+        context: 'Replacing an **email-driven** booking process for **200 teachers across 2 campuses** with an app featuring a validation workflow and accounting tracking.',
         teaser: 'Replacing an email-driven booking workflow with a mobile app featuring validation flow and accounting tracking.',
         keyMetric: { val: '÷3', label: 'Processing time' },
         screenshots: [
@@ -610,6 +631,9 @@ export const en: Translations = {
       {
         title: 'Centralising contracts and finding them in seconds',
         sector: 'Procurement',
+        slug: 'contratheque',
+        technologies: ['SharePoint', 'Power Automate', 'Forms', 'Teams'],
+        context: "Ending the scattering of the procurement team's **finalised contracts** and anticipating renewals.",
         teaser: 'Ending the scattering of finalised contracts and anticipating renewals with automatic Teams alerts.',
         keyMetric: { val: '0', label: 'Forgotten contract' },
         screenshots: [
@@ -649,6 +673,9 @@ export const en: Translations = {
       {
         title: 'Automated activity reporting, 30 minutes saved every day',
         sector: 'Consulting',
+        slug: 'reporting-automatise',
+        technologies: ['SharePoint', 'Power Automate', 'Outlook', 'AI Builder'],
+        context: "Removing a consultant's **manual daily reporting** and giving the client **real-time visibility** on days worked.",
         teaser: 'Automatically analyse sent emails and the day\'s calendar events to generate a daily activity report with no manual input.',
         keyMetric: { val: '30 min', label: 'Saved per day on reporting' },
         screenshots: [

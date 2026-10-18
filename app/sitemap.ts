@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { getAllArticlesMeta } from '@/lib/mdx'
+import { projectSlugs } from '@/lib/portfolio'
 
 const BASE_URL = 'https://juliebredeche.pro'
 
@@ -56,6 +57,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    ...projectSlugs.map((slug) => ({
+      url: `${BASE_URL}/portfolio/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
     ...articleUrls,
   ]
 }

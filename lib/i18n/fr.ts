@@ -473,9 +473,21 @@ export const fr = {
     prev: '← Précédent',
     next: 'Suivant →',
     close: 'Fermer',
+    listTitle: "Cas d'usage",
+    listAriaLabel: "Liste des cas d'usage",
+    back: "Tous les cas d'usage",
+    sectorLabel: 'Secteur',
+    technologiesLabel: 'Technologies',
+    before: 'Avant',
+    after: 'Après',
+    ctaTitle: 'Un projet similaire ?',
+    ctaButton: 'Me contacter',
     sections: {
       problem: 'Problématique métier',
-      context: 'Contexte et utilisateurs',
+      context: 'Contexte',
+      video: 'La solution en vidéo',
+      screenshots: 'La solution en images',
+      beforeAfter: 'Avant / après',
       solution: 'Solution mise en place',
       features: 'Fonctionnalités clés',
       benefits: 'Bénéfices utilisateurs',
@@ -486,7 +498,10 @@ export const fr = {
       {
         title: 'GED Qualité : 33 sites industriels, zéro document obsolète',
         sector: 'Industrie',
-        teaser: 'Déployer une GED Qualité unifiée pour harmoniser la gestion documentaire de 33 sites industriels et 3 000 collaborateurs.',
+        slug: 'ged-qualite',
+        technologies: ['SharePoint', 'Power Automate', 'Power Apps', 'Powell'],
+        context: 'Déployer une GED Qualité unifiée pour harmoniser la gestion documentaire de **33 sites industriels** et **3 500 collaborateurs**.',
+        teaser: 'Déployer une GED Qualité unifiée pour harmoniser la gestion documentaire de 33 sites industriels et 3 500 collaborateurs.',
         keyMetric: { val: '< 2 min', label: 'Pour retrouver un document Qualité' },
         screenshots: [
           { title: "1. Page d'accueil de l'app de dépôt et validation de documents" },
@@ -500,35 +515,38 @@ export const fr = {
           "Conformité **ISO 50 001** et réglementations EHS non garanties.",
         ],
         users: [
-          '3 500 collaborateurs, 33 sites industriels en France',
-          'Opérateurs terrain : lecteurs',
-          'Équipes Qualité et EHS : rédacteurs, valideurs locaux, valideurs groupe',
-          'Direction Qualité groupe : approbateurs finaux',
+          '**Opérateurs terrain** : lecteurs',
+          '**Équipes Qualité et EHS** : rédacteurs, valideurs locaux, valideurs groupe',
+          '**Direction Qualité groupe** : approbateurs finaux',
+          '**33 sites** industriels en France',
         ],
         solution:
           "**GED Qualité sur Microsoft 365** avec SharePoint comme référentiel central, Power Automate pour les circuits d'approbation et Power Apps pour l'interface de dépôt des documents.",
         features: [
-          "**Interface Power Apps** dédiée au dépôt et validation de documents, connectée au back-office SharePoint",
+          "**Interface Power Apps** dédiée au dépôt et à la validation de documents, connectée au back-office SharePoint",
           "**Référentiel centralisé** avec métadonnées obligatoires, vues filtrées par site ou thème",
-          "**Workflow d'approbation** avec un circuit de validationmulti-sites et multi-niveaux",
+          "**Workflow d'approbation** avec un circuit de validation multi-sites et multi-niveaux",
           "**Vérification des documents existants** au moment du dépôt pour éviter les doublons",
           "**Moteur de recherche Powell** intégré pour une recherche rapide et pertinente",
-          "Flux de révision des documents automatisé avec des rappels programmés"
+          "**Révision automatisée** des documents avec des rappels programmés",
         ],
         benefits: [
           "Document trouvé en moins de 2 minutes avec la **recherche et les métadonnées**",
           "Seule la **dernière version** à jour est accessible, plus de doublons ni de versions obsolètes",
-          "**Historique des versions%% et des approbations accessibles en cas d'audit",
+          "**Historique des versions et des approbations** accessible en cas d'audit",
         ],
         roi: [
-          { val: '< 2 min', label: 'Recherche d\'un document Qualité' },
+          { val: '< 2 min', label: 'Pour retrouver un document Qualité' },
           { val: '0', label: 'Document obsolète en circulation' },
-          { val: '100%', label: 'Traçabilité versions et approbations' },
+          { val: '100 %', label: 'Traçabilité des versions et des approbations' },
         ],
       },
       {
         title: 'Extraire les n° de commande de milliers de factures, automatiquement',
         sector: 'Pharmaceutique',
+        slug: 'extraction-factures-ocr',
+        technologies: ['Power Automate', 'AI Builder', 'SharePoint'],
+        context: 'Résorber un backlog de **10 000 factures PDF** dont les numéros de commande étaient extraits à la main, puis fluidifier le flux courant.',
         teaser: "Automatiser via OCR la lecture de PDF entrants pour résorber un backlog de 10 000 factures et fluidifier le flux courant.",
         keyMetric: { val: '−90%', label: 'Temps manuel éliminé' },
         screenshots: [
@@ -568,6 +586,9 @@ export const fr = {
       {
         title: 'Réservations centralisées, délai de traitement divisé par 3',
         sector: 'Éducation',
+        slug: 'reservations-centralisees',
+        technologies: ['Power Apps', 'Power Automate', 'SharePoint', 'Outlook'],
+        context: 'Remplacer un circuit de réservations géré **par mail** pour **200 professeurs sur 2 campus** par une application avec workflow de validation et suivi comptable.',
         teaser: "Remplacer un circuit de réservations géré par mail par une app mobile avec workflow de validation et suivi comptable.",
         keyMetric: { val: '÷3', label: 'Délai de traitement' },
         screenshots: [
@@ -609,6 +630,9 @@ export const fr = {
       {
         title: 'Centraliser les contrats et les retrouver en quelques secondes',
         sector: 'Achats',
+        slug: 'contratheque',
+        technologies: ['SharePoint', 'Power Automate', 'Forms', 'Teams'],
+        context: 'Mettre fin à la dispersion des **contrats finalisés** du service Achats et anticiper les renouvellements.',
         teaser: "Mettre fin à la dispersion des contrats finalisés et anticiper les renouvellements grâce à des alertes Teams automatiques.",
         keyMetric: { val: '0', label: 'Contrat oublié' },
         screenshots: [
@@ -648,6 +672,9 @@ export const fr = {
       {
         title: 'Reporting automatisé, 30 min gagnées par jour',
         sector: 'Conseil',
+        slug: 'reporting-automatise',
+        technologies: ['SharePoint', 'Power Automate', 'Outlook', 'AI Builder'],
+        context: "Supprimer le **reporting quotidien manuel** d'une consultante en mission et donner au client une **visibilité en temps réel** sur les jours travaillés.",
         teaser: 'Analyser automatiquement les emails envoyés et l\'agenda du jour pour générer un rapport d\'activité automatisé',
         keyMetric: { val: '30 min', label: 'Gagnées par jour sur le reporting' },
         screenshots: [
