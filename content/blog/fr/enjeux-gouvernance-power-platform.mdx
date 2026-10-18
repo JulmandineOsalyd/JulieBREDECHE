@@ -1,0 +1,92 @@
+---
+title: "Power Platform : Les enjeux de gouvernance à l'ère des citizen developers"
+metaTitle: "Enjeux de gouvernance Power Platform et citizen developers"
+metaDescription: "Les métiers deviennent développeurs, et la gouvernance Power Platform ne peut plus être celle d'un IT classique. Découvrez les 4 enjeux à anticiper côté DSI."
+slug: "enjeux-gouvernance-power-platform"
+canonical: "https://juliebredeche.pro/blog/enjeux-gouvernance-power-platform"
+date: "2026-10-05"
+category: ["Power Apps","Power Automate"]
+excerpt: "Visibilité, sécurité, capacité, dette technique : les 4 enjeux que la DSI ne peut plus ignorer depuis que les métiers créent leurs propres apps."
+readingTime: 3
+tags: ["Power Platform", "Gouvernance", "Citizen Developer"]
+featured: true
+send_newsletter: true
+draft: false
+---
+
+Une personne crée une automatisation pour gagner du temps. Elle fonctionne bien et tout son service s'en sert chaque jour. Puis cette personne quitte l'entreprise, et son automatisation ne fonctionne plus.
+
+Ce cas arrive plus souvent qu'on ne le pense, et la DSI n'avait jamais entendu parler de cet « outil » alors qu'un service entier en dépendait.
+
+---
+
+## 1. Power Platform sans gouvernance, un terrain de jeu ouvert
+
+Par défaut, Power Platform est ouverte : tout utilisateur disposant d'une licence Microsoft 365 peut créer des apps et des flux, sauf restriction mise en place par l'entreprise.
+
+Sans cadre, j'observe fréquemment la même chose :
+
+- Les flux Power Automate s'accumulent dans l'environnement par défaut
+- Des automatisations tournent avec des **identifiants personnels**
+- Rien n'est documenté et la DSI n'a pas connaissance de ces outils
+
+> **Le problème n'est pas que les métiers créent des automatisations. C'est que personne ne sait ce qu'ils ont créé.**
+
+---
+
+## 2. Un nouveau paradigme : les métiers deviennent « développeurs »
+
+Avec Power Platform, on assiste à l'émergence des **citizen developers**. Ce sont des équipes opérationnelles qui connaissent le besoin mieux que quiconque. Elles construisent vite et ne dépendent plus de la DSI.
+
+Mais ce n'est pas une gouvernance IT classique. Le tableau montre l'écart :
+
+| | Gestion de projet IT classique | Projet citizen developers |
+|---|---|---|
+| Qui crée | L'IT, sur demande | Les métiers, en autonomie |
+| Délai | Semaines ou mois | Immédiat, sans file d'attente |
+| Validation | Avant la mise en production | Souvent aucune |
+| Propriétaire | Une équipe identifiée | Une seule personne |
+
+Les métiers construisent vite, seuls et sans validation. La question est de savoir ce que la DSI doit maîtriser, sans empêcher les métiers de devenir proactifs.
+
+---
+
+## 3. De nouveaux enjeux à maîtriser
+
+J'identifie quatre enjeux majeurs liés à l'émergence de Power Platform et des citizen developers.
+
+### Enjeu 01 : éviter le shadow IT
+
+Comment avoir de la **visibilité sur les créations des citizen developers**, sans les empêcher d'être autonomes ? Interdire ne ferait que déplacer les usages en dehors du champ de vision de la DSI.
+
+### Enjeu 02 : limiter les failles de sécurité
+
+Des flux peuvent être connectés à des systèmes critiques sans aucune revue de sécurité. Sans politique DLP ni règles claires, **un flux mal configuré peut exposer des données sensibles**.
+
+### Enjeu 03 : maîtriser la capacité et les crédits Copilot
+
+Les créations des citizen developers consomment peu à peu le stockage Dataverse, commun à tout le tenant, et l'IA ajoute une consommation de **crédits Copilot** (voir [la facturation de Copilot Studio](/blog/modele-facturation-copilot-studio)). Sans suivi, la DSI s'expose à des restrictions ou à une facture imprévue.
+
+### Enjeu 04 : réduire la dette technique
+
+Des apps critiques sont construites vite, sans documentation, et reposent parfois sur un seul citizen developer. Quand cette personne quitte l'entreprise, plus personne ne sait les maintenir et **le métier se retrouve pénalisé**.
+
+---
+
+## 4. Points de vigilance pour la DSI
+
+Avant de bâtir quoi que ce soit, cinq pièges à éviter :
+
+- **Intervenir trop tard**, quand de nombreuses apps existent déjà et que le rattrapage devient coûteux
+- **Choisir le blocage**, car le shadow IT se déplace alors hors de la vue de la DSI
+- **Négliger la formation des citizen developers**, car sans explication, personne ne sait ce qui est autorisé
+- **Laisser la supervision de côté**, alors qu'une gouvernance se définit dans la durée
+- **Sous-estimer Copilot Studio**, dont les agents créent de nouveaux usages et réclament des règles dédiées, en plus de celles des apps et des flux
+
+---
+
+## Ma conclusion
+
+Les citizen developers apportent de la rapidité et de l'autonomie, mais sans cadre ces atouts deviennent des risques pour la DSI. Avant de choisir des outils, la première décision à prendre est de savoir qui porte le cadre et l'accompagnement des métiers.
+
+Dans mon prochain article, je présenterai les 5 piliers qui permettent d'y répondre.

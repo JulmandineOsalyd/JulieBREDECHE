@@ -17,6 +17,7 @@ export default function Nav() {
     { href: '/blog', label: t.nav.blog },
     { href: '/services', label: t.nav.services },
     { href: '/portfolio', label: t.nav.portfolio },
+    { href: '/outils', label: t.nav.tools, highlight: true },
   ]
 
   return (
@@ -78,13 +79,13 @@ export default function Nav() {
           style={{ gap: '1.75rem', alignItems: 'center' }}
           className="hidden md:flex"
         >
-          {links.map(({ href, label }) => {
+          {links.map(({ href, label, highlight }) => {
             const active = pathname === href || (href !== '/' && pathname.startsWith(href))
             return (
               <Link
                 key={href}
                 href={href}
-                className={`nav-link${active ? ' active' : ''}`}
+                className={`nav-link${highlight ? ' nav-link-tools' : ''}${active ? ' active' : ''}`}
               >
                 {label}
               </Link>
@@ -94,42 +95,6 @@ export default function Nav() {
 
         {/* CTA + language switcher */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          {/* Language switcher */}
-          <div
-            className="hidden md:flex"
-            style={{
-              alignItems: 'center',
-              gap: '2px',
-              background: 'var(--off)',
-              border: '1px solid var(--border)',
-              borderRadius: '8px',
-              padding: '2px',
-            }}
-          >
-            {(['fr', 'en'] as Locale[]).map((lang) => (
-              <button
-                key={lang}
-                onClick={() => setLocale(lang)}
-                aria-label={lang === 'fr' ? 'Passer en français' : 'Switch to English'}
-                style={{
-                  padding: '0.2rem 0.55rem',
-                  borderRadius: '6px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontSize: '0.72rem',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.04em',
-                  transition: 'all 0.15s ease',
-                  background: locale === lang ? 'var(--grad)' : 'transparent',
-                  color: locale === lang ? 'white' : 'var(--muted)',
-                }}
-              >
-                {lang}
-              </button>
-            ))}
-          </div>
-
           <Link
             href="/contact"
             className="btn-primary hidden md:inline-flex"
@@ -137,6 +102,38 @@ export default function Nav() {
           >
             {t.nav.contact}
           </Link>
+
+          {/* Language switcher */}
+          <div
+            className="hidden md:flex"
+            style={{ alignItems: 'center', gap: '0.35rem', marginLeft: '0.25rem' }}
+          >
+            {(['fr', 'en'] as Locale[]).map((lang, i) => (
+              <span key={lang} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                {i > 0 && <span aria-hidden="true" style={{ color: 'var(--border)', fontSize: '0.7rem' }}>/</span>}
+                <button
+                  onClick={() => setLocale(lang)}
+                  aria-label={lang === 'fr' ? 'Passer en français' : 'Switch to English'}
+                  aria-pressed={locale === lang}
+                  style={{
+                    padding: 0,
+                    border: 'none',
+                    background: 'none',
+                    cursor: 'pointer',
+                    fontSize: '0.7rem',
+                    fontWeight: locale === lang ? 700 : 500,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    color: locale === lang ? 'var(--c3)' : 'var(--muted)',
+                    opacity: locale === lang ? 1 : 0.7,
+                    transition: 'color 0.15s ease, opacity 0.15s ease',
+                  }}
+                >
+                  {lang}
+                </button>
+              </span>
+            ))}
+          </div>
 
           {/* Mobile hamburger */}
           <button
@@ -183,7 +180,7 @@ export default function Nav() {
           }}
           className="md:hidden animate-fadeUp"
         >
-          {links.map(({ href, label }) => {
+          {links.map(({ href, label, highlight }) => {
             const active = pathname === href || (href !== '/' && pathname.startsWith(href))
             return (
               <Link
@@ -192,8 +189,8 @@ export default function Nav() {
                 onClick={() => setMenuOpen(false)}
                 style={{
                   padding: '0.6rem 0',
-                  fontWeight: active ? 700 : 500,
-                  color: active ? 'var(--c3)' : 'var(--ink)',
+                  fontWeight: active || highlight ? 700 : 500,
+                  color: highlight ? 'var(--c2)' : active ? 'var(--c3)' : 'var(--ink)',
                   textDecoration: 'none',
                   borderBottom: '1px solid var(--border)',
                   fontSize: '0.95rem',

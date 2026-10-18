@@ -1,0 +1,133 @@
+---
+title: "Stockage SharePoint saturé : les 3 leviers à actionner avant d'acheter plus d'espace"
+metaTitle: "Stockage SharePoint saturé : 3 leviers avant d'acheter"
+metaDescription: "Votre tenant Microsoft 365 déborde ? Voici pourquoi le stockage SharePoint explose et 3 leviers concrets à actionner, du plus simple au plus structurel."
+slug: "stockage-sharepoint-sature-leviers"
+canonical: "https://juliebredeche.pro/blog/stockage-sharepoint-sature-leviers"
+date: "2026-08-27"
+category: "SharePoint"
+parentTag: "SharePoint"
+excerpt: "Avant d'acheter du stockage supplémentaire, il existe 3 leviers concrets pour reprendre la main sur un tenant SharePoint saturé."
+readingTime: 4
+tags: ["SharePoint", "Gouvernance", "PowerShell", "Stockage"]
+featured: true
+send_newsletter: true
+draft: false
+---
+
+Chez presque tous mes clients, je constate la même problématique : le quota de stockage SharePoint approche dangereusement de son maximum.
+
+⚠️ **Une fois le quota de stockage dépassé, le tenant passe en lecture seule. Plus de création ni de modification, seulement consultation et suppression.**
+
+Trois mécanismes cumulés expliquent le plus souvent l'explosion du stockage :
+
+- **Le versioning des fichiers** : chaque modification crée une version. Un PowerPoint peut vite atteindre 20 Go.
+- **Les fichiers volumineux** : vidéos de formation, scans haute résolution pèsent bien plus lourd que la bureautique classique.
+- **Les sites inactifs** : projet terminé, site oublié, mais toujours là à accumuler du contenu.
+
+Le premier réflexe, c'est d'acheter plus d'espace. Mais le problème reviendra rapidement si aucune action de fond n'est mise en place.
+
+---
+
+## Comment le stockage SharePoint est calculé ?
+
+Avant d'agir, un point de repère. Le stockage SharePoint fonctionne sur un pool mutualisé, pas site par site.
+
+La formule officielle : **1 To de base par organisation, plus 10 Go par licence éligible achetée** (Business, Enterprise, etc.). Un tenant de 100 utilisateurs licenciés dispose donc de 1 To + 1 To (100 x 10 Go), soit **2 To au total**.
+
+![Calcul du quota de stockage SharePoint dans le centre d'administration Microsoft 365](/images/blog/stockage-sharepoint-storage-quota.png)
+
+Ce pool de stockage est partagé entre tous les sites SharePoint du tenant. Les quotas OneDrive des utilisateurs sont individuels, séparés de ce pool SharePoint : 1 To en moyenne selon la licence Microsoft.
+
+**Trois leviers rapides permettent de reprendre la main sur votre stockage SharePoint.**
+
+---
+
+## 1. Activer la gestion manuelle des quotas de stockage SharePoint
+
+En mode automatique, un site peut absorber une part importante du pool sans aucun garde-fou. <a href="https://learn.microsoft.com/fr-fr/sharepoint/manage-site-collection-storage-limits" target="_blank" rel="noopener noreferrer">Basculer en mode Manuel</a> dans le centre d'administration SharePoint change la donne.
+
+![Réglage du mode de gestion du stockage dans le centre d'administration SharePoint](/images/blog/stockage-sharepoint-storage-management.png)
+
+Les nouveaux sites reçoivent alors un quota par défaut défini par l'organisation, pas un plafond théorique de 25 To. **25 à 100 Go suffisent en général pour un site collaboratif standard**, à ajuster pour les espaces documentaires ou médias plus lourds.
+
+La bascule se joue en deux temps.
+
+- **Fixer le standard pour les nouveaux sites** : un quota initial adapté aux usages courants.
+- **Revoir les sites existants** : exporter la liste des sites et de leur consommation, puis appliquer des plafonds cohérents.
+
+⚠️ Ce levier ne réduit pas le stockage déjà consommé, il encadre la croissance future. Une fois en mode manuel, c'est un sujet de gouvernance continue : suivi des alertes, traitement des demandes d'extension.
+
+---
+
+## 2. Limiter le versioning et nettoyer l'historique des versions
+
+C'est très souvent par ce biais que l'on peut récupérer le plus de stockage.
+
+### Régler le versioning en amont
+
+Beaucoup de bibliothèques SharePoint conservent 500 versions d'un document par défaut. Réduire ce nombre à 50 ou 100 versions couvre déjà la grande majorité des besoins de retour arrière.
+
+![Réglage du nombre de versions conservées dans une bibliothèque SharePoint](/images/blog/stockage-sharepoint-versionning.png)
+
+Microsoft propose aussi une alternative intéressante : les <a href="https://learn.microsoft.com/fr-fr/sharepoint/plan-version-storage#determine-default-version-limits-for-new-document-libraries-in-your-organization" target="_blank" rel="noopener noreferrer">limites de version automatiques</a>. Plutôt qu'un nombre fixe, l'algorithme dégraisse lui-même les versions intermédiaires les moins utiles, tout en gardant un historique récent complet. Un vrai sujet, que je détaillerai dans un prochain article.
+
+### Nettoyer l'historique déjà accumulé
+
+Modifier ce paramètre ne supprime pas les versions déjà stockées. Il faut un nettoyage a posteriori : un script PowerShell qui parcourt les bibliothèques, repère et supprime les versions au-delà d'un certain seuil.
+
+⚠️ **L'étape qui inquiète le plus les utilisateurs. Supprimer des versions, c'est supprimer de l'historique.**
+
+Trois précautions avant d'exécuter quoi que ce soit.
+
+- **Communiquer avant, jamais après.** Prévenir les équipes concernées que d'anciennes versions vont disparaître, et pourquoi.
+- **Garder une trace de ce qui est supprimé.** Un log détaillé (fichier, nombre de versions supprimées, date) répond à toute question a posteriori.
+- **Tester sur un site pilote.** Lancer le nettoyage sur un seul site avant de généraliser à tout le tenant.
+
+---
+
+## 3. Archiver ou supprimer les sites inactifs et volumineux
+
+Un site inactif n'est pas forcément un site inutile : dossiers projets clôturés, archives contractuelles... C'est un candidat à revue, pas un site à supprimer d'office.
+
+Dans la plupart des tenants que j'audite, une minorité de sites concentre l'essentiel du stockage consommé. Trois signaux pour constituer la liste de revue :
+
+- **Le stockage consommé :** prioriser les sites les plus volumineux qui permettent un gain rapide et efficace.
+- **L'absence d'activité récente :** 6 à 12 mois sans activité, un point de départ à ajuster selon le métier.
+- **Les sites orphelins :** Un site sans propriétaire est un signal fort : personne ne validera jamais son maintien, ni ses obligations de rétention.
+
+Il conviendra ensuite de conserver, archiver ou supprimer ces sites, selon la réponse du propriétaire et les règles de conservation applicables.
+
+---
+
+## Pour aller plus loin : penser le stockage en continu
+
+Les leviers précédents nettoient l'existant et permettent de gagner un peu de temps. Il devient essentiel de **mettre en place une réelle gouvernance** pour ne plus se laisser dépasser.
+
+### Automatiser la rétention des sites inactifs
+
+Des règles de rétention et de cycle de vie sur les sites SharePoint permettent d'agir en continu, sans intervention manuelle répétée. Elles se basent sur l'ancienneté du site, l'absence d'activité, ou l'absence de propriétaire actif.
+
+<a href="https://learn.microsoft.com/fr-fr/sharepoint/inactive-site-policy" target="_blank" rel="noopener noreferrer">La gestion avancée de SharePoint (SAM)</a> permet d'automatiser le processus de détection des sites inactifs. Mais cela implique un coût supplémentaire ainsi que d'avoir mis en place Microsoft 365 Archive.
+
+### Mettre en place une solution d'archivage
+
+Avoir une solution d'archivage désamorce la réticence à la suppression : le contenu n'est pas perdu, seulement déplacé vers un stockage moins coûteux, et réactivable en cas de besoin.
+
+<a href="https://learn.microsoft.com/fr-fr/microsoft-365/archive/archive-overview" target="_blank" rel="noopener noreferrer">Microsoft 365 Archive</a> propose un stockage froid 75% moins cher que le stockage actif. Ce surcoût ne s'applique d'ailleurs que si le stockage total du tenant dépasse le quota déjà inclus. Les métadonnées, permissions et versions sont conservées lors de l'archivage.
+
+D'autres solutions, internes ou tierces, peuvent remplir le même rôle. L'essentiel est d'avoir un outil d'archivage avant de lancer une politique de nettoyage à grande échelle.
+
+### Penser le cycle de vie des espaces dès leur création
+
+Un espace de travail devrait avoir une durée de vie pensée dès sa création : typologie d'espaces prédéfinie, politique de nommage claire, date de revue obligatoire. Une gouvernance qui suppose, en amont, un provisioning automatisé des sites SharePoint et des équipes Teams.
+
+⚠️ Ces leviers demandent un travail de gouvernance en amont, porté avec les équipes IT et métier. Pas des quick wins, un investissement qui évite de refaire cet article dans un an.
+
+---
+
+## Ma conclusion
+
+Acheter plus de stockage sans comprendre ce qui le consomme, c'est repousser le problème. Pas le résoudre.
+
+Ces leviers reflètent ce que j'observe le plus souvent chez mes clients, pas une liste exhaustive. On pourrait aller plus loin encore : sensibiliser les collaborateurs à la conservation des données au regard du RGPD, ou orienter certains types de fichiers, médias, exports techniques, vers des solutions de stockage dédiées.

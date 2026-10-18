@@ -2,19 +2,11 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import type { ArticleMeta } from '@/lib/mdx'
 import { useTranslation } from '@/lib/i18n'
+import { clients } from '@/lib/clients'
 
-const clients = ['TotalEnergies', 'PwC', 'Sacem', 'BPI France', 'Groupama', 'Medtronic', 'PMU', 'Candriam']
-
-export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta }) {
+export default function HeroHome() {
   const { t } = useTranslation()
-
-  const stats = [
-    { value: '10+', label: t.hero.stats.experience },
-    { value: '15+', label: t.hero.stats.clients },
-    { value: '100%', label: t.hero.stats.satisfaction },
-  ]
 
   return (
     <section
@@ -168,38 +160,36 @@ export default function HeroHome({ lastArticle }: { lastArticle?: ArticleMeta })
             </div>
           </div>
 
-          {/* Stats */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
-            {stats.map(({ value, label }) => (
-              <div
-                key={label}
-                style={{
-                  background: 'var(--off)',
-                  border: '1px solid var(--border)',
-                  borderRadius: '12px',
-                  padding: '0.75rem 0.5rem',
-                  textAlign: 'center',
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: 'var(--font-lora), Georgia, serif',
-                    fontWeight: 700,
-                    fontSize: '1.3rem',
-                    background: 'var(--grad)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    lineHeight: 1.2,
-                  }}
-                >
-                  {value}
-                </div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--muted)', lineHeight: 1.3, marginTop: '0.2rem' }}>
-                  {label}
-                </div>
-              </div>
-            ))}
+          {/* Experience counter */}
+          <div
+            style={{
+              alignSelf: 'flex-start',
+              display: 'flex',
+              alignItems: 'baseline',
+              gap: '0.5rem',
+              background: 'var(--off)',
+              border: '1px solid var(--border)',
+              borderRadius: '10px',
+              padding: '0.4rem 0.8rem',
+            }}
+          >
+            <span
+              style={{
+                fontFamily: 'var(--font-lora), Georgia, serif',
+                fontWeight: 700,
+                fontSize: '1.1rem',
+                background: 'var(--grad)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                lineHeight: 1.2,
+              }}
+            >
+              10+
+            </span>
+            <span style={{ fontSize: '0.72rem', color: 'var(--muted)', lineHeight: 1.3 }}>
+              {t.hero.cardExperience}
+            </span>
           </div>
 
           {/* Clients strip */}

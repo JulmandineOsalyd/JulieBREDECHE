@@ -7,6 +7,7 @@ export const en: Translations = {
     blog: 'Blog',
     services: 'Services',
     portfolio: 'Portfolio',
+    tools: 'Tools',
     contact: 'Contact me',
     homeLabel: 'Julie BREDECHE — Home',
     openMenu: 'Open menu',
@@ -27,11 +28,7 @@ export const en: Translations = {
     cta2: 'Read my articles ↓',
     clients: 'They trusted me:',
     cardSubtitle: 'Independent Consultant',
-    stats: {
-      experience: 'years of experience',
-      clients: 'clients',
-      satisfaction: 'satisfaction rate',
-    },
+    cardExperience: 'years of experience',
   },
 
   offers: {
@@ -221,47 +218,21 @@ export const en: Translations = {
       'My adventure with Microsoft 365 began in 2014, when I took part in deploying the largest SharePoint intranet for a major energy group. I was immediately drawn to the power and endless possibilities of SharePoint! I quickly specialised in process automation with SharePoint Designer and Nintex, before Power Automate arrived.',
       'After joining a consulting firm specialised in Microsoft 365 tools and completing missions for several large accounts, I founded Osalyd Consulting in 2020. This entrepreneurial freedom allowed me to focus on my areas of excellence: SharePoint and the Power Platform.',
       'The gap between what technology can do and what teams know how to do with it remains significant. That is where I make a difference, turning business needs into concrete solutions integrated into the M365 ecosystem.',
-      'With a business school background, I can naturally engage with business teams. My innate appetite for technology has allowed me to master in depth the Microsoft 365 technologies I deploy.',
+      'With a business school background, I speak the language of the business and quickly turn their needs into concrete solutions. My taste for technology has allowed me to master the Microsoft 365 technologies in depth.',
     ],
-    approachTitle: 'My Approach',
-    approach: [
+    clientsTitle: 'They trusted me',
+    testimonials: [
       {
-        title: 'Tailored Design',
-        items: [
-          'Listening to business challenges',
-          'Precise requirements scoping',
-          'Adapted architecture',
-          'Scalable solutions',
-          'Working prototype',
-        ],
+        quote: "Julie is a brilliant consultant, combining technical skills with operational and project management capacities. Her strong knowledge related to SharePoint Online and OneDrive products helped us to put in place efficient delivery activities, as well as technical standards and process to be used at the Group level. She's also concerned by user experience and quality of service. In addition, she's a very enthusiastic and flexible person, with whom it is very pleasant to work.",
+        author: 'Benoît Lassalle',
+        role: 'Head of IT and Digital for US multi-energy Trading affiliates, TotalEnergies',
       },
       {
-        title: 'Added Value',
-        items: [
-          'Dual technical/business expertise',
-          'Accessible language for non-technical stakeholders',
-          'Technical & budget trade-offs',
-          'Methodological rigour',
-          'SharePoint/Power Platform expertise',
-        ],
-      },
-      {
-        title: 'Scope of Intervention',
-        items: [
-          'End-to-end project management',
-          'Solution architecture',
-          'Development and design',
-          'Process optimisation',
-          'Change management support',
-        ],
+        quote: "Beyond her excellent command of SharePoint and Power Automate, Julie demonstrates real professionalism and a strong ability to adapt in a constantly evolving business context. Her rigour, curiosity and creativity are undeniable assets that have greatly contributed to the success of our projects. I highly recommend Julie for any demanding mission requiring technical expertise combined with a functional, methodical and innovative approach.",
+        author: 'Arnaud Chaloine',
+        role: 'Project Lead, Groupama Centre-Atlantique',
       },
     ],
-    cta: {
-      titlePre: 'Do you have a',
-      titlePost: 'project?',
-      description: "Let's discuss your needs and see how I can help.",
-      button: 'Contact me',
-    },
     linkedin: 'LinkedIn',
   },
 
@@ -360,22 +331,6 @@ export const en: Translations = {
       ],
       cta: 'Request a coaching session',
     },
-    testimonials: {
-      label: 'Testimonials',
-      title: 'They trusted me',
-      items: [
-        {
-          quote: "Julie is a brilliant consultant, combining technical skills with operational and project management capacities. Her strong knowledge related to SharePoint Online and OneDrive products helped us to put in place efficient delivery activities, as well as technical standards and process to be used at the Group level. She's also concerned by user experience and quality of service. In addition, she's a very enthusiastic and flexible person, with whom it is very pleasant to work.",
-          author: 'Benoît Lassalle',
-          role: 'Head of IT and Digital for US multi-energy Trading affiliates, TotalEnergies',
-        },
-        {
-          quote: "Beyond her excellent command of SharePoint and Power Automate, Julie demonstrates real professionalism and a strong ability to adapt in a constantly evolving business context. Her rigour, curiosity and creativity are undeniable assets that have greatly contributed to the success of our projects. I highly recommend Julie for any demanding mission requiring technical expertise combined with a functional, methodical and innovative approach.",
-          author: 'Arnaud Chaloine',
-          role: 'Project Lead, Groupama Centre-Atlantique',
-        },
-      ],
-    },
     method: {
       label: 'Methodology',
       title: 'My 6-step method',
@@ -384,60 +339,59 @@ export const en: Translations = {
         {
           n: '01',
           title: 'Understand the need',
-          text: 'Before talking solutions, I ask the right questions: how many users, what volume, any external users? This validates technical feasibility and identifies constraints from the start.',
+          text: 'The right questions before talking solutions.',
         },
         {
           n: '02',
           title: 'Scope and estimate',
-          text: 'I identify key features by user journey, then provide an estimate. Most of my projects total 20 to 30 days of work.',
+          text: 'Key features by user journey, clear estimate.',
         },
         {
           n: '03',
           title: 'Diagram and validate',
-          text: 'I map processes and create wireframes directly in Power Apps. The result: the client understands the logic, refines their needs and I know the order to proceed.',
+          text: 'Diagrams and Power Apps wireframes to validate the logic.',
         },
         {
           n: '04',
           title: 'Agile development',
-          text: 'As soon as a feature is ready, I present it and let the client test it while I continue. If new needs emerge, we decide together without exceeding the estimate.',
+          text: 'Regular demos, decisions made together within the estimate.',
         },
         {
           n: '05',
           title: 'Test and deploy',
-          text: 'End-to-end testing, pilot users, test scripts for complex business rules. Complete technical and functional documentation delivered with the project.',
+          text: 'Testing, pilot users and documentation delivered.',
         },
         {
           n: '06',
           title: 'Maintain and evolve',
-          text: 'Error management, incident reporting, and an optional annual package covering bug fixes and minor updates.',
+          text: 'Incident follow-up and an optional annual package.',
         },
       ],
     },
-    tool: {
-      label: 'Side project',
-      title: 'OneDrive Path Checker',
-      p1: 'Developed for my SharePoint migration projects, this tool <strong>detects file paths that are too long</strong> before they cause OneDrive sync errors.',
-      p2: 'Available on the <strong>Microsoft Store</strong>.',
-      cta: 'Discover the tool →',
-      features: [
-        {
-          title: 'Done in 3 minutes, no PowerShell',
-          text: 'No scripts, no admin rights needed',
-        },
-        {
-          title: 'Detects both critical limits',
-          text: 'SharePoint migrations (>400) and OneDrive sync (>255 characters)',
-        },
-        {
-          title: 'Built-in remediation & exports',
-          text: 'Rename files directly or export to Excel / PDF',
-        },
-        {
-          title: '100% local & secure',
-          text: 'No content read, no data sent',
-        },
-      ],
+    realisations: {
+      text: 'Want to see how this plays out in practice?',
+      cta: 'See my work →',
     },
+  },
+
+  tools: {
+    label: 'Free resources',
+    title: 'Tools',
+    description: 'Two free tools born from my SharePoint and Power Platform projects.',
+    items: [
+      {
+        title: 'OneDrive Path Checker',
+        text: 'Detects file paths that are too long before they block OneDrive sync. Available on the Microsoft Store.',
+        cta: 'Discover the tool →',
+        href: '/outils/onedrive-path-checker',
+      },
+      {
+        title: 'SharePoint or Power Apps?',
+        text: 'A 6-question quiz to find out which solution fits your process.',
+        cta: 'Take the quiz →',
+        href: '/outils/sharepoint-ou-power-apps',
+      },
+    ],
   },
 
   contact: {
@@ -492,8 +446,8 @@ export const en: Translations = {
     serieIntro: 'The series to understand Copilot, from prompting to deployment.',
     serieViewAll: (_n: number) => `View all episodes →`,
     recentTitle: 'Latest articles',
-    archivesDivider: 'Explore the full archives',
-    searchPlaceholder: 'Search an article — e.g. OneDrive, agent, prompting…',
+    archivesTitle: 'Archives',
+    searchPlaceholder: 'Search an article...',
     searchCount: (n: number) => (n > 1 ? `${n} articles` : `${n} article`),
     searchResults: (n: number) => (n > 1 ? `${n} results` : `${n} result`),
     searchEmpty: 'No article matches your search.',
@@ -690,6 +644,47 @@ export const en: Translations = {
           { val: '÷3', label: 'Search time' },
           { val: '✓', label: 'Stronger governance' },
           { val: '0', label: 'Forgotten contracts' },
+        ],
+      },
+      {
+        title: 'Automated activity reporting, 30 minutes saved every day',
+        sector: 'Consulting',
+        teaser: 'Automatically analyse sent emails and the day\'s calendar events to generate a daily activity report with no manual input.',
+        keyMetric: { val: '30 min', label: 'Saved per day on reporting' },
+        screenshots: [
+          { title: '1. SharePoint calendar view with automatically generated events' },
+          { title: '2. SharePoint list view with extractable presence data' },
+          { title: '3. Power Automate flow extract – AI Builder step' },
+        ],
+        problem: [
+          'A **time-consuming** daily **reporting** routine.',
+          'When forgotten, some days had to be logged retrospectively.',
+          '**Keeping the client regularly informed** of days off.',
+          'A **stream of emails** stored by the client to track the consultant\'s activity.',
+        ],
+        users: [
+          '1 independent consultant working 3.5 days per week on-site',
+          '1 client needing daily activity reporting and visibility on days worked',
+        ],
+        solution:
+          'Each evening, a **Power Automate flow** analyses the Outlook calendar and sent emails, then automatically generates an activity report in a **SharePoint calendar** shared with the client.',
+        features: [
+          '**Presence and absence days** are detected automatically from the Outlook calendar',
+          'An event is created in the **SharePoint calendar** for each day of presence',
+          'Sent emails are analysed by **AI Builder** to produce an activity summary',
+          'The summary is automatically added to the **calendar event** for that day',
+          'The client can **export to Excel** the full activity history at any time',
+        ],
+        benefits: [
+          '**No manual entry** at the end of the day',
+          'A **single source of truth** accessible in real time by the client',
+          'Automatic update of absence days',
+          'An **on-demand Excel export** for billing data comparison',
+        ],
+        roi: [
+          { val: '30 min/d', label: 'Saved on reporting' },
+          { val: 'Ø', label: 'Missing report' },
+          { val: '1 source', label: 'Of truth shared with the client' },
         ],
       },
     ],

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Quiz from './Quiz'
 
 export const metadata: Metadata = {
-  title: 'SharePoint ou Power Apps ? Le quiz pour choisir — Julie Bredeche',
+  title: 'SharePoint ou Power Apps ? Le quiz pour choisir',
   description:
     'Répondez à 6 questions sur votre processus et obtenez une recommandation personnalisée : SharePoint, Power Apps, ou les deux.',
   openGraph: {
@@ -33,7 +33,6 @@ export default function SharePointOuPowerAppsPage() {
               marginBottom: '1.5rem',
             }}
           >
-            <span style={{ fontSize: '1rem' }} aria-hidden="true">🛠️</span>
             <span
               style={{
                 fontSize: '0.82rem',
@@ -68,7 +67,7 @@ export default function SharePointOuPowerAppsPage() {
               margin: '0 auto 2rem',
             }}
           >
-            6 questions sur votre processus, et vous obtenez une recommandation adaptée à votre situation — avec les points d&apos;attention à ne pas rater.
+            6 questions sur votre processus, et vous obtenez une recommandation adaptée à votre situation, avec les points d&apos;attention à ne pas rater.
           </p>
           <a href="#quiz" className="btn-primary">
             Démarrer le quiz ↓

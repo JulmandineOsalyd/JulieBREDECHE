@@ -1,12 +1,11 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'OneDrive Path Checker — Chemins de fichiers trop longs',
+  title: 'OneDrive Path Checker : chemins de fichiers trop longs',
   description:
     'Détectez les chemins OneDrive >260 caractères qui bloquent la synchronisation. Analyse 100% locale, export CSV, remédiation intégrée.',
   openGraph: {
-    title: 'OneDrive Path Checker — Chemins de fichiers trop longs',
+    title: 'OneDrive Path Checker : chemins de fichiers trop longs',
     description:
       'Détectez les chemins OneDrive >260 caractères qui bloquent la synchronisation. Analyse 100% locale, export CSV, remédiation intégrée.',
     url: 'https://juliebredeche.pro/outils/onedrive-path-checker',
@@ -15,24 +14,48 @@ export const metadata: Metadata = {
 }
 
 const features = [
-  { icon: '📂', title: 'Analyse récursive', text: 'Parcourt tous les sous-dossiers de votre arborescence pour trouver les chemins problématiques.' },
-  { icon: '⚡', title: 'Résultats instantanés', text: 'Traitement côté navigateur uniquement, aucun fichier n\'est envoyé sur un serveur.' },
-  { icon: '📋', title: 'Export CSV', text: 'Exportez la liste des fichiers problématiques pour planifier votre nettoyage.' },
-  { icon: '🎯', title: 'Seuil configurable', text: 'Paramétrez le seuil d\'alerte selon votre contexte (défaut : 260 caractères).' },
-]
-
-const faqItems = [
   {
-    q: 'Pourquoi les chemins longs posent-ils problème dans OneDrive ?',
-    a: 'Windows et OneDrive ont une limite de 260 caractères pour les chemins de fichiers (chemin complet + nom de fichier). Au-delà, les fichiers ne se synchronisent plus et vous obtenez des erreurs silencieuses. Ce problème est particulièrement fréquent lors des migrations depuis des serveurs de fichiers avec des arborescences profondes.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" stroke="var(--c3)">
+        <circle cx="11" cy="11" r="7" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        <polyline points="8 11 10.5 13.5 14 9" />
+      </svg>
+    ),
+    title: 'Scans illimités',
+    text: 'Avec score de conformité et répartition par gravité.',
   },
   {
-    q: 'L\'outil envoie-t-il mes fichiers sur Internet ?',
-    a: 'Non. L\'outil fonctionne entièrement dans votre navigateur (JavaScript côté client). Vos fichiers ne quittent jamais votre ordinateur. Seuls les noms et chemins des fichiers sont analysés, pas leur contenu.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" stroke="var(--c2)">
+        <path d="M12 20h9" />
+        <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+      </svg>
+    ),
+    title: 'Renommage guidé',
+    text: "L'élément le plus long est déjà sélectionné, la jauge montre le gain en direct.",
   },
   {
-    q: 'Quelle est la limite exacte de OneDrive ?',
-    a: 'La limite officielle Microsoft est de 400 caractères pour le chemin relatif dans OneDrive, et 260 caractères pour le chemin absolu Windows. En pratique, nous recommandons de rester sous 220 caractères pour avoir une marge de sécurité.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" stroke="var(--c3)">
+        <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
+      </svg>
+    ),
+    title: 'Suivi des fichiers corrigés',
+    text: 'Retrouvez en un clic ce que vous avez déjà traité.',
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" stroke="var(--c2)">
+        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="12" y1="12" x2="12" y2="18" />
+        <polyline points="9 15 12 18 15 15" />
+      </svg>
+    ),
+    title: 'Rapports PDF et exports CSV',
+    text: 'Prêts à partager avec votre équipe ou votre client.',
   },
 ]
 
@@ -42,12 +65,6 @@ export default function OneDrivePathCheckerPage() {
       {/* Hero */}
       <section style={{ padding: '5rem 6% 3rem', background: '#ffffff' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'linear-gradient(135deg, rgba(77,255,214,0.12) 0%, rgba(24,176,232,0.12) 100%)', border: '1px solid rgba(24,176,232,0.3)', borderRadius: '99px', padding: '0.35rem 1rem', marginBottom: '1.5rem' }}>
-            <span style={{ fontSize: '1rem' }} aria-hidden="true">🛠️</span>
-            <span style={{ fontSize: '0.82rem', fontWeight: 700, background: 'var(--grad)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              Outil gratuit
-            </span>
-          </div>
           <h1 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.2, marginBottom: '1.25rem' }}>
             OneDrive Path Checker
           </h1>
@@ -55,12 +72,22 @@ export default function OneDrivePathCheckerPage() {
             Analysez votre arborescence de fichiers et identifiez en quelques secondes tous les chemins trop longs qui empêcheront la synchronisation OneDrive.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="#outil" className="btn-primary">
-              Accéder à l&apos;outil ↓
+            <a
+              href="https://onedrivepathchecker.com/limite-longueur-chemin-onedrive.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline"
+            >
+              Pourquoi cet outil ?
             </a>
-            <Link href="/blog/onboarding-rh-copilot" className="btn-outline">
-              Lire l&apos;article expliqué
-            </Link>
+            <a
+              href="https://onedrivepathchecker.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              Accéder à l&apos;outil
+            </a>
           </div>
         </div>
       </section>
@@ -70,7 +97,20 @@ export default function OneDrivePathCheckerPage() {
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.25rem' }} className="features-grid">
           {features.map(({ icon, title, text }) => (
             <div key={title} className="card" style={{ padding: '1.25rem', background: 'white', textAlign: 'center' }}>
-              <span style={{ fontSize: '1.75rem', display: 'block', marginBottom: '0.6rem' }} aria-hidden="true">{icon}</span>
+              <div
+                style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: '12px',
+                  background: 'linear-gradient(135deg, rgba(96,198,255,0.15) 0%, rgba(24,176,232,0.15) 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 0.75rem',
+                }}
+              >
+                {icon}
+              </div>
               <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', marginBottom: '0.4rem' }}>{title}</h3>
               <p style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.6, margin: 0 }}>{text}</p>
             </div>
@@ -78,108 +118,41 @@ export default function OneDrivePathCheckerPage() {
         </div>
       </section>
 
-      {/* Tool embed placeholder */}
-      <section id="outil" style={{ padding: '4rem 6%', background: '#ffffff' }}>
+      {/* Comment ça marche */}
+      <section id="comment-ca-marche" style={{ padding: '4rem 6%', background: '#ffffff' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
-            L&apos;outil
+            Comment ça marche ?
           </h2>
-
-          {/* Placeholder — à remplacer par l'outil réel */}
-          <div
-            style={{
-              borderRadius: '20px',
-              padding: '4rem 2rem',
-              textAlign: 'center',
-              background: 'linear-gradient(135deg, #60c6ff 0%, #18b0e8 45%, #0f5fad 100%)',
-              boxShadow: '0 8px 32px rgba(15, 95, 173, 0.25)',
-            }}
+          <video
+            controls
+            playsInline
+            preload="metadata"
+            poster="/images/DemoPathChecker_FR.jpg"
+            aria-label="Démonstration de OneDrive Path Checker"
+            style={{ width: '100%', display: 'block', borderRadius: '16px', border: '1px solid var(--border)', boxShadow: '0 8px 32px rgba(15, 95, 173, 0.15)', background: '#000' }}
           >
-            <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }} aria-hidden="true">🚧</span>
-            <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.25rem', color: 'white', marginBottom: '0.75rem' }}>
-              Outil en cours d&apos;intégration
-            </h3>
-            <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: '500px', margin: '0 auto 1.5rem' }}>
-              L&apos;outil OneDrive Path Checker sera intégré ici directement. En attendant, vous pouvez télécharger le script PowerShell sur GitHub ou contacter Julie pour une démo.
-            </p>
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link
-                href="/services"
-                style={{
-                  background: 'white',
-                  color: 'var(--c3)',
-                  borderRadius: '10px',
-                  padding: '0.65rem 1.4rem',
-                  fontWeight: 600,
-                  fontSize: '0.95rem',
-                  boxShadow: '0 4px 18px rgba(0,0,0,0.12)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  textDecoration: 'none',
-                  transition: 'opacity 0.2s ease, transform 0.2s ease',
-                }}
-              >
-                Besoin d&apos;aide pour OneDrive ?
-              </Link>
-            </div>
-          </div>
+            <source src="/images/DemoPathChecker_FR.mp4" type="video/mp4" />
+          </video>
         </div>
       </section>
 
-      {/* How it works */}
-      <section style={{ padding: '4rem 6%', background: 'var(--off)' }}>
-        <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
-            Comment utiliser l&apos;outil
-          </h2>
-          <ol style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {[
-              { n: 1, title: 'Sélectionnez votre dossier', text: 'Cliquez sur "Choisir un dossier" et sélectionnez le dossier racine que vous souhaitez analyser (par exemple, votre dossier "Documents" ou le dossier partagé OneDrive).' },
-              { n: 2, title: 'Lancez l\'analyse', text: 'L\'outil parcourt récursivement tous les sous-dossiers et calcule la longueur de chaque chemin de fichier. L\'opération est entièrement côté navigateur.' },
-              { n: 3, title: 'Consultez les résultats', text: 'Les fichiers dont le chemin dépasse le seuil configuré (260 caractères par défaut) sont listés avec leur chemin complet et leur longueur.' },
-              { n: 4, title: 'Exportez et corrigez', text: 'Exportez la liste en CSV, puis renommez ou déplacez les fichiers problématiques avant de les synchroniser avec OneDrive.' },
-            ].map(({ n, title, text }) => (
-              <li key={n} style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
-                <span style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--grad)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: 'white', fontWeight: 800, fontSize: '0.9rem' }}>
-                  {n}
-                </span>
-                <div>
-                  <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1rem', color: 'var(--ink)', marginBottom: '0.3rem' }}>{title}</h3>
-                  <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.65, margin: 0 }}>{text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section style={{ padding: '4rem 6%', background: '#ffffff' }}>
-        <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.75rem', color: 'var(--ink)', marginBottom: '2rem', textAlign: 'center' }}>
-            Questions fréquentes
-          </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {faqItems.map(({ q, a }) => (
-              <div key={q} className="card" style={{ padding: '1.5rem' }}>
-                <h3 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1rem', color: 'var(--ink)', marginBottom: '0.65rem' }}>{q}</h3>
-                <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.7, margin: 0 }}>{a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
+      {/* CTA essai gratuit */}
       <section style={{ padding: '4rem 6%', background: 'var(--off)', textAlign: 'center' }}>
         <h2 style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontWeight: 700, fontSize: '1.5rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>
-          Vous planifiez une migration OneDrive ?
+          Essayez OneDrive Path Checker gratuitement pendant 24 h
         </h2>
         <p style={{ color: 'var(--muted)', fontSize: '1rem', marginBottom: '1.5rem' }}>
-          Je vous accompagne de l&apos;audit à la mise en production.
+          Détectez dès maintenant les chemins trop longs qui bloquent votre synchronisation OneDrive.
         </p>
-        <Link href="/services" className="btn-primary">Voir mes offres →</Link>
+        <a
+          href="https://onedrivepathchecker.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-primary"
+        >
+          Démarrer l&apos;essai gratuit
+        </a>
       </section>
 
     </>

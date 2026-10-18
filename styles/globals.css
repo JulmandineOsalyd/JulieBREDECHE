@@ -6,7 +6,7 @@
   --c1: #60c6ff;
   --c2: #18b0e8;
   --c3: #0e4c89;
-  --grad: linear-gradient(135deg, #5ceae8 0%, #18b0e8 45%, #0f5fad 100%);
+  --grad: linear-gradient(135deg, #1ab8ec 0%, #0f5fad 100%);
   --ink: #071828;
   --muted: #4a6080;
   --border: #cce4f5;
@@ -112,7 +112,7 @@ body {
   border-color: var(--c2);
 }
 .btn-dark {
-  background: linear-gradient(135deg, #0f5fae 0%, #0e4c89 45%, rgb(7, 46, 84) 100%);
+  background: linear-gradient(135deg, #0f5fae 0%, #0e4c89 100%);
   color: white;
   border-radius: 10px;
   padding: 0.65rem 1.4rem;
@@ -153,7 +153,7 @@ body {
   top: 0;
   bottom: 0;
   width: 4px;
-  background: linear-gradient(180deg, #5ceae8 0%, #18b0e8 45%, #0f5fad 100%);
+  background: linear-gradient(180deg, #1ab8ec 0%, #0f5fad 100%);
   border-radius: 16px 0 0 16px;
 }
 .card-series:hover {
@@ -253,7 +253,7 @@ h1, h2, h3 {
   font-weight: 700;
 }
 .prose-article a {
-  color: var(--c3);
+  color: var(--c1);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -297,7 +297,7 @@ h1, h2, h3 {
   border: 1px solid var(--border);
 }
 .prose-article thead tr {
-  background: linear-gradient(135deg, #60c6ff 0%, #18b0e8 45%, #0f5fad 100%);
+  background: linear-gradient(135deg, #1ab8ec 0%, #0f5fad 100%);
 }
 .prose-article thead th {
   padding: 0.85rem 1.1rem;
@@ -457,6 +457,19 @@ h1, h2, h3 {
   transform: scaleX(1);
 }
 .nav-link.active {
+  color: var(--c3);
+}
+.nav-link.nav-link-tools {
+  color: var(--c3);
+  font-weight: 700;
+  background: rgba(24, 176, 232, 0.12);
+  padding: 0.3rem 0.8rem;
+  border-radius: 99px;
+}
+.nav-link.nav-link-tools::after { display: none; }
+.nav-link.nav-link-tools:hover,
+.nav-link.nav-link-tools.active {
+  background: rgba(24, 176, 232, 0.22);
   color: var(--c3);
 }
 
@@ -743,7 +756,7 @@ h1, h2, h3 {
   top: 0;
   bottom: 0;
   width: 4px;
-  background: linear-gradient(180deg, #5ceae8 0%, #18b0e8 45%, #0f5fad 100%);
+  background: linear-gradient(180deg, #1ab8ec 0%, #0f5fad 100%);
   border-radius: 12px 0 0 12px;
 }
 .serie-card:hover {
@@ -929,6 +942,7 @@ h1, h2, h3 {
   transition: opacity 0.15s;
 }
 .tag-list a:hover .tag-list-arrow { opacity: 1; }
+.tag-list-compact a { grid-template-columns: 110px 1fr 24px; }
 
 @media (max-width: 768px) {
   .serie-track > .serie-card { flex: 0 0 80%; }

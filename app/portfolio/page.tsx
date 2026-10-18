@@ -40,6 +40,11 @@ const screenshotUrls = [
     '/portfolio/Contratheque/Contratheque-Classement.png',
     '/portfolio/Contratheque/Contratheque-Recherche.png',
   ],
+  [
+    '/portfolio/DailyReport/DailyReport-Calendar.png',
+    '/portfolio/DailyReport/DailyReport-ListView.png',
+    '/portfolio/DailyReport/DailyReport-Prompt.png',
+  ],
 ]
 
 const projectTechs = [
@@ -47,6 +52,7 @@ const projectTechs = [
   ['Power Automate', 'AI Builder', 'SharePoint'],
   ['Power Apps', 'Power Automate', 'SharePoint', 'Outlook'],
   ['SharePoint', 'Power Automate', 'Forms', 'Teams'],
+  ['SharePoint', 'Power Automate', 'Outlook', 'AI Builder'],
 ]
 
 const projectMainTools = ['SharePoint', 'Power Automate', 'Power Apps', 'Power Automate']
