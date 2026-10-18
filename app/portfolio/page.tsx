@@ -13,12 +13,7 @@ const dmSerifDisplay = DM_Serif_Display({
 })
 
 const screenshotUrls = [
-  [
-    '/portfolio/GED/GED-Home.png',
-    '/portfolio/GED/GED-SubmitDoc.png',
-    '/portfolio/GED/GED-ApproveDoc.png',
-    '/portfolio/GED/GED-PowellSearch.png',
-  ],
+  [], // GED : remplacé par la vidéo de démo
   [
     '/portfolio/LecturePDF/0.png',
     '/portfolio/LecturePDF/1.png',
@@ -45,6 +40,14 @@ const screenshotUrls = [
     '/portfolio/DailyReport/DailyReport-ListView.png',
     '/portfolio/DailyReport/DailyReport-Prompt.png',
   ],
+]
+
+const projectVideos: ({ src: string; poster: string } | null)[] = [
+  { src: '/portfolio/GED/GED-demo.mp4', poster: '/portfolio/GED/GED-demo-poster.jpg' },
+  null,
+  null,
+  null,
+  null,
 ]
 
 const projectTechs = [
@@ -199,7 +202,23 @@ export default function PortfolioPage() {
 
             {/* BODY */}
             <div className="flex-1 overflow-y-auto [scrollbar-width:thin] [scrollbar-color:#d0d8e4_transparent]">
+              {/* VIDEO */}
+              {projectVideos[open] && (
+                <div className="bg-[#e8f2fa] py-5 px-7">
+                  <video
+                    key={projectVideos[open]!.src}
+                    src={projectVideos[open]!.src}
+                    poster={projectVideos[open]!.poster}
+                    controls
+                    playsInline
+                    preload="metadata"
+                    className="w-full aspect-video rounded-[12px] bg-[#0f2744] shadow-[0_8px_24px_rgba(15,39,68,0.18)]"
+                  />
+                </div>
+              )}
+
               {/* SLIDER */}
+              {screenshotUrls[open].length > 0 && (
               <div className="bg-[#e8f2fa] py-4 px-7">
                 <div className="flex gap-[10px] overflow-x-auto [scroll-snap-type:x_mandatory] pb-1 [-ms-overflow-style:none] [scrollbar-width:none]">
                   {screenshotUrls[open].map((url, i) => (
@@ -214,6 +233,7 @@ export default function PortfolioPage() {
                   ))}
                 </div>
               </div>
+              )}
 
               <div className="px-7 pb-6">
                 {/* Avant / Après (fusion problem + benefits, sans label de section) */}
