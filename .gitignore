@@ -5,3 +5,7 @@ out/
 .env.local
 .DS_Store
 .preview/
+
+# Generated / local
+*.tsbuildinfo
+.claude/settings.local.json

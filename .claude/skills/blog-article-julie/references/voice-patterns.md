@@ -197,5 +197,5 @@ Mesures faites sur tous les `.mdx` de `content/blog/fr/`. À relire avant de ré
 - **metaTitle** : 2 articles récents dépassent 60 caractères (grille de décision 72, AB-731 69).
 - **metaDescription** : 3 articles sous 150 caractères (145, 146, 149).
 - **readingTime** : 6 articles sur 26 divergent de mots ÷ 300 (ex. `ai-in-sharepoint-a-quoi-ca-sert` déclare 7 min pour 795 mots).
-- **Adresse au lecteur** : le vouvoiement domine ("vous", "votre" dans 21 articles sur 26). Le tutoiement n'apparaît que dans des citations de dialogue (brief client, exemple de prompt), jamais pour s'adresser au lecteur. Règle à inscrire : vouvoyer le lecteur, tutoyer seulement dans une citation.
+- **Adresse au lecteur** : le vouvoiement domine ("vous", "votre" dans 21 articles sur 26). Le tutoiement n'apparaît que dans des citations de dialogue (brief client, exemple de prompt), jamais pour s'adresser au lecteur. Règle inscrite dans `SKILL.md` (section Langue) : vouvoyer le lecteur, tutoyer seulement dans une citation.
 - **Catégorie** : un article porte deux catégories en liste (`methode-projet-power-platform`), règle assouplie : 1 ou 2 valeurs (arbitrage du 2026-10-17).

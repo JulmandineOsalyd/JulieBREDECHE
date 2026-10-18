@@ -91,21 +91,14 @@ Les Skills personnalisées sur Claude.ai nécessitent un plan **Pro, Max, Team o
 
 ### 📤 Workflow de livraison
 
-La Skill te livre les fichiers `.mdx` directement téléchargeables depuis la conversation :
+1. L'agent crée `content/blog/fr/[slug].mdx` en `draft: true` dès que le plan est validé
+2. Tu lis l'article sur `http://localhost:3000/blog/[slug]` (lance `npm run dev` une fois, la page se recharge à chaque enregistrement, aucun build)
+3. Tu demandes des ajustements en chat ou tu modifies le fichier toi-même : l'agent relit le fichier avant chaque modification
+4. Tu demandes la version anglaise à l'agent `article-translator` quand tu es prête
+5. Il crée `content/blog/en/[slug].mdx`
+6. Tu commits et tu pousses toi-même
 
-1. Tu valides la preview ouverte dans ton navigateur (FR)
-2. La Skill te livre `content/blog/fr/[slug].mdx` à télécharger
-3. Tu demandes la version anglaise quand tu es prête
-4. La Skill te livre `content/blog/en/[slug].mdx` à télécharger
-5. Tu places les fichiers dans ton repo et tu pousses toi-même
-
-**Les articles sont livrés en `draft: true`** pour éviter toute publication accidentelle. Tu passes à `false` quand tu es prête à publier.
-
-### ⚠️ Règle anti-écrasement (importante)
-
-Si tu modifies le MDX directement dans le textarea de la preview, et que tu demandes ensuite à Claude une modification (*"raccourcis la conclusion"*, *"réécris la section 2"*), **copie-colle d'abord ton MDX actuel dans le chat** avant de formuler ta demande.
-
-Sinon, Claude repartira de sa version initiale et tes éditions seront perdues. La Skill inclut un rappel automatique, mais c'est bon de l'avoir en tête.
+**Les articles sont en `draft: true`** : non listés sur le blog, mais accessibles par leur URL directe en local. Tu passes à `false` quand tu es prête à publier.
 
 ## 🔄 Faire évoluer la Skill
 

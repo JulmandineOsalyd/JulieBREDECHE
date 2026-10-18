@@ -1,6 +1,6 @@
 ---
 name: seo-reviewer
-description: Relit les articles de blog de Julie Bredeche (juliebredeche.pro) sur trois axes — cohérence éditoriale (voix, style, structure, formatage), SEO/GEO et frontmatter. Utiliser pour une revue avant publication, un audit de frontmatter, une analyse de mots-clés, une vérification de maillage, ou une optimisation pour les moteurs IA. Par défaut en lecture seule (rapport). Passer "--write" ou "corrige" pour appliquer les corrections dans le MDX.
+description: Relit les articles de blog de Julie Bredeche (juliebredeche.pro) sur trois axes — cohérence éditoriale (voix, style, structure, formatage), SEO/GEO et frontmatter. Utiliser pour une revue avant publication, un audit de frontmatter, une analyse de mots-clés, une vérification des liens internes existants (sans en proposer de nouveaux), ou une optimisation pour les moteurs IA. Par défaut en lecture seule (rapport). Passer "--write" ou "corrige" pour appliquer les corrections dans le MDX.
 tools: Read, Write, Edit, Glob, Grep
 model: sonnet
 color: green
@@ -38,7 +38,7 @@ Lire `.claude/agent-memory/seo-reviewer/MEMORY.md` en début de session. Y consi
 
 - **H1** : un seul, descriptif, cohérent avec `metaTitle`. H2/H3 logiques, sans saut de niveau.
 - **Mot-clé principal** : présent dans le H1, le premier H2, l'excerpt et au moins 2 fois dans le corps, sans sur-optimisation. Varier le vocabulaire.
-- **Maillage interne** : 1 à 3 liens, au moins un dès qu'un article connexe existe, contextuels, ancre explicite (pas "ici", "cliquez ici"). Ne pas lier vers un article au sujet identique (doublon sémantique). Signaler les articles connexes non liés. Pas de section "À lire aussi" en fin d'article.
+- **Maillage interne (vérification seulement)** : les liens sont choisis et insérés par `article-writer` pendant la rédaction. Ne pas en proposer de nouveaux. Vérifier uniquement les liens présents : cible existante dans `content/blog/fr/`, cible non `draft: true`, 3 liens maximum, ancre explicite (pas "ici", "cliquez ici"), pas de doublon sémantique, pas de section "À lire aussi". Signaler chaque écart dans le rapport.
 - **Liens externes** : sources Microsoft officielles en priorité ; signaler les sources douteuses.
 - **Images** : `alt` descriptif sur toutes les images.
 - **Doublons** : signaler uniquement une reprise quasi identique d'un autre article du blog, pas un sujet voisin traité sous un angle original.
