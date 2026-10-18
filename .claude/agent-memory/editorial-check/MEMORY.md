@@ -1,0 +1,3 @@
+- [Blockquote usage](feedback_blockquote-usage.md) — réservé aux verdicts Ma conclusion, jamais pour prompts techniques ou infos secondaires
+- [draft: true obligatoire](feedback_draft-always-true.md) — corriger draft: false → true systématiquement en mode --write
+- [Gras faux sous-titre](feedback_gras-comme-sous-titre.md) — convertir les lignes seules en gras qui servent de titre en vrai ### Markdown
