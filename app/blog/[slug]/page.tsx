@@ -18,6 +18,11 @@ interface Props {
   params: { slug: string }
 }
 
+// Drafts stay readable on the local dev server (preview) but return 404 in production
+function isHiddenDraft(article: { draft?: boolean }) {
+  return article.draft === true && process.env.NODE_ENV === 'production'
+}
+
 export async function generateStaticParams() {
   // Slugs are identical across FR and EN, so fetching one locale is sufficient
   const articles = getAllArticlesMeta('fr')
@@ -28,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cookieStore = cookies()
   const locale = (cookieStore.get('locale')?.value ?? 'fr') as 'fr' | 'en'
   const article = getArticleBySlug(params.slug, locale)
-  if (!article) return {}
+  if (!article || isHiddenDraft(article)) return {}
   return {
     title: article.title,
     description: article.excerpt,
@@ -54,7 +59,7 @@ export default function ArticlePage({ params }: Props) {
   const ui = locale === 'en' ? en : fr
 
   const article = getArticleBySlug(params.slug, locale)
-  if (!article) notFound()
+  if (!article || isHiddenDraft(article)) notFound()
 
   const isSeries = article.category === 'Copilot de A à Z'
   const seriesNav = isSeries ? getSeriesNeighbors(article.slug, 'Copilot de A à Z', locale) : null

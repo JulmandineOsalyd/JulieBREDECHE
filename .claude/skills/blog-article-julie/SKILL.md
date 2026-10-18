@@ -1,6 +1,6 @@
 ---
 name: blog-article-julie
-description: Rédige les articles de blog professionnel de Julie Bredeche, consultante indépendante Microsoft 365 (SharePoint, Copilot, Power Platform). Utilise cette Skill dès que Julie demande de rédiger, structurer, relire, traduire ou améliorer un article de blog, un brouillon, un plan d'article, une meta description SEO, ou dès qu'elle mentionne son blog, ses articles, ou un sujet technique Microsoft 365 qu'elle veut publier. Applique-la aussi pour les traductions FR→EN des articles une fois la version française validée. Utilise-la même si Julie dit simplement "je veux écrire sur [sujet Microsoft 365]" sans préciser le mot "article".
+description: Rédige les articles de blog professionnel de Julie Bredeche, consultante indépendante Microsoft 365 (SharePoint, Copilot, Power Platform). Utilise cette Skill dès que Julie demande de rédiger, structurer, relire ou améliorer un article de blog, un brouillon, un plan d'article, une meta description SEO, ou dès qu'elle mentionne son blog, ses articles, ou un sujet technique Microsoft 365 qu'elle veut publier. La traduction anglaise relève de l'agent article-translator. Utilise-la même si Julie dit simplement "je veux écrire sur [sujet Microsoft 365]" sans préciser le mot "article".
 ---
 
 # Blog Article — Julie Bredeche
@@ -14,23 +14,38 @@ Cette Skill capture la voix éditoriale et le workflow de rédaction du blog pro
 - **Public** : professionnels IT, chefs de projet M365, consultants, responsables adoption
 - **Positionnement** : retour d'expérience terrain, **pas** de formation théorique
 - **Format** : articles MDX publiés sur le site de Julie
-- **Langue** : français d'abord, traduction anglaise après validation de la VF
+- **Langue** : français (la traduction anglaise relève de l'agent `article-translator`)
 
 ## Workflow obligatoire
 
 Quand Julie demande un nouvel article, **suivre ce protocole sans le contourner** :
 
-### Étape 1 — Cadrer (questions ciblées)
+### Étape 1 — Cadrer (brief structuré)
 
-Poser maximum 3-4 questions pour clarifier :
-- **Catégorie visée** : SharePoint · Copilot de A à Z · Copilot · Copilot Studio · Power Automate · Power Apps
-- **Angle terrain** : quel problème réel, quelle situation vécue déclenche l'article ?
-- **Promesse du titre** : quel résultat concret ou quelle bascule le lecteur va obtenir ?
-- **Éléments à intégrer** : captures d'écran, tableaux, outils à mentionner, série existante à poursuivre ?
+Présenter ce brief à Julie, pré-rempli avec ce qu'elle a déjà dit, et ne poser que les questions des champs encore vides. Maximum 3-4 questions à la fois.
 
-Si l'article fait partie de la série "Copilot de A à Z", demander le numéro d'épisode et vérifier la cohérence avec les épisodes précédents.
+```
+BRIEF
+- Catégorie : [SharePoint · Copilot de A à Z · Copilot · Copilot Studio · Power Automate · Power Apps]
+- Lecteur cible : [profil précis : IT, chef de projet, responsable adoption…]
+- Situation terrain : [problème réel vécu, avec un détail non reproductible par une IA : client, chiffre, verbatim ou erreur vécue]
+- Promesse du titre : [résultat concret ou bascule pour le lecteur]
+- Mot-clé principal : [expression visée]
+- Pattern : [A explication technique · B méthode · C retour d'expérience · D nouveau concept Microsoft]
+- Action attendue du lecteur : [décision à prendre ou geste à faire après lecture]
+- Éléments à intégrer : [captures, tableaux, outils, sources Microsoft à citer]
+- À ne pas dire : [sujets, clients ou formulations à éviter]
+- Longueur visée : [500-800 mots par défaut]
+- Série : [numéro d'épisode si "Copilot de A à Z", sinon aucune]
+```
 
-**Identifier les articles connexes** : repérer dès le cadrage si l'article peut faire écho à des sujets déjà traités par Julie sur le blog (épisode précédent d'une série, concept déjà expliqué ailleurs, retour d'expérience proche). Les noter pour pouvoir les référencer à l'étape 3.
+Si l'article fait partie de la série "Copilot de A à Z", vérifier la cohérence avec les épisodes précédents.
+
+**Vérifications avant le plan**
+- **Articles connexes et doublons** : lister avec `Glob`/`Grep` sur `content/blog/fr/` les articles proches (voir la méthode de recherche des slugs à l'étape 3). Si un article traite déjà le même sujet sous le même angle, le dire à Julie et proposer un angle différent. Noter les articles à référencer.
+- **Élément non reproductible** : si le champ « Situation terrain » ne contient aucun détail vécu, le redemander. C'est ce qui évite les réécritures.
+
+**Reformulation** : résumer le brief en 3 lignes (lecteur, situation, promesse) et obtenir un « ok » de Julie avant de passer au plan.
 
 ### Étape 2 — Proposer un plan (à valider)
 
@@ -38,108 +53,25 @@ Produire un plan sous cette forme :
 
 ```
 TITRE : [proposition de titre accrocheur avec promesse concrète]
-META DESCRIPTION : [155 caractères max]
+SLUG : [slug proposé, voir convention ci-dessous]
+META DESCRIPTION : [150-160 caractères]
+MOT-CLÉ PRINCIPAL : [issu du brief]
+QUESTION CIBLE (GEO) : [la question à laquelle l'article répond directement]
+PATTERN : [A / B / C / D, issu du brief]
 
 INTRO : [1-2 phrases décrivant la situation terrain d'ouverture]
 
 SECTIONS :
-1. [Titre section] — [promesse actionnable de la section]
-2. [Titre section] — [promesse actionnable de la section]
-3. [Titre section] — [promesse actionnable de la section]
+1. [Titre section] — [promesse actionnable] — verdict : [phrase-verdict de la section] — ~[N] mots
+2. [Titre section] — [promesse actionnable] — verdict : [phrase-verdict de la section] — ~[N] mots
+3. [Titre section] — [promesse actionnable] — verdict : [phrase-verdict de la section] — ~[N] mots
 
 CONCLUSION : [angle de clôture : synthèse listée, punchline, ou "Ma conclusion" avec constats numérotés]
+
+LIENS INTERNES PRESSENTIS : [articles connexes repérés au cadrage, avec slug réel]
 ```
 
 **Attendre la validation de Julie avant de rédiger.** Proposer 2 variantes de titre si le sujet s'y prête.
-
-### Étape 3 — Rédiger section par section
-
-Écrire une section à la fois, en appliquant strictement les règles de voix et de formatage (voir plus bas). Laisser Julie valider/ajuster avant de passer à la suivante pour les articles longs, ou enchaîner si elle demande une V1 complète.
-
-**Liens internes vers d'autres articles du blog** : si le sujet s'y prête, insérer un lien Markdown vers un concept que Julie a probablement déjà traité (épisode précédent dans une série, notion abordée ailleurs, retour d'expérience connexe). Format avec slug à compléter par Julie :
-
-```markdown
-[Texte du lien](/blog/slug-a-completer)
-```
-
-Privilégier les liens **contextuels** (au fil du texte, là où le concept est mentionné), pas les "pour aller plus loin" en fin d'article. 1 à 3 liens internes par article, selon la pertinence : au moins un dès qu'un article connexe existe, jamais forcé. Si un slug est connu avec certitude (ex: épisode précédent d'une série déjà rédigée), utiliser le slug réel ; sinon laisser `slug-a-completer` pour que Julie connecte ses articles à la relecture.
-
-### Étape 4 — Prévisualisation HTML + MDX côte à côte (obligatoire)
-
-**Avant de produire le `.mdx` final, toujours créer un fichier HTML de prévisualisation (`preview-article.html`).** C'est une étape non négociable du workflow : Julie doit pouvoir relire le rendu avant validation.
-
-Le fichier doit contenir **deux panneaux côte à côte** :
-
-**Panneau gauche — Aperçu HTML rendu**
-- Rendu de l'article tel qu'il apparaîtrait sur le blog
-- Styles typographiques lisibles (titres, paragraphes, blockquotes, tableaux, listes)
-- Les composants MDX custom (si réintroduits un jour) rendus visuellement, pas affichés comme code
-- Largeur de lecture confortable (max ~720px)
-
-**Panneau droit — MDX éditable**
-- `<textarea>` qui contient le MDX complet (frontmatter + corps)
-- Édition en temps réel : quand Julie modifie le texte, l'aperçu gauche se met à jour
-- Police monospace, taille lisible, numérotation des lignes optionnelle
-
-**Construction du fichier de preview — utiliser le template** :
-
-⚠️ **Ne jamais regénérer le fichier from scratch.** Un template HTML complet et testé existe à `templates/preview-template.html`. Il calque déjà le design réel du blog (palette `--c2`/`--c3`/`--ink`, police Lora pour les titres, tableaux à gradient bleu, séparateurs `hr` avec point central, blockquote bordure `--c2`). Workflow :
-
-1. **Lire** le fichier `templates/preview-template.html`
-2. **Remplacer** les deux placeholders :
-   - `{{TITLE}}` → titre de l'article (utilisé dans `<title>` et la topbar)
-   - `{{INITIAL_MDX}}` → MDX complet (frontmatter + corps), avec **échappement des backticks** (`` ` `` → `` \` ``) et des `${` (→ `\${`) puisque le contenu est inséré dans une template literal JavaScript
-3. **Écrire le fichier** `preview-article.html` à la racine du repo avec l'outil Write (nom fixe, écrasé à chaque article), puis l'ouvrir : `open preview-article.html`
-
-Ne jamais produire un artifact HTML dans le chat : le CLI ne l'affiche pas de façon interactive.
-
-Le template embarque déjà :
-- Parseur Markdown (`marked` via CDN) + parseur YAML (`js-yaml` via CDN)
-- Bouton "Copier MDX" (bleu `--c2`) + bouton "Reset"
-- Compteur de mots et temps de lecture (mots ÷ 300, arrondi sup.)
-- Bandeau d'avertissement permanent
-- Édition temps réel avec debounce 150ms
-- Échappement HTML du frontmatter parsé
-- Formatage de la date en français
-- Layout responsive mobile
-
-Après ouverture de la preview, dire à Julie **exactement ceci** (ne pas reformuler) :
-
-> *"Voici la prévisualisation, ouverte dans ton navigateur. Tu peux modifier directement dans le panneau de droite, l'aperçu se met à jour en temps réel.*
->
-> *⚠️ **Important** : si tu veux que je fasse ensuite des ajustements (réécrire une section, raccourcir, etc.), **copie-moi d'abord ton MDX actuel** en cliquant sur 'Copier le MDX' et en le collant dans le chat. Sans ça, je repartirai de ma version initiale et tes modifications seront perdues.*
->
-> *Dis-moi quand tu valides et je crée le `.mdx` final dans `content/blog/fr/`."*
-
-#### Protocole anti-écrasement des modifications (règle critique)
-
-Quand Julie demande une modification après qu'un fichier de preview a été ouvert, **toujours appliquer ce protocole** :
-
-1. **Avant de régénérer le fichier de preview**, vérifier si Julie a fourni son MDX actuel dans son message ou dans un message récent.
-
-2. **Si non** : ne PAS régénérer le fichier de preview. Répondre :
-   > *"Avant que je modifie [ce que tu demandes], colle-moi d'abord le MDX actuel du panneau droit (bouton 'Copier le MDX'). Sinon je vais repartir de ma version et écraser tes éventuels ajustements."*
-   >
-   > *Attendre le MDX collé avant de continuer.*
-
-3. **Si oui** : prendre le MDX fourni par Julie comme **base de travail unique**, ignorer toute version précédente. Appliquer la modification demandée **chirurgicalement**, sans réécrire les parties non concernées.
-
-4. **Régénérer le fichier de preview** avec le MDX modifié, en mentionnant ce qui a changé :
-   > *"J'ai modifié [section X] comme tu le voulais. Voici la preview mise à jour. Tes autres ajustements sont conservés."*
-
-**Cas particulier — coquille ou détail mineur** : si Julie pointe une simple coquille (*"il manque un 's' à X"*), on peut corriger sans demander le MDX complet, mais **toujours** préciser dans la réponse : *"J'ai corrigé uniquement ce point. Si tu avais fait d'autres modifs dans le textarea, recolle-moi ton MDX pour que je reparte de là."*
-
-**Exception — demande globale** : si Julie dit explicitement *"reprends depuis zéro"* ou *"oublie ce qu'on avait, recommence"*, on peut repartir de la version Claude sans lui demander son MDX.
-
-### Étape 5 — Livraison du fichier `.mdx` (FR)
-
-Une fois la preview validée par Julie, **créer directement le fichier** dans le repo avec l'outil Write : `content/blog/fr/[slug].mdx`. Pas de téléchargement.
-
-#### Configuration cible
-
-- **Dossier cible VF** : `content/blog/fr/`
-- **Dossier cible EN** : `content/blog/en/` (après traduction)
-- **Hébergement** : Vercel (redéploiement auto au push sur `main`, géré par Julie)
 
 #### Convention de nommage du fichier
 
@@ -151,40 +83,66 @@ Le nom du fichier `.mdx` est un **slug** dérivé du titre :
 
 Exemple : *"Zéro ticket de support OneDrive après migration ? Voici comment j'ai fait !"* devient `zero-tickets-onedrive-apres-migration.mdx`.
 
-Proposer le slug à Julie avant la livraison finale, elle peut ajuster.
+Le slug est proposé dans le plan et validé avec lui : le fichier est créé dès l'étape 3.
 
-#### Contenu du fichier
+### Étape 3 — Rédiger section par section
 
-Le `.mdx` final contient :
-- Frontmatter complet avec **`draft: true` et `send_newsletter: false`**
-- Corps de l'article en Markdown
-- Composants MDX où pertinent (voir `references/mdx-components.md`)
-- Séparateurs `---` entre sections principales
+Dès le plan validé, **créer `content/blog/fr/[slug].mdx`** (frontmatter complet avec `draft: true` et `send_newsletter: false`) et y écrire l'article. Écrire une section à la fois, en appliquant strictement les règles de voix et de formatage (voir plus bas). Laisser Julie valider/ajuster avant de passer à la suivante pour les articles longs, ou enchaîner si elle demande une V1 complète.
 
-#### Protocole de livraison
+**Liens internes vers d'autres articles du blog** : insérer pendant la rédaction, avec de **vrais slugs** trouvés dans le repo. Jamais de slug à compléter.
 
-1. **Confirmer la base de travail** : partir du MDX que Julie a validé dans la preview (voir protocole anti-écrasement de l'étape 4). **Jamais partir d'une version Claude si Julie a édité dans le textarea.**
-2. **Créer le fichier** `content/blog/fr/[slug].mdx`
-3. **Rappeler** :
-   > *"Le fichier est créé dans `content/blog/fr/[slug].mdx`. Il est en `draft: true`, donc invisible publiquement tant que tu ne passes pas à `false` avant de push."*
-4. **Proposer** une revue complète avec `@seo-reviewer` (éditorial, SEO, GEO, frontmatter)
+1. `Glob` sur `content/blog/fr/*.mdx` : le nom du fichier est le slug.
+2. `Grep` sur `^title:`, `^tags:`, `^excerpt:` et `^draft:` pour connaître le thème de chaque article.
+3. Lire l'article cible pour confirmer qu'il traite bien le concept.
+4. Écarter les articles `draft: true` (lien mort en production) et l'article en cours.
 
-### Étape 6 — Traduction anglaise (sur demande uniquement)
+```markdown
+[Texte du lien](/blog/slug-reel)
+```
 
-**Ne jamais proposer la traduction anglaise avant validation explicite de la VF.** Quand Julie la demande :
-- Partir du MDX **final validé** de la VF (pas d'une version intermédiaire)
-- Traduire fidèlement en conservant la structure, les patterns et les composants MDX
-- Garder les noms techniques Microsoft en anglais (déjà le cas en VF)
-- Adapter les formulations idiomatiques plutôt que les traduire littéralement
-- Conserver la voix "Je", le ton terrain et la discipline de phrases courtes
+Privilégier les liens **contextuels** (au fil du texte, là où le concept est mentionné), pas les "pour aller plus loin" en fin d'article. 1 à 3 liens internes par article : au moins un dès qu'un article connexe existe, jamais forcé. Si aucun article ne convient, ne pas en inventer et le dire à Julie. Pas d'ancre générique ("ici", "cet article"), pas de lien vers un sujet identique.
 
-**Frontmatter EN**
-- `slug` et `canonical` : identiques à la VF (pas de `/en/` dans l'URL)
-- `title`, `metaTitle`, `metaDescription`, `excerpt` : traduire et adapter (pas mot à mot). `metaDescription` réécrite pour l'audience anglophone, 150-160 caractères
-- `tags` : traduire en anglais (ex. `"Automatisation"` → `"Automation"`)
-- `date`, `category`, `readingTime`, `featured`, `send_newsletter`, `draft` : conserver à l'identique
+### Étape 3 bis — Auto-contrôle (avant la preview)
 
-**Livraison** : créer `content/blog/en/[slug].mdx` (même slug que la VF) après passage par l'étape 4 (preview, dans le même `preview-article.html`).
+**Avant de renvoyer Julie vers la preview, toujours lancer le script d'auto-contrôle** sur le fichier du repo, puis corriger soi-même ce qui est en échec.
+
+1. Lancer : `python3 -I .claude/skills/blog-article-julie/scripts/autocontrole.py content/blog/fr/[slug].mdx --blog content/blog/fr`
+2. Corriger les `[KO]` : couper les phrases de plus de 25 mots, supprimer les tirets cadratins, remplacer le tutoiement du lecteur par du vouvoiement, ajuster la longueur, recalculer `readingTime` (mots ÷ 300, arrondi supérieur), réécrire `metaTitle` (60 caractères maximum) et `metaDescription` (150 à 160), corriger les liens internes.
+3. Relancer jusqu'à zéro échec. Une phrase longue qui est une citation de dialogue ou un prompt peut rester : le signaler à Julie au lieu de la modifier.
+4. Résumer le résultat en une ligne dans le message de preview (ex. : *"Auto-contrôle : 0 échec, 640 mots, 3 min de lecture"*).
+
+Le script vérifie : phrases de plus de 25 mots, tirets — et –, tutoiement hors citations, longueur, `readingTime`, `metaTitle`, `metaDescription`, `draft: true`, `send_newsletter: false`, nombre de liens internes (3 maximum), slugs existants et non `draft`. Il ne juge ni la voix ni le fond. Option `--publie` pour auditer un article déjà en ligne.
+
+### Étape 4 — Prévisualisation sur le site en local (obligatoire)
+
+**Pas de fichier HTML de preview ni de build.** Julie voit l'article avec le vrai rendu du site, via le serveur de dev Next.js, qui recharge à chaud à chaque enregistrement du fichier.
+
+1. **Serveur de dev** : s'il ne tourne pas, demander à Julie de lancer `npm run dev` à la racine du repo (ou le démarrer si l'environnement le permet). Ne jamais lancer `next build`.
+2. **URL** : donner `http://localhost:3000/blog/[slug]`. Un article en `draft: true` n'apparaît pas dans les listes du blog mais s'affiche à son URL directe.
+3. **Message à Julie** (court) : l'URL, le résultat de l'auto-contrôle, les liens internes insérés (ancre et cible), et ce qu'elle peut faire : relire à l'écran, puis demander des ajustements en chat, ou modifier le fichier elle-même dans son éditeur.
+
+#### Protocole de modification (remplace le copier-coller)
+
+Julie peut éditer le `.mdx` directement. L'agent travaille donc toujours à partir du fichier :
+
+1. **Avant toute modification**, relire `content/blog/fr/[slug].mdx` avec l'outil Read. Le fichier est la seule source de vérité, jamais la version précédemment produite par l'agent ni sa mémoire de la conversation.
+2. Appliquer les ajustements avec Edit (modifications ciblées), jamais en réécrivant le fichier entier sans nécessité. Les passages modifiés par Julie ne sont pas retouchés sans demande.
+3. Relancer l'auto-contrôle puis annoncer en une phrase ce qui a changé (*"J'ai modifié [section X]. Tes autres modifications sont conservées."*). Le rechargement du navigateur est automatique.
+
+### Étape 5 — Livraison
+
+Une fois la preview validée par Julie :
+
+1. Relire le fichier et relancer l'auto-contrôle une dernière fois.
+2. **Rappeler** :
+   > *"L'article est dans `content/blog/fr/[slug].mdx`. Il est en `draft: true`, donc non listé tant que tu ne passes pas à `false` avant de push."*
+3. **Proposer** une revue complète avec `@seo-reviewer` (éditorial, SEO, GEO, frontmatter).
+
+**Hébergement** : Vercel (redéploiement auto au push sur `main`, géré par Julie).
+
+### Étape 6 — Traduction anglaise (hors périmètre de cette skill)
+
+La traduction FR→EN est gérée par l'agent `article-translator`. Ne jamais proposer la traduction avant validation explicite de la VF. Quand Julie la demande, lui indiquer de passer par `article-translator` (les règles de frontmatter et de style EN y sont définies).
 
 ## Voix & style — règles strictes
 
@@ -199,6 +157,7 @@ Le `.mdx` final contient :
 ### Langue
 
 - **Français** par défaut
+- **Adresse au lecteur : vouvoiement** ("vous", "votre"). Le tutoiement n'apparaît que dans une citation de dialogue (brief client, exemple de prompt, verbatim), jamais pour s'adresser au lecteur
 - **Anglais uniquement pour les noms techniques Microsoft** : SharePoint, OneDrive, Teams, Power Automate, Copilot Studio, Power Apps, Dataverse, etc.
 - **Pas de franglais gratuit** : on dit "déclencheur" si c'est clair, mais "trigger" si c'est le terme Microsoft officiel
 
@@ -340,7 +299,6 @@ draft: true
 4. Rédiger `metaTitle` (≤ 60 car., mot-clé en tête) puis `metaDescription` (150-160 car., orientée conversion)
 5. Vérifier les longueurs : `metaTitle` ≤ 60, `metaDescription` ∈ [150, 160]
 6. Vérifier que `tags` ≤ 4 sans doublon sémantique
-7. Pour la version EN : conserver le **même `slug` et `canonical`** que la VF
 
 ### Exemple concret (référence)
 
@@ -429,22 +387,23 @@ En fin de section, une phrase-verdict courte en gras qui synthétise. Le lecteur
 
 Lire les fichiers suivants **selon le besoin** :
 
+- **`scripts/autocontrole.py`** — Auto-contrôle chiffré d'un brouillon MDX (étape 3 bis).
 - **`references/voice-patterns.md`** — Ouvertures, transitions, formules récurrentes de Julie. Consulter en priorité pour rédiger intro et conclusion
 - **`references/mdx-components.md`** — Composants MDX et patterns de tableaux disponibles. Consulter avant de poser des balises HTML ou des tableaux complexes dans l'article
-- **`templates/preview-template.html`** — Template HTML complet de la prévisualisation (étape 4). À cloner et remplir avec `{{TITLE}}` et `{{INITIAL_MDX}}`. **Ne jamais regénérer from scratch.**
-- **`references/preview-artifact.md`** — Spécification du fichier de preview HTML (référence en cas de doute sur le comportement attendu)
 - **`templates/article-base.mdx`** — Squelette de frontmatter + structure d'article. Utile quand Julie veut démarrer from scratch
 - **`examples/`** — Trois articles validés (OneDrive, Cowork, cadrage d'agent) qui incarnent le style. Consulter en cas de doute sur le ton ou le formatage
 
 ## Rappels finaux
 
 - **Proposer un plan avant de rédiger.** Toujours.
-- **Prévisualiser dans `preview-article.html` (HTML+MDX côte à côte) avant de créer le .mdx final.** Toujours.
-- **Demander le MDX actuel du textarea avant toute modification de l'article.** Non négociable — sinon risque d'écraser les édits de Julie.
+- **Lancer l'auto-contrôle avant toute preview.** Zéro échec ou échec expliqué.
+- **Prévisualiser sur le site en local (`npm run dev`), jamais de build.** Toujours.
+- **Relire le fichier `.mdx` avant toute modification.** Non négociable, Julie peut l'avoir édité.
 - **Frontmatter complet** : `metaTitle` (≤60), `metaDescription` (150-160), `slug`, `canonical`, `tags` (≤4), `readingTime` (mots÷300 arrondi sup.).
 - **`draft: true` et `send_newsletter: false`.** Toujours.
 - **1000 mots grand max, 4-5 min de lecture.** Jamais au-dessus.
 - **Phrases courtes (15-20 mots max), bullets dès que possible.** Les lecteurs scannent.
 - **Pas de tirets dans la ponctuation.** Jamais.
-- **Français d'abord, anglais après validation.** Strictement.
+- **Français uniquement ici. Traduction EN : agent `article-translator`, après validation de la VF.**
+- **Vouvoyer le lecteur.** Tutoiement uniquement dans une citation de dialogue.
 - **Voix terrain, pas de théorie.** Systématiquement.

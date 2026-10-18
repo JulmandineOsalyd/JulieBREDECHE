@@ -47,10 +47,6 @@ Partir du `.mdx` final validé de `content/blog/fr/[slug].mdx`. Créer dans `con
 - `draft` : conserver la valeur de la VF à l'identique
 - `send_newsletter` : toujours `false` dans la VEN
 
-### Étape 5 — Preview (sur demande)
-
-Pour prévisualiser la version EN, déléguer à l'agent `preview-article` avec l'URL de l'article anglais.
-
 ---
 
 ## Voix & style à conserver en traduction
