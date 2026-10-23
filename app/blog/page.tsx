@@ -22,10 +22,6 @@ export default function BlogPage() {
   const articles = getAllArticlesMeta(locale)
 
   return (
-    <section style={{ padding: '5rem 6%', background: '#ffffff' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <BlogList articles={articles} />
-      </div>
-    </section>
+    <BlogList articles={articles} />
   )
 }

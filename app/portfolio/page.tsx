@@ -94,25 +94,22 @@ export default function PortfolioPage() {
   return (
     <div className={dmSerifDisplay.variable}>
       {/* Hero */}
-      <section className="pt-20 pb-16 px-[6%] bg-white">
-        <header className="max-w-[1200px] mx-auto">
-          <div className="max-w-[680px] flex flex-col items-start gap-5">
-            <span className="inline-flex items-center gap-2 py-[5.6px] px-4 rounded-full border border-[rgba(24,176,232,0.3)] bg-[linear-gradient(135deg,rgba(84,228,214,0.12)_0%,rgba(24,176,232,0.12)_100%)]">
-              <span className="w-2 h-2 rounded-full bg-[linear-gradient(135deg,#1ab8ec_0%,var(--c3)_100%)]" />
-              <span className="text-xs leading-5 font-bold text-[var(--c3)]">{p.label}</span>
-            </span>
-            <h1 className="m-0 font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.8rem)] text-[var(--ink)] leading-[1.15]">
-              {p.title}
-            </h1>
-            <p className="m-0 text-base text-[var(--muted)] leading-[1.75]">
-              {p.description}
-            </p>
-          </div>
+      <section className="py-20 px-[6%] bg-white">
+        <header className="max-w-[800px] mx-auto text-center">
+          <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-3">
+            {p.label}
+          </p>
+          <h1 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.8rem)] text-[var(--ink)] leading-tight mb-5">
+            {p.title}
+          </h1>
+          <p className="text-base text-[var(--muted)] leading-[1.75]">
+            {p.description}
+          </p>
         </header>
       </section>
 
       {/* Cards grid */}
-      <section aria-label={p.title} className="px-[6%] pb-24 bg-white">
+      <section aria-label={p.title} className="pb-24 px-[6%] bg-white">
         <div className="max-w-[1200px] mx-auto grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-7">
           {PROJECTS.map((proj, i) => {
             const cardClass = 'group portfolio-card flex flex-col text-left cursor-pointer w-full p-0 bg-white border border-[var(--border)] rounded-2xl overflow-hidden text-[var(--ink)] no-underline shadow-[0_1px_2px_rgba(7,24,40,0.05)]'

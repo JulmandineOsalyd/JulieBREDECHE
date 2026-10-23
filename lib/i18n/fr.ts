@@ -465,7 +465,7 @@ export const fr = {
 
   portfolio: {
     label: 'Portfolio',
-    title: "Cas d'usage",
+    title: "Cas d'usages",
     description: "Une sélection de projets que j'ai réalisés pour mes clients.",
     viewProject: 'Voir le cas complet →',
     captures: (n: number) => `${n} Captures (cliquer pour agrandir)`,

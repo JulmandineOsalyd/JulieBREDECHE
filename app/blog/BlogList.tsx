@@ -135,24 +135,27 @@ export default function BlogList({ articles }: { articles: ArticleMeta[] }) {
 
   return (
     <>
-      {/* Header */}
-      <div className="mb-12">
-        <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-2">
-          {t.blog.label}
-        </p>
-        <h1 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.8rem)] text-[var(--ink)] leading-tight mb-4">
-          {t.blog.title}
-        </h1>
-        <p className="text-base text-[var(--muted)] leading-relaxed whitespace-pre-line">
-          {t.blog.description}
-        </p>
-      </div>
+      {/* Hero */}
+      <section className="py-20 px-[6%] bg-white">
+        <div className="max-w-[800px] mx-auto text-center">
+          <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-3">
+            {t.blog.label}
+          </p>
+          <h1 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.8rem)] text-[var(--ink)] leading-tight mb-5">
+            {t.blog.title}
+          </h1>
+          <p className="text-base text-[var(--muted)] leading-[1.75] whitespace-pre-line">
+            {t.blog.description}
+          </p>
+        </div>
+      </section>
 
       {/* DISCOVER */}
       <div className={isSearching ? 'blog-discover dimmed' : 'blog-discover'}>
         {/* Série */}
         {serieEpisodes.length > 0 && (
-          <section className="mb-12">
+          <section className="px-[6%] pb-16 bg-white">
+            <div className="max-w-[1200px] mx-auto">
             <div className="serie-head">
               <h2 className="serie-title">
                 <span className="serie-badge">{t.blog.categories.serieLabel}</span>
@@ -198,23 +201,28 @@ export default function BlogList({ articles }: { articles: ArticleMeta[] }) {
                 ›
               </button>
             </div>
-
+            </div>
           </section>
         )}
 
         {/* Derniers articles en cards */}
-        <section className="mb-4">
-          <h2 className="recent-title">{t.blog.recentTitle}</h2>
-          <div className="grid grid-cols-3 gap-5 blog-grid">
-            {recentArticles.map((article) => (
-              <ArticleCard key={article.slug} article={article} compact />
-            ))}
+        <section className="py-16 px-[6%] bg-[var(--off)] border-y border-[var(--border)]">
+          <div className="max-w-[1200px] mx-auto">
+            <h2 className="recent-title">{t.blog.recentTitle}</h2>
+            <div className="grid grid-cols-3 gap-5 blog-grid">
+              {recentArticles.map((article) => (
+                <ArticleCard key={article.slug} article={article} compact />
+              ))}
+            </div>
           </div>
         </section>
       </div>
 
+      {/* ARCHIVES */}
+      <section className="py-16 px-[6%] bg-white">
+      <div className="max-w-[1200px] mx-auto">
       {/* TITRE ARCHIVES */}
-      <h2 className="recent-title" style={{ marginTop: '4rem' }}>{t.blog.archivesTitle}</h2>
+      <h2 className="recent-title">{t.blog.archivesTitle}</h2>
 
       {/* SEARCH + ARCHIVES */}
       <div className="search-bar">
@@ -279,6 +287,8 @@ export default function BlogList({ articles }: { articles: ArticleMeta[] }) {
           })}
         </div>
       )}
+      </div>
+      </section>
     </>
   )
 }
