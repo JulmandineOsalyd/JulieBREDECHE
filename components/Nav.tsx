@@ -64,7 +64,7 @@ export default function Nav() {
             <Image src="/images/JBR.png" alt="Julie Bredeche" width={40} height={40} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
           </div>
           <div style={{ lineHeight: 1.2 }}>
-            <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', fontFamily: 'var(--font-lora), Georgia, serif' }}>
+            <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', fontFamily: 'var(--font-lora), Georgia, serif', whiteSpace: 'nowrap' }}>
               Julie BREDECHE
             </div>
             <div style={{ fontSize: '0.72rem', color: 'var(--muted)', fontWeight: 400 }} className="hidden md:block">
@@ -76,8 +76,8 @@ export default function Nav() {
         {/* Desktop nav */}
         <nav
           aria-label={t.nav.mainNav}
-          style={{ gap: '1.75rem', alignItems: 'center' }}
-          className="hidden md:flex"
+          style={{ alignItems: 'center' }}
+          className="hidden min-[960px]:flex gap-4 min-[1100px]:gap-7"
         >
           {links.map(({ href, label, highlight }) => {
             const active = pathname === href || (href !== '/' && pathname.startsWith(href))
@@ -95,17 +95,20 @@ export default function Nav() {
 
         {/* CTA + language switcher */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <Link
-            href="/contact"
-            className="btn-primary hidden md:inline-flex"
-            style={{ padding: '0.5rem 1.1rem', fontSize: '0.85rem', whiteSpace: 'nowrap' }}
-          >
-            {t.nav.contact}
-          </Link>
+          {/* Visibilité gérée par le conteneur : .btn-primary impose display: inline-flex */}
+          <div className="hidden min-[960px]:block">
+            <Link
+              href="/contact"
+              className="btn-primary"
+              style={{ padding: '0.5rem 1.1rem', fontSize: '0.85rem', whiteSpace: 'nowrap' }}
+            >
+              {t.nav.contact}
+            </Link>
+          </div>
 
           {/* Language switcher */}
           <div
-            className="hidden md:flex"
+            className="hidden min-[960px]:flex"
             style={{ alignItems: 'center', gap: '0.35rem', marginLeft: '0.25rem' }}
           >
             {(['fr', 'en'] as Locale[]).map((lang, i) => (
@@ -140,7 +143,7 @@ export default function Nav() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={menuOpen}
-            className="md:hidden"
+            className="min-[960px]:hidden"
             style={{
               background: 'none',
               border: 'none',
@@ -178,7 +181,7 @@ export default function Nav() {
             flexDirection: 'column',
             gap: '0.75rem',
           }}
-          className="md:hidden animate-fadeUp"
+          className="min-[960px]:hidden animate-fadeUp"
         >
           {links.map(({ href, label, highlight }) => {
             const active = pathname === href || (href !== '/' && pathname.startsWith(href))

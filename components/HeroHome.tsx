@@ -26,43 +26,6 @@ export default function HeroHome() {
       >
         {/* Left column */}
         <div>
-          {/* Eyebrow badge */}
-          <div
-            className="animate-fadeUp animate-fadeUp-1"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              background: 'linear-gradient(135deg, rgba(77,255,214,0.12) 0%, rgba(24,176,232,0.12) 100%)',
-              border: '1px solid rgba(24,176,232,0.3)',
-              borderRadius: '99px',
-              padding: '0.35rem 1rem',
-              marginBottom: '1.5rem',
-            }}
-          >
-            <span
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: '50%',
-                background: 'var(--grad)',
-                display: 'inline-block',
-              }}
-            />
-            <span
-              style={{
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                background: 'var(--grad)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              {t.hero.badge}
-            </span>
-          </div>
-
           {/* H1 */}
           <h1
             className="animate-fadeUp animate-fadeUp-2"
@@ -73,7 +36,7 @@ export default function HeroHome() {
               color: 'var(--ink)',
               lineHeight: 1.3,
               marginBottom: '1.25rem',
-              marginTop: '1.25rem',
+              marginTop: 0,
               width: '97%',
             }}
           >

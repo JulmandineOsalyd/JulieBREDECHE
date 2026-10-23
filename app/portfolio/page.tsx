@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { DM_Serif_Display } from 'next/font/google'
 import { useTranslation } from '@/lib/i18n'
+import { md, projectPages, projectTechs, projectVideos } from '@/lib/portfolio'
 
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ['latin'],
@@ -42,30 +44,16 @@ const screenshotUrls = [
   ],
 ]
 
-const projectVideos: ({ src: string; poster: string } | null)[] = [
-  { src: '/portfolio/GED/GED-demo.mp4', poster: '/portfolio/GED/GED-demo-poster.jpg' },
-  null,
-  null,
-  null,
-  null,
+// Dégradés des vignettes de cartes (design « Portfolio cas d'usage »)
+const projectThumbs: [string, string][] = [
+  ['#60c6ff', '#0f5fad'],
+  ['#54e4d6', '#18b0e8'],
+  ['#60c6ff', '#54e4d6'],
+  ['#18b0e8', '#0e4c89'],
+  ['#0f5fad', '#54e4d6'],
 ]
 
-const projectTechs = [
-  ['SharePoint', 'Power Automate', 'Power Apps', 'Powell Intranet'],
-  ['Power Automate', 'AI Builder', 'SharePoint'],
-  ['Power Apps', 'Power Automate', 'SharePoint', 'Outlook'],
-  ['SharePoint', 'Power Automate', 'Forms', 'Teams'],
-  ['SharePoint', 'Power Automate', 'Outlook', 'AI Builder'],
-]
-
-const projectMainTools = ['SharePoint', 'Power Automate', 'Power Apps', 'Power Automate']
-
-// SAFETY: only used with static i18n strings — sanitize with DOMPurify if dynamic content is ever passed
-function md(text: string): string {
-  return text
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\n\n/g, '<br><br>')
-}
+const projectMainTools =['SharePoint', 'Power Automate', 'Power Apps', 'Power Automate']
 
 function SectionLabel({ text }: { text: string }) {
   return (
@@ -106,61 +94,74 @@ export default function PortfolioPage() {
   return (
     <div className={dmSerifDisplay.variable}>
       {/* Hero */}
-      <section className="pt-20 pb-12 px-[6%] bg-white">
-        <div className="max-w-[800px] mx-auto text-center">
-          <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-3">
-            {p.label}
-          </p>
-          <h1 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.8rem)] text-[var(--ink)] leading-tight mb-5">
-            {p.title}
-          </h1>
-          <p className="text-base text-[var(--muted)] leading-[1.75]">
-            {p.description}
-          </p>
-        </div>
+      <section className="pt-20 pb-16 px-[6%] bg-white">
+        <header className="max-w-[1200px] mx-auto">
+          <div className="max-w-[680px] flex flex-col items-start gap-5">
+            <span className="inline-flex items-center gap-2 py-[5.6px] px-4 rounded-full border border-[rgba(24,176,232,0.3)] bg-[linear-gradient(135deg,rgba(84,228,214,0.12)_0%,rgba(24,176,232,0.12)_100%)]">
+              <span className="w-2 h-2 rounded-full bg-[linear-gradient(135deg,#1ab8ec_0%,var(--c3)_100%)]" />
+              <span className="text-xs leading-5 font-bold text-[var(--c3)]">{p.label}</span>
+            </span>
+            <h1 className="m-0 font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.8rem)] text-[var(--ink)] leading-[1.15]">
+              {p.title}
+            </h1>
+            <p className="m-0 text-base text-[var(--muted)] leading-[1.75]">
+              {p.description}
+            </p>
+          </div>
+        </header>
       </section>
 
       {/* Cards grid */}
-      <section className="px-[6%] pb-20 bg-white">
-        <div className="max-w-[1000px] mx-auto grid grid-cols-3 gap-5 portfolio-grid">
-          {PROJECTS.map((proj, i) => (
-            <button
-              key={i}
-              onClick={() => openProject(i)}
-              className="card portfolio-card p-7 text-left cursor-pointer bg-white border-[1.5px] border-[var(--border)] w-full flex flex-col gap-3"
-            >
-              <span className="text-[2rem] font-extrabold font-[var(--font-lora),Georgia,serif] gradient-text leading-none">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span className="self-start text-[0.68rem] font-bold text-white bg-[var(--c3)] border border-[rgba(14,76,137,0.18)] rounded-full py-[0.15rem] px-[0.6rem] uppercase tracking-tight">
-                {proj.sector}
-              </span>
-              <h2 className="font-[var(--font-lora),Georgia,serif] font-bold text-base text-[var(--ink)] leading-snug m-0">
-                {proj.title}
-              </h2>
-              <p className="text-[13px] text-[var(--muted)] leading-relaxed m-0">
-                {proj.teaser}
-              </p>
-              <div className="bg-[#f4f7fb] border border-[#e4eaf3] rounded-[10px] py-3 px-3 text-center">
-                <div className="font-[var(--font-dm-serif),Georgia,serif] text-[22px] text-[#0f2744] font-normal leading-none mb-[4px]">
-                  {proj.keyMetric.val}
-                </div>
-                <div className="text-[11px] text-[#7a8ea4] leading-snug">
-                  {proj.keyMetric.label}
-                </div>
+      <section aria-label={p.title} className="px-[6%] pb-24 bg-white">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-7">
+          {PROJECTS.map((proj, i) => {
+            const cardClass = 'group portfolio-card flex flex-col text-left cursor-pointer w-full p-0 bg-white border border-[var(--border)] rounded-2xl overflow-hidden text-[var(--ink)] no-underline shadow-[0_1px_2px_rgba(7,24,40,0.05)]'
+            const cardInner = (
+              <>
+              <div
+                className="relative w-full aspect-[16/10] flex items-center justify-center overflow-hidden"
+                style={{ background: `linear-gradient(135deg, ${projectThumbs[i][0]}, ${projectThumbs[i][1]})` }}
+              >
+                <svg aria-hidden="true" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="opacity-90">
+                  <path d="M4 4h16v4H4z" /><path d="M4 11h7v9H4z" /><path d="M13 11h7v4h-7z" /><path d="M13 18h7v2h-7z" />
+                </svg>
+                <span className="absolute top-[14px] left-[14px] text-[0.72rem] font-bold tracking-[0.05em] uppercase text-white bg-[rgba(7,24,40,0.28)] rounded-full py-[5px] px-3 backdrop-blur-[2px]">
+                  {proj.sector}
+                </span>
               </div>
-              <div className="flex flex-wrap gap-[0.35rem] mt-auto pt-2 border-t border-[var(--border)]">
-                {projectTechs[i].map(tech => (
-                  <span key={tech} className="text-[0.7rem] font-bold text-[var(--c3)] bg-[var(--off)] border border-[var(--border)] rounded-md py-[0.15rem] px-2">
-                    {tech}
+              <div className="flex flex-col gap-[14px] p-6 flex-1 w-full">
+                <span className="font-[var(--font-lora),Georgia,serif] text-[1.05rem] font-bold leading-[1.4] text-[var(--ink)]">
+                  {proj.title}
+                </span>
+                <div className="flex items-baseline justify-between gap-4 mt-auto pt-3 border-t border-[var(--border)]">
+                  <span className="flex flex-col gap-[2px]">
+                    <span className="font-[var(--font-lora),Georgia,serif] text-[1.4rem] font-bold leading-[1.1] text-[var(--c3)]">
+                      {proj.keyMetric.val}
+                    </span>
+                    <span className="text-[0.78rem] font-medium leading-[1.4] text-[var(--muted)]">
+                      {proj.keyMetric.label}
+                    </span>
                   </span>
-                ))}
+                  <span aria-hidden="true" className="flex self-end shrink-0 text-[var(--muted)] transition-[transform,color] duration-200 group-hover:translate-x-1 group-hover:text-[var(--c3)]">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <span className="text-xs text-[var(--c3)] font-semibold mt-1">
-                {p.viewProject}
-              </span>
-            </button>
-          ))}
+              </>
+            )
+            const href = projectPages[i]
+            return href ? (
+              <Link key={i} href={href} aria-label={`${proj.title} — ${p.viewProject}`} className={cardClass}>
+                {cardInner}
+              </Link>
+            ) : (
+              <button key={i} onClick={() => openProject(i)} aria-label={`${proj.title} — ${p.viewProject}`} className={cardClass}>
+                {cardInner}
+              </button>
+            )
+          })}
         </div>
       </section>
 

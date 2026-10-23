@@ -431,6 +431,7 @@ h1, h2, h3 {
 /* Nav underline animation */
 .nav-link {
   position: relative;
+  white-space: nowrap;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -548,14 +549,8 @@ h1, h2, h3 {
 }
 
 /* Portfolio */
-@media (max-width: 900px) {
-  .portfolio-grid { grid-template-columns: repeat(2, 1fr) !important; }
-}
-@media (max-width: 600px) {
-  .portfolio-grid { grid-template-columns: 1fr !important; }
-}
-.portfolio-card { transition: transform 0.18s ease, box-shadow 0.18s ease; }
-.portfolio-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(15,95,173,0.14); }
+.portfolio-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.portfolio-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(15,95,173,0.1); }
 
 /* Modal body grid responsive */
 @media (max-width: 680px) {

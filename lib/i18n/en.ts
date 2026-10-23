@@ -16,7 +16,6 @@ export const en: Translations = {
   },
 
   hero: {
-    badge: 'Independent Microsoft 365 Consultant',
     h1: {
       before: 'Get the most out of',
       articlePP: '',
@@ -466,14 +465,24 @@ export const en: Translations = {
   },
 
   portfolio: {
-    label: 'Completed projects',
-    title: 'Portfolio',
-    description: 'A selection of representative projects completed for clients across various industries.',
+    label: 'Portfolio',
+    title: 'Use cases',
+    description: 'A selection of projects I delivered for my clients.',
     viewProject: 'View full case →',
     captures: (n: number) => `${n} Screenshots (click to enlarge)`,
     prev: '← Previous',
     next: 'Next →',
     close: 'Close',
+    detail: {
+      back: 'All use cases',
+      context: 'Context',
+      sector: 'Sector',
+      technologies: 'Technologies',
+      demo: 'Demo',
+      improvements: 'Improvements delivered',
+      before: 'Before',
+      after: 'After',
+    },
     sections: {
       problem: 'Business challenge',
       context: 'Context and users',
@@ -485,9 +494,11 @@ export const en: Translations = {
     },
     projects: [
       {
-        title: 'Quality DMS : 33 industrial sites, zero obsolete document',
+        title: 'Quality DMS: 33 industrial sites, zero obsolete document',
         sector: 'Industry',
-        teaser: 'Deploying a unified Quality DMS to harmonise document management across 33 industrial sites and 3,000 employees.',
+        teaser: 'Deploying a unified Quality DMS to harmonise document management across 33 industrial sites and 3,500 employees.',
+        context:
+          'Deploying a Quality DMS to harmonise document management across 33 industrial sites and 3,500 employees. A multi-step approval circuit is required before a document is published.',
         keyMetric: { val: '< 2 min', label: 'To find a Quality document' },
         screenshots: [
           { title: '1. Document submission and validation interface home page' },
@@ -514,7 +525,7 @@ export const en: Translations = {
           '**Approval workflow** with a multi-site, multi-level validation circuit',
           '**Duplicate check** at submission time to prevent redundant documents',
           '**Powell search engine** integrated for fast and relevant search',
-          'Automated document review cycle with scheduled reminders',
+          '**Automated review** cycle with scheduled reminders',
         ],
         benefits: [
           'Document found in under 2 minutes using **search and metadata**',

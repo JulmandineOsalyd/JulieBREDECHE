@@ -29,7 +29,9 @@ Une fois le brouillon validé :
 
 1. Copier les images vers `public/portfolio/[NomProjet]/`
 2. Ajouter l'entrée dans `lib/i18n/fr.ts` et `lib/i18n/en.ts`
-3. Ajouter les URLs dans `screenshotUrls` et les tags dans `projectTechs` dans `app/portfolio/page.tsx`
+3. Ajouter les URLs dans `screenshotUrls` et le dégradé de la vignette dans `projectThumbs` dans `app/portfolio/page.tsx`
+4. Ajouter les tags dans `projectTechs`, la vidéo dans `projectVideos` et, si le cas a une page dédiée, son URL dans `projectPages` (`lib/portfolio.ts`)
+5. Pour une **page dédiée** : suivre `docs/modele-page-cas-usage.md` (composant `components/UseCasePage.tsx`, page `app/portfolio/[slug]/page.tsx`, sitemap). Ne jamais dupliquer la mise en page.
 
 ---
 
@@ -49,7 +51,10 @@ Une fois le brouillon validé :
 - [bullet]
 - [bullet]
 
-## Contexte et utilisateurs
+## Contexte
+[2 phrases exactement. Phrase 1 : ce qui est déployé, pour qui, à quelle échelle. Phrase 2 : la contrainte principale. Pas de liste.]
+
+## Utilisateurs (fenêtre de la liste uniquement)
 - [bullet]
 - [bullet]
 
@@ -57,11 +62,11 @@ Une fois le brouillon validé :
 [2-3 phrases max. Séquence logique. Pas de répétition avec les fonctionnalités.]
 
 ## Fonctionnalités clés
-- [bullet]
-- [bullet]
+- **[Titre court, 2 à 4 mots]** [détail en une phrase]
+- **[Titre court]** [détail en une phrase]
 
-## Bénéfices utilisateurs
-- [bullet]
+## Bénéfices utilisateurs (colonne « Après »)
+- [bullet, répond à la puce « Problématique » du même rang]
 - [bullet]
 
 ## Résultats (ROI)
@@ -80,6 +85,8 @@ Une fois le brouillon validé :
 ## Règles éditoriales
 
 ### Longueur et structure
+- **Page dédiée** : « Problématique » et « Bénéfices » ont le même nombre de puces (3 recommandé). La puce 1 « avant » est reliée par une flèche à la puce 1 « après ».
+- **Fonctionnalités** : chaque entrée commence par un titre court en gras, suivi d'une phrase. C'est le seul endroit où le gras ouvre la phrase.
 - **Phrases courtes.** Une idée par phrase. Couper dès que possible.
 - 3 à 5 bullets par section. Jamais plus.
 - La solution : 2-3 phrases max, ne pas répéter ce qui est dans les fonctionnalités.
@@ -121,6 +128,7 @@ Chaque projet dans `lib/i18n/fr.ts` et `lib/i18n/en.ts` suit cette structure :
   title: '...',
   sector: '...',
   teaser: '...',
+  context: '...', // 2 phrases, section Contexte de la page dédiée
   keyMetric: { val: '...', label: '...' },
   screenshots: [
     { title: '1. ...' },
@@ -140,9 +148,9 @@ Chaque projet dans `lib/i18n/fr.ts` et `lib/i18n/en.ts` suit cette structure :
 }
 ```
 
-Dans `app/portfolio/page.tsx`, deux tableaux à compléter (même index que le projet dans i18n) :
-- `screenshotUrls` : chemins vers `public/portfolio/[NomProjet]/`
-- `projectTechs` : tags techniques affichés sur la carte
+Tableaux à compléter (même index que le projet dans i18n) :
+- `app/portfolio/page.tsx` : `screenshotUrls` (chemins vers `public/portfolio/[NomProjet]/`) et `projectThumbs` (dégradé de la vignette)
+- `lib/portfolio.ts` : `projectTechs` (tags techniques), `projectVideos` (`{ src, poster }` ou `null`) et `projectPages` (URL de la page dédiée ou `null`)
 
 ---
 

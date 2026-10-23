@@ -14,7 +14,6 @@ export const fr = {
   },
 
   hero: {
-    badge: 'Consultante indépendante Microsoft 365',
     h1: {
       before: 'Tirez le meilleur parti de',
       articlePP: 'la ',
@@ -465,14 +464,24 @@ export const fr = {
   },
 
   portfolio: {
-    label: 'Projets réalisés',
-    title: 'Portfolio',
-    description: 'Une sélection de projets représentatifs réalisés pour des clients de secteurs variés.',
+    label: 'Portfolio',
+    title: "Cas d'usage",
+    description: "Une sélection de projets que j'ai réalisés pour mes clients.",
     viewProject: 'Voir le cas complet →',
     captures: (n: number) => `${n} Captures (cliquer pour agrandir)`,
     prev: '← Précédent',
     next: 'Suivant →',
     close: 'Fermer',
+    detail: {
+      back: "Tous les cas d'usage",
+      context: 'Contexte',
+      sector: 'Secteur',
+      technologies: 'Technologies',
+      demo: 'Démonstration',
+      improvements: 'Améliorations apportées',
+      before: 'Avant',
+      after: 'Après',
+    },
     sections: {
       problem: 'Problématique métier',
       context: 'Contexte et utilisateurs',
@@ -486,7 +495,9 @@ export const fr = {
       {
         title: 'GED Qualité : 33 sites industriels, zéro document obsolète',
         sector: 'Industrie',
-        teaser: 'Déployer une GED Qualité unifiée pour harmoniser la gestion documentaire de 33 sites industriels et 3 000 collaborateurs.',
+        teaser: 'Déployer une GED Qualité unifiée pour harmoniser la gestion documentaire de 33 sites industriels et 3 500 collaborateurs.',
+        context:
+          "Déployer une GED Qualité pour harmoniser la gestion documentaire de 33 sites industriels et 3 500 collaborateurs. Un circuit de validation multiple est nécessaire avant la publication d'un document.",
         keyMetric: { val: '< 2 min', label: 'Pour retrouver un document Qualité' },
         screenshots: [
           { title: "1. Page d'accueil de l'app de dépôt et validation de documents" },
@@ -510,15 +521,15 @@ export const fr = {
         features: [
           "**Interface Power Apps** dédiée au dépôt et validation de documents, connectée au back-office SharePoint",
           "**Référentiel centralisé** avec métadonnées obligatoires, vues filtrées par site ou thème",
-          "**Workflow d'approbation** avec un circuit de validationmulti-sites et multi-niveaux",
+          "**Workflow d'approbation** avec un circuit de validation multi-sites et multi-niveaux",
           "**Vérification des documents existants** au moment du dépôt pour éviter les doublons",
           "**Moteur de recherche Powell** intégré pour une recherche rapide et pertinente",
-          "Flux de révision des documents automatisé avec des rappels programmés"
+          "**Révision automatisée** des documents avec des rappels programmés",
         ],
         benefits: [
           "Document trouvé en moins de 2 minutes avec la **recherche et les métadonnées**",
           "Seule la **dernière version** à jour est accessible, plus de doublons ni de versions obsolètes",
-          "**Historique des versions%% et des approbations accessibles en cas d'audit",
+          "**Historique des versions et des approbations** accessible en cas d'audit",
         ],
         roi: [
           { val: '< 2 min', label: 'Recherche d\'un document Qualité' },
