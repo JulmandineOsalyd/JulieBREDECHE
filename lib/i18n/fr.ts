@@ -541,6 +541,8 @@ export const fr = {
         title: 'Extraire les n° de commande de milliers de factures, automatiquement',
         sector: 'Pharmaceutique',
         teaser: "Automatiser via OCR la lecture de PDF entrants pour résorber un backlog de 10 000 factures et fluidifier le flux courant.",
+        context:
+          "Résorber un retard de traitement de 10 000 factures PDF. Deux personnes à temps plein extrayaient à la main le numéro de commande de chaque facture pour l'intégrer au nouvel outil de facturation.",
         keyMetric: { val: '−90%', label: 'Temps manuel éliminé' },
         screenshots: [
           { title: '1. Récupération du contenu du PDF' },
@@ -549,8 +551,9 @@ export const fr = {
           { title: '4. Utilisation de la REGEX dans le flux' },
         ],
         problem: [
-          "**Extraction manuelle** des numéros de commande sur des milliers de factures PDF pour les intégrer à un nouvel outil de facturation.",
-          "Processus chronophage engendrant **risques d'erreurs** et retards de facturation.",
+          '**Extraction manuelle** des numéros de commande sur des milliers de factures PDF.',
+          "**Ressaisie** dans le nouvel outil de facturation, source d'**erreurs**.",
+          '**Retards de facturation** avec 10 000 factures en attente.',
         ],
         users: [
           '2 personnes mobilisées à temps plein',
@@ -558,22 +561,22 @@ export const fr = {
           "Flux continu de PDF reçu de l'ancien système",
         ],
         solution:
-          "Un flux Power Automate intégré à SharePoint pour une **lecture OCR automatisée** des factures PDF, détectant précisément leurs **numéros de commande** via une REGEX.",
+          "Un **flux Power Automate** parcourt les factures d'une bibliothèque SharePoint. Pour chaque facture, le flux détecte le numéro de commande correspondant à un format prédéfini, et renomme le fichier en conséquence.",
         features: [
-          "Flux automatisé parcourant les documents d'une bibliothèque SharePoint",
-          '**Lecture OCR** via AI Builder pour extraire le n° de commande',
-          '**Renommage automatique** des fichiers valides',
-          '**Déplacement** des cas non conformes vers un dossier de révision',
+          '**Lecture OCR** du contenu du PDF grâce au connecteur AI Builder',
+          '**Détection par REGEX** du numéro de commande dans un Office Script',
+          '**Renommage automatique** des fichiers avec leur numéro de commande',
+          '**Mise en révision** des cas non conformes dans un dossier dédié',
         ],
         benefits: [
-          '90 % du temps manuel éliminé',
-          'Intégration simplifiée sans ressaisie',
-          'Un clic pour traiter des milliers de factures',
+          'Les numéros de commande sont **extraits automatiquement** par OCR.',
+          'Les fichiers sont **renommés avec leur numéro**, puis intégrés sans ressaisie.',
+          '**Un clic** suffit pour traiter des milliers de factures.',
         ],
         roi: [
-          { val: '−80%', label: 'Coûts de traitement' },
-          { val: '✓', label: 'Traçabilité audits' },
-          { val: '♻', label: 'Flux réutilisable' },
+          { val: '−90%', label: 'Temps manuel éliminé' },
+          { val: '10 000', label: 'Factures en retard résorbées' },
+          { val: '2', label: 'Personnes libérées de la saisie manuelle' },
         ],
       },
       {

@@ -542,6 +542,8 @@ export const en: Translations = {
         title: 'Extracting order numbers from thousands of invoices, automatically',
         sector: 'Pharmaceutical',
         teaser: 'Automating OCR reading of incoming PDFs to clear a 10,000-invoice backlog and streamline the ongoing flow.',
+        context:
+          'Clearing a processing backlog of 10,000 PDF invoices. Two full-time staff were manually extracting the order number from each invoice to load it into the new billing tool.',
         keyMetric: { val: '−90%', label: 'Manual time eliminated' },
         screenshots: [
           { title: '1. PDF content retrieval' },
@@ -550,8 +552,9 @@ export const en: Translations = {
           { title: '4. Using the REGEX in the flow' },
         ],
         problem: [
-          '**Manual extraction** of order numbers from thousands of PDF invoices to integrate into a new billing tool.',
-          'Time-consuming process generating **error risks** and billing delays.',
+          '**Manual extraction** of order numbers from thousands of PDF invoices.',
+          '**Re-entry** into the new billing tool, a source of **errors**.',
+          '**Billing delays** with 10,000 invoices pending.',
         ],
         users: [
           '2 people mobilised full-time',
@@ -559,22 +562,22 @@ export const en: Translations = {
           'Continuous stream of PDFs received from the old system',
         ],
         solution:
-          'A Power Automate flow integrated with SharePoint for **automated OCR reading** of PDF invoices, precisely detecting their **order numbers** via a REGEX.',
+          'A **Power Automate flow** scans the invoices in a SharePoint library. For each invoice, the flow detects the order number matching a predefined format and renames the file accordingly.',
         features: [
-          'Automated flow scanning documents in a SharePoint library',
-          '**OCR reading** via AI Builder to extract the order number',
-          '**Automatic renaming** of valid files',
-          '**Moving** non-conforming cases to a review folder',
+          '**OCR reading** of the PDF content with the AI Builder connector',
+          '**REGEX detection** of the order number in an Office Script',
+          '**Automatic renaming** of files with their order number',
+          '**Review routing** of non-conforming cases to a dedicated folder',
         ],
         benefits: [
-          '90% of manual work eliminated',
-          'Simplified integration without re-entry',
-          'One click to process thousands of invoices',
+          'Order numbers are **extracted automatically** by OCR.',
+          'Files are **renamed with their number**, then loaded without re-entry.',
+          '**One click** processes thousands of invoices.',
         ],
         roi: [
-          { val: '−80%', label: 'Processing costs' },
-          { val: '✓', label: 'Audit traceability' },
-          { val: '♻', label: 'Reusable flow' },
+          { val: '−90%', label: 'Manual time eliminated' },
+          { val: '10,000', label: 'Backlogged invoices cleared' },
+          { val: '2', label: 'People freed from manual entry' },
         ],
       },
       {

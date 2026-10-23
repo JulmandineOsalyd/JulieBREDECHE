@@ -3,7 +3,7 @@
 
 export const projectTechs = [
   ['SharePoint', 'Power Automate', 'Power Apps', 'Powell Intranet'],
-  ['Power Automate', 'AI Builder', 'SharePoint'],
+  ['Power Automate', 'AI Builder', 'SharePoint', 'Office Scripts'],
   ['Power Apps', 'Power Automate', 'SharePoint', 'Outlook'],
   ['SharePoint', 'Power Automate', 'Forms', 'Teams'],
   ['SharePoint', 'Power Automate', 'Outlook', 'AI Builder'],
@@ -12,7 +12,7 @@ export const projectTechs = [
 // Page dédiée d'un cas d'usage ; null = détail affiché dans la fenêtre du portfolio
 export const projectPages: (string | null)[] = [
   '/portfolio/ged-qualite',
-  null,
+  '/portfolio/extraction-factures-ocr',
   null,
   null,
   null,
@@ -29,7 +29,7 @@ export const projectThumbImages: (string | null)[] = [
 
 export const projectVideos: ({ src: string; poster: string } | null)[] = [
   { src: '/portfolio/GED/GED-demo.mp4', poster: '/portfolio/GED/GED-demo-poster.jpg' },
-  null,
+  { src: '/portfolio/LecturePDF/LecturePDF-demo.mp4', poster: '/portfolio/LecturePDF/LecturePDF-demo-poster.jpg' },
   null,
   null,
   null,
