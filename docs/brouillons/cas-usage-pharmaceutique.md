@@ -75,4 +75,4 @@ A **Power Automate flow** scans the invoices in a SharePoint library. For each i
 
 ## Médias
 - **Vidéo :** `public/portfolio/LecturePDF/LecturePDF-demo.mp4` (33 s, 4 étapes, sans musique) et son aperçu `LecturePDF-demo-poster.jpg`, produits avec /brag selon `docs/modele-video-demo-cas-usage.md`.
-- **Vignette de la carte :** dégradé avec icône (`projectThumbImages` à `null`). Une capture dédiée pourra être ajoutée plus tard.
+- **Vignette de la carte :** `public/portfolio/LecturePDF/LecturePDF-thumbnail.png`, l'écran de lecture OCR de la vidéo (étape 2).

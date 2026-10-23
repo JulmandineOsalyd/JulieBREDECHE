@@ -21,7 +21,7 @@ export const projectPages: (string | null)[] = [
 // Vignette de la carte dans la liste ; null = dégradé + icône
 export const projectThumbImages: (string | null)[] = [
   '/portfolio/GED/GED-thumbnail.png',
-  null,
+  '/portfolio/LecturePDF/LecturePDF-thumbnail.png',
   null,
   null,
   null,
