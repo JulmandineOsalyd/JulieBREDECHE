@@ -372,9 +372,9 @@ export const fr = {
   },
 
   tools: {
-    label: 'Ressources gratuites',
+    label: 'Ressources',
     title: 'Outils',
-    description: 'Deux outils gratuits nés de mes missions SharePoint et Power Platform.',
+    description: 'Des outils que je crée à partir des cas rencontrés chez mes clients.',
     items: [
       {
         title: 'OneDrive Path Checker',

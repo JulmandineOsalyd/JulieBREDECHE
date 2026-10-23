@@ -27,6 +27,19 @@ Le composant reçoit l'index du cas dans `portfolio.projects` : `<UseCasePage in
 
 Pas d'appel à l'action en bas de page. Largeur unique de 880 px pour tout le contenu.
 
+## 2 bis. Tailles de texte
+
+| Élément | Taille |
+|---|---|
+| Titre de page (H1) | `clamp(1.75rem, 3.5vw, 2.4rem)`, identique aux titres des articles de blog |
+| Titres de section (H2) | `clamp(1.3rem, 2.5vw, 1.6rem)` |
+| Contexte et solution | 1rem (`text-base`), interligne 1.75 |
+| Titre d'une fonctionnalité | 1rem, gras (Lora) |
+| Détail d'une fonctionnalité | 0.85rem |
+| Cases avant / après | 0.9rem |
+| Chiffres du ROI | 2.1rem (Lora, gras) ; libellé 0.85rem |
+| Technologies et lien retour | 0.8rem et 0.85rem |
+
 ## 3. Règles de contenu
 
 - **Contexte** : exactement 2 phrases. Phrase 1 = ce qui est déployé, pour qui, à quelle échelle. Phrase 2 = la contrainte principale. Pas de liste d'utilisateurs.
@@ -60,6 +73,7 @@ Pas d'appel à l'action en bas de page. Largeur unique de 880 px pour tout le co
 2. Dans `lib/portfolio.ts`, à l'index du cas :
    - `projectTechs` : les technologies ;
    - `projectVideos` : `{ src, poster }` ou `null` ;
+   - `projectThumbImages` : capture de la vignette de la carte (image 16/9 dans `public/portfolio/[NomProjet]/`) ou `null` pour le dégradé avec icône ;
    - `projectPages` : `'/portfolio/[slug]'`.
 3. Dans `app/portfolio/page.tsx`, ajouter le dégradé de la vignette dans `projectThumbs`.
 4. Copier la vidéo et son aperçu dans `public/portfolio/[NomProjet]/` (voir `docs/modele-video-demo-cas-usage.md`).

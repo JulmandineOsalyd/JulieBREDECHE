@@ -16,7 +16,7 @@ const featureIcons: ReactNode[] = [
 ]
 
 const serif = 'font-[var(--font-lora),Georgia,serif]'
-const h2Class = `m-0 ${serif} font-bold text-[clamp(1.6rem,3vw,2rem)] leading-tight text-[var(--ink)]`
+const h2Class = `m-0 ${serif} font-bold text-[clamp(1.3rem,2.5vw,1.6rem)] leading-tight text-[var(--ink)]`
 
 // Sépare « **Titre** suite » en titre et description
 function splitFeature(text: string): { title: string; desc: string } {
@@ -52,7 +52,7 @@ export default function UseCasePage({ index }: { index: number }) {
         <header className="max-w-[880px] mx-auto flex flex-col gap-6">
           <Link
             href="/portfolio"
-            className="self-start inline-flex items-center gap-2 py-3 text-sm font-semibold text-[var(--c3)] no-underline hover:text-[var(--c3-deep,#0e4c89)]"
+            className="self-start inline-flex items-center gap-2 py-3 text-[0.85rem] font-semibold text-[var(--c3)] no-underline hover:text-[var(--c3-deep,#0e4c89)]"
           >
             <Arrow className="rotate-180" />
             {d.back}
@@ -61,7 +61,7 @@ export default function UseCasePage({ index }: { index: number }) {
           <div className="flex flex-wrap items-center gap-x-10 gap-y-4 bg-[var(--off)] border border-[var(--border)] rounded-2xl py-5 px-6">
             <div className="flex flex-col gap-1.5">
               <span className="text-xs font-bold uppercase tracking-wider text-[var(--muted)]">{d.sector}</span>
-              <span className="inline-flex items-center gap-2 text-base font-bold text-[var(--ink)]">
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-[var(--ink)]">
                 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c3)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M3 21V10l6 4V10l6 4V6l6 4v11z" /><path d="M3 21h18" />
                 </svg>
@@ -72,7 +72,7 @@ export default function UseCasePage({ index }: { index: number }) {
               <span className="text-xs font-bold uppercase tracking-wider text-[var(--muted)]">{d.technologies}</span>
               <div className="flex flex-wrap gap-2">
                 {techs.map(tech => (
-                  <span key={tech} className="text-sm font-semibold text-[var(--c3)] bg-white border border-[var(--border)] rounded-full py-1.5 px-3.5">
+                  <span key={tech} className="text-[0.8rem] font-semibold text-[var(--c3)] bg-white border border-[var(--border)] rounded-full py-1.5 px-3.5">
                     {tech}
                   </span>
                 ))}
@@ -80,7 +80,7 @@ export default function UseCasePage({ index }: { index: number }) {
             </div>
           </div>
 
-          <h1 className={`m-0 ${serif} font-bold text-[clamp(2rem,4vw,2.8rem)] leading-[1.15] text-[var(--ink)]`}>
+          <h1 className={`m-0 ${serif} font-bold text-[clamp(1.75rem,3.5vw,2.4rem)] leading-[1.25] text-[var(--ink)]`}>
             {project.title}
           </h1>
         </header>
@@ -91,13 +91,13 @@ export default function UseCasePage({ index }: { index: number }) {
           {/* ── Contexte ── */}
           <section aria-labelledby="s-contexte" className="flex flex-col gap-5">
             <h2 id="s-contexte" className={h2Class}>{d.context}</h2>
-            <p className="m-0 text-lg leading-[1.7] text-[var(--ink)]">{context}</p>
+            <p className="m-0 text-base leading-[1.75] text-[var(--ink)]">{context}</p>
           </section>
 
           {/* ── Solution ── */}
           <section aria-labelledby="s-solution" className="flex flex-col gap-5">
             <h2 id="s-solution" className={h2Class}>{p.sections.solution}</h2>
-            <p className="m-0 text-lg leading-[1.7] text-[var(--ink)]" dangerouslySetInnerHTML={{ __html: md(project.solution) }} />
+            <p className="m-0 text-base leading-[1.75] text-[var(--ink)]" dangerouslySetInnerHTML={{ __html: md(project.solution) }} />
             {video && (
               <video
                 src={video.src}
@@ -130,8 +130,8 @@ export default function UseCasePage({ index }: { index: number }) {
                       {featureIcons[i % featureIcons.length]}
                     </svg>
                   </span>
-                  <span className={`${serif} font-bold text-[1.05rem] leading-snug text-[var(--ink)]`}>{title}</span>
-                  {desc && <span className="text-sm leading-relaxed text-[var(--muted)]">{desc}</span>}
+                  <span className={`${serif} font-bold text-base leading-snug text-[var(--ink)]`}>{title}</span>
+                  {desc && <span className="text-[0.85rem] leading-relaxed text-[var(--muted)]">{desc}</span>}
                 </li>
               )
             })}
@@ -152,7 +152,7 @@ export default function UseCasePage({ index }: { index: number }) {
               </div>
               {pairs.map(({ before, after }, i) => (
                 <div key={i} className="grid grid-cols-1 sm:grid-cols-[1fr_44px_1fr] gap-3 sm:gap-4 items-stretch">
-                  <div className="rounded-2xl border border-[var(--border)] p-5 text-base leading-relaxed text-[var(--muted)]">
+                  <div className="rounded-2xl border border-[var(--border)] p-5 text-[0.9rem] leading-relaxed text-[var(--muted)]">
                     <span className="sm:hidden block mb-1 text-xs font-bold uppercase tracking-wider text-[var(--muted)]">{d.before}</span>
                     <span dangerouslySetInnerHTML={{ __html: md(before) }} />
                   </div>
@@ -161,7 +161,7 @@ export default function UseCasePage({ index }: { index: number }) {
                       <Arrow className="rotate-90 sm:rotate-0" />
                     </span>
                   </div>
-                  <div className="rounded-2xl border border-[var(--border)] bg-[var(--off)] p-5 text-base leading-relaxed text-[var(--ink)]">
+                  <div className="rounded-2xl border border-[var(--border)] bg-[var(--off)] p-5 text-[0.9rem] leading-relaxed text-[var(--ink)]">
                     <span className="sm:hidden block mb-1 text-xs font-bold uppercase tracking-wider text-[var(--c3)]">{d.after}</span>
                     <span dangerouslySetInnerHTML={{ __html: md(after) }} />
                   </div>
@@ -176,8 +176,8 @@ export default function UseCasePage({ index }: { index: number }) {
             <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,220px),1fr))] gap-4">
               {(project.roi as { val: string; label: string }[]).map((r, i) => (
                 <div key={i} className="flex flex-col gap-2 rounded-2xl bg-[var(--off)] py-8 px-7">
-                  <span className={`${serif} font-bold text-[2.6rem] leading-none text-[var(--c3)]`}>{r.val}</span>
-                  <span className="text-sm leading-normal text-[var(--muted)]">{r.label}</span>
+                  <span className={`${serif} font-bold text-[2.1rem] leading-none text-[var(--c3)]`}>{r.val}</span>
+                  <span className="text-[0.85rem] leading-normal text-[var(--muted)]">{r.label}</span>
                 </div>
               ))}
             </div>

@@ -374,9 +374,9 @@ export const en: Translations = {
   },
 
   tools: {
-    label: 'Free resources',
+    label: 'Resources',
     title: 'Tools',
-    description: 'Two free tools born from my SharePoint and Power Platform projects.',
+    description: 'Tools I build from the cases I come across with my clients.',
     items: [
       {
         title: 'OneDrive Path Checker',

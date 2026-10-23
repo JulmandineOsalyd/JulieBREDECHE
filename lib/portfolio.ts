@@ -18,6 +18,15 @@ export const projectPages: (string | null)[] = [
   null,
 ]
 
+// Vignette de la carte dans la liste ; null = dégradé + icône
+export const projectThumbImages: (string | null)[] = [
+  '/portfolio/GED/GED-thumbnail.png',
+  null,
+  null,
+  null,
+  null,
+]
+
 export const projectVideos: ({ src: string; poster: string } | null)[] = [
   { src: '/portfolio/GED/GED-demo.mp4', poster: '/portfolio/GED/GED-demo-poster.jpg' },
   null,

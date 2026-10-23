@@ -14,7 +14,7 @@ export default function OutilsContent() {
           <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-3">
             {o.label}
           </p>
-          <h1 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.7rem)] text-[var(--ink)] leading-snug mb-4 mt-0">
+          <h1 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.8rem)] text-[var(--ink)] leading-snug mb-4 mt-0">
             {o.title}
           </h1>
           <p className="text-base text-[var(--muted)] leading-[1.75] m-0">{o.description}</p>

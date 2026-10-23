@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { DM_Serif_Display } from 'next/font/google'
 import { useTranslation } from '@/lib/i18n'
-import { md, projectPages, projectTechs, projectVideos } from '@/lib/portfolio'
+import { md, projectPages, projectTechs, projectThumbImages, projectVideos } from '@/lib/portfolio'
 
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ['latin'],
@@ -116,15 +116,29 @@ export default function PortfolioPage() {
             const cardInner = (
               <>
               <div
-                className="relative w-full aspect-[16/10] flex items-center justify-center overflow-hidden"
-                style={{ background: `linear-gradient(135deg, ${projectThumbs[i][0]}, ${projectThumbs[i][1]})` }}
+                className={`relative w-full aspect-[16/10] flex items-center justify-center overflow-hidden ${projectThumbImages[i] ? 'bg-white p-3 border-b border-[var(--border)]' : ''}`}
+                style={projectThumbImages[i] ? undefined : { background: `linear-gradient(135deg, ${projectThumbs[i][0]}, ${projectThumbs[i][1]})` }}
               >
-                <svg aria-hidden="true" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="opacity-90">
-                  <path d="M4 4h16v4H4z" /><path d="M4 11h7v9H4z" /><path d="M13 11h7v4h-7z" /><path d="M13 18h7v2h-7z" />
-                </svg>
-                <span className="absolute top-[14px] left-[14px] text-[0.72rem] font-bold tracking-[0.05em] uppercase text-white bg-[rgba(7,24,40,0.28)] rounded-full py-[5px] px-3 backdrop-blur-[2px]">
-                  {proj.sector}
-                </span>
+                {projectThumbImages[i] ? (
+                  <span className="relative block w-full h-full">
+                    <Image
+                      src={projectThumbImages[i]!}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 400px"
+                      className="object-contain"
+                    />
+                  </span>
+                ) : (
+                  <>
+                    <svg aria-hidden="true" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="opacity-90">
+                      <path d="M4 4h16v4H4z" /><path d="M4 11h7v9H4z" /><path d="M13 11h7v4h-7z" /><path d="M13 18h7v2h-7z" />
+                    </svg>
+                    <span className="absolute top-[14px] left-[14px] text-[0.72rem] font-bold tracking-[0.05em] uppercase text-white bg-[rgba(7,24,40,0.28)] rounded-full py-[5px] px-3 backdrop-blur-[2px]">
+                      {proj.sector}
+                    </span>
+                  </>
+                )}
               </div>
               <div className="flex flex-col gap-[14px] p-6 flex-1 w-full">
                 <span className="font-[var(--font-lora),Georgia,serif] text-[1.05rem] font-bold leading-[1.4] text-[var(--ink)]">

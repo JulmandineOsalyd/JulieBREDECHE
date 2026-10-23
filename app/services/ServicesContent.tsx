@@ -15,7 +15,7 @@ export default function ServicesContent() {
           <p className="text-xs font-bold uppercase tracking-wider text-[var(--c2)] mb-3">
             {s.hero.label}
           </p>
-          <h1 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.7rem)] text-[var(--ink)] leading-snug mb-5 mt-4">
+          <h1 className="font-[var(--font-lora),Georgia,serif] font-bold text-[clamp(2rem,4vw,2.8rem)] text-[var(--ink)] leading-snug mb-5 mt-4">
             {s.hero.h1.before}{' '}
             <span className="gradient-text">
               {s.hero.h1.highlight}
