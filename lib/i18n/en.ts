@@ -627,6 +627,7 @@ export const en: Translations = {
         title: 'Contract management: zero forgotten renewal',
         sector: 'Procurement',
         teaser: 'Ending the scattering of finalised contracts and anticipating renewals with automatic Teams alerts.',
+        context: 'A dedicated SharePoint contract library holds the finalised contracts of a Procurement team of about ten people, around 50 new contracts a month. These contracts used to be mixed in with working documents, which made the latest contract in force hard to find.',
         keyMetric: { val: '0', label: 'Forgotten contract' },
         screenshots: [
           { title: '1. Send to repository button' },
@@ -636,7 +637,8 @@ export const en: Translations = {
         ],
         problem: [
           'Finalised contracts were **scattered among working documents**.',
-          'Result: a **lengthy and unreliable search** to find the latest active contract or supplier history.',
+          'A **lengthy and unreliable search** to find the latest contract.',
+          'Renewals **spotted too late**.',
         ],
         users: [
           'Procurement team (10 people)',
@@ -644,22 +646,24 @@ export const en: Translations = {
           'Working documents mixed with signed contracts',
         ],
         solution:
-          'A Power Automate flow opening a **metadata entry form** (supplier, amount, expiry date…) then moving the contract to a dedicated SharePoint library with an **advanced search engine**.',
+          'From SharePoint, the user clicks a button that opens a **metadata entry form** (supplier, amount, expiry date…). The contract is then automatically filed in a dedicated **contract library**, with an **advanced search engine**.',
         features: [
-          '**Manual trigger** via button: metadata entry form',
-          '**Automated filing** to the repository with metadata update',
-          '**Automatic Teams alerts** as the expiry date approaches',
-          '**Contract status update** after its end date',
+          '**One-click sending** of a finalised contract to the contract library',
+          '**Metadata form** for the supplier, amount and expiry date',
+          '**Automatic move** to the contract library, metadata filled in',
+          '**Advanced search** by supplier, amount or expiry date',
+          '**Teams alerts** as the expiry date approaches',
+          '**Status updated** automatically after the end date',
         ],
         benefits: [
-          'Guided filing in a few clicks',
-          'Search time reduced by 3x',
-          'Proactive Teams alerts to anticipate renewals',
+          '**Single contract library**, with guided filing in a few clicks.',
+          '**Advanced search**, search time cut by 3.',
+          '**Teams alerts** to anticipate renewals.',
         ],
         roi: [
           { val: '÷3', label: 'Search time' },
-          { val: '✓', label: 'Stronger governance' },
-          { val: '0', label: 'Forgotten contracts' },
+          { val: '0', label: 'Forgotten contract' },
+          { val: '~50', label: 'Contracts filed per month' },
         ],
       },
       {

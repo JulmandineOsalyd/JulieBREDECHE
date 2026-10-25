@@ -626,6 +626,7 @@ export const fr = {
         title: 'Gestion des contrats : zéro renouvellement oublié',
         sector: 'Achats',
         teaser: "Mettre fin à la dispersion des contrats finalisés et anticiper les renouvellements grâce à des alertes Teams automatiques.",
+        context: "Une contrathèque SharePoint dédiée aux contrats finalisés d'un service Achats d'une dizaine de personnes, soit environ 50 nouveaux contrats par mois. Ces contrats se mélangeaient aux documents de travail, et le dernier contrat en vigueur était difficile à retrouver.",
         keyMetric: { val: '0', label: 'Contrat oublié' },
         screenshots: [
           { title: "1. Bouton d'envoi vers la contrathèque" },
@@ -634,8 +635,9 @@ export const fr = {
           { title: '4. Moteur de recherche avancé' },
         ],
         problem: [
-          "Les contrats finalisés se retrouvaient **dispersés parmi des documents de travail**.",
-          "Résultat : une recherche **longue et aléatoire** pour trouver le dernier contrat en vigueur ou l'historique fournisseur.",
+          "Les contrats finalisés étaient **dispersés parmi les documents de travail**.",
+          "Une recherche **longue et aléatoire** pour retrouver le dernier contrat.",
+          "Des renouvellements **découverts trop tard**.",
         ],
         users: [
           'Service Achats (10 personnes)',
@@ -643,22 +645,24 @@ export const fr = {
           'Documents de travail mélangés aux contrats signés',
         ],
         solution:
-          "Un flux Power Automate ouvrant un **formulaire de saisie des métadonnées** (fournisseur, montant, échéance…) puis déplaçant le contrat vers une bibliothèque SharePoint dédiée avec un **moteur de recherche avancé**.",
+          "Depuis SharePoint, l'utilisateur clique sur un bouton qui affiche un **formulaire de saisie des métadonnées** (fournisseur, montant, échéance…). Le contrat est ensuite automatiquement classé dans une **contrathèque dédiée**, dotée d'un moteur de recherche avancé.",
         features: [
-          '**Déclenchement manuel** par bouton : formulaire de saisie des métadonnées',
-          '**Déplacement automatisé** vers la Contrathèque avec mise à jour des métadonnées',
-          "**Alertes Teams** automatiques à l'approche de l'échéance",
-          '**Mise à jour du statut** du contrat après sa date de fin',
+          '**Envoi en un clic** d\'un contrat finalisé vers la contrathèque',
+          '**Formulaire de métadonnées** pour le fournisseur, le montant et l\'échéance',
+          '**Déplacement automatique** vers la contrathèque, métadonnées renseignées',
+          '**Moteur de recherche avancé** par fournisseur, montant ou échéance',
+          "**Alertes Teams** à l'approche de l'échéance",
+          "**Statut mis à jour** automatiquement après la date de fin",
         ],
         benefits: [
-          'Classement guidé en quelques clics',
-          'Temps de recherche divisé par 3',
-          'Alertes proactives Teams pour anticiper les renouvellements',
+          '**Contrathèque unique**, avec classement guidé en quelques clics.',
+          '**Recherche avancée**, temps de recherche divisé par 3.',
+          '**Alertes Teams** pour anticiper les renouvellements.',
         ],
         roi: [
           { val: '÷3', label: 'Temps de recherche' },
-          { val: '✓', label: 'Gouvernance renforcée' },
-          { val: '0', label: 'Contrats oubliés' },
+          { val: '0', label: 'Contrat oublié' },
+          { val: '~50', label: 'Contrats classés par mois' },
         ],
       },
       {

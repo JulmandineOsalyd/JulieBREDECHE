@@ -14,7 +14,7 @@ export const projectPages: (string | null)[] = [
   '/portfolio/ged-qualite',
   '/portfolio/extraction-factures-ocr',
   '/portfolio/reservation-voyages-staff',
-  null,
+  '/portfolio/gestion-contrats',
   null,
 ]
 
