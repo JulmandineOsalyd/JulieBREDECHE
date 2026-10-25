@@ -13,7 +13,7 @@ export const projectTechs = [
 export const projectPages: (string | null)[] = [
   '/portfolio/ged-qualite',
   '/portfolio/extraction-factures-ocr',
-  null,
+  '/portfolio/reservation-voyages-staff',
   null,
   null,
 ]
@@ -22,7 +22,7 @@ export const projectPages: (string | null)[] = [
 export const projectThumbImages: (string | null)[] = [
   '/portfolio/GED/GED-thumbnail.png',
   '/portfolio/LecturePDF/LecturePDF-thumbnail.png',
-  null,
+  '/portfolio/MyBooking/MyBooking-thumbnail.png',
   null,
   null,
 ]
@@ -30,7 +30,7 @@ export const projectThumbImages: (string | null)[] = [
 export const projectVideos: ({ src: string; poster: string } | null)[] = [
   { src: '/portfolio/GED/GED-demo.mp4', poster: '/portfolio/GED/GED-demo-poster.jpg' },
   { src: '/portfolio/LecturePDF/LecturePDF-demo.mp4', poster: '/portfolio/LecturePDF/LecturePDF-demo-poster.jpg' },
-  null,
+  { src: '/portfolio/MyBooking/MyBooking-demo.mp4', poster: '/portfolio/MyBooking/MyBooking-demo-poster.jpg' },
   null,
   null,
 ]

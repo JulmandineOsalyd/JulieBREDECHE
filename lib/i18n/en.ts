@@ -539,7 +539,7 @@ export const en: Translations = {
         ],
       },
       {
-        title: 'Extracting order numbers from thousands of invoices, automatically',
+        title: 'Order number extraction: 10,000 PDF invoices read automatically',
         sector: 'Pharmaceutical',
         teaser: 'Automating OCR reading of incoming PDFs to clear a 10,000-invoice backlog and streamline the ongoing flow.',
         context:
@@ -581,9 +581,11 @@ export const en: Translations = {
         ],
       },
       {
-        title: 'Centralised bookings, processing time cut by 3',
+        title: 'Staff travel booking: train and hotel in a single app',
         sector: 'Education',
         teaser: 'Replacing an email-driven booking workflow with a mobile app featuring validation flow and accounting tracking.',
+        context:
+          "Centralising travel requests, by train or for hotels, for 200 teachers across 2 campuses. Each request must be approved according to the teacher's status, then tracked by the accounting team.",
         keyMetric: { val: '÷3', label: 'Processing time' },
         screenshots: [
           { title: '1. Application home page' },
@@ -595,34 +597,34 @@ export const en: Translations = {
           { title: '7. SharePoint back-office for staff' },
         ],
         problem: [
-          'Booking requests managed **only by email** with administrators.',
-          '**Manual validations** delayed the process.',
-          'Many back-and-forths, oversights and **data entry errors**.',
+          'Requests sent **only by email** to administrators.',
+          '**Manual approvals** delaying processing.',
+          'Frequent back-and-forths, oversights and **data entry errors**.',
         ],
         users: ['200 teachers across 2 campuses', '2 booking administrators', 'Accounting department'],
         solution:
-          'A **mobile application** for submitting requests with automated validation workflow and notifications.\n\nAn **interactive dashboard** for staff with structured accounting tracking.',
+          'A mobile **Power Apps application** guides teachers through their booking request. **Power Automate** handles approval and notifications, and administrators track requests and accounting from a **centralised SharePoint back-office**.',
         features: [
-          '**Dynamic form** with business rules to ensure reliable data entry',
-          '**Duplicate recurring bookings** in 2 clicks',
-          '**Automated validation workflow** based on the teacher\'s status',
-          '**Automated notifications** throughout the process',
-          '**Unified dashboard** with dedicated views',
+          '**Three booking journeys** for train, hotel or both, started from the home screen',
+          "**Adaptive form** with fields that adjust to the trip type and the requester's profile",
+          '**SNCF Connect timetables** available without leaving the form',
+          '**2-click duplication** of recurring trips',
+          '**Admin-managed settings** for emails, public holidays and user roles',
+          '**Request tracking** by status (pending, ongoing, completed), with a filter on the home screen',
         ],
         benefits: [
-          'Significant time savings for teachers',
-          '95% reduction in data entry errors',
-          'Real-time visibility of request status',
-          'Improved collaboration between administrators and accounting',
+          'Requests entered in a **single app**.',
+          "**Tailored approval** based on the teacher's status.",
+          '**Guided form** cutting data entry errors by 95%.',
         ],
         roi: [
           { val: '÷3', label: 'Processing time' },
           { val: '−70%', label: 'Emails exchanged' },
-          { val: 'KPIs', label: 'Cost rationalisation' },
+          { val: '−95%', label: 'Data entry errors' },
         ],
       },
       {
-        title: 'Centralising contracts and finding them in seconds',
+        title: 'Contract management: zero forgotten renewal',
         sector: 'Procurement',
         teaser: 'Ending the scattering of finalised contracts and anticipating renewals with automatic Teams alerts.',
         keyMetric: { val: '0', label: 'Forgotten contract' },
@@ -661,7 +663,7 @@ export const en: Translations = {
         ],
       },
       {
-        title: 'Automated activity reporting, 30 minutes saved every day',
+        title: 'Automated activity report: 30 minutes saved every day',
         sector: 'Consulting',
         teaser: 'Automatically analyse sent emails and the day\'s calendar events to generate a daily activity report with no manual input.',
         keyMetric: { val: '30 min', label: 'Saved per day on reporting' },

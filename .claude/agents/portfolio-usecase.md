@@ -91,6 +91,13 @@ Une fois le brouillon validé :
 - 3 à 5 bullets par section. Jamais plus.
 - La solution : 2-3 phrases max, ne pas répéter ce qui est dans les fonctionnalités.
 
+### Le titre
+- Format **« Nom : résultat »** : un nom d'abord (jamais un verbe), puis un résultat concret, avec un chiffre quand il existe.
+- Une espace avant les deux-points en français, aucune en anglais.
+- Environ 60 à 80 caractères, sans jargon interne ni nom de client. Les outils vont dans les étiquettes, pas dans le titre.
+- Le titre, le chiffre de la carte et le ROI racontent la même chose.
+- Exemple : « Gestion des contrats : zéro renouvellement oublié ».
+
 ### Le gras
 - Sur le concept clé (technologie, bénéfice, action), pas sur une étiquette.
 - 1 à 2 mots max par bullet, jamais toute une expression descriptive.

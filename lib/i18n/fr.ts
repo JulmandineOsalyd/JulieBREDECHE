@@ -538,7 +538,7 @@ export const fr = {
         ],
       },
       {
-        title: 'Extraire les n° de commande de milliers de factures, automatiquement',
+        title: 'Extraction des n° de commande : 10 000 factures PDF lues automatiquement',
         sector: 'Pharmaceutique',
         teaser: "Automatiser via OCR la lecture de PDF entrants pour résorber un backlog de 10 000 factures et fluidifier le flux courant.",
         context:
@@ -580,9 +580,11 @@ export const fr = {
         ],
       },
       {
-        title: 'Réservations centralisées, délai de traitement divisé par 3',
+        title: 'Réservation de voyages pour le staff : train et hôtel dans une seule application',
         sector: 'Éducation',
         teaser: "Remplacer un circuit de réservations géré par mail par une app mobile avec workflow de validation et suivi comptable.",
+        context:
+          "Centraliser les demandes de déplacement, en train ou à l'hôtel, de 200 professeurs répartis sur 2 campus. Chaque demande doit être validée selon le statut du professeur, puis suivie par la comptabilité.",
         keyMetric: { val: '÷3', label: 'Délai de traitement' },
         screenshots: [
           { title: "1. Page d'accueil de l'application" },
@@ -594,34 +596,34 @@ export const fr = {
           { title: '7. Back-office SharePoint pour le staff' },
         ],
         problem: [
-          'Demandes de réservation gérées **uniquement par mail** avec les gestionnaires.',
-          'Des **validations manuelles** retardaient le processus.',
-          "Nombreux allers-retours, oublis et **erreurs de saisie**.",
+          'Demandes envoyées **uniquement par mail** aux gestionnaires.',
+          '**Validations manuelles** retardant le traitement.',
+          'Allers-retours, oublis et **erreurs de saisie** fréquents.',
         ],
         users: ['200 professeurs sur 2 campus', '2 gestionnaires des réservations', 'Service Comptabilité'],
         solution:
-          "Une **application mobile** de saisie des demandes avec workflow de validation et notifications automatiques.\n\nUn **tableau de bord interactif** pour le staff avec suivi comptable structuré.",
+          "Une **application Power Apps** mobile qui guide le professeur dans sa demande de réservation. **Power Automate** orchestre la validation et les notifications, et les gestionnaires suivent les demandes et la comptabilité depuis un **back-office centralisé SharePoint**.",
         features: [
-          '**Formulaire dynamique** avec règles métier pour fiabiliser la saisie',
-          '**Duplication des réservations** récurrentes en 2 clics',
-          '**Workflow de validation automatique** selon le statut du professeur',
-          '**Notifications automatisées** tout au long du traitement',
-          '**Tableau de bord unifié** avec vues dédiées',
+          "**Trois parcours de réservation** pour le train, l'hôtel ou les deux, lancés depuis l'accueil",
+          "**Formulaire adaptatif** avec des champs qui s'ajustent au type de trajet et au profil du demandeur",
+          '**Horaires SNCF Connect** consultables sans quitter le formulaire',
+          '**Duplication en 2 clics** des déplacements récurrents',
+          '**Paramétrage par les gestionnaires** des e-mails, des jours fériés et des rôles utilisateurs',
+          "**Suivi des demandes** par statut (en attente, en cours, traitée), avec un filtre sur l'accueil",
         ],
         benefits: [
-          'Gain de temps significatif pour les professeurs',
-          "95 % de réduction des erreurs de saisie",
-          "Visibilité en temps réel de l'état des demandes",
-          'Collaboration facilitée gestionnaires et comptabilité',
+          'Demandes saisies dans une **application unique**.',
+          '**Validation adaptée** selon le statut du professeur.',
+          '**Formulaire guidé** réduisant de 95 % les erreurs de saisie.',
         ],
         roi: [
           { val: '÷3', label: 'Délai de traitement' },
-          { val: '−70%', label: 'Emails échangés' },
-          { val: 'KPIs', label: 'Rationalisation coûts' },
+          { val: '−70%', label: 'E-mails échangés' },
+          { val: '−95%', label: 'Erreurs de saisie' },
         ],
       },
       {
-        title: 'Centraliser les contrats et les retrouver en quelques secondes',
+        title: 'Gestion des contrats : zéro renouvellement oublié',
         sector: 'Achats',
         teaser: "Mettre fin à la dispersion des contrats finalisés et anticiper les renouvellements grâce à des alertes Teams automatiques.",
         keyMetric: { val: '0', label: 'Contrat oublié' },
@@ -660,7 +662,7 @@ export const fr = {
         ],
       },
       {
-        title: 'Reporting automatisé, 30 min gagnées par jour',
+        title: "Rapport d'activité automatisé : 30 min gagnées par jour",
         sector: 'Conseil',
         teaser: 'Analyser automatiquement les emails envoyés et l\'agenda du jour pour générer un rapport d\'activité automatisé',
         keyMetric: { val: '30 min', label: 'Gagnées par jour sur le reporting' },

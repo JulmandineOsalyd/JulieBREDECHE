@@ -42,6 +42,7 @@ Pas d'appel à l'action en bas de page. Largeur unique de 880 px pour tout le co
 
 ## 3. Règles de contenu
 
+- **Titre** : « Nom : résultat ». Un nom d'abord, jamais un verbe, puis un résultat concret avec un chiffre quand il existe (60 à 80 caractères). Exemple : « Gestion des contrats : zéro renouvellement oublié ».
 - **Contexte** : exactement 2 phrases. Phrase 1 = ce qui est déployé, pour qui, à quelle échelle. Phrase 2 = la contrainte principale. Pas de liste d'utilisateurs.
 - **Fonctionnalités** : chaque entrée commence par `**Titre court**` (2 à 4 mots) suivi d'une phrase de détail, par exemple `**Workflow d'approbation** avec un circuit multi-sites et multi-niveaux`. Le titre s'affiche en gras, le reste en dessous avec une majuscule. 6 entrées idéalement (6 icônes ; au-delà elles tournent). Une fonctionnalité sans gras s'affiche sans détail.
 - **Améliorations** : `problem` et `benefits` ont **le même nombre d'entrées, dans le même ordre** (3 recommandé). La 1re puce « avant » répond à la 1re puce « après », et ainsi de suite.
