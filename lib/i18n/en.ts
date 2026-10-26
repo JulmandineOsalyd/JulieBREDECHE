@@ -705,6 +705,45 @@ export const en: Translations = {
           { val: '1', label: 'Source of truth shared with the client' },
         ],
       },
+      {
+        title: 'Visitor register: a real-time list of who is on site',
+        sector: 'Services',
+        teaser: 'Replacing the paper register with a bilingual reception app on a tablet, with a real-time list of visitors on site.',
+        context: 'A reception app records the roughly 1,000 monthly visitors of an office site on arrival and departure. Each visitor must consent to their details being stored, and the team must always know who is on site.',
+        keyMetric: { val: '1 click', label: 'To sign out' },
+        screenshots: [
+          { title: '1. Bilingual welcome screen' },
+          { title: '2. Visitor check-in form' },
+          { title: '3. List of visitors on site and sign-out' },
+        ],
+        problem: [
+          '**Paper register** filled in at reception.',
+          '**Arrival and departure times** noted by hand.',
+          '**People on site** hard to identify.',
+        ],
+        users: [
+          'About 1,000 visitors per month',
+          'Reception team of an office site',
+        ],
+        solution:
+          'A self-service **Power Apps** app on a tablet, in French and English, guides the visitor: they enter their identity, choose the person they are visiting and consent to being recorded. Visits are stored in a **SharePoint list**, where the visitor signs out in one click.',
+        features: [
+          '**Bilingual welcome** in French and English, on every screen',
+          '**Search for the person visited** in the staff directory',
+          '**Automatic arrival time** with consent to being recorded',
+          '**One-click sign-out** from the list of visitors on site',
+        ],
+        benefits: [
+          '**Self-service check-in** for the visitor, in French or English.',
+          '**Automatic arrival time** and one-click sign-out.',
+          '**List of visitors on site** updated in real time.',
+        ],
+        roi: [
+          { val: '2', label: 'Welcome languages, French and English' },
+          { val: '1 click', label: 'To sign out' },
+          { val: '1', label: 'List of visitors on site, updated in real time' },
+        ],
+      },
     ],
   },
 

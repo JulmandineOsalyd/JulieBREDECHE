@@ -42,6 +42,7 @@ const screenshotUrls = [
     '/portfolio/DailyReport/DailyReport-ListView.png',
     '/portfolio/DailyReport/DailyReport-Prompt.png',
   ],
+  [], // Registre visiteurs : page dédiée avec vidéo (captures avec le nom du client)
 ]
 
 // Dégradés des vignettes de cartes (design « Portfolio cas d'usage »)
@@ -51,6 +52,7 @@ const projectThumbs: [string, string][] = [
   ['#60c6ff', '#54e4d6'],
   ['#18b0e8', '#0e4c89'],
   ['#0f5fad', '#54e4d6'],
+  ['#54e4d6', '#0f5fad'],
 ]
 
 const projectMainTools =['SharePoint', 'Power Automate', 'Power Apps', 'Power Automate']

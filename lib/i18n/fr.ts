@@ -704,6 +704,45 @@ export const fr = {
           { val: '1', label: 'Source de vérité partagée avec le client' },
         ],
       },
+      {
+        title: 'Registre des visiteurs : liste des présents à jour en temps réel',
+        sector: 'Services',
+        teaser: "Remplacer le registre papier par une application d'accueil sur tablette, bilingue, avec la liste des visiteurs présents en temps réel.",
+        context: "Une application d'accueil enregistre les quelque 1 000 visiteurs par mois d'un site de bureaux, à leur arrivée et à leur départ. Chaque visiteur doit consentir à l'enregistrement de ses informations, et l'équipe doit toujours savoir qui est présent.",
+        keyMetric: { val: '1 clic', label: 'Pour indiquer sa sortie' },
+        screenshots: [
+          { title: "1. Écran d'accueil bilingue" },
+          { title: "2. Formulaire d'inscription du visiteur" },
+          { title: '3. Liste des visiteurs présents et sortie' },
+        ],
+        problem: [
+          "**Registre papier** rempli à l'accueil.",
+          "**Heures** d'arrivée et de départ notées à la main.",
+          '**Présents** difficiles à identifier.',
+        ],
+        users: [
+          'Environ 1 000 visiteurs par mois',
+          "Équipe d'accueil d'un site de bureaux",
+        ],
+        solution:
+          "Une application **Power Apps** en libre-service sur une tablette, en français et en anglais, guide le visiteur : il saisit son identité, choisit la personne visitée et consent à l'enregistrement. Les visites sont stockées dans une **liste SharePoint**, où le visiteur indique sa sortie en un clic.",
+        features: [
+          '**Accueil bilingue** en français et en anglais, sur chaque écran',
+          "**Recherche de la personne visitée** dans l'annuaire du personnel",
+          "**Heure d'arrivée automatique** avec consentement à l'enregistrement",
+          '**Sortie en un clic** depuis la liste des visiteurs présents',
+        ],
+        benefits: [
+          '**Enregistrement autonome** du visiteur, en français ou en anglais.',
+          "**Heure d'arrivée automatique** et sortie en un clic.",
+          '**Liste des visiteurs présents** à jour en temps réel.',
+        ],
+        roi: [
+          { val: '2', label: "Langues d'accueil, français et anglais" },
+          { val: '1 clic', label: 'Pour indiquer sa sortie' },
+          { val: '1', label: 'Liste des visiteurs présents, à jour en temps réel' },
+        ],
+      },
     ],
   },
 

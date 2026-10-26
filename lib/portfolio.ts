@@ -7,6 +7,7 @@ export const projectTechs = [
   ['Power Apps', 'Power Automate', 'SharePoint', 'Outlook'],
   ['SharePoint', 'Power Automate', 'Forms', 'Teams'],
   ['SharePoint', 'Power Automate', 'Outlook', 'AI Builder'],
+  ['Power Apps', 'SharePoint'],
 ]
 
 // Page dédiée d'un cas d'usage ; null = détail affiché dans la fenêtre du portfolio
@@ -16,6 +17,7 @@ export const projectPages: (string | null)[] = [
   '/portfolio/reservation-voyages-staff',
   '/portfolio/gestion-contrats',
   '/portfolio/rapport-activite-automatise',
+  '/portfolio/registre-visiteurs',
 ]
 
 // Vignette de la carte dans la liste ; null = dégradé + icône
@@ -25,6 +27,7 @@ export const projectThumbImages: (string | null)[] = [
   '/portfolio/MyBooking/MyBooking-thumbnail.png',
   '/portfolio/Contrats/Contrats-thumbnail.png',
   '/portfolio/DailyReport/DailyReport-thumbnail.png',
+  '/portfolio/RegistreVisiteurs/Registre-thumbnail.png',
 ]
 
 export const projectVideos: ({ src: string; poster: string } | null)[] = [
@@ -33,6 +36,7 @@ export const projectVideos: ({ src: string; poster: string } | null)[] = [
   { src: '/portfolio/MyBooking/MyBooking-demo.mp4', poster: '/portfolio/MyBooking/MyBooking-demo-poster.jpg' },
   { src: '/portfolio/Contrats/Contrats-demo.mp4', poster: '/portfolio/Contrats/Contrats-demo-poster.jpg' },
   { src: '/portfolio/DailyReport/DailyReport-demo.mp4', poster: '/portfolio/DailyReport/DailyReport-demo-poster.jpg' },
+  { src: '/portfolio/RegistreVisiteurs/Registre-demo.mp4', poster: '/portfolio/RegistreVisiteurs/Registre-demo-poster.jpg' },
 ]
 
 // SAFETY: only used with static i18n strings — sanitize with DOMPurify if dynamic content is ever passed
