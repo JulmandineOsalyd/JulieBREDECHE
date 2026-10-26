@@ -80,5 +80,6 @@ A mobile **Power Apps application** guides teachers through their booking reques
 ---
 
 ## Médias
-- **Vidéo :** `public/portfolio/MyBooking/MyBooking-demo.mp4` (38 s, 5 étapes, sans musique) et son aperçu `MyBooking-demo-poster.jpg`, produits avec /brag selon `docs/modele-video-demo-cas-usage.md`. Données fictives, sans le lien SNCF Connect.
-- **Vignette de la carte :** `MyBooking-thumbnail.png`, l'écran du formulaire de la vidéo (étape 2).
+- **Vidéo :** `public/portfolio/MyBooking/MyBooking-demo.mp4` (40,8 s, 5 étapes, sans musique) et son aperçu `MyBooking-demo-poster.jpg`, produits avec /brag selon `docs/modele-video-demo-cas-usage.md`. Données fictives. Le lien « Consulter les horaires sur SNCF Connect » est visible sur l'écran du trajet, sans clic.
+- **Parcours du formulaire :** fonction et campus uniquement (pas de réservation pour une autre personne), gares choisies dans un menu déroulant (Metz Ville et Lorraine TGV proposées), date de retour choisie dans un calendrier où les jours avant l'aller sont grisés.
+- **Vignette de la carte :** `MyBooking-thumbnail.png`, l'écran du trajet de la vidéo (étape 4).
