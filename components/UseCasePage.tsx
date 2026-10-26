@@ -42,7 +42,7 @@ export default function UseCasePage({ index }: { index: number }) {
   const project = p.projects[index]
   const techs = projectTechs[index]
   const video = projectVideos[index]
-  const context = 'context' in project ? project.context : project.teaser
+  const context = project.context
   const pairs = project.problem.map((before, i) => ({ before, after: project.benefits[i] }))
 
   return (

@@ -15,7 +15,7 @@ export const projectPages: (string | null)[] = [
   '/portfolio/extraction-factures-ocr',
   '/portfolio/reservation-voyages-staff',
   '/portfolio/gestion-contrats',
-  null,
+  '/portfolio/rapport-activite-automatise',
 ]
 
 // Vignette de la carte dans la liste ; null = dégradé + icône
@@ -24,7 +24,7 @@ export const projectThumbImages: (string | null)[] = [
   '/portfolio/LecturePDF/LecturePDF-thumbnail.png',
   '/portfolio/MyBooking/MyBooking-thumbnail.png',
   '/portfolio/Contrats/Contrats-thumbnail.png',
-  null,
+  '/portfolio/DailyReport/DailyReport-thumbnail.png',
 ]
 
 export const projectVideos: ({ src: string; poster: string } | null)[] = [
@@ -32,7 +32,7 @@ export const projectVideos: ({ src: string; poster: string } | null)[] = [
   { src: '/portfolio/LecturePDF/LecturePDF-demo.mp4', poster: '/portfolio/LecturePDF/LecturePDF-demo-poster.jpg' },
   { src: '/portfolio/MyBooking/MyBooking-demo.mp4', poster: '/portfolio/MyBooking/MyBooking-demo-poster.jpg' },
   { src: '/portfolio/Contrats/Contrats-demo.mp4', poster: '/portfolio/Contrats/Contrats-demo-poster.jpg' },
-  null,
+  { src: '/portfolio/DailyReport/DailyReport-demo.mp4', poster: '/portfolio/DailyReport/DailyReport-demo-poster.jpg' },
 ]
 
 // SAFETY: only used with static i18n strings — sanitize with DOMPurify if dynamic content is ever passed
