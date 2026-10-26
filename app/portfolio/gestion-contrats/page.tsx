@@ -12,6 +12,7 @@ export const metadata: Metadata = {
       "Cas d'usage : un bouton SharePoint ouvre un formulaire de métadonnées, puis classe le contrat dans une contrathèque avec recherche avancée et alertes Teams pour un service Achats.",
     url: 'https://juliebredeche.pro/portfolio/gestion-contrats',
     type: 'article',
+    images: ['/portfolio/Contrats/Contrats-demo-poster.jpg'],
   },
 }
 

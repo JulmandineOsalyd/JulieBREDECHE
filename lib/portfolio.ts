@@ -23,7 +23,7 @@ export const projectThumbImages: (string | null)[] = [
   '/portfolio/GED/GED-thumbnail.png',
   '/portfolio/LecturePDF/LecturePDF-thumbnail.png',
   '/portfolio/MyBooking/MyBooking-thumbnail.png',
-  null,
+  '/portfolio/Contrats/Contrats-thumbnail.png',
   null,
 ]
 
@@ -31,7 +31,7 @@ export const projectVideos: ({ src: string; poster: string } | null)[] = [
   { src: '/portfolio/GED/GED-demo.mp4', poster: '/portfolio/GED/GED-demo-poster.jpg' },
   { src: '/portfolio/LecturePDF/LecturePDF-demo.mp4', poster: '/portfolio/LecturePDF/LecturePDF-demo-poster.jpg' },
   { src: '/portfolio/MyBooking/MyBooking-demo.mp4', poster: '/portfolio/MyBooking/MyBooking-demo-poster.jpg' },
-  null,
+  { src: '/portfolio/Contrats/Contrats-demo.mp4', poster: '/portfolio/Contrats/Contrats-demo-poster.jpg' },
   null,
 ]
 

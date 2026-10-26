@@ -82,5 +82,6 @@ From SharePoint, the user clicks a button that opens a **metadata entry form** (
 - « Renouvellements découverts trop tard » est une reformulation : confirme que c'était bien le cas avant.
 
 ## Médias
-- **Vidéo :** à produire avec /brag selon `docs/modele-video-demo-cas-usage.md` (données fictives).
-- **Vignette de la carte :** écran du formulaire de métadonnées.
+- **Vidéo :** `public/portfolio/Contrats/Contrats-demo.mp4` (38,6 s, 5 étapes, sans musique) et son aperçu `Contrats-demo-poster.jpg`, produits avec /brag selon `docs/modele-video-demo-cas-usage.md`. Données fictives (Atlas Logistique, etc.).
+- **Étapes :** lien « Envoi Contrathèque » dans une colonne de la bibliothèque, saisie des métadonnées, contrat classé, recherche PnP (mot-clé avec étoile, filtre Fournisseur, résultats), alerte Teams. Références : `public/portfolio/Contratheque/`. L'étape 5 (Teams) n'est pas dans les captures d'origine.
+- **Vignette de la carte :** `Contrats-thumbnail.png`, l'écran du formulaire de métadonnées.
