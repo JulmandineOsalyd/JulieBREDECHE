@@ -1,0 +1,99 @@
+---
+title: "The new Copilot: what to remember about Home, Code and Autopilot"
+metaTitle: "New Copilot: Home, Code and Autopilot Explained"
+metaDescription: "Home, Code and Autopilot explained: what is really available, whether Code replaces Power Apps, what these agents can read in your tenant and their cost."
+slug: "nouveau-copilot-home-code-autopilot"
+canonical: "https://juliebredeche.pro/blog/nouveau-copilot-home-code-autopilot"
+date: "2026-10-29"
+category: "Copilot"
+parentTag: "Copilot"
+excerpt: "What Microsoft announced, what is really available, what these new agents can read in your tenant and what they will cost."
+readingTime: 4
+tags: ["Copilot", "Governance", "SharePoint", "Power Platform"]
+featured: false
+send_newsletter: false
+draft: false
+---
+
+On September 25, 2026, Jared Spataro, Chief Marketing Officer, AI at Work at Microsoft, published the post [“Introducing the new Copilot with Home, Code and Autopilot”](https://blogs.microsoft.com/blog/2026/09/25/introducing-the-new-copilot-with-home-code-and-autopilot/) on the official blog. It presents a Copilot reorganized around three building blocks: **Home as the entry point, Code to create apps and Autopilot for agents that work continuously**.
+
+Almost all of these new features go through [Frontier](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/get-started-frontier?view=o365-worldwide) first, Microsoft's early access program. It gives you access to features before general availability, directly in your tenant.
+
+---
+
+## The new Copilot: what is announced, what is available
+
+Here is where things stand at the end of October 2026, three weeks before Ignite, based on Microsoft's announcements.
+
+### Home
+
+The single entry point of Copilot. It brings together Chat for quick questions and Cowork for delegated tasks.
+
+<figure>
+  <img src="/images/blog/Copilot-Home.webp" alt="Copilot Home: Chat and Cowork combined in a single entry point" />
+  <figcaption>Availability: rolling out in the Frontier program “in the coming weeks”.</figcaption>
+</figure>
+
+### Code
+
+A space where you describe an app, a dashboard or an automation in natural language, and Copilot then builds it.
+
+<figure>
+  <img src="/images/blog/Copilot-Code.png" alt="Copilot Code: building a dashboard from a natural language description" />
+  <figcaption>Availability: rolling out in Frontier since late September, general availability announced “in the coming weeks”.</figcaption>
+</figure>
+
+### Autopilot
+
+A persistent agent that you give a role and a goal, and that works without waiting for a prompt.
+
+<figure>
+  <img src="/images/blog/Copilot-Autopilot.png" alt="Copilot Autopilot: tracking the routines and tasks assigned to the agent" />
+  <figcaption>Availability: private preview since late September.</figcaption>
+</figure>
+
+---
+
+## Home: a single entry point, two ways to pay
+
+Home brings Chat and Cowork into the same window. For the user, the difference is slight: they ask a question or they delegate a task. For IT, it matters, because Chat is included in the Copilot license while Cowork consumes Copilot Credits.
+
+Microsoft announces that users will soon no longer have to choose: Copilot will route each request to Chat, Cowork or Code on its own. **A simple question could therefore become a billed task without anyone noticing.**
+
+Home also includes Office in Copilot, which creates real Word, Excel and PowerPoint documents shared live with the team. That is a lot of new content that your permissions will have to cover.
+
+---
+
+## Does Copilot Code replace Power Apps and Power Automate?
+
+**No. Copilot Code adds a new way to build apps alongside Power Platform, without replacing it.**
+
+With Copilot Code, you describe an app, a dashboard or an automation in natural language. Copilot chooses the approach and handles the build. It relies on GitHub Copilot technology and runs in an isolated environment (sandbox), which can be hosted in your tenant.
+
+Apps created with Code are hosted on Copilot Managed Runtime, an IT-governed infrastructure inside the Microsoft 365 environment, which Microsoft also presents as the foundation for Copilot Studio apps. Developers keep working with GitHub Copilot.
+
+This is the return of the citizen developer, with the same risks: visibility, technical debt, app ownership. I cover them in my article on [Power Platform governance in the age of citizen developers](/blog/enjeux-gouvernance-power-platform).
+
+---
+
+## Autopilot and oversharing: the agent reads what your permissions allow
+
+Autopilot is a persistent, proactive agent. You give it a name, a role and a goal. It monitors chat channels, runs recurring work and picks a project back up days later, without a prompt. Hosted in the cloud, it can be @mentioned in Teams, in Outlook and even in your documents.
+
+Microsoft has built in real safeguards, detailed in [its June 2, 2026 post on Scout, Autopilot's former name](https://www.microsoft.com/en-us/copilot/blog/2026/06/02/introducing-microsoft-scout-your-always-on-personal-agent/):
+
+- **Each agent has its own identity**, like an employee: you always know who did what.
+- **It only goes where it is allowed**: an administrator approves the resources it can access.
+- **Its activation is controlled**: the organization must be enrolled in Frontier and the administrator must give explicit approval.
+
+These safeguards do not solve everything. If SharePoint documents are shared too broadly, Autopilot will be able to read them like any authorized user, and it will do so continuously. **The risk does not come from the agent, but from the poorly controlled data it finds along the way**. That is why I recommend starting by [taking back control of sharing in SharePoint before Copilot](/blog/preparer-sharepoint-copilot).
+
+---
+
+## My conclusion
+
+Three takeaways:
+
+1. **Nothing is ready at scale**, and everything touches permissions.
+2. **Power Platform stays in place**, Code is added alongside it.
+3. **The budget gets set before opening access**, not after the first invoice. Cowork, Code and Autopilot consume [Copilot Credits](https://learn.microsoft.com/en-us/microsoft-365/copilot/usage-based-billing-overview-copilot-credits) on top of the license. Set spending caps, and check whether the option that automatically adds every new billed service to your spending policy is enabled!
