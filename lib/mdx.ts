@@ -8,6 +8,8 @@ const CONTENT_DIR = path.join(process.cwd(), 'content/blog')
 export interface ArticleMeta {
   slug: string
   title: string
+  metaTitle?: string
+  metaDescription?: string
   date: string
   category: string
   parentTag?: string
@@ -49,6 +51,8 @@ export function getArticleBySlug(slug: string, locale: 'fr' | 'en' = 'fr'): Arti
     return {
       slug,
       title: data.title ?? '',
+      metaTitle: data.metaTitle,
+      metaDescription: data.metaDescription,
       date: data.date ?? '',
       category: data.category ?? 'Général',
       parentTag: data.parentTag,

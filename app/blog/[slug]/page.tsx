@@ -8,6 +8,7 @@ import { getArticleBySlug, getAllArticlesMeta, getSeriesNeighbors } from '@/lib/
 import { formatDate } from '@/lib/utils'
 import ReadingProgress from '@/components/ReadingProgress'
 import ReadingTime from '@/components/ReadingTime'
+import DevEditButton from '@/components/DevEditButton'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkGfm from 'remark-gfm'
@@ -34,12 +35,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (cookieStore.get('locale')?.value ?? 'fr') as 'fr' | 'en'
   const article = getArticleBySlug(params.slug, locale)
   if (!article || isHiddenDraft(article)) return {}
+  // SEO fields from the frontmatter take precedence over the visible title and subtitle
+  const seoTitle = article.metaTitle || article.title
+  const seoDescription = article.metaDescription || article.excerpt
   return {
-    title: article.title,
-    description: article.excerpt,
+    title: seoTitle,
+    description: seoDescription,
     openGraph: {
-      title: article.title,
-      description: article.excerpt,
+      title: seoTitle,
+      description: seoDescription,
       url: `https://juliebredeche.pro/blog/${article.slug}`,
       type: 'article',
       publishedTime: article.date,
@@ -47,8 +51,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: article.title,
-      description: article.excerpt,
+      title: seoTitle,
+      description: seoDescription,
     },
   }
 }
@@ -67,6 +71,9 @@ export default function ArticlePage({ params }: Props) {
   return (
     <>
       <ReadingProgress />
+
+      {/* Local editor shortcut, dev server only */}
+      {process.env.NODE_ENV === 'development' && <DevEditButton slug={article.slug} />}
 
       {/* Breadcrumb */}
       <div style={{ padding: '1.25rem 6% 0', background: '#ffffff' }}>

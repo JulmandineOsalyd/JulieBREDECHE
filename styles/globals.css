@@ -1010,3 +1010,13 @@ h1, h2, h3 {
   .series-nav-row { grid-template-columns: 1fr; }
   .series-nav-next { text-align: left; }
 }
+
+/* Image captions in articles */
+.prose-article figure { margin: 1.5rem 0; }
+.prose-article figcaption {
+  text-align: center;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 0.6rem;
+}
