@@ -1,0 +1,94 @@
+---
+title: "Fin des environnements de développement non managés : quels impacts et quoi faire"
+metaTitle: "Environnements de dev non managés : agir avant le 15/12"
+metaDescription: "Les environnements de dev non managés sont suspendus le 15 décembre 2026 : identifiez-les et choisissez un bac à sable (Sandbox) ou un environnement managé."
+slug: "environnements-developpement-non-manages"
+canonical: "https://juliebredeche.pro/blog/environnements-developpement-non-manages"
+date: "2026-11-10"
+category: ["Power Apps","Power Automate"]
+excerpt: "Que faire de vos environnements de développement non managés avant leur suspension ? Deux solutions, les licences à prévoir et un plan d'action pour les admins et les makers."
+readingTime: 3
+tags: ["Power Platform", "Environnement managé", "Licences", "Gouvernance"]
+featured: true
+send_newsletter: false
+draft: false
+---
+
+Le 15 décembre 2026, les **environnements de développement non managés** seront suspendus avec tout leur contenu. Applications, flux, agents et données deviennent alors indisponibles, pour les makers comme pour leurs utilisateurs.
+
+Il reste moins d'un mois pour repérer ces environnements et décider de leur avenir.
+
+---
+
+## Ce qui change : trois dates à retenir
+
+| Date | Ce qui se passe |
+|---|---|
+| **15 novembre 2026** | Fin de la création : il n'est plus possible de créer d'environnement de développement non managé, y compris à l'inscription au plan Développeur Power Apps |
+| **15 décembre 2026** | Suspension : les environnements existants ne sont plus accessibles, avec leurs applications, flux, agents et données |
+| **15 janvier 2027** | Suppression des environnements de développement non managés|
+
+Source : [Microsoft Learn, changements importants à venir dans Power Platform](https://learn.microsoft.com/fr-fr/power-platform/important-changes-coming#deprecation-of-unmanaged-developer-environments-and-the-power-apps-developer-plan).
+
+---
+
+## Deux solutions pour ne pas perdre vos flux et applications
+
+Pour chaque environnement de développement non managé dont vous avez encore besoin, deux chemins s'offrent à vous **avant le 15 décembre**.
+
+| | **Solution 1 : déplacer vers un bac à sable (Sandbox)** | **Solution 2 : passer en développement managé** |
+|---|---|---|
+| **Principe** | Exporter les solutions et les importer dans un environnement de type "Sandbox" | Activer les environnements managés sur l'environnement existant |
+| **Avantages** | Aucune licence supplémentaire nécessaire | Applications, flux, agents et données conservés sans migration |
+| **Inconvénients** | Export et import manuels des solutions entre les environnements | Licence Premium nécessaire, un seul environnement de dev managé par utilisateur |
+
+Le principe de Microsoft est simple : dès qu'un environnement devient managé, chaque utilisateur doit [avoir une licence qui inclut les bons droits](https://learn.microsoft.com/fr-fr/power-platform/admin/managed-environment-licensing) : Power Apps Premium, Power Automate Premium, Copilot Studio et certaines licences Dynamics 365. 
+
+> **Si vous avez des licences premium à disposition, la conversion en environnement managé est le chemin le plus simple. Sans licence adaptée, déplacer les solutions vers un bac à sable devient la seule option.**
+
+---
+
+## Plan d'action des administrateurs en 3 temps
+
+### 1. Repérer
+
+Dans le centre d'administration Power Platform, afficher la liste des environnements. Filtrez sur le type "Développeur" puis "Géré = Non", puis utilisez la colonne "Dernière activité" pour identifier ce qui sert encore.
+
+### 2. Trancher avant le 15 décembre
+
+Pour chaque environnement encore utilisé, choisissez l'une des deux solutions : **convertir** en environnement managé si les licences sont en place, ou **déplacer** les solutions vers un bac à sable.
+
+### 3. Prévoir l'après
+
+Pour offrir un espace personnel à chaque maker, vous pouvez activer le routage d'environnement automatique sur votre tenant.
+
+L'objectif est de garder les makers autonomes sans perdre la main. Dans un environnement managé, l'administrateur voit l'usage des applications et peut encadrer le partage. C'est une réponse aux [enjeux de gouvernance des citizen developers](/blog/enjeux-gouvernance-power-platform) que j'évoquais dans un précédent article.
+
+---
+
+## Plan d'action des makers
+
+Si vous développez dans un environnement de développeur, trois gestes suffisent :
+
+- **Demander** à votre administrateur ce qui est prévu pour votre environnement : conversion en environnement managé ou déplacement vers un autre environnement
+- **Packager** vos flux et vos applications Power Apps dans des solutions, si ce n'est pas déjà fait
+- **Exporter** vos solutions dès maintenant pour conserver une copie de votre travail
+
+---
+
+## Pourquoi Microsoft fait ce choix
+
+Les environnements non managés échappent aux contrôles dont les administrateurs dépendent : politiques d'environnements managés, insights d'utilisation, limites de partage.
+
+Microsoft veut donner aux administrateurs une vision cohérente de tout le tenant, tout en laissant aux makers un espace personnel pour créer et tester.
+
+---
+
+## Ma conclusion
+
+Ce calendrier laisse peu de marge, mais il est simple à suivre si vous agissez rapidement. Trois éléments clés à retenir :
+
+1. **Une date à retenir : le 15 décembre**, car c'est là que les contenus deviennent inaccessibles.
+2. **La licence premium conditionne la conversion**, et sans elle il faut migrer les solutions.
+3. **Exporter les solutions existantes par sécurité**, quelle que soit la stratégie retenue.
+

@@ -1,0 +1,93 @@
+---
+title: "End of unmanaged developer environments: what it means and what to do"
+metaTitle: "Unmanaged dev environments: act before Dec 15"
+metaDescription: "Unmanaged developer environments are suspended on December 15, 2026. Identify them and choose a sandbox or Managed Environments before you lose your apps."
+slug: "environnements-developpement-non-manages"
+canonical: "https://juliebredeche.pro/blog/environnements-developpement-non-manages"
+date: "2026-11-10"
+category: ["Power Apps","Power Automate"]
+excerpt: "What should you do with your unmanaged developer environments before they are suspended? Two options, the licenses to plan for and an action plan for admins and makers."
+readingTime: 3
+tags: ["Power Platform", "Managed Environments", "Licensing", "Governance"]
+featured: true
+send_newsletter: false
+draft: false
+---
+
+On December 15, 2026, **unmanaged developer environments** will be suspended along with all their content. Apps, flows, agents and data become unavailable, for makers and for their users.
+
+You have less than a month to find these environments and decide what happens to them.
+
+---
+
+## What changes: three dates to remember
+
+| Date | What happens |
+|---|---|
+| **November 15, 2026** | End of creation: you can no longer create an unmanaged developer environment, including when signing up for the Power Apps Developer Plan |
+| **December 15, 2026** | Suspension: existing environments are no longer accessible, along with their apps, flows, agents and data |
+| **January 15, 2027** | Unmanaged developer environments are deleted |
+
+Source: [Microsoft Learn, important changes coming to Power Platform](https://learn.microsoft.com/en-us/power-platform/important-changes-coming#deprecation-of-unmanaged-developer-environments-and-the-power-apps-developer-plan).
+
+---
+
+## Two options to keep your flows and apps
+
+For each unmanaged developer environment you still need, you have two paths **before December 15**.
+
+| | **Option 1: move to a sandbox** | **Option 2: switch to a managed developer environment** |
+|---|---|---|
+| **Principle** | Export your solutions and import them into a "Sandbox" environment | Enable Managed Environments on the existing environment |
+| **Pros** | No additional license required | Apps, flows, agents and data are kept without any migration |
+| **Cons** | Solutions must be exported and imported manually between environments | Premium license required, only one managed developer environment per user |
+
+Microsoft's principle is simple: as soon as an environment becomes managed, every user must [have a license that includes the right entitlements](https://learn.microsoft.com/en-us/power-platform/admin/managed-environment-licensing): Power Apps Premium, Power Automate Premium, Copilot Studio and some Dynamics 365 licenses.
+
+> **If you have premium licenses available, converting to a managed environment is the simplest path. Without a suitable license, moving your solutions to a sandbox is the only option.**
+
+---
+
+## Admin action plan in 3 steps
+
+### 1. Identify
+
+In the Power Platform admin center, open the list of environments. Filter on the "Developer" type, then "Managed = No". Use the "Last activity" column to see what is still in use.
+
+### 2. Decide before December 15
+
+For each environment still in use, choose one of the two options: **convert** it to a managed environment if the licenses are in place, or **move** the solutions to a sandbox.
+
+### 3. Plan for what comes next
+
+To give each maker a personal space, you can enable automatic environment routing on your tenant.
+
+The goal is to keep makers autonomous without losing control. In a managed environment, the admin sees app usage and can set limits on sharing. It answers the [citizen developer governance challenges](/blog/enjeux-gouvernance-power-platform) I covered in a previous article.
+
+---
+
+## Maker action plan
+
+If you build in a developer environment, three steps are enough:
+
+- **Ask** your admin what is planned for your environment: conversion to a managed environment or a move to another environment
+- **Package** your flows and Power Apps apps in solutions, if you have not done so already
+- **Export** your solutions now to keep a copy of your work
+
+---
+
+## Why Microsoft is doing this
+
+Unmanaged environments escape the controls that admins rely on: Managed Environments policies, usage insights and sharing limits.
+
+Microsoft wants to give admins a consistent view of the whole tenant, while still leaving makers a personal space to build and test.
+
+---
+
+## My conclusion
+
+This timeline leaves little room, but it is easy to follow if you act quickly. Three key points to remember:
+
+1. **One date to remember: December 15**, because that is when content becomes inaccessible.
+2. **The premium license determines whether you can convert**, and without it you have to migrate your solutions.
+3. **Export your existing solutions as a safety net**, whatever strategy you choose.

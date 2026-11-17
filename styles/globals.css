@@ -628,6 +628,9 @@ h1, h2, h3 {
 .prose-article table td { width: auto; white-space: normal; }
 .prose-article th,
 .prose-article td { overflow-wrap: anywhere; word-break: break-word; }
+/* Première colonne des tableaux : ne jamais couper les mots */
+.prose-article th:first-child,
+.prose-article td:first-child { overflow-wrap: normal; word-break: normal; hyphens: none; }
 
 @media (max-width: 700px) {
   .prose-article h2 { font-size: 1.4rem; }
